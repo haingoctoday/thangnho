@@ -1,0 +1,10 @@
+/vendor/*
+/config/app.php
+/tmp/*
+/logs/*
+.idea/cakephp3_adminlte_2.iml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+.idea/workspace.xml
+.idea/copyright/profiles_settings.xml
