@@ -48,20 +48,21 @@ class HotelController extends AppController
      *
      * @return \Cake\Network\Response|void Redirects on successful add, renders view otherwise.
      */
-    public function add()
+    public function them()
     {
-        $user = $this->Users->newEntity();
+        $this->viewBuilder()->theme('AdminLTE');
+        $tao = $this->Hotel->newEntity();
         if ($this->request->is('post')) {
-            $user = $this->Users->patchEntity($user, $this->request->data);
-            if ($this->Users->save($user)) {
-                $this->Flash->success(__('The {0} has been saved.', 'User'));
-                return $this->redirect(['action' => 'index']);
+            $tao = $this->Hotel->patchEntity($tao, $this->request->data);
+            if ($this->Hotel->save($tao)) {
+                $this->Flash->success(__('The {0} has been saved.', 'them'));
+                return $this->redirect(['action' => 'them']);
             } else {
-                $this->Flash->error(__('The {0} could not be saved. Please, try again.', 'User'));
+                $this->Flash->error(__('The {0} could not be saved. Please, try again.', 'them'));
             }
         }
-        $this->set(compact('user'));
-        $this->set('_serialize', ['user']);
+        $this->set('hihi',compact('tao'));
+        $this->set('_serialize', ['them']);
     }
 
     /**
