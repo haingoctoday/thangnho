@@ -27,6 +27,21 @@
           <?php
             echo $this->Form->input('ten');
           ?>
+            <?php
+            echo $this->Form->input('them');
+          ?>
+            <?php
+            echo $this->Form->input('meta_title');
+          ?>
+            <?php
+            echo $this->Form->input('meta_keyword');
+          ?>
+            <?php
+            echo $this->Form->input('mota');
+          ?>
+            <?php
+            echo $this->Form->input('thongtin');
+          ?>
           </div>
           <!-- /.box-body -->
           <div class="box-footer">

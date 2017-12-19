@@ -33,6 +33,7 @@ class HotelTable extends Table
         parent::initialize($config);
 
         $this->table('hotel');
+           $this->addBehavior('Timestamp');
     }
 
 }
