@@ -51,6 +51,7 @@ class UsersController extends AppController
      */
     public function add()
     {
+        $this->viewBuilder()->theme('AdminLTE');
         $user = $this->Users->newEntity();
         if ($this->request->is('post')) {
             $user = $this->Users->patchEntity($user, $this->request->data);

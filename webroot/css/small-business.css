@@ -1,0 +1,63 @@
+/*!
+ * Start Bootstrap - Small Business (https://startbootstrap.com/template-overviews/small-business)
+ * Copyright 2013-2017 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-small-business/blob/master/LICENSE)
+ */
+
+ body {
+ 	padding-top: 88px;
+ }
+
+ @media (min-width: 992px) {
+ 	body {
+ 		padding-top: 88px;
+ 	}
+ }
+ span.text_menu {
+ 	font-size: 16px;
+ 	text-transform: uppercase;
+ 	margin-left: 10px;
+ 	font-weight: 700;
+ 	line-height: 86px;
+ }
+ .collapse.in{
+ 	display: block;
+ }
+ .SearchIcon
+ {
+ 	color:#fff;
+ 	
+ }
+ .SearchButton
+ {
+ 	background-color:#ED1C24;
+ 	border-radius:1px;
+ }
+ .SearchButton:hover{
+ 	background-color:#C4161C;
+ }
+.image_tour {
+    /*height: 200px;*/
+    background: red;
+}
+p.card-text {
+    padding: 5px;
+    border-top: 1px solid rgba(0, 0, 0, .125);
+}
+.main {
+    font-family: Helvetica,Arial,sans-serif;
+    box-shadow: 0 3px 0 0 #fff, 0 -3px 0 0 #fff, -2px 0 20px -4px rgba(0,0,0,.2), 2px 0 20px -4px rgba(0,0,0,.2);
+    background: #f7f7f7;
+}
+.ft_faq_tour {
+    line-height: 40px;
+    height: 40px;
+    font-size: 13px;
+    background: #0000002e;
+}
+
+.ft_icon_tour {
+    text-align: right;
+    line-height: 40px;
+    height: 40px;
+}
