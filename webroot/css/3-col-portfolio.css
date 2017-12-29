@@ -1,0 +1,142 @@
+/*!
+ * Start Bootstrap - 3 Col Portfolio (https://startbootstrap.com/template-overviews/3-col-portfolio)
+ * Copyright 2013-2017 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-3-col-portfolio/blob/master/LICENSE)
+ */
+
+body {
+  padding-top: 54px;
+}
+
+@media (min-width: 992px) {
+  body {
+    padding-top: 56px;
+  }
+}
+
+.portfolio-item {
+  margin-bottom: 30px;
+}
+
+.pagination {
+  margin-bottom: 30px;
+}
+img.logo {
+    width: 200px;
+}
+span.text_menu {
+    line-height: 80px;
+    height: 80px;
+    /* background: red; */
+    font-size: 20px;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #000;
+    margin-left: 16px;
+}
+p.card-text {
+    font-size: 14px;
+    padding: 5px;
+    /*border-top: 1px solid #dfdfdf;*/
+}
+.pendding-img{
+	background: red;
+    vertical-align: middle;
+    line-height: 14px;
+    padding-top: 20px;
+}
+.pendding-text{
+	text-transform: capitalize;
+    background: #f1f6f7;
+    padding-left: 10px;
+    border-bottom: 1px solid #b2dae2;
+}
+.pendding-img-2{
+	background: red;
+    vertical-align: middle;
+    line-height: 14px;
+    /*padding-top: 20px;*/
+}
+.pendding-img-3{
+	background: red;
+    vertical-align: middle;
+    line-height: 14px;
+    padding-top: 10px;
+}
+.featurette {
+    display: table;
+    width: 100%;
+    height: 30%; /* set a pixel height and then remove the body,html height */
+    vertical-align: middle;
+    background: #555;
+    color: #fff;
+}
+.featurette-inner {
+    display: table-cell;
+    vertical-align: middle;
+}
+.featurette .search {
+    padding: 4% 1%;
+    margin: 0 auto;
+}
+.no-margin-top {
+    margin-top: 0
+}
+
+
+/* ------ form-control-lg */
+.form-control-lg {
+    min-height: 46px;
+    border-radius: 6px;
+    font-size: 18px;
+    line-height: normal;
+}
+
+
+/* ------ disjointed form group custom */
+.featurette .search.has-button .btn {
+    margin-top: 5px;
+    width: 100%;
+}
+input.form-control {
+    border-radius: 0px;
+}
+input#search_date_to,input#search_date_end {
+    font-size: 16px;
+    padding: 0;
+}
+#pick-room{
+	    /*display: block;*/
+    position: absolute;
+    top: 40px;
+    width: 50%;
+    right: 0;
+    background: #fff;
+    z-index: 99;
+    line-height: 40px
+    color:#000;
+}
+#pick-room span{
+	line-height: 40px;
+	color:#000;
+}
+.hide {
+    display: none!important;
+}
+.typeahead__container{
+    padding: 0;
+}
+
+@media (min-width:480px) { 
+    .featurette .search.has-button .form-group {
+        position: relative;
+        padding-right: 99px; /*space for button*/
+    }
+    .featurette .search.has-button .btn {
+        position: absolute;
+        top: 0;
+        right: 0;
+        width: auto;
+        margin: 0;
+    }
+}

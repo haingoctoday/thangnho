@@ -1,0 +1,35 @@
+2017-12-22 08:19:46 Error: [InvalidArgumentException] There was a problem connecting to the database: SQLSTATE[HY000] [1045] Access denied for user 'my_app'@'localhost' (using password: YES)
+Stack Trace:
+#0 C:\Users\Administrator\Desktop\cakephp3_adminlte_2-master\vendor\robmorgan\phinx\src\Phinx\Db\Adapter\PdoAdapter.php(238): Phinx\Db\Adapter\MysqlAdapter->connect()
+#1 C:\Users\Administrator\Desktop\cakephp3_adminlte_2-master\vendor\cakephp\migrations\src\CakeAdapter.php(57): Phinx\Db\Adapter\PdoAdapter->getConnection()
+#2 C:\Users\Administrator\Desktop\cakephp3_adminlte_2-master\vendor\cakephp\migrations\src\Command\CommandTrait.php(78): Migrations\CakeAdapter->__construct(Object(Phinx\Db\Adapter\MysqlAdapter), Object(Cake\Database\Connection))
+#3 C:\Users\Administrator\Desktop\cakephp3_adminlte_2-master\vendor\robmorgan\phinx\src\Phinx\Console\Command\Migrate.php(72): Migrations\Command\Migrate->bootstrap(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#4 C:\Users\Administrator\Desktop\cakephp3_adminlte_2-master\vendor\cakephp\migrations\src\Command\CommandTrait.php(35): Phinx\Console\Command\Migrate->execute(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#5 C:\Users\Administrator\Desktop\cakephp3_adminlte_2-master\vendor\cakephp\migrations\src\Command\Migrate.php(65): Migrations\Command\Migrate->parentExecute(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#6 C:\Users\Administrator\Desktop\cakephp3_adminlte_2-master\vendor\symfony\console\Command\Command.php(252): Migrations\Command\Migrate->execute(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#7 C:\Users\Administrator\Desktop\cakephp3_adminlte_2-master\vendor\symfony\console\Application.php(936): Symfony\Component\Console\Command\Command->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#8 C:\Users\Administrator\Desktop\cakephp3_adminlte_2-master\vendor\symfony\console\Application.php(240): Symfony\Component\Console\Application->doRunCommand(Object(Migrations\Command\Migrate), Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#9 C:\Users\Administrator\Desktop\cakephp3_adminlte_2-master\vendor\symfony\console\Application.php(148): Symfony\Component\Console\Application->doRun(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#10 C:\Users\Administrator\Desktop\cakephp3_adminlte_2-master\vendor\cakephp\migrations\src\Shell\MigrationsShell.php(108): Symfony\Component\Console\Application->run(Object(Symfony\Component\Console\Input\ArgvInput), Object(Symfony\Component\Console\Output\ConsoleOutput))
+#11 [internal function]: Migrations\Shell\MigrationsShell->main('migrations', 'migrate')
+#12 C:\Users\Administrator\Desktop\cakephp3_adminlte_2-master\vendor\cakephp\cakephp\src\Console\Shell.php(472): call_user_func_array(Array, Array)
+#13 C:\Users\Administrator\Desktop\cakephp3_adminlte_2-master\vendor\cakephp\migrations\src\Shell\MigrationsShell.php(164): Cake\Console\Shell->runCommand(Array, true, Array)
+#14 C:\Users\Administrator\Desktop\cakephp3_adminlte_2-master\vendor\cakephp\cakephp\src\Console\ShellDispatcher.php(227): Migrations\Shell\MigrationsShell->runCommand(Array, true, Array)
+#15 C:\Users\Administrator\Desktop\cakephp3_adminlte_2-master\vendor\cakephp\cakephp\src\Console\ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#16 C:\Users\Administrator\Desktop\cakephp3_adminlte_2-master\vendor\cakephp\cakephp\src\Console\ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#17 C:\Users\Administrator\Desktop\cakephp3_adminlte_2-master\bin\cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#18 {main}
+
+
+2017-12-29 04:24:17 Error: [Cake\Console\Exception\MissingShellException] Shell class for "Info" could not be found.
+Exception Attributes: array (
+  'class' => 'Info',
+)
+Stack Trace:
+#0 C:\Users\Administrator\Desktop\cakephp3_adminlte_2-master\vendor\cakephp\cakephp\src\Console\ShellDispatcher.php(223): Cake\Console\ShellDispatcher->findShell('Info')
+#1 C:\Users\Administrator\Desktop\cakephp3_adminlte_2-master\vendor\cakephp\cakephp\src\Console\ShellDispatcher.php(182): Cake\Console\ShellDispatcher->_dispatch(Array)
+#2 C:\Users\Administrator\Desktop\cakephp3_adminlte_2-master\vendor\cakephp\cakephp\src\Console\ShellDispatcher.php(128): Cake\Console\ShellDispatcher->dispatch(Array)
+#3 C:\Users\Administrator\Desktop\cakephp3_adminlte_2-master\bin\cake.php(34): Cake\Console\ShellDispatcher::run(Array)
+#4 {main}
+
+
