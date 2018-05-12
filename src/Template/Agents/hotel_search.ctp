@@ -357,16 +357,8 @@ $('#search_hotel').submit(function(event) {
     return $(elem).val();
   }).get();
   var ne_childrens = childrens.slice(0, -1);
-
-  
-
   var sophong = ne_adults.length;
-  
-
   var $inputs = $('#search_hotel :input');
-
-    // not sure if you wanted this, but I thought I'd add it.
-    // get an associative array of just the values.
     var values = {};
     $inputs.each(function() {
       values[this.name] = $(this).val();
@@ -375,7 +367,44 @@ $('#search_hotel').submit(function(event) {
     values['adults_end'] = ne_adults;
     values['children_end'] = ne_childrens;
     console.log(values);
+
+    $.post("api_search_hotel",
+    {
+        data: values
+    },
+    function(data, status){
+      console.log(data['status']);
+        $("body").css('background',"rgba(0, 0, 0, 0.45)");
+        $(".wraper-display-twt").css('opacity',".3");
+        $("nav#mainNav").css('opacity',".3");
+        $(".ihihihih").css('opacity',".3");
+        $(".search-accom").css('opacity',".3");
+        $(".div_load_ai").css('display',"block");
+        setTimeout(sample, 4000); 
+    });
     event.preventDefault();
   });
-
+function sample() {
+    window.location = "/accommodation-hotel-result";
+}
 </script>
+
+<div class="div_load_ai">
+  <?php echo $this->Html->image('/img/icon_load.gif', ['alt' => 'load','media-simple'=>'true']);?>  
+  </div>
+  <style type="text/css">
+
+.div_load_ai{
+  display: none;
+  position: absolute;
+    top: 40%;
+    left: 40%;
+    background: #00aef0;
+    width: 300px;
+}
+.div_load_ai img{
+      width: 200px;
+    margin: 10px 0 10px 50px;
+}
+
+  </style>

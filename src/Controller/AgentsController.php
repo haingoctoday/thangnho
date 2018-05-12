@@ -29,7 +29,7 @@ class AgentsController extends AppController
     {
         $this->viewBuilder()->layout('agents');
         parent::beforeFilter($event);
-        $this->Auth->allow(['hotelSearch','testsearch']);
+       $this->Auth->allow(['hotelSearch','testsearch','ApiSearchHotel']);
     }
     public function index()
     {
@@ -37,11 +37,11 @@ class AgentsController extends AppController
      
 
          $this->loadModel("Newhotel");
-         $hotel_hot = $this->Newhotel->find('all',array('limit'=>6));
+         $hotel_hot = $this->Newhotel->find('all',array('limit'=>3));
           $this->set('hotel_hot', $hotel_hot);
 
           $this->loadModel("Slideagent");
-         $slide = $this->Slideagent->find('all',array('limit'=>6));
+         $slide = $this->Slideagent->find('all',array('limit'=>3));
           $this->set('slide', $slide);
 
 
@@ -155,32 +155,32 @@ class AgentsController extends AppController
 
   }
 
+  
   public function hotelSearchResult(){
       //$this->viewBuilder()->layout('agents');
         $this->viewBuilder()->layout('agentslayout');
-        
-         $this->loadModel("Newhotel");
-         $hotel_hot = $this->Newhotel->find('all',array('limit'=>3));
-          $this->set('hotel_hot', $hotel_hot);
-        //$users = $this->paginate($this->Users);
-      $users = array();
+          $session = $this->request->session();
+      //    $this->loadModel("Newhotel");
+      //    $hotel_hot = $this->Newhotel->find('all',array('limit'=>3));
+      //     $this->set('hotel_hot', $hotel_hot);
+      //   //$users = $this->paginate($this->Users);
+      // $users = array();
+      $search_old = $session->read('hotel.search');
 
+       $this->loadModel("Newhotel");
+        $query = $this->Newhotel->find('all', [
+          'conditions' => array(
+              'OR' => array(
+                'diachi LIKE' => '%'.$search_old['search_name'].'%',
+                'namehotel LIKE' => '%'.$search_old['search_name'].'%',
+              )
+          ) //['diachi LIKE' => '%'.$search_old['search_name'].'%']
+      ]);
+
+        //debug($query->toArray());
+        $this->set('list_hotels', $query->toArray());
        $this->set('title', 'Agent');
-       $this->set('view_name', 'hotelSearchResult');
-
-  }
-  public function hotelSearchResult1(){
-      //$this->viewBuilder()->layout('agents');
-        $this->viewBuilder()->layout('agentslayout');
-        
-         $this->loadModel("Newhotel");
-         $hotel_hot = $this->Newhotel->find('all',array('limit'=>3));
-          $this->set('hotel_hot', $hotel_hot);
-        //$users = $this->paginate($this->Users);
-      $users = array();
-
-       $this->set('title', 'Agent');
-       $this->set('view_name', 'hotelSearchResult1');
+       $this->set('view_name', 'hotel');
 
   }
 
@@ -370,255 +370,16 @@ $array_array = array_merge($diachi_view,$hotel_view);
 echo json_encode($array_array);
 die();
 
-echo json_encode(array(
-    array(
-        "name"          => "Ducks",
-        "img"           => "ducks",
-        "city"          => "Anaheim",
-        "id"            => "ANA",
-        "conference"    => "Western",
-        "division"      => "Pacific"
-    ),
-    array(
-        "name"          => "Thrashers",
-        "img"           => "thrashers",
-        "city"          => "Atlanta",
-        "id"            => "ATL",
-        "conference"    => "Eastern",
-        "division"      => "Southeast"
-    ),
-    array(
-        "name"          => "Bruins",
-        "img"           => "bruins",
-        "city"          => "Boston",
-        "id"            => "BOS",
-        "conference"    => "Eastern",
-        "division"      => "Northeast"
-    ),
-    array(
-        "name"          => "Sabres",
-        "img"           => "sabres",
-        "city"          => "Buffalo",
-        "id"            => "BUF",
-        "conference"    => "Eastern",
-        "division"      => "Northeast"
-    ),
-    array(
-        "name"          => "Flames",
-        "img"           => "flames",
-        "city"          => "Calgary",
-        "id"            => "CGY",
-        "conference"    => "Western",
-        "division"      => "Northwest"
-    ),
-    array(
-        "name"          => "Hurricanes",
-        "img"           => "hurricanes",
-        "city"          => "Carolina",
-        "id"            => "CAR",
-        "conference"    => "Eastern",
-        "division"      => "Southeast"
-    ),
-    array(
-        "name"          => "Blackhawks",
-        "img"           => "blackhawks",
-        "city"          => "Chicago",
-        "id"            => "CHI",
-        "conference"    => "Western",
-        "division"      => "Central"
-    ),
-    array(
-        "name"          => "Avalanche",
-        "img"           => "avalanche",
-        "city"          => "Colorado",
-        "id"            => "COL",
-        "conference"    => "Western",
-        "division"      => "Northwest"
-    ),
-    array(
-        "name"          => "Bluejackets",
-        "img"           => "bluejackets",
-        "city"          => "Columbus",
-        "id"            => "CBJ",
-        "conference"    => "Western",
-        "division"      => "Central"
-    ),
-    array(
-        "name"          => "Stars",
-        "img"           => "stars",
-        "city"          => "Dallas",
-        "id"            => "DAL",
-        "conference"    => "Western",
-        "division"      => "Pacific"
-    ),
-    array(
-        "name"          => "Red Wings",
-        "img"           => "redwings",
-        "city"          => "Detroit",
-        "id"            => "DET",
-        "conference"    => "Western",
-        "division"      => "Central"
-    ),
-    array(
-        "name"          => "Oilers",
-        "img"           => "oilers",
-        "city"          => "Edmonton",
-        "id"            => "EDM",
-        "conference"    => "Western",
-        "division"      => "Northwest"
-    ),
-    array(
-        "name"          => "Panthers",
-        "img"           => "panthers",
-        "city"          => "Florida",
-        "id"            => "FLA",
-        "conference"    => "Eastern",
-        "division"      => "Southeast"
-    ),
-    array(
-        "name"          => "Kings",
-        "img"           => "kings",
-        "city"          => "Los Angeles",
-        "id"            => "LAK",
-        "conference"    => "Western",
-        "division"      => "Pacific"
-    ),
-    array(
-        "name"          => "Wild",
-        "img"           => "wild",
-        "city"          => "Minnesota",
-        "id"            => "MIN",
-        "conference"    => "Western",
-        "division"      => "Northwest"
-    ),
-    array(
-        "name"          => "Canadiens",
-        "img"           => "canadiens",
-        "city"          => "Montreal",
-        "id"            => "MTL",
-        "conference"    => "Eastern",
-        "division"      => "Northeast"
-    ),
-    array(
-        "name"          => "Predators",
-        "img"           => "predators",
-        "city"          => "Nashville",
-        "id"            => "NSH",
-        "conference"    => "Western",
-        "division"      => "Central"
-    ),
-    array(
-        "name"          => "Devils",
-        "img"           => "devils",
-        "city"          => "New Jersey",
-        "id"            => "NJD",
-        "conference"    => "Eastern",
-        "division"      => "Atlantic"
-    ),
-    array(
-        "name"          => "Islanders",
-        "img"           => "islanders",
-        "city"          => "New York",
-        "id"            => "NYI",
-        "conference"    => "Eastern",
-        "division"      => "Atlantic"
-    ),
-    array(
-        "name"          => "Rangers",
-        "img"           => "rangers",
-        "city"          => "New York",
-        "id"            => "NYR",
-        "conference"    => "Eastern",
-        "division"      => "Atlantic"
-    ),
-    array(
-        "name"          => "Senators",
-        "img"           => "senators",
-        "city"          => "Ottawa",
-        "id"            => "OTT",
-        "conference"    => "Eastern",
-        "division"      => "Northeast"
-    ),
-    array(
-        "name"          => "Flyers",
-        "img"           => "flyers",
-        "city"          => "Philadelphia",
-        "id"            => "PHI",
-        "conference"    => "Eastern",
-        "division"      => "Atlantic"
-    ),
-    array(
-        "name"          => "Coyotes",
-        "img"           => "coyotes",
-        "city"          => "Phoenix",
-        "id"            => "PHX",
-        "conference"    => "Western",
-        "division"      => "Pacific"
-    ),
-    array(
-        "name"          => "Penguins",
-        "img"           => "penguins",
-        "city"          => "Pittsburgh",
-        "id"            => "PIT",
-        "conference"    => "Eastern",
-        "division"      => "Atlantic"
-    ),
-    array(
-        "name"          => "Sharks",
-        "img"           => "sharks",
-        "city"          => "San Jose",
-        "id"            => "SJS",
-        "conference"    => "Western",
-        "division"      => "Pacific"
-    ),
-    array(
-        "name"          => "Blues",
-        "img"           => "blues",
-        "city"          => "St. Louis",
-        "id"            => "STL",
-        "conference"    => "Western",
-        "division"      => "Central"
-    ),
-    array(
-        "name"          => "Lightning",
-        "img"           => "lightning",
-        "city"          => "Tampa Bay",
-        "id"            => "TBL",
-        "conference"    => "Eastern",
-        "division"      => "Southeast"
-    ),
-    array(
-        "name"          => "Maple Leafs",
-        "img"           => "mapleleafs",
-        "city"          => "Toronto",
-        "id"            => "TOR",
-        "conference"    => "Eastern",
-        "division"      => "Northeast"
-    ),
-    array(
-        "name"          => "Canucks",
-        "img"           => "canucks",
-        "city"          => "Vancouver",
-        "id"            => "VAN",
-        "conference"    => "Western",
-        "division"      => "Northwest"
-    ),
-    array(
-        "name"          => "Capitals",
-        "img"           => "capitals",
-        "city"          => "Washington",
-        "id"            => "WSH",
-        "conference"    => "Eastern",
-        "division"      => "Southeast"
-    ),
-    array(
-        "name"          => "Jets",
-        "img"           => "jets",
-        "city"          => "Winnipeg",
-        "id"            => "WPG",
-        "conference"    => "Eastern",
-        "division"      => "Southeast"
-    )
-));
+
   }
+        public function ApiSearchHotel()
+        {
+          $session = $this->request->session();
+          $data_logo = $this->request->data['data'];
+          $session->write('hotel.search', $data_logo);
+          $session->write('hotel.status', '1');
+          $data_result = array('status'=>'ok');
+          echo json_encode($data_result);
+          die();
+        }
 }

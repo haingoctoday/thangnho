@@ -71,7 +71,7 @@ class AppController extends Controller
      * @param \Cake\Event\Event $event The beforeRender event.
      * @return \Cake\Network\Response|null|void
      */
-    public function beforeRender(Event $event)
+       public function beforeRender(Event $event)
     {
         if (!array_key_exists('_serialize', $this->viewVars) &&
             in_array($this->response->type(), ['application/json', 'application/xml'])
@@ -89,10 +89,18 @@ class AppController extends Controller
         if(!$this->request->session()->read('Config.language')){
             $current = $this->request->session()->write('Config.language','AUD');
             $this->set('language', $current);
+
         }else{
            $this->set('language', $this->request->session()->read('Config.language'));
+         //  
         }
-     //   debug($abc);
+        $this->loadModel("Currency");
+        $slideagent = $this->Currency->find('all')->where(['name =' =>$this->request->session()->read('Config.language')])->toArray();
+      
+          
+      //debug($slideagent[0]->tygia);
+      $this->set('tygia',$slideagent[0]->tygia);
+      //die();
     }
 
     public function beforeFilter(Event $event)
