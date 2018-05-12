@@ -5,90 +5,87 @@
 <?php
 $adults = array('1'=>'Adults 1','2'=>'Adults 2','3'=>'Adults 3','4'=>'Adults 4','5'=>'Adults 5','6'=>'Adults 6');
 $children = array('0'=>'Children 0','1'=>'Children 1','2'=>'Children 2','3'=>'Children 3','4'=>'Children 4 ');
-
-
 ?>
 
-        <div class="search-accom">
-            <div class="container">
-                <div class="row">
-                   <form role="form" class="search" id="search_hotel">
-                    <div class="form-group-search" style="padding: 32px 10px 32px 10px;">
+<div class="search-accom">
+  <div class="container">
+    <div class="row">
+      <form role="form" class="search" id="search_hotel">
+        <div class="form-group-search" style="padding: 32px 10px 32px 10px;">
 
-                         <div class="typeahead__container " style="float: left;margin-right: 4px;">
-        <div class="typeahead__field" style="
-    margin-top: 1px;>
- 
-            <span class="typeahead__query">
-                <input class="input_name fix-height-input" id="search_name" name="search_name" type="text" placeholder="Search by destination, point of interest, hotel or address..." autocomplete="off">
-            </span>
-            
- </div>
-        </div>
+          <div class="typeahead__container " style="float: left;margin-right: 4px;margin-top: 1px;">
+            <div class="typeahead__field ">
 
+              <span class="typeahead__query">
+                <input class="input_name fix-height-input" id="search_name" name="search_name" type="text" placeholder="Search by destination, point of interest, hotel or address..." autocomplete="off" value="<?php echo ($this->request->session()->read('hotel.search.search_name')) ?>">
+              </span>
 
-
-                        <!-- <input type="text" class="input_name fix-height-input" style="margin-top: 1px;" id="usr" placeholder="Search by destination, point of interest, hotel or address..."> -->
-                        <input type="text" id="search_date_to" name="search_date_to" class="input_checkin fix-height-input" placeholder="Check in">
-                        <input type="text" id="search_date_end" name="search_date_end" class="input_checkin fix-height-input"  placeholder="Check out">
-                        <select class="input_night icon_moon_input" id="search_night" disabled name="search_night" style="height: 34px;font-size: 15px;">
-     <?php
-        for ($num_day=1; $num_day < 32 ; $num_day++) { 
-         ?>
-         <option value="<?php echo $num_day?>" ><?php echo $num_day?></span></option>
-         <?php
-       }
-       ?>
-  
-    </select>
-                        <!-- <input type="text" class="input_night fix-height-input" id="usr" placeholder=""> -->
-
-                        <!-- <input type="text" class="input_room fix-height-input" id="usr" placeholder="1 Room, 2 Adults"> -->
-                          <button type="button" class=" input_room fix-height-input" data-toggle="collapse" data-target="#pick-room">Pick Room and Adults</button>
-     <div id="pick-room" class="collapse">
-      <div class="panel-body">
-        <form action="" >
-
-          <div class="input-group control-group after-add-more p-2 border" id="sophong">
-             <!-- <span class="fa fa-close remove col-sm-1"></span> -->
-            <span class="col-sm-3 text-center"> Room </span>
-          <!--  <input type="text" name="adults[]" class="form-control col-sm-4" placeholder=""> -->
-          <?php echo $this->Form->select('adults[]', $adults,['default' => '2','class'=>'form-control col-sm-3 adults']);?>
-           <?php echo $this->Form->select('children[]', $children,['class'=>'form-control col-sm-3 ml-2 children']);?>
-         <!--  <input type="text" name="children[]" class="form-control col-sm-4 ml-2" placeholder=""> -->
-        </div>
-
-     
-
-
-      <!-- Copy Fields-These are the fields which we get through jquery and then add after the above input,-->
-      <div class="copy-fields hide">
-        <div class="control-group input-group p-2 border" id="sophong">
-           
-         
-            <span class="col-sm-3 text-center"> Room</span>
-           <?php echo $this->Form->select('adults[]', $adults,['default' => '2','class'=>'form-control col-sm-3 adults']);?>
-           <?php echo $this->Form->select('children[]', $children,['class'=>'form-control col-sm-3 ml-2 children']);?>
-             <span class="fa fa-close remove col-sm-1"></span>
-        </div>
-      </div>
-
-      <div style="background: #0a90e3;width: 100%;height: 38px;">
-          <div class=""> 
-            <button class="btn add-more" type="button" style="float: right;color: rgb(255, 255, 255);background: rgb(10, 144, 227);display: block;"><i class="glyphicon glyphicon-plus"></i> Add another room <i class="fa fa-plus-circle" aria-hidden="true" style="font-size: 13px;"></i></button>
+            </div>
           </div>
+
+
+
+          <!-- <input type="text" class="input_name fix-height-input" id="usr" placeholder="Search by destination, point of interest, hotel or address..."> -->
+          <input type="text" id="search_date_to" name="search_date_to" class="input_checkin fix-height-input" placeholder="Check in" value="<?php echo ($this->request->session()->read('hotel.search.search_date_to')) ?>">
+          <input type="text" id="search_date_end" name="search_date_end" class="input_checkin fix-height-input"  placeholder="Check out" value="<?php echo ($this->request->session()->read('hotel.search.search_date_end')) ?>">
+          <select class="input_night icon_moon_input" id="search_night" disabled name="search_night" style="height: 34px;font-weight: 600;font-size: 15px;">
+            <?php
+            for ($num_day=1; $num_day < 32 ; $num_day++) { 
+              ?>
+              <option value="<?php echo $num_day?>" <?php echo  ($this->request->session()->read('hotel.search.search_night') == $num_day) ? 'selected' : '' ?> ><?php echo $num_day?></span></option>
+              <?php
+            }
+            ?>
+
+          </select>
+          <!-- <input type="text" class="input_night fix-height-input" id="usr" placeholder=""> -->
+
+          <!-- <input type="text" class="input_room fix-height-input" id="usr" placeholder="1 Room, 2 Adults"> -->
+          <button type="button" class=" input_room fix-height-input" data-toggle="collapse" data-target="#pick-room">Pick Room and Adults</button>
+          <div id="pick-room" class="collapse">
+            <div class="panel-body">
+              <form action="" >
+
+                <div class="input-group control-group after-add-more p-2 border" id="sophong">
+                  <!-- <span class="fa fa-close remove col-sm-1"></span> -->
+                  <span class="col-sm-3 text-center"> Room </span>
+                  <!--  <input type="text" name="adults[]" class="form-control col-sm-4" placeholder=""> -->
+                  <?php echo $this->Form->select('adults[]', $adults,['default' => '2','class'=>'form-control col-sm-3 adults']);?>
+                  <?php echo $this->Form->select('children[]', $children,['class'=>'form-control col-sm-3 ml-2 children']);?>
+                  <!--  <input type="text" name="children[]" class="form-control col-sm-4 ml-2" placeholder=""> -->
+                </div>
+
+
+
+
+                <!-- Copy Fields-These are the fields which we get through jquery and then add after the above input,-->
+                <div class="copy-fields hide">
+                  <div class="control-group input-group p-2 border" id="sophong">
+
+
+                    <span class="col-sm-3 text-center"> Room</span>
+                    <?php echo $this->Form->select('adults[]', $adults,['default' => '2','class'=>'form-control col-sm-3 adults']);?>
+                    <?php echo $this->Form->select('children[]', $children,['class'=>'form-control col-sm-3 ml-2 children']);?>
+                    <span class="fa fa-close remove col-sm-1"></span>
+                  </div>
+                </div>
+
+                <div style="background: #0a90e3;width: 100%;height: 38px;">
+                  <div class=""> 
+                    <button class="btn add-more" type="button" style="float: right;color: rgb(255, 255, 255);background: rgb(10, 144, 227);display: block;"><i class="glyphicon glyphicon-plus"></i> Add another room <i class="fa fa-plus-circle" aria-hidden="true" style="font-size: 13px;"></i></button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- <button class="btn border-0 nen-maucam" style="height: 34px;color: #fff;">Search</button> -->
+            <!-- <input type="button" class="button_search-twt" id="search_submit"  value="Search"> -->
+            <button class="button_search-twt" id="search_submit" type="submit">Search</button>
+          </div>
+        </form>
       </div>
     </div>
   </div>
-
-                        <!-- <button class="btn border-0 nen-maucam" style="height: 34px;color: #fff;">Search</button> -->
-                        <!-- <input type="button" class="button_search-twt" id="search_submit"  value="Search"> -->
-                        <button class="button_search-twt" id="search_submit" type="submit">Search</button>
-                    </div>
-                  </form>
-                </div>
-            </div>
-        </div>
 
                 <!-- descript hotel -->
         <div class="wraper-descript">
@@ -111,8 +108,8 @@ $children = array('0'=>'Children 0','1'=>'Children 1','2'=>'Children 2','3'=>'Ch
     } ?>
                         </p>
 
-                        <p class="style-p-twt"><?= h($newhotel->mota)?></p>
-
+                  
+                      <p class="style-p-twt"><?= htmlspecialchars_decode($newhotel->mota)?></p>
                         <span class="style-sub-twt">Download the pdf of the hotel info <a style="color: #707070" href="">here</a></span>
                     </div>
                     <div class="col-md-3 col-xs-12" style="background: #fff;padding-top: 30px;padding-bottom: 10px;">
@@ -169,7 +166,8 @@ $children = array('0'=>'Children 0','1'=>'Children 1','2'=>'Children 2','3'=>'Ch
                         <div class="bhoechie-tab-content active p-4">
                             <span class="style-sub text-black">General Description</span>
 
-                            <p class="style-p-twt"><?= h($newhotel->mota)?></p>
+                             <p class="style-p-twt"><?= htmlspecialchars_decode($newhotel->mota)?></p>
+
                         </div>
                         <div class="bhoechie-tab-content">
                             <ul class="list-facilities" >
@@ -206,7 +204,7 @@ $children = array('0'=>'Children 0','1'=>'Children 1','2'=>'Children 2','3'=>'Ch
                     </div>
                 </div>
             </div>
-            <div class="header-descript">
+              <div class="header-descript">
                 <h3 class="mauxanh p-3 m-0">Book This Property</h3>
                 <div class="row">
                     <div class="col-md-6 pr-0 color-place">
@@ -238,14 +236,19 @@ $children = array('0'=>'Children 0','1'=>'Children 1','2'=>'Children 2','3'=>'Ch
 
   </div>
 
+<?php
+$total_room =  $this->request->session()->read('hotel.search.room');
+?>
 
 <div class="book-property py-3" style="background-color: #ffffff;">
     <div class="container">
         <div class="khung-property">
 
           <?php
-          for ($i=0; $i < 10; $i++) { 
-          
+        //  for ($i=0; $i < 10; $i++) { 
+          foreach ($list_room_of_hotel as $key => $valuelist_room_of_hotel) {
+             # code...
+      // print_r($valuelist_room_of_hotel);
          
           ?>
             <div class="horver-property">
@@ -253,13 +256,13 @@ $children = array('0'=>'Children 0','1'=>'Children 1','2'=>'Children 2','3'=>'Ch
                 <div class="col-md-1 fix-img-proprety">
                     <img src="img/sprite-bg_03.png" style="height: 35px;">
                         <div class="many-people font-num-people">
-                        <span class="adult-number" data-bind="">22</span>
-                        <span class="child-number" data-bind="">12</span>
+                        <span class="adult-number" data-bind=""><?= $valuelist_room_of_hotel['songuoi']?></span>
+                        <span class="child-number" data-bind=""><?= $valuelist_room_of_hotel['numberperchildren']?></span>
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div class="type-room" style="padding-top: 5px;">
-                    <span class="chudam">deluxe twin room</span>
+                    <span class="chudam"><?= $valuelist_room_of_hotel['nameroom']?></span>
                     </div>
                     <div class="type-room-2">
                     <span class="chudam" style="color: #c51224;">book early and save</span>
@@ -276,19 +279,19 @@ $children = array('0'=>'Children 0','1'=>'Children 1','2'=>'Children 2','3'=>'Ch
                 <div class="col-md-3">
                   <div class="row">
                   <div class="col-md-3" style="line-height: 74px;color: #ccc;">|</div>
-                  <div class="col-md-9">
+                  <div class="col-md-9 p-0">
                                         <div class="price-property">
                         <div class="row m-0">
-                        <div class="money mr-2">
-                            <span class="chudam">140</span>
+                        <div class="money mr-2" style="width: 60px;text-align: right;">
+                            <span class="chudam"><?= $valuelist_room_of_hotel['giatien'] * $tygia?></span>
                         </div>
                         <div class="current">
-                            <span>AUD</span>
+                            <span><?php echo $language?></span>
                         </div>
                         <div class="checkbox ml-3" style="margin-top: 13px;">
                             <label class="">
-                                <input type="checkbox" value="">
-                                <span class="cr"><i class="cr-icon fa fa-check"></i></span>
+                                <input type="checkbox" value="" id="check_box_room_<?php echo $valuelist_room_of_hotel['idphong']?>">
+                                <span class="cr"><i class="cr-icon fa fa-check" id="chbchan<?= $valuelist_room_of_hotel['idphong']?>" id-hime="<?= $valuelist_room_of_hotel['idphong']?>"></i></span>
                             </label>
                         </div>
                         </div>
@@ -321,9 +324,22 @@ $children = array('0'=>'Children 0','1'=>'Children 1','2'=>'Children 2','3'=>'Ch
 <div class="form-button-property">
                 <div class="w-100 mx-auto">
                     <div class="border-nut mx-auto">
-                <button class="btn-block border-0 nen-maucam button-border-nut mx-auto">Proceed</button></div>
+                 <form action="/agents-bookroom" method="post" id="target">
+                        <input type="hidden" name="idhotel" class="idhotel" value="<?= $idhotel ?>">
+                        <input type="hidden" name="idroom-a" class="idroom-a" value="">
+                        <!-- <input type="hidden" name="idroom-a" value=""> -->
+
+                        <?php
+                            if($check_book != 'no'){
+                        ?>
+                         <button class="btn-block border-0 nen-maucam button-border-nut mx-auto">Proceed</button>
+                         <?php }else{?>
+                          <button class="btn-block border-0 nen-maucam button-border-nut mx-auto" id='btn_book_disable'>Proceed</button>
+                         <?php }?>
+                      </form></div>
             </div>
 </div>
+
 
              <style type="text/css">
              .nnnee{
@@ -679,7 +695,124 @@ $('#search_hotel').submit(function(event) {
      values['adults_end'] = ne_adults;
       values['children_end'] = ne_childrens;
     console.log(values);
+    $.post("api_search_hotel",
+    {
+        data: values
+    },
+    function(data, status){
+      console.log(data['status']);
+        $("body").css('background',"rgba(0, 0, 0, 0.45)");
+        $(".wraper-display-twt").css('opacity',".3");
+        $("nav#mainNav").css('opacity',".3");
+        $(".ihihihih").css('opacity',".3");
+        $(".search-accom").css('opacity',".3");
+        $(".div_load_ai").css('display',"block");
+        setTimeout(sample, 4000); 
+    });
  event.preventDefault();
 });
+function sample() {
+    window.location = "/accommodation-hotel-result";
+}
+$('.input_filter').keyup(function(){
+    var valThis = $(this).val().toLowerCase();
+    if(valThis == ""){
+        $('.khung-property > div > div ').show();
+    } else {
+        $('.khung-property > div > div > div > div.type-room > span').each(function(){
+           var text = $(this).text().toLowerCase();
+            console.log(this);
+           (text.indexOf(valThis) >= 0) ? $(this).parent().parent().parent().show() : $(this).parent().parent().parent().hide();
+        });
+   };
+});
+ var stringcheck = [];
+$( ".drop-inclusion-acc" ).click(function() {
+  if(stringcheck == []){
+    $(".pick_last_haha").parent().parent().parent().show();
+  }else{
+   $(".pick_last_haha").parent().parent().parent().hide();
+  }
+  
+  //alert( "Handler for .click() called." );
+  var stringc = $(this).text();
+if($( this ).hasClass( "abccc" )){
+  //alert("1");
+  $(this).removeClass("abccc");
+  var index = stringcheck.indexOf(stringc);
+  stringcheck.splice(index, 1);
+    $(this).find(".check_on_check").hide();
+
+}else{
+  $(this).addClass("abccc");
+  stringcheck.push(stringc);
+  $(this).find(".check_on_check").show();
+  //alert("2");
+};
+//
+
+//   var stringc = $(this).text();
+//   console.log(stringc);
+
+//   stringcheck.push(stringc);
+  console.log(stringcheck);var abc = '';
+
+if($( this ).hasClass( "abccc" )){ 
+  jQuery.each( stringcheck, function( i, val ) {
+      abc = abc + '.pick_last_haha:contains(' + val + '),';
+    });
+  $(abc.slice(0,-1)).parent().parent().parent().show();
+}else{
+
+  $(".pick_last_haha:contains(" + stringc + ")").parent().parent().parent().hide();
+}
+
+   if(abc == ''){
+    $(".pick_last_haha").parent().parent().parent().show();
+  }else{
+  // $(".pick_last_haha").parent().parent().parent().hide();
+  }
+ console.log(abc);
+  
+    //$(".pick_last_haha:contains(0room only),.pick_last_haha:contains(2room only),.pick_last_haha:contains(4room only)").parent().parent().parent().show();
+  //$("div:contains('thetext'), div:contains('thetext1'), div:contains('thetext2')")
+
+});
+
+        //$(document).ready(function() {
+         // $('[id="chbchan"]');
+           var num_check = 0;
+        $('[id^="chbchan"]').click(function(e) {
+           $(this).toggleClass("clacls");
+         // alert("ád");
+         if(num_check < <?php echo $total_room ?>){
+
+            var title = $( this ).attr( "id-hime" );
+            var check_check = $( "#check_box_room_"+title ).val();
+           // console.log(check_check);
+            if(check_check){
+             num_check--;
+              $( "#check_box_room_"+title ).val("");
+            }else{
+             num_check++;
+              $( "#check_box_room_"+title ).val(title);
+            }
+            $( "h3.mauxanh.p-3.m-0" ).text(num_check);
+
+
+         }else{
+
+           e.preventDefault();
+           alert("no");
+
+
+
+
+         }
+           
+          //  alert(num_check);
+        });
+   // });
 
     </script>
+    <?php echo $total_room?>

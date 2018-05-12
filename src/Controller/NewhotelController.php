@@ -472,40 +472,76 @@ $this->set('list_room_of_hotel',$query->toArray());
       //  debug($query);
 }
 
-
 public function indexView($slug = null)
-{
-   $this->viewBuilder()->layout('agentslayout');
-   $this->loadModel("Hotelandtienich");
-   $this->loadModel("Hoteltienich");
+    {
 
-   $hotel_name = $this->request->query('hotel');
-   $id =  $this->request->query('stt');
+          $session = $this->request->session();
+    
+  if(!($session->read('hotel.search'))){
+    $this->set('check_book','no');
+   }else{
+     $this->set('check_book','yes');
+   }
+         $this->viewBuilder()->layout('agentslayout');
+      $this->loadModel("Hotelandtienich");
+      $this->loadModel("Hoteltienich");
+
+     $hotel_name = $this->request->query('hotel');
+     $id =  $this->request->query('stt');
 
 
-
-   $newhotel = $this->Newhotel->get($id, [
-    'contain' => []
-]);
+$this->set('idhotel',$id );
+ $newhotel = $this->Newhotel->get($id, [
+        'contain' => []
+    ]);
 
    $tienich_view_old =  $this->Hotelandtienich->find()->where(['id_hotel'=>$id])->toArray();
-   $tienich_view_old_data = isset($tienich_view_old[0]['list_tienich'])? explode(",",$tienich_view_old[0]['list_tienich']) : array();
+          $tienich_view_old_data = isset($tienich_view_old[0]['list_tienich'])? explode(",",$tienich_view_old[0]['list_tienich']) : array();
 
 //print_r($tienich_view_old_data);
-   if(!empty($tienich_view_old_data)){
-       $query = $this->Hoteltienich
-       ->find()
-       ->select( ['id','nametienich'])
-       ->where(['id IN' => $tienich_view_old_data]);
-       $this->set('list_services',isset($query)?$query : "");
-   }else{
+if(!empty($tienich_view_old_data)){
+     $query = $this->Hoteltienich
+          ->find()
+    ->select( ['id','nametienich'])
+    ->where(['id IN' => $tienich_view_old_data]);
+        $this->set('list_services',isset($query)?$query : "");
+}else{
     $this->set('list_services',array());
 }
-
+          
 $this->set(compact('newhotel'));
-$this->set('_serialize', ['newhotel']);
-$this->set('title', $hotel_name);
-$this->set('view_name', 'hotel');
-}
+        $this->set('_serialize', ['newhotel']);
+          $this->set('title', $hotel_name);
+             $this->set('view_name', 'hotel');
+                       $articles  = TableRegistry::get('Hotelandphong');
+       $query = $articles->find();
+       $query->select([
+        'idphong' => 'Hotelandphong.id',
+            'giatien' => 'Hotelandphong.giatien',
+          //  'count' => $query->func()->count('Hotelandphong.id'),
+            'dayrange' => 'Hotelandphong.dayrange',
+            'nameroom' => 'hp.nameroom',
+            'namehotel' => 'nh.namehotel',
+            'songuoi'=>'Hotelandphong.songuoi',
+              'numberperchildren'=>'Hotelandphong.numberperchildren',
+        ])
+        ->hydrate(false)
+        ->join([
+            'hp' => [
+                'table' => 'hotelphong',
+                'type' => 'LEFT',
+                'conditions' => 'hp.id = Hotelandphong.loaiphong',
+            ],
+            'nh' => [
+                'table' => 'newhotel',
+                'type' => 'LEFT',
+                'conditions' => 'nh.id = Hotelandphong.id_hotel',
+            ]
+        ])
+        ->where(['Hotelandphong.id_hotel' => $id])
+      //  ->group('Hotelandphong.loaiphong')
+        ;
+        $this->set('list_room_of_hotel',$query);
+    }
 
 }

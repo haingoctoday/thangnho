@@ -1,7 +1,14 @@
-<?php echo $this->Html->script('bootstrap-datepicker.min'); ?>
-<?php echo $this->Html->script('jquery.typeahead.min'); ?>
+<!-- <?php echo $this->Html->script('bootstrap-datepicker.min'); ?> -->
+
+
+   <?php echo $this->Html->script('jquery.typeahead.min'); ?>
 <?php echo $this->Html->css('jquery.typeahead.min'); ?>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.min.css">
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
+            type="text/javascript"></script>
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.min.css">  -->
+  <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/start/jquery-ui.css"
+          rel="Stylesheet" type="text/css" />
+
 <?php
 $adults = array('1'=>'Adults 1','2'=>'Adults 2','3'=>'Adults 3','4'=>'Adults 4','5'=>'Adults 5','6'=>'Adults 6');
 $children = array('0'=>'Children 0','1'=>'Children 1','2'=>'Children 2','3'=>'Children 3','4'=>'Children 4 ');
@@ -170,6 +177,49 @@ p.style-p{width: 98%;text-align: justify;}
 .list-group-item:first-child,.list-group-item:last-child{border-radius: 0 !important;}
 .modal-dialog.modal-dialog-centered {margin: 15% auto !important;}
 input::-webkit-input-placeholder {color: #2a3c58;}
+.ui-widget-header {
+    background: none;
+    color: black;
+    font-size: 16px;
+    border: none;
+    padding: 22px 0px 12px 0px !important;
+
+}
+
+.ui-datepicker table {
+    border: none !important;
+    border-collapse: collapse !important;
+}
+
+.ui-datepicker th {
+    font-size: 14px;
+    font-weight: lighter !important;
+}
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+    background: none !important;
+    color: #000;
+    padding: 8px;
+    text-align: center;
+    border-collapse: collapse;
+}
+.ui-widget-content .ui-state-default {
+    border: none ;
+  }
+ .ui-state-default.ui-state-hover{
+    background-color: #008efc !important;
+    color: #fff;
+  }
+
+.ui-datepicker-calendar td {
+    border: 1px solid #f5f5f5 !important;
+}
+.ui-datepicker-calendar td:hover {
+   padding:none;
+}
+.ui-widget-content {
+    background: white;
+}
 /*input#search_name {
     color: #000000 !important;
     background: #fff;
@@ -236,7 +286,21 @@ input::-webkit-input-placeholder {color: #2a3c58;}
   $("nav#mainNav").css('opacity',"1");
   $(".ihihihih").css('opacity',"1");
 });
- 
+  $("button.btn.add-more.btn-am" ).focus(function() {
+  $("body").css('background',"rgba(0, 0, 0, 0.45)");
+        //$(".form-group-search").css('background',"#fff");
+        $(".wraper-display-twt").css('opacity',".3");
+        $("nav#mainNav").css('opacity',".3");
+        $(".ihihihih").css('opacity',".3");
+      });
+ $( "button.btn.add-more.btn-am" ).blur(function() {
+  $("body").css('background',"#efefef");
+  $(".wraper-display-twt").css('opacity',"1");
+  $("nav#mainNav").css('opacity',"1");
+  $(".ihihihih").css('opacity',"1");
+});
+
+
  var count=0;
  $(document).ready(function() {
   $(".add-more").click(function(){ 
@@ -262,49 +326,84 @@ input::-webkit-input-placeholder {color: #2a3c58;}
  });
 
 });
+//  var nowTemp = new Date();
+//  var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+
+//  var checkin = $('#search_date_to').datepicker({
+//    format: 'dd M yyyy',
+//    beforeShowDay: function(date) {
+//     return date.valueOf() >= now.valueOf();
+//   },
+//   autoclose: true
+
+// }).on('changeDate', function(ev) {
+//   if (ev.date.valueOf() > checkout.datepicker("getDate").valueOf() || !checkout.datepicker("getDate").valueOf()) {
+
+//     var newDate = new Date(ev.date);
+//     newDate.setDate(newDate.getDate() + 1);
+//     checkout.datepicker("update", newDate);
+
+//   }
+//   $('#search_date_end')[0].focus();
+// });
+
+
+// var checkout = $('#search_date_end').datepicker({
+//   format: 'dd M yyyy',
+//   beforeShowDay: function(date) {
+//     if (!checkin.datepicker("getDate").valueOf()) {
+//       return date.valueOf() >= new Date().valueOf();
+//     } else {
+//       return date.valueOf() > checkin.datepicker("getDate").valueOf();
+//     }
+
+
+//   },
+//   autoclose: true
+
+// }).on('changeDate', function(ev) {
+
+//   var start = $("#search_date_to").datepicker("getDate");
+//   var end = $("#search_date_end").datepicker("getDate");
+//   var days = (end - start) / (1000 * 60 * 60 * 24);
+//   console.log(days);
+//   $("#search_night").val(days);
+// });
  var nowTemp = new Date();
- var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+ $(function () {
+            $("#search_date_to").datepicker({
+                numberOfMonths: 2,
+                format: 'dd M yyyy',
+             minDate: new Date(), 
+                onSelect: function (selected) {
+                    var dt = new Date(selected);
+                    console.log(dt);
+                    dt.setDate(dt.getDate() + 1);
+                    $("#search_date_end").datepicker("option", "minDate", dt);
+                   // $('#search_date_end')[0].focus();
+                }
+            });
+            $("#search_date_end").datepicker({
+                numberOfMonths: 2,
+               // format: 'dd M yyyy',
+                onSelect: function (selected) {
+                    var dt = new Date(selected);
+                    dt.setDate(dt.getDate() - 1);
+                    console.log(dt);
+                    $("#search_date_to").datepicker("option", "maxDate", dt);
+                      var start = $("#search_date_to").datepicker("getDate");
+                      var end = $("#search_date_end").datepicker("getDate");
+                      var days = (end - start) / (1000 * 60 * 60 * 24);
+                      console.log(days);
+                      $("#search_night").val(days);
+                }
+            });
+        });
 
- var checkin = $('#search_date_to').datepicker({
-   format: 'dd M yyyy',
-   beforeShowDay: function(date) {
-    return date.valueOf() >= now.valueOf();
-  },
-  autoclose: true
-
-}).on('changeDate', function(ev) {
-  if (ev.date.valueOf() > checkout.datepicker("getDate").valueOf() || !checkout.datepicker("getDate").valueOf()) {
-
-    var newDate = new Date(ev.date);
-    newDate.setDate(newDate.getDate() + 1);
-    checkout.datepicker("update", newDate);
-
-  }
-  $('#search_date_end')[0].focus();
-});
 
 
-var checkout = $('#search_date_end').datepicker({
-  format: 'dd M yyyy',
-  beforeShowDay: function(date) {
-    if (!checkin.datepicker("getDate").valueOf()) {
-      return date.valueOf() >= new Date().valueOf();
-    } else {
-      return date.valueOf() > checkin.datepicker("getDate").valueOf();
-    }
 
-
-  },
-  autoclose: true
-
-}).on('changeDate', function(ev) {
-
-  var start = $("#search_date_to").datepicker("getDate");
-  var end = $("#search_date_end").datepicker("getDate");
-  var days = (end - start) / (1000 * 60 * 60 * 24);
-  console.log(days);
-  $("#search_night").val(days);
-});
 $.typeahead({
   input: '#search_name',
   minLength: 1,
@@ -387,6 +486,46 @@ $('#search_hotel').submit(function(event) {
 function sample() {
     window.location = "/accommodation-hotel-result";
 }
+  $("span.fa.fa-close.remove.col-sm-1" ).focus(function() {
+  $("body").css('background',"rgba(0, 0, 0, 0.45)");
+        //$(".form-group-search").css('background',"#fff");
+        $(".wraper-display-twt").css('opacity',".3");
+        $("nav#mainNav").css('opacity',".3");
+        $(".ihihihih").css('opacity',".3");
+      });
+ $( "span.fa.fa-close.remove.col-sm-1" ).blur(function() {
+  $("body").css('background',"#efefef");
+  $(".wraper-display-twt").css('opacity',"1");
+  $("nav#mainNav").css('opacity',"1");
+  $(".ihihihih").css('opacity',"1");
+});
+  $("select.form-control.col-sm-3.adults" ).focus(function() {
+  $("body").css('background',"rgba(0, 0, 0, 0.45)");
+        //$(".form-group-search").css('background',"#fff");
+        $(".wraper-display-twt").css('opacity',".3");
+        $("nav#mainNav").css('opacity',".3");
+        $(".ihihihih").css('opacity',".3");
+      });
+ $( "select.form-control.col-sm-3.adults" ).blur(function() {
+  $("body").css('background',"#efefef");
+  $(".wraper-display-twt").css('opacity',"1");
+  $("nav#mainNav").css('opacity',"1");
+  $(".ihihihih").css('opacity',"1");
+});
+   $("select.form-control.col-sm-3.ml-2.children" ).focus(function() {
+  $("body").css('background',"rgba(0, 0, 0, 0.45)");
+        //$(".form-group-search").css('background',"#fff");
+        $(".wraper-display-twt").css('opacity',".3");
+        $("nav#mainNav").css('opacity',".3");
+        $(".ihihihih").css('opacity',".3");
+      });
+ $( "select.form-control.col-sm-3.ml-2.children" ).blur(function() {
+  $("body").css('background',"#efefef");
+  $(".wraper-display-twt").css('opacity',"1");
+  $("nav#mainNav").css('opacity',"1");
+  $(".ihihihih").css('opacity',"1");
+});
+
 </script>
 
 <div class="div_load_ai">

@@ -37,7 +37,7 @@ class AgentsController extends AppController
      
 
          $this->loadModel("Newhotel");
-         $hotel_hot = $this->Newhotel->find('all',array('limit'=>3));
+         $hotel_hot = $this->Newhotel->find('all',array('limit'=>6));
           $this->set('hotel_hot', $hotel_hot);
 
           $this->loadModel("Slideagent");

@@ -46,7 +46,7 @@
                 <td><?= h($newhotel->diachi) ?></td>
                 <td><?php echo $this->Html->image('/upload/hotel/'.$newhotel->hinhanh, ['alt' => 'hinhanh','class'=>'image_hotel_admin']);?></td>
                
-                <td><?= h($newhotel->thongtinhotel) ?></td>
+                <td><?= substr(htmlspecialchars_decode($newhotel->thongtinhotel), 0,400) ?>...</td>
                 <td class="actions" style="white-space:nowrap">
                   <?php // $this->Html->link(__('View'), ['action' => 'view', $newhotel->id], ['class'=>'btn btn-info btn-xs']) ?>
                  

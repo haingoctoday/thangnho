@@ -374,7 +374,7 @@
             </div>
         </div>
     </div>
-<script type="text/javascript">window.$crisp=[];window.CRISP_WEBSITE_ID="5557e84b-6341-4055-b039-a2e350c90974";(function(){d=document;s=d.createElement("script");s.src="https://client.crisp.chat/l.js";s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script>
+
 
     <style type="text/css">
     textarea#comment {
