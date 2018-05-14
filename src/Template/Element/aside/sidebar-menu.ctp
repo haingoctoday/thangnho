@@ -52,8 +52,8 @@ if (!file_exists($file)) {
             <i class="fa fa-tree"></i> <span>Activity - Tour</span> <i class="fa fa-angle-left pull-right"></i>
         </a>
         <ul class="treeview-menu">
-           <li><a href="<?php echo $this->Url->build('/admin-activity'); ?>"><i class="fa fa-map"></i> Activity List</a></li>
-             <li><a href="<?php echo $this->Url->build('/admin-tour'); ?>"><i class="fa fa-map"></i> Tour List</a></li>
+           <li><a href="<?php echo $this->Url->build('/admin-activity?p=activity'); ?>"><i class="fa fa-map"></i> Activity List</a></li>
+             <li><a href="<?php echo $this->Url->build('/admin-tour?p=tour'); ?>"><i class="fa fa-map"></i> Tour List</a></li>
             <li><a href="<?php echo $this->Url->build('/admin-category-activity'); ?>"><i class="fa fa-meh-o"></i>Category Activity</a></li>
             <!-- <li><a href="<?php echo $this->Url->build('/admin-policy-activity'); ?>"><i class="fa fa-map-signs"></i> Policy Activity</a></li> -->
             <!-- <li><a href="<?php echo $this->Url->build('/admin-address-activity'); ?>"><i class="fa fa-level-down"></i> Localtion</a></li> -->
@@ -61,7 +61,15 @@ if (!file_exists($file)) {
              <!-- <li><a href="<?php echo $this->Url->build('/pages/charts/inline'); ?>"><i class="fa fa-circle-o"></i>Loại hình khách sạn</a></li> -->
         </ul>
     </li>
-
+  <li class="treeview">
+        <a href="#">
+            <i class="fa fa-tree"></i> <span>SHORE EXCURSIONS</span> <i class="fa fa-angle-left pull-right"></i>
+        </a>
+        <ul class="treeview-menu">
+           <li><a href="<?php echo $this->Url->build('/admin-shore?p=shore'); ?>"><i class="fa fa-map"></i> SHORE EXCURSIONS List</a></li>
+           
+        </ul>
+    </li>
      <li class="treeview">
         <a href="#">
             <i class="fa fa-motorcycle"></i> <span>TRANSFERS </span> <i class="fa fa-angle-left pull-right"></i>

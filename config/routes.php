@@ -70,6 +70,10 @@ Router::scope('/', function (RouteBuilder $routes) {
   $routes->connect('/agents-tour-book/*', ['controller' => 'Agents', 'action' => 'toursbooknow']);
   $routes->connect('/agents-tour-result/*', ['controller' => 'Agents', 'action' => 'toursresult']);
 
+  $routes->connect('/agents-shore/*', ['controller' => 'Agents', 'action' => 'shore']);
+  $routes->connect('/agents-shore-book/*', ['controller' => 'Agents', 'action' => 'shorebooknow']);
+  $routes->connect('/agents-shore-result/*', ['controller' => 'Agents', 'action' => 'shoreresult']);
+
 $routes->connect('/agents/*', ['controller' => 'Agents', 'action' => 'index']);
 $routes->connect('/agents-transfer/*', ['controller' => 'Agents', 'action' => 'transfer']);
 $routes->connect('/agents-ferries/*', ['controller' => 'Agents', 'action' => 'ferries']);
@@ -132,7 +136,7 @@ $routes->connect('/resetpass-admin/*', ['controller' => 'Users', 'action' => 're
  $routes->connect('/admin-services-activity/*', ['controller' => 'Activitytienich', 'action' => 'index']);
 
   $routes->connect('/admin-tour/*', ['controller' => 'Newactivity', 'action' => 'indextour']);
- 
+   $routes->connect('/admin-shore/*', ['controller' => 'Newactivity', 'action' => 'indexshore']);
 
   //newactivity admin
   $routes->connect('/admin-transfers/*', ['controller' => 'Newtransfer', 'action' => 'index']);

@@ -175,7 +175,7 @@
       </div>
       <div class="content-list" style="">
         <div class="border-bottom-card-list">
-          <h4 class="m-0 title-head-trs">8 Affordable must-do destinations around the world...</h4>
+          <h4 class="m-0 title-head-trs"><a href="agents-tour-book">8 Affordable must-do destinations around the world...</a></h4>
           <span class="style-sp-list">Hanoi</span>
           <p class="style-list-acti">The twenties are the best times for traveling. We are young and broke at this ripe age. Most importantly, we are more than willing to spend a night in a cheap hotel, ...</p>
           <div class="time-listing-activities">

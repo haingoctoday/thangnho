@@ -25,10 +25,22 @@
         <?= $this->Form->create($newactivity, array('role' => 'form','enctype' => 'multipart/form-data')) ?>
           <div class="box-body">
           <?php
-          
+       
+  $page_current = $this->request->query['q'];
+  switch ($page_current) {
+    case 'tour':
+      $loai = ['tour' => 'Tour'];
+      break;
+    case 'shore':
+      $loai = ['shore' => 'Shore'];
+      break;  
+    default:
+      $loai = ['activity' => 'Activity'];
+      break;
+  }
            echo $this->Form->input('category', array('label'=>'Category', 'type'=>'select', 'options'=>$category_view));
 
-             $loai = ['tour' => 'Tour','activity' => 'Activity'];
+             
         
             echo $this->Form->input('loai', array('label'=>'Category', 'type'=>'select', 'options'=>$loai));
 

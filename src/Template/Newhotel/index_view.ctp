@@ -815,4 +815,3 @@ if($( this ).hasClass( "abccc" )){
    // });
 
     </script>
-    <?php echo $total_room?>

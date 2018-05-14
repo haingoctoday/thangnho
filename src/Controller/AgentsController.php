@@ -272,6 +272,64 @@ class AgentsController extends AppController
              $this->set('view_name', 'activities');
     }
 
+      public function shore()
+    {
+        $this->viewBuilder()->layout('agentslayout');
+     
+
+         $this->loadModel("Newactivity");
+         $hotel_hot = $this->Newactivity->find('all',array('limit'=>3))->where(['loai =' => 'activity']);
+          $this->set('hotel_hot', $hotel_hot);
+
+          $this->loadModel("Hoteldiachi");
+         $top_localtion = $this->Hoteldiachi->find('all',array('limit'=>3))->where(['top =' => 1]);
+          $this->set('top_localtion', $top_localtion);
+
+
+        // debug($hotel_hot);
+        $users = array();
+        $this->set(compact('users'));
+
+
+        $this->loadModel('Agentstour');
+        $agentstype = $this->Agentstour->find('all');
+        $this->set('agentstype',$agentstype);
+
+
+
+        $this->set('_serialize', ['users']);
+          $this->set('title', 'Shore Excursions');
+             $this->set('view_name', 'shore');
+    }
+
+      public function shoreresult()
+    {
+         $this->viewBuilder()->layout('agentslayout');
+
+
+        // debug($hotel_hot);
+        $users = array();
+        $this->set(compact('users'));
+
+        $this->set('_serialize', ['users']);
+          $this->set('title', 'Agent Tours');
+             $this->set('view_name', 'toursresult');
+    }
+
+  public function shorebooknow()
+    {
+         $this->viewBuilder()->layout('agentslayout');
+
+
+        // debug($hotel_hot);
+        $users = array();
+        $this->set(compact('users'));
+
+        $this->set('_serialize', ['users']);
+          $this->set('title', 'Agent Tours');
+             $this->set('view_name', 'tours');
+    }
+
 public function transfer()
     {
          $this->viewBuilder()->layout('agentslayout');

@@ -1,8 +1,11 @@
 <!-- Content Header (Page header) -->
+<?php
+  $page_current = $this->request->query['p'];
+?>
 <section class="content-header">
   <h1>
     Activity List
-    <div class="pull-right"><?= $this->Html->link(__('New'), ['action' => 'add'], ['class'=>'btn btn-success btn-xs']) ?></div>
+    <div class="pull-right"><?= $this->Html->link(__('New'), ['action' => 'add','q'=>$page_current], ['class'=>'btn btn-success btn-xs']) ?></div>
   </h1>
 </section>
 

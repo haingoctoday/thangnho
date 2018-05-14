@@ -319,3 +319,13 @@ div#text-type,div#text-style {
     float: left;
 }
 </style>
+
+<script type="text/javascript">
+$( ".button_search-twt1" ).click(function() {
+ setTimeout(sample, 200); 
+});  
+function sample() {
+    window.location = "/agents-tour-result";
+}
+
+</script>

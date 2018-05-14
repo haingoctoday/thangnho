@@ -152,7 +152,7 @@
                             <a class="nav-link js-scroll-trigger mau-nav-black <?php echo ($view_name == 'cruise') ? 'show_nav_on' : '' ?> " href="<?php echo $this->Url->build('/agents-cruise'); ?>">CRUISE</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link js-scroll-trigger mau-nav-black " href="#">SHORE EXCURSIONS</a>
+                            <a class="nav-link js-scroll-trigger mau-nav-black <?php echo ($view_name == 'shore') ? 'show_nav_on' : '' ?> " href="<?php echo $this->Url->build('/agents-shore'); ?>">SHORE EXCURSIONS</a>
                         </li>
                     </ul>
                 </div>

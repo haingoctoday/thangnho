@@ -37,7 +37,14 @@ class NewactivityController extends AppController
     }
 
 
+public function indexshore()
+    {
+          $dataa = $this->Newactivity->find('all')->where(['loai' => 'shore']);
+        $newactivity = $this->paginate($dataa);
 
+        $this->set(compact('newactivity'));
+        $this->set('_serialize', ['newactivity']);
+    }
 
 public function indextour()
     {
