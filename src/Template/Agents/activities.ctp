@@ -12,7 +12,7 @@
             <div id="pick-input-tour-input" class="collapse" style="position: absolute;z-index: 99;width: 95%;">
       <div class="panel-body">
       
-          <div class="input-group control-group style-drop-type" style="width: 168px;">
+          <div class="input-group control-group style-drop-type" style="width: 190px;">
         <div class="item-drop-tour">
 
   <div class="item-tour-des">All Destinations</div>
@@ -38,7 +38,7 @@
 <div class="container">
   <div class="row">
 
-<div class="col-md-2 offset-md-3 p-0"><button class="btn border-0 button-tour ditme" id="btn-tour-type"><div id="text-type">Tour Types</div> <img src="img/arrow-down.png" style="margin-top: 8px;float: right;" ></button>
+<div class="col-md-2 offset-md-3 p-0"><button class="btn border-0 button-tour ditme" id="btn-tour-type"><div id="text-type">Activity Styles</div> <img src="img/arrow-down.png" style="margin-top: 8px;float: right;" ></button>
 
 </div>
     <div id="pick-input-tourtype" class="col-md-2 p-0">
@@ -48,46 +48,10 @@
         <div class="item-drop-tour">
              <div class="item-tour-type">All types</div>
 <?php foreach ($agentstype as $tourtype){ ?>
-  <?php if($tourtype->type_tour == '2') {?>
+  <?php if($tourtype->type_tour == '3') {?>
     <div class="item-tour-type"><?php echo $tourtype->name?></div>
   <?php }?>
 <?php }?>
-
-<!--   <div class="item-tour-type">Escorted Tours</div>
-  <div class="item-tour-type">Group Tours</div>
-  <div class="item-tour-type">Independent Tours</div>
-  <div class="item-tour-type">Family Tours</div>
-  <div class="item-tour-type">Private Tours</div>
-  <div class="item-tour-type">School Tours</div>
-  <div class="item-tour-type">Specialty Tours</div>
-  <div class="item-tour-type">Health & Well-being Tours</div>
-  <div class="item-tour-type">Wildlife Tours</div> -->
-         </div>
-       </div>
-     </div>
-     </div>
-<div class="col-md-2 offset-md-2 p-0" id="div-show-1"><button class="btn border-0 button-tour ditmea" id="btn-tour-type1"><div id="text-style">Tour Styles</div><img src="img/arrow-down.png" style="margin-top: 8px;float: right;" ></button>
-</div>
-    <div id="pick-input-tourtype1" class="col-md-2 p-0">
-    <div class="panel-body">
-      <div class="input-group control-group style-drop-type">
-        <div class="item-drop-tour">
-             <div class="item-tour-type1">All types</div>
-             <?php foreach ($agentstype as $tourstyle){ ?>
-  <?php if($tourstyle->type_tour == '3') {?>
-    <div class="item-tour-type1"><?php echo $tourstyle->name?></div>
-  <?php }?>
-<?php }?>
-<!--   <div class="item-tour-type1">Adventure</div>
-  <div class="item-tour-type1">Classic</div>
-  <div class="item-tour-type1">Cruising</div>
-  <div class="item-tour-type1">Culture</div>
-  <div class="item-tour-type1">Cycling</div>
-  <div class="item-tour-type1">Culinary</div>
-  <div class="item-tour-type1">Discovery</div>
-  <div class="item-tour-type1">Free & Easy</div>
-  <div class="item-tour-type1">Honeymoon</div>
-  <div class="item-tour-type1">Luxury</div> -->
          </div>
        </div>
      </div>

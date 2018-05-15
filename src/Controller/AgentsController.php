@@ -278,7 +278,7 @@ class AgentsController extends AppController
      
 
          $this->loadModel("Newactivity");
-         $hotel_hot = $this->Newactivity->find('all',array('limit'=>3))->where(['loai =' => 'activity']);
+         $hotel_hot = $this->Newactivity->find('all',array('limit'=>3))->where(['loai =' => 'shore']);
           $this->set('hotel_hot', $hotel_hot);
 
           $this->loadModel("Hoteldiachi");

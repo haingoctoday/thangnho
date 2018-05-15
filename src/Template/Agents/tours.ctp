@@ -12,7 +12,7 @@
             <div id="pick-input-tour-input" class="collapse" style="position: absolute;z-index: 99;width: 95%;">
       <div class="panel-body">
       
-          <div class="input-group control-group style-drop-type" style="width: 168px;">
+          <div class="input-group control-group style-drop-type" style="width: 190px;">
         <div class="item-drop-tour">
 
   <div class="item-tour-des">All Destinations</div>
@@ -52,16 +52,6 @@
     <div class="item-tour-type"><?php echo $tourtype->name?></div>
   <?php }?>
 <?php }?>
-
-<!--   <div class="item-tour-type">Escorted Tours</div>
-  <div class="item-tour-type">Group Tours</div>
-  <div class="item-tour-type">Independent Tours</div>
-  <div class="item-tour-type">Family Tours</div>
-  <div class="item-tour-type">Private Tours</div>
-  <div class="item-tour-type">School Tours</div>
-  <div class="item-tour-type">Specialty Tours</div>
-  <div class="item-tour-type">Health & Well-being Tours</div>
-  <div class="item-tour-type">Wildlife Tours</div> -->
          </div>
        </div>
      </div>
@@ -78,16 +68,6 @@
     <div class="item-tour-type1"><?php echo $tourstyle->name?></div>
   <?php }?>
 <?php }?>
-<!--   <div class="item-tour-type1">Adventure</div>
-  <div class="item-tour-type1">Classic</div>
-  <div class="item-tour-type1">Cruising</div>
-  <div class="item-tour-type1">Culture</div>
-  <div class="item-tour-type1">Cycling</div>
-  <div class="item-tour-type1">Culinary</div>
-  <div class="item-tour-type1">Discovery</div>
-  <div class="item-tour-type1">Free & Easy</div>
-  <div class="item-tour-type1">Honeymoon</div>
-  <div class="item-tour-type1">Luxury</div> -->
          </div>
        </div>
      </div>

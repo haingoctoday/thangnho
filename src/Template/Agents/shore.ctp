@@ -12,7 +12,7 @@
             <div id="pick-input-tour-input" class="collapse" style="position: absolute;z-index: 99;width: 95%;">
       <div class="panel-body">
       
-          <div class="input-group control-group style-drop-type" style="width: 168px;">
+          <div class="input-group control-group style-drop-type" style="width: 190px;">
         <div class="item-drop-tour">
 
   <div class="item-tour-des">All Destinations</div>
@@ -48,7 +48,7 @@
         <div class="item-drop-tour">
              <div class="item-tour-type">All types</div>
 <?php foreach ($agentstype as $tourtype){ ?>
-  <?php if($tourtype->type_tour == '2') {?>
+  <?php if($tourtype->type_tour == '3') {?>
     <div class="item-tour-type"><?php echo $tourtype->name?></div>
   <?php }?>
 <?php }?>
@@ -82,7 +82,7 @@
               <div class="height-h-twt" style="height: 175px;">
                 <h4 class="mauxanh"><?= $valuehotel_hot->name ?></h4>
                 <h4 class="mauxanh" style="white-space: nowrap;"><?= $valuehotel_hot->diachi ?></h4>
-                <h4 style="font-size:14px;padding-top: 5px;">Duration : <b>10 weeks</b></h4>
+                <h4 style="font-size:14px;padding-top: 5px;">Duration : <b><?= $valuehotel_hot->songay ?></b></h4>
               </div>
 
               <div class="height-p-twt pt-2">
