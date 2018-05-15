@@ -1,6 +1,6 @@
 <!-- Content Header (Page header) -->
 <?php
-  $page_current = $this->request->query['p'];
+   $page_current = isset($this->request->query['p'])?$this->request->query['p']:'shore';
 ?>
 <section class="content-header">
   <h1>

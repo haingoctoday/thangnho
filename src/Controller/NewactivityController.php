@@ -176,8 +176,15 @@ public function bookingok()
                 if($this->request->data['loai'] == 'tour'){
                   return $this->redirect(['action' => 'indextour']);
                 }else{
-                  return $this->redirect(['action' => 'index']); 
+                  if($this->request->data['loai'] == 'shore'){
+                    return $this->redirect(['action' => 'indexshore']);
+                  }else{
+                    return $this->redirect(['action' => 'index']); 
+                  }
+                 // return $this->redirect(['action' => 'index']); 
                 }
+
+
                
             } else {
                 $this->Flash->error(__('The {0} could not be saved. Please, try again.', 'Newactivity'));
