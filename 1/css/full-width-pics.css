@@ -1,0 +1,422 @@
+/*!
+ * Start Bootstrap - Full Width Pics (https://startbootstrap.com/template-overviews/full-width-pics)
+ * Copyright 2013-2017 Start Bootstrap
+ * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap-full-width-pics/blob/master/LICENSE)
+ */
+
+body {
+  padding-top: 54px;
+}
+
+@media (min-width: 992px) {
+  body {
+    padding-top: 56px;
+  }
+  .dropdown:hover>.dropdown-menu {
+	  display: block;
+	  background-color: red;
+	}
+}
+
+.bg-image-full {
+  background: no-repeat center center scroll;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  background-size: cover;
+  -o-background-size: cover;
+}
+
+
+header.masthead {
+  /*padding-top: 10rem;*/
+  padding-bottom: calc(10rem + 29px);
+  background-image: url("../img/header.jpg");
+  background-position: center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+.crossfade {
+	z-index: -1;
+	top: 34px;
+}
+.crossfade > figure {
+  animation: imageAnimation 30s linear infinite 0s;
+  backface-visibility: hidden;
+  background-size: cover;
+  background-position: center center;
+  color: transparent;
+  height: 666px;
+  left: 0px;
+  opacity: 0;
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  z-index: 0;
+}
+
+.crossfade > figure:nth-child(1) { background-image: url('../img/banners/ribi-bep-nong.jpg'); background-size: auto;}
+
+.crossfade > figure:nth-child(2) {
+  animation-delay: 6s;
+  background-image: url('../img/banners/banner-sieu-thi-dvpmarket.jpg');
+  background-size: auto;
+}
+
+.crossfade > figure:nth-child(3) {
+  animation-delay: 12s;
+  background-image: url('../img/banners/lop-hoc-bep-banh-hnaau.jpg');
+  background-size: auto;
+}
+
+.crossfade > figure:nth-child(4) {
+  animation-delay: 18s;
+  background-image: url('../img/banners/lop-hoc-pha-che.jpg');
+  background-size: auto;
+}
+
+.crossfade > figure:nth-child(5) {
+  animation-delay: 24s;
+  background-image: url('../img/banners/lop-hoc-quan-tri-nha-hang-hnaau.jpg');
+  background-size: auto;
+}
+@keyframes 
+imageAnimation {  
+	0% { animation-timing-function: ease-in; opacity: 0;}
+    8% {animation-timing-function: ease-out;opacity: 1;}
+    17%{opacity: 1}
+    25% {opacity: 0}
+    100% {opacity: 0}
+}
+.icon-home{
+    border: 1px solid #fff;
+    margin-left: 3%;
+    padding: 25px 25px 0 25px;
+}
+@media (min-width: 768px) {
+/*.dropdown:hover>.dropdown-menu {
+  display: block;
+}*/
+    /* show 3 items */
+    .carousel-inner .active,
+    .carousel-inner .active + .carousel-item,
+    .carousel-inner .active + .carousel-item + .carousel-item,
+    .carousel-inner .active + .carousel-item + .carousel-item + .carousel-item  {
+        display: block;
+    }
+    
+    .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left),
+    .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item,
+    .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item + .carousel-item,
+    .carousel-inner .carousel-item.active:not(.carousel-item-right):not(.carousel-item-left) + .carousel-item + .carousel-item + .carousel-item {
+        transition: none;
+    }
+    
+    .carousel-inner .carousel-item-next,
+    .carousel-inner .carousel-item-prev {
+      position: relative;
+      transform: translate3d(0, 0, 0);
+    }
+    
+    .carousel-inner .active.carousel-item + .carousel-item + .carousel-item + .carousel-item + .carousel-item {
+        position: absolute;
+        top: 0;
+        right: -25%;
+        z-index: -1;
+        display: block;
+        visibility: visible;
+    }
+    
+    /* left or forward direction */
+    .active.carousel-item-left + .carousel-item-next.carousel-item-left,
+    .carousel-item-next.carousel-item-left + .carousel-item,
+    .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item,
+    .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item + .carousel-item,
+    .carousel-item-next.carousel-item-left + .carousel-item + .carousel-item + .carousel-item + .carousel-item {
+        position: relative;
+        transform: translate3d(-100%, 0, 0);
+        visibility: visible;
+    }
+    
+    /* farthest right hidden item must be abso position for animations */
+    .carousel-inner .carousel-item-prev.carousel-item-right {
+        position: absolute;
+        top: 0;
+        left: 0;
+        z-index: -1;
+        display: block;
+        visibility: visible;
+    }
+    
+    /* right or prev direction */
+    .active.carousel-item-right + .carousel-item-prev.carousel-item-right,
+    .carousel-item-prev.carousel-item-right + .carousel-item,
+    .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item,
+    .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item + .carousel-item,
+    .carousel-item-prev.carousel-item-right + .carousel-item + .carousel-item + .carousel-item + .carousel-item {
+        position: relative;
+        transform: translate3d(100%, 0, 0);
+        visibility: visible;
+        display: block;
+        visibility: visible;
+    }
+
+}
+.img_slide_in{
+    width: 250px;
+    height: 250px;
+}
+.img_slide_in:hover{
+   transform: scale(1.1);
+}
+.title-slide-img{
+     
+    text-align: center;
+    padding-top: 20px;
+     
+   
+ 
+    font-size: 14px;
+    color: #fff;
+    margin-bottom: 0;
+    margin-top: 28px;
+    text-transform: uppercase;
+    text-align: center;
+    /*white-space: nowrap;*/
+}
+.job ul {
+    border-top: 3px solid #fbb483;
+    border-bottom: 3px solid #fbb483;
+    padding: 20px 0;
+    margin-left: 0;
+    text-align: center;
+    overflow: hidden;
+    margin-right: 0;
+}
+.job ul li img{
+	width: 120px;
+}
+.job ul,.schedule ul{
+	list-style-type: none;
+}
+.job ul li h3 {
+    font-size: 12px;
+    text-transform: uppercase;
+    margin-bottom: 0;
+    margin-top: 10px;
+    color: #fff;
+}
+.job ul li {
+    width: 16%;
+    float: left;
+    text-align: center;
+    min-height: 103px;
+}
+.job ul li:hover {
+    transform: scale(1.1);
+    text-shadow: 1px 1px 2px #000;
+}
+.lazy-loaded {
+    opacity: 1;
+    transition: opacity .3s ease 0s;
+}
+.job .menu-top {
+    margin-bottom: 86px;
+}
+.job .col-md-4 .thumb {
+    float: left;
+    margin-right: 20px;
+}
+.job .block p {
+    color: #dcddde;
+    margin-bottom: 6px;
+    text-align: justify;
+    font-size: 14px;
+        line-height: 18px;
+}
+.job .text a {
+    color: #fff;
+}
+.job .text {
+    text-align: initial;
+}
+.job .thumb img {
+    border: 1px solid #fff;
+    border-radius: 12px;
+    width: 184px;
+}
+.job .thumb img, .job ul li h3, .job ul li img, .schedule ul li img {
+    -webkit-transition: .2s ease-in-out all;
+    -moz-transition: .2s ease-in-out all;
+    -o-transition: .2s ease-in-out all;
+    transition: .2s ease-in-out all;
+}
+.schedule ul {
+    text-align: center;
+}
+.schedule ul li {
+    width: 16%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    float: left;
+    min-height: 210px;
+}
+.schedule ul li:nth-child(1) {
+    background: url(../img/icon/icon-tuyen-sinh-bep-nong.png) no-repeat center bottom;
+}
+.schedule ul li:nth-child(2) {
+    background: url(../img/icon/icon-tuyen-sinh-bep-banh.png) no-repeat center bottom;
+}
+.schedule ul li:nth-child(3) {
+    background: url(../img/icon/icon-bep-gia-dinh.png) no-repeat center bottom;
+}
+.schedule ul li:nth-child(4) {
+    background: url(../img/icon/icon-tuyen-sinh-lam-kem.png) no-repeat center bottom;
+}
+.schedule ul li:nth-child(5) {
+    background: url(../img/icon/icon-tuyen-sinh-pha-che.png) no-repeat center bottom;
+}
+.schedule ul li:nth-child(6) {
+    background: url(../img/icon/icon-tuyen-sinh-qtnhks.png) no-repeat center bottom;
+}
+.schedule ul li h3 {
+    margin-top: 15px;
+    font-weight: 300;
+    text-transform: uppercase;
+    font-size: 12px;
+    color: #fff;
+}
+#section-option-2 .schedule h3.modtitle {
+    color: #f47421;
+    margin-bottom: 42px;
+    display: block;
+}
+#section-option-2 h1.modtitle, #section-option-2 h3.modtitle {
+    color: #fff;
+    text-shadow: 1px 1px 2px #000;
+    font-size: 32px;
+    text-transform: uppercase;
+    padding-bottom: 32px;
+    padding-top: 120px;
+    text-align: center;
+}
+#section-option-2 .module h3.modtitle:before {
+    content: "";
+    background-position: 50% 100%;
+    background-repeat: no-repeat;
+    top: 15px;
+    border: 0;
+    border-radius: 0;
+    height: 82px;
+    display: block;
+    width: 86px;
+    position: absolute;
+    left: 50%;
+    background-size: 80px;
+    margin-left: -40px;
+}
+#section-option-2 .module.schedule h3.modtitle:before {
+    background-image: url(../img/icon/icon_4.png);
+}
+#section-option-3 .news-brand .content {
+    min-height: 420px;
+}
+.news-brand .content {
+    text-align: center;
+    border: 2px solid #fbb483;
+    padding: 42px 28px 20px;
+    position: relative;
+    min-height: 368px;
+}
+.news-brand .content .icon img {
+    border: 2px solid #fff;
+    border-radius: 8px;
+    -webkit-transition: .2s ease-in-out all;
+    transition: .2s ease-in-out all;
+}
+.news-brand .content .icon {
+    z-index: 9;
+}
+.news-brand .content .icon, .news-brand .content:after {
+    width: 63px;
+    position: absolute;
+    top: 0;
+    margin-top: -40px;
+    margin-left: -36px;
+    left: 50%;
+}
+.news-brand .content:after {
+    height: 64px;
+    border: 2px solid #fff;
+    border-radius: 8px;
+    background-color: #f47321;
+    background-size: 63px;
+    background-repeat: no-repeat;
+    -webkit-transition: .2s ease-in-out all;
+    transition: .2s ease-in-out all;
+}
+.news-brand .content h3 {
+    font-size: 18px;
+    color: #fff;
+    text-transform: uppercase;
+    font-weight: 400;
+}
+.news-brand .content:hover {
+    box-shadow: 0 0 5px 0 rgba(255,255,255,1), inset 0 0 5px 0 rgba(255,255,255,1);
+    border-color: #fff;
+}
+.news-brand .content:hover {
+    -webkit-box-shadow: 0 0 5px 0 rgba(255,255,255,1), inset 0 0 5px 0 rgba(255,255,255,1);
+    -moz-box-shadow: 0 0 5px 0 rgba(255,255,255,1),inset 0 0 5px 0 rgba(255,255,255,1);
+}
+.news-brand .content:hover .icon img {
+    -webkit-box-shadow: 0 0 5px 0 rgba(255,255,255,1), inset 0 0 5px 0 rgba(255,255,255,1);
+    -moz-box-shadow: 0 0 5px 0 rgba(255,255,255,1),inset 0 0 5px 0 rgba(255,255,255,1);
+    box-shadow: 0 0 5px 0 rgba(255,255,255,1), inset 0 0 5px 0 rgba(255,255,255,1);
+    transform: scale(1.2);
+    -webkit-transform: scale(1.2);
+}
+.section-option-4 h3.modtitle{
+    color: #fff;
+    text-shadow: 1px 1px 2px #000;
+    font-size: 32px;
+    text-transform: uppercase;
+    padding-bottom: 32px;
+    padding-top: 120px;
+    text-align: center;
+}
+.market.text-center {
+    max-width: 742px;
+    margin: 0 auto;
+}
+.section-option-4 .market p.h3{
+    color: #fff;
+    font-size: 24px;
+}
+.section-option-4 .module h3.modtitle:before{
+    content: "";
+    background-position: 50% 100%;
+    background-repeat: no-repeat;
+    top: 15px;
+    border: 0;
+    border-radius: 0;
+    height: 82px;
+    display: block;
+    width: 86px;
+    position: absolute;
+    left: 50%;
+    background-size: 80px;
+    margin-left: -40px;
+}
+.section-option-4 h3.modtitle:before {
+    background-image: url(../img/icon/dvp-icon.png);
+}
+.section-option-6 .module h3{
+    color: #f37321;
+    text-shadow: 2px 2px 2px #000;
+}
+.section-option-6  .module {
+    min-height: 300px;
+}
