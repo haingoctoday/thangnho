@@ -79,19 +79,24 @@ input[type="radio"]:checked + label span { -webkit-transition: background-color 
     line-height: 35px;
 }
 </style>
-
+<?php
+dump($users);
+?>
 <div class="container" style="background-color: #ebf1f1;margin-top: 4px;">
 
     <div class="row" style="background-color: #fff">
         <h3 style="font-weight: bold;padding-left: 22px;padding-top: 15px;padding-bottom: 10px;">My Profile</h3>       
     </div>
-
+<form action="agents-profile" method="post">
 <div class="content-agent-profile">
+    
+        
+    
     <div class="row" style="padding-bottom: 6px;">
             <div class="col-md-6 display-tn">
                 <label class="display-7" style="width: 102px;">Username
                 </label>
-                <input class="form-control" type="text" name="firstname" id="firstname" placeholder="">
+                <input class="form-control" type="text" name="firstname" id="firstname" placeholder=""  value="<?= $users['username']?>">
             </div>
     </div>
 
@@ -99,17 +104,17 @@ input[type="radio"]:checked + label span { -webkit-transition: background-color 
             <div class="col display-tn">
                 <label class="display-7" style="width: 117px;">First Name
                 </label>
-                <input class="form-control" type="text" name="firstname" id="firstname" placeholder="">
+                <input class="form-control" type="text" name="firstname" id="firstname" placeholder="" value="<?= $users['firstname']?>">
             </div>
             <div class="col display-tn pl-0">
                 <label class="display-7" style="width: 117px;">Last Name
                 </label>
-                <input class="form-control" type="text" name="firstname" id="firstname" placeholder="">
+                <input class="form-control" type="text" name="lastname" id="lastname" placeholder="" value="<?= $users['lastname']?>">
             </div>
             <div class="col display-tn pl-0">
                 <label class="display-7" style="width: 157px;letter-spacing: -2px;">Preferred Name
                 </label>
-                <input class="form-control" type="text" name="firstname" id="firstname" placeholder="">
+                <input class="form-control" type="text" name="preferredName" id="preferredName" placeholder="" value="<?= $users['preferredName']?>">
             </div>
     </div>
 
@@ -117,12 +122,12 @@ input[type="radio"]:checked + label span { -webkit-transition: background-color 
             <div class="col-md-6 display-tn">
                 <label class="display-7" style="width: 270px;">Preferred Email Address
                 </label>
-                <input class="form-control" type="text" name="firstname" id="firstname" placeholder="">
+                <input class="form-control" type="text" name="email" id="email" placeholder="" value="<?= $users['email']?>">
             </div>
             <div class="col-md-5 display-tn">
                 <label class="display-7" style="width: 176px;">Phone Number
                 </label>
-                <input class="form-control" type="text" name="firstname" id="firstname" placeholder="">
+                <input class="form-control" type="text" name="phone" id="phone" placeholder="" value="<?= $users['phone']?>">
             </div>
     </div>
 
@@ -131,20 +136,27 @@ input[type="radio"]:checked + label span { -webkit-transition: background-color 
                 <div class="input-group">
                 <label class="display-7" style="padding-right: 20px;line-height: 35px;">Date of birth
                 </label>
-                    <select id="soflow" class="mauxanh-input" style="width: 102px;margin-right: 10px;">
+                    <select id="soflow" class="mauxanh-input" style="width: 102px;margin-right: 10px;" name="days" >
                       <option>DD</option>
-                      <option>1</option>
-                      <option>2</option>
+                     <?php for ($d=1; $d < 32; $d++) { 
+                      ?>
+                       <option <?php echo ( $users['days'] == $d) ? "selected" : ""?>><?= $d?></option>
+                      <?php
+                     }?>
+                     
                     </select>
-                    <select id="soflow" class="mauxanh-input" style="width: 102px;">
+                    <select id="soflow" class="mauxanh-input" style="width: 102px;"  name="mouths">
                       <option>MM</option>
-                      <option>1</option>
-                      <option>2</option>
+                       <?php for ($m=1; $m <= 12; $m++) { 
+                      ?>
+                       <option <?php echo ( $users['mouths'] == $m) ? "selected" : ""?>><?= $m?></option>
+                      <?php
+                     }?>
                     </select>             
                     <div class="hjhjhj"> 
                         <span>Gender:</span>
-                        <input id="option-one" name="radio" value="one" type="radio"> <label for="option-one" style="margin-right: 10px;margin-left: 10px;"> <span></span> Male  </label> 
-                        <input id="option-two" name="radio" value="two" type="radio"> <label for="option-two"> <span></span> Female </label> 
+                        <input id="option-one" name="sex"  type="radio" value="Male"> <label for="option-one" style="margin-right: 10px;margin-left: 10px;"> <span></span> Male </label> 
+                        <input id="option-two" name="sex"  type="radio" value="Female"> <label for="option-two"> <span></span> Female </label> 
                     </div>
                 </div>
             </div>
@@ -157,15 +169,15 @@ input[type="radio"]:checked + label span { -webkit-transition: background-color 
                 <div class="checkbox" style="font-size: 16px;letter-spacing: -1px;">
                     <label class="display-7" style="padding-right: 5px;">Interests:</label>
                     <label class="pl-2 pr-2">
-                        <input type="checkbox" value="">
+                        <input type="checkbox" value="Arts" name="Interests[]">
                         <span class="cr"><i class="cr-icon fa fa-check mauxanh-input"></i></span>Arts
                     </label>
                     <label class="pl-2 pr-2">
-                        <input type="checkbox" value="">
+                        <input type="checkbox" value="Family" name="Interests[]">
                         <span class="cr"><i class="cr-icon fa fa-check mauxanh-input"></i></span>Family
                     </label>
                     <label class="pl-2 pr-2">
-                        <input type="checkbox" value="">
+                        <input type="checkbox" value="Food" name="Interests[]">
                         <span class="cr"><i class="cr-icon fa fa-check mauxanh-input"></i></span>Food
                     </label>
                     <label class="pl-2 pr-2">
@@ -200,6 +212,7 @@ input[type="radio"]:checked + label span { -webkit-transition: background-color 
             </div>
         </div>
     </div>
+  
 </div>
 </div>
 
@@ -209,3 +222,4 @@ input[type="radio"]:checked + label span { -webkit-transition: background-color 
                 <button class="btn-block border-0 nen-maucam button-border-profile mx-auto">Update</button></div>
             </div>
 </div>
+  </form>

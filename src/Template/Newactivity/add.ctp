@@ -48,7 +48,21 @@
              echo $this->Form->input('hinhanh', ['type' => 'file','label' => 'Image']); 
             echo $this->Form->input('diachi', array('label'=>'Address', 'type'=>'select', 'options'=>$diachi_view));
             echo $this->Form->input('mota', ['label' => 'Descrepsion']);
-            echo $this->Form->input('songay', ['label' => 'Duration']);
+
+              $duration = ['hours' => 'hours','days' => 'days','weeks' => 'weeks'];
+              echo $this->Form->input('songay', array('label'=>'Duration', 'type'=>'select', 'options'=>$duration,'class' => 'col-sm-4',));
+            echo $this->Form->input('songay', ['label' => 'Duration','class' => 'col-sm-4']);
+// echo '<div>Duration</div>';
+// echo '<div>';
+// echo '<div style="float: left;"';
+// echo $this->Form->input('songay', array('label' => false, 'type' => 'text'));
+// echo '</div>';
+// echo '<div style="float: left;">-</div>';
+// echo '<div style="float: left;">';
+// echo $this->Form->input('songaya', array('label' => false, 'type' => 'select', 'options'=>$duration));
+// echo '</div>';
+// echo '<div style="clear: both;"></div>';
+// echo '</div>';
             echo $this->Form->input('lichtrinh', ['label' => 'Expect']);
             echo $this->Form->input('diemdon', ['label' => 'Departure Point']);
             echo $this->Form->input('thoigiandon', ['label' => 'Departure Time']);
@@ -57,8 +71,8 @@
             echo $this->Form->input('thongtinbosung', ['label' => 'Additional Info']);
             echo $this->Form->input('sokhach', ['label' => 'Adult']);
              echo $this->Form->input('treem', ['label' => 'Childent']);
+
               $star = ['1' => '1 Star','2' => '2 Star','3' => '3 Star','4' => '4 Star','5' => '5 Star'];
-        
           echo $this->Form->input('danhgia', array('label'=>'Vote', 'type'=>'select', 'options'=>$star));
          
           ?>

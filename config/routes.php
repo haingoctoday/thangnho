@@ -78,7 +78,7 @@ $routes->connect('/agents/*', ['controller' => 'Agents', 'action' => 'index']);
 $routes->connect('/agents-transfer/*', ['controller' => 'Agents', 'action' => 'transfer']);
 $routes->connect('/agents-ferries/*', ['controller' => 'Agents', 'action' => 'ferries']);
 $routes->connect('/agents-cruise/*', ['controller' => 'Agents', 'action' => 'cruise']);
-$routes->connect('/agents-prolife/*', ['controller' => 'Users', 'action' => 'prolife']);
+$routes->connect('/agents-profile/*', ['controller' => 'Users', 'action' => 'profile']);
 $routes->connect('/agents-mybooking/*', ['controller' => 'Users', 'action' => 'mybooking']);
 $routes->connect('/sign-up/*', ['controller' => 'Homes', 'action' => 'signup']);
 $routes->connect('/agents-agencydetail/*', ['controller' => 'Users', 'action' => 'agencydetail']);

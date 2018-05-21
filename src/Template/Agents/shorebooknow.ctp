@@ -163,22 +163,37 @@
          <span class="tbn-span-style">24 Jan 2018, 2 Adults</span>
        </div>
        <div class="col-md-4 pl-0">   
-        <button class="nen-maucam button-check-tour-book">CHECK AVAILABILITY</button>
+        <button class="nen-maucam button-check-tour-book" id="btn_check_book">CHECK AVAILABILITY</button>
       </div>
     </div>
   </div>
 </div>
 </div>  
 </div>
+  <div class="row">
+    <div class="col tour-ticket-price_box" style="padding-top: 15px;">
+      <h5 class="mauxanh" style="font-size: 23px;font-weight: bold;padding-left: 18px;">Crocosaurus Cove Darwin General Admission Tickets</h5>
+    </div>
+    <div class="col tour-ticket-price_box">
+      <div class="row" style="height: ">
+        <div class="col-md-8">
+            <div class="tour-ticket-price">Tour ticket (total price)</div>
+        </div>
+        <div class="col-md-4" style="margin-left: -5px;margin-top: 10px;">
+          <button class="nen-maucam button-check-price-book">PROCEED</button>
+        </div>
+      </div>
+    </div>
+  </div>
 <div class="content-tour-book">
   <div class="header-info-tour">
-    <h5 class="mauxanh" style="font-size: 23px;font-weight: bold;">Crocosaurus Cove Darwin General Admission Tickets</h5>
+    <h5 class="mauxanh fix-h5-hd" style="font-size: 23px;font-weight: bold;">Crocosaurus Cove Darwin General Admission Tickets</h5>
     <p class="ratings" data-bind="rating: rating" style="margin-bottom: 8px !important;">
       <i class="fa fa-heart maudo"></i>
       <i class="fa fa-heart maudo"></i>
       <i class="fa fa-heart maudo"></i>
       <i class="fa fa-heart mauxam"></i>
-      <i class="fa fa-heart mauxam"></i>                   
+      <i class="fa fa-heart mauxam"></i>
     </p>
     <p class="font-size-14 m-0">Round up the family and venture to Crocosaurus Cove in Darwin for a day of crocodile adventures and thrills. With over three floors to explore, your general admission ticket will have you encountering Northern Territory saltwater crocodiles in no time. How close you get is entirely up to you. Meet a resident Croc-celebrity, swim alongside juvenile crocodiles, or entice hungry crocs with a tasty snack from your fishing line.</p>
   </div>
@@ -561,8 +576,9 @@ th.fix-width-table{ width: 25%;  padding: 30px 0px;}
 tr.chil-ev-ac:nth-child(even) {background-color: #fee6d0;}
 .table-hovere tbody tr:hover { background-color: #dadada54;}
 .tab-pane .table-bordered td, .table-bordered th {  border: 1px solid #ddd;}
-
-
+.tour-ticket-price{background-color: #fff;height: 63px;line-height:63px;padding-left: 10px;}
+.button-check-price-book {width: 160px;height: 39px;color: #fff;line-height: 39px;border: none;font-size: 13px;}
+.tour-ticket-price_box{display: none}
 </style>
 
   <script type="text/javascript">
@@ -679,5 +695,15 @@ $('#nav-tabs-wrapper a[data-toggle="tab"]').on('click', function(e) {
     $(".in_tour_hele").css({'overflow-y':'scroll','height':'auto'});
 $(".info-tour-left-detail").toggle();
   $(".info-tour-left").find(".arrow-up, .arrow-down").toggle();
+ });
+
+ $('#btn_check_book').on('click', function(e) {
+
+    e.preventDefault();
+    $(this).text('EDIT BOOKING');
+    $(this).css('background-color', '#2ca7e0');
+    $(".tour-ticket-price_box").css('display','block');
+    $(".fix-h5-hd").remove();
+    
  });
   </script>

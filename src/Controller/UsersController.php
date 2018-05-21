@@ -453,30 +453,37 @@ class UsersController extends AppController
               $this->set('title', 'Admin Login - Twt');
         }
     }
-    public function prolife()
+    public function profile()
     {
          $this->viewBuilder()->layout('agentslayout');
-     
+     $u = $_SESSION['Auth'];
+     $id_user = $u['User']['id'];
+        
+    $users = $this->Users->get($id_user, [
+            'contain' => []
+        ]);
+        if ($this->request->is(['patch', 'post', 'put'])) {
+            // // $this->request->data
+            //  debug( $this->request->data);
+            //  die();
 
-         $this->loadModel("Cruisedrive");
-         $transfer_hot = $this->Cruisedrive->find('all',array('limit'=>3));
-          $this->set('transfer_hot', $transfer_hot);
-
-          $this->loadModel("Hoteldiachi");
-         $top_localtion = $this->Hoteldiachi->find('all',array('limit'=>3))->where(['top =' => 1]);
-          $this->set('top_localtion', $top_localtion);
-
-
-        // debug($hotel_hot);
-        $users = array();
+            $usersm = $this->Users->patchEntity($users, $this->request->data);
+            if ($this->Users->save($users)) {
+                $this->Flash->success(__('The {0} has been saved.', 'Users'));
+                return $this->redirect(['action' => 'profile']);
+            } else {
+                $this->Flash->error(__('The {0} could not be saved. Please, try again.', 'Users'));
+            }
+        }
         $this->set(compact('users'));
+        //$this->set(compact('users'));
 
 
 
 
         $this->set('_serialize', ['users']);
           $this->set('title', 'Agent');
-          $this->set('view_name', 'prolife');
+          $this->set('view_name', 'profile');
     }
 
     public function mybooking()

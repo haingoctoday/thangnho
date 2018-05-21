@@ -88,7 +88,7 @@
           <img src="img/icon_user.png" alt="" class="mb-2">
         <span class="caret"></span></a>
                         <ul class="dropdown-menu nen-maucam fix-navdrop">
-                            <li><a href="<?php echo $this->Url->build('/agents-prolife'); ?>" class="nav-link">My Profile</a></li>
+                            <li><a href="<?php echo $this->Url->build('/agents-profile'); ?>" class="nav-link">My Profile</a></li>
                             <li><a href="<?php echo $this->Url->build('/agents-mybooking'); ?>" class="nav-link">My bookings</a></li>
                             <li><a href="<?php echo $this->Url->build('/agents-agencydetail'); ?>" class="nav-link">Agency details</a></li>
                             <li><a href="<?php echo $this->Url->build('/agents-manageusers'); ?>" class="nav-link">Manage users</a></li>
