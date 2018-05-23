@@ -66,6 +66,20 @@
             echo $this->Form->input('lichtrinh', ['label' => 'Expect']);
             echo $this->Form->input('diemdon', ['label' => 'Departure Point']);
             echo $this->Form->input('thoigiandon', ['label' => 'Departure Time']);
+             $status_tour = ['Available' => 'Available','On Request' => 'On Request','Sold Out' => 'Sold Out'];
+           switch ($page_current) {
+              case 'tour':
+               echo $this->Form->input('expirydate', ['label' => 'Expiry Date']);
+               echo $this->Form->input('status', array('label'=>'Status', 'type'=>'select', 'options'=>$status_tour,'class' => 'col-sm-4',));
+                break;
+              case 'shore':
+                //$loai = ['shore' => 'Shore'];
+                break;  
+              default:
+               // $loai = ['activity' => 'Activity'];
+              echo $this->Form->input('status', array('label'=>'Status', 'type'=>'select', 'options'=>$status_tour,'class' => 'col-sm-4',));
+                break;
+            }
             echo $this->Form->input('tansuat', ['label' => 'Operates']);
             echo $this->Form->input('giatien', ['label' => 'Price']);
             echo $this->Form->input('thongtinbosung', ['label' => 'Additional Info']);

@@ -260,39 +260,109 @@ public function addroom($id = null)
 }
 $this->set('listroom', $listroom);
 if ($this->request->is(['patch', 'post', 'put'])) {
+
+
+
+    if($this->request->data['id_room'] != ""){
+
+        if($this->request->data['delete_room'] != ""){
+          die();
+            $newhotel = $this->Hotelandphong->get($this->request->data['id_room']);
+            if ($this->Hotelandphong->delete($newhotel)) {
+                $this->Flash->success(__('The {0} has been deleted.', 'Room'));
+            } else {
+                $this->Flash->error(__('The {0} could not be deleted. Please, try again.', 'Room'));
+            }
+            return $this->redirect(['action' => 'addroom',$id]);
+        }else{
+           $Hotelandphong = $this->Hotelandphong->get($this->request->data['id_room'], [
+            'contain' => []
+            ]);
+            $data = array(
+                'songuoi'=>$this->request->data['numberper'],
+                'giatienss1'=>$this->request->data['priceroom'],
+                'giatienss2'=>$this->request->data['priceroom2'],
+                'giatienss3'=>$this->request->data['priceroom3'],
+                'giatienss4'=>$this->request->data['priceroom4'],
+                'giatienss5'=>$this->request->data['priceroom5'],
+                'loaiphong'=>$this->request->data['listroomid'],
+            );
+            $newroom = $this->Hotelandphong->patchEntity($Hotelandphong, $data);   
+            if ($this->Hotelandphong->save($newroom)) {
+               $top_localtion = $this->Hotelandphong->find('all')->where(['id_hotel =' => $id])->toArray();
+               $array_price = array();
+              foreach ($top_localtion as $key => $value_top_localtion) {
+              array_push($array_price,$value_top_localtion['giatienss1'],$value_top_localtion['giatienss2'],$value_top_localtion['giatienss3'],$value_top_localtion['giatienss4'],$value_top_localtion['giatienss5']);
+              }
+                $arr = array_diff($array_price, array(0));
+                $min_pince  = min($arr);
+                $data = array(
+                  'roomrate'=>$min_pince
+                );
+                $newhotelroom = $this->Newhotel->patchEntity($hotelroom, $data);   
+                $this->Newhotel->save($newhotelroom);
+                $this->Flash->success('Your profile has been sucessfully updated.');
+                return $this->redirect(['action' => 'addroom',$id]);
+            } else {
+                $this->Flash->error('Records not be saved. Please, try again.');
+            }     
+        }   
+        
+    }else{
+        
+        $data = array();
+        $data[] = array(
+            'ngaykhoitao'=>"",
+            'id_hotel'=>$id,
+            'dayrange'=>"",
+            'songuoi'=>$this->request->data['numberper'],
+            'giatienss1'=>$this->request->data['priceroom'],
+            'giatienss2'=>$this->request->data['priceroom2'],
+            'giatienss3'=>$this->request->data['priceroom3'],
+            'giatienss4'=>$this->request->data['priceroom4'],
+            'giatienss5'=>$this->request->data['priceroom5'],
+            'loaiphong'=>$this->request->data['listroomid'],
+        );
+       
+        $peopleTable = TableRegistry::get('Hotelandphong');
+        $entities = $peopleTable->newEntities($data);
+        $peopleTable->addBehavior('Timestamp');
+        if ($peopleTable->saveMany($entities)) {
+         $top_localtion = $this->Hotelandphong->find('all')->where(['id_hotel =' => $id])->toArray();
+         $array_price = array();
+        foreach ($top_localtion as $key => $value_top_localtion) {
+        array_push($array_price,$value_top_localtion['giatienss1'],$value_top_localtion['giatienss2'],$value_top_localtion['giatienss3'],$value_top_localtion['giatienss4'],$value_top_localtion['giatienss5']);
+        }
+          $arr = array_diff($array_price, array(0));
+          $min_pince  = min($arr);
+          $data = array(
+            'roomrate'=>$min_pince
+          );
+          $newhotelroom = $this->Newhotel->patchEntity($hotelroom, $data);   
+          $this->Newhotel->save($newhotelroom);
+        $this->Flash->success(__('The {0} has been saved.', 'Services Hotel'));
+        return $this->redirect(['action' => 'addroom',$id]);
+        } else {
+            $this->Flash->error(__('The {0} could not be saved. Please, try again.', 'Services Hotel'));
+        }
+    }
           //  $data_date = $this->request->data['date_insert'];
 
           //  $date_to_end = explode("-", $data_date);
            //  $dates = $this->getDatesFromRange(trim($date_to_end[0]), trim($date_to_end[1]));
-   $data = array();
-          //  foreach ($dates as $key => $value_dates) {
-   $data[] = array(
-    'ngaykhoitao'=>"",
-    'id_hotel'=>$id,
-    'dayrange'=>"",
-    'songuoi'=>$this->request->data['numberper'],
-    'giatien'=>$this->request->data['priceroom'],
-    'uptotop'=>$this->request->data['uptohot'],
-    'loaiphong'=>$this->request->data['listroomid'],
-);
-
-         //   }
-   $peopleTable = TableRegistry::get('Hotelandphong');
-   $entities = $peopleTable->newEntities($data);
-   $peopleTable->addBehavior('Timestamp');
-   if ($peopleTable->saveMany($entities)) {
-    $this->Flash->success(__('The {0} has been saved.', 'Services Hotel'));
-    return $this->redirect(['action' => 'index']);
-} else {
-    $this->Flash->error(__('The {0} could not be saved. Please, try again.', 'Services Hotel'));
-}
+ 
 }
 
 $articles  = TableRegistry::get('Hotelandphong');
 $query = $articles->find();
 $query->select([
-    'giatien' => 'Hotelandphong.giatien',
-    'count' => $query->func()->count('Hotelandphong.id'),
+    'id' => 'Hotelandphong.id',
+    'giatienss1' => 'Hotelandphong.giatienss1',
+    'giatienss2' => 'Hotelandphong.giatienss2',
+    'giatienss3' => 'Hotelandphong.giatienss3',
+    'giatienss4' => 'Hotelandphong.giatienss4',
+    'giatienss5' => 'Hotelandphong.giatienss5',
+   // 'count' => $query->func()->count('Hotelandphong.id'),
     'dayrange' => 'Hotelandphong.dayrange',
     'nameroom' => 'hp.nameroom',
     'namehotel' => 'nh.namehotel',
@@ -312,9 +382,10 @@ $query->select([
     ]
 ])
 ->where(['Hotelandphong.id_hotel' => $id])
-->group('Hotelandphong.loaiphong')
+//->group('Hotelandphong.loaiphong')
 
 ;
+
 
         // foreach ($query as $row) {
         //     debug($row['nameroom']);
@@ -322,7 +393,7 @@ $query->select([
 $this->set('list_room_of_hotel',$query);
 $this->set(compact('hotelroom'));
 $this->set('_serialize', ['hotelroom']);
-print_r("</pre>");
+
 
 }
 public function addroom123($id = null)
@@ -371,8 +442,9 @@ if ($this->request->is(['patch', 'post', 'put'])) {
 $articles  = TableRegistry::get('Hotelandphong');
 $query = $articles->find();
 $query->select([
+     'id' => 'Hotelandphong.id',
     'giatien' => 'Hotelandphong.giatien',
-    'count' => $query->func()->count('Hotelandphong.id'),
+   // 'count' => $query->func()->count('Hotelandphong.id'),
     'dayrange' => 'Hotelandphong.dayrange',
     'nameroom' => 'hp.nameroom',
     'namehotel' => 'nh.namehotel',
@@ -392,7 +464,7 @@ $query->select([
     ]
 ])
 ->where(['Hotelandphong.id_hotel' => $id])
-->group('Hotelandphong.loaiphong')
+//->group('Hotelandphong.loaiphong')
 
 ;
 
@@ -444,7 +516,7 @@ $this->set('view_name', 'hotel');
 $articles  = TableRegistry::get('Hotelandphong');
 $query = $articles->find();
 $query->select([
-    'giatien' => 'Hotelandphong.giatien',
+    'giatienss1' => 'Hotelandphong.giatienss1',
           //  'count' => $query->func()->count('Hotelandphong.id'),
     'dayrange' => 'Hotelandphong.dayrange',
     'nameroom' => 'hp.nameroom',
@@ -517,7 +589,7 @@ $this->set(compact('newhotel'));
        $query = $articles->find();
        $query->select([
         'idphong' => 'Hotelandphong.id',
-            'giatien' => 'Hotelandphong.giatien',
+            'giatien' => 'Hotelandphong.giatienss1',
           //  'count' => $query->func()->count('Hotelandphong.id'),
             'dayrange' => 'Hotelandphong.dayrange',
             'nameroom' => 'hp.nameroom',

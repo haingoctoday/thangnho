@@ -115,6 +115,7 @@ if (!file_exists($file)) {
         <ul class="treeview-menu">
                <li><a href="<?php echo $this->Url->build('/admin-hotel-address'); ?>"><i class="fa fa-automobile"></i>Location </a></li>
            <li><a href="<?php echo $this->Url->build('/admin-slide'); ?>"><i class="fa fa-map"></i> Slide Agent page </a></li>
+           <li><a href="<?php echo $this->Url->build('/admin-seasons-of-year'); ?>"><i class="fa fa-map"></i> Setup Seasons of the year</a></li>
             <!-- <li><a href="<?php echo $this->Url->build('/'); ?>"><i class="fa fa-map-signs"></i> Chính sách tour</a></li> -->
             <!-- <li><a href="<?php echo $this->Url->build('/'); ?>"><i class="fa fa-level-down"></i> Địa điểm</a></li> -->
             <!-- <li><a href="<?php echo $this->Url->build('/'); ?>"><i class="fa fa-meh-o"></i>Loại hình Tour</a></li> -->

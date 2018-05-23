@@ -423,8 +423,6 @@ public function cruise()
           $hotel_view[] =  array('hinhanh' => '/upload/hotel/'.$valuehotel['hinhanh'],'name' =>$valuehotel['namehotel'],'phanloai'=>'hotel');
       }
 $array_array = array_merge($diachi_view,$hotel_view);
-// debug($array_array);
-// debug($hotel_view);
 echo json_encode($array_array);
 die();
 

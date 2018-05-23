@@ -42,7 +42,7 @@
 				                                        <div class="price-property">
 				                        <div class="row m-0">
 				                        <div class="money mr-2" style="width: 60px;text-align: right;">
-				                            <span class="chudam"><?php echo $valuelist_room_of_hotel['giatien'] * $tygia?></span>
+				                            <span class="chudam"><?php echo $valuelist_room_of_hotel['giatienss1'] * $tygia?></span>
 				                        </div>
 				                        <div class="current">
 				                            <span><?php echo $language?></span>

@@ -1,91 +1,5 @@
-<?php echo $this->Html->script('bootstrap-datepicker.min'); ?>
- <?php echo $this->Html->script('jquery.typeahead.min'); ?>
- <?php echo $this->Html->css('jquery.typeahead.min'); ?>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.min.css">
-<?php
-$adults = array('1'=>'Adults 1','2'=>'Adults 2','3'=>'Adults 3','4'=>'Adults 4','5'=>'Adults 5','6'=>'Adults 6');
-$children = array('0'=>'Children 0','1'=>'Children 1','2'=>'Children 2','3'=>'Children 3','4'=>'Children 4 ');
-?>
 
-<div class="search-accom">
-  <div class="container">
-    <div class="row">
-      <form role="form" class="search" id="search_hotel">
-        <div class="form-group-search" style="padding: 32px 10px 32px 10px;">
-
-          <div class="typeahead__container " style="float: left;margin-right: 4px;margin-top: 1px;">
-            <div class="typeahead__field ">
-
-              <span class="typeahead__query">
-                <input class="input_name fix-height-input" id="search_name" name="search_name" type="text" placeholder="Search by destination, point of interest, hotel or address..." autocomplete="off" value="<?php echo ($this->request->session()->read('hotel.search.search_name')) ?>">
-              </span>
-
-            </div>
-          </div>
-
-
-
-          <!-- <input type="text" class="input_name fix-height-input" id="usr" placeholder="Search by destination, point of interest, hotel or address..."> -->
-          <input type="text" id="search_date_to" name="search_date_to" class="input_checkin fix-height-input" placeholder="Check in" value="<?php echo ($this->request->session()->read('hotel.search.search_date_to')) ?>">
-          <input type="text" id="search_date_end" name="search_date_end" class="input_checkin fix-height-input"  placeholder="Check out" value="<?php echo ($this->request->session()->read('hotel.search.search_date_end')) ?>">
-          <select class="input_night icon_moon_input" id="search_night" disabled name="search_night" style="height: 34px;font-weight: 600;font-size: 15px;">
-            <?php
-            for ($num_day=1; $num_day < 32 ; $num_day++) { 
-              ?>
-              <option value="<?php echo $num_day?>" <?php echo  ($this->request->session()->read('hotel.search.search_night') == $num_day) ? 'selected' : '' ?> ><?php echo $num_day?></span></option>
-              <?php
-            }
-            ?>
-
-          </select>
-          <!-- <input type="text" class="input_night fix-height-input" id="usr" placeholder=""> -->
-
-          <!-- <input type="text" class="input_room fix-height-input" id="usr" placeholder="1 Room, 2 Adults"> -->
-          <button type="button" class=" input_room fix-height-input" data-toggle="collapse" data-target="#pick-room">Pick Room and Adults</button>
-          <div id="pick-room" class="collapse">
-            <div class="panel-body">
-              <form action="" >
-
-                <div class="input-group control-group after-add-more p-2 border" id="sophong">
-                  <!-- <span class="fa fa-close remove col-sm-1"></span> -->
-                  <span class="col-sm-3 text-center"> Room </span>
-                  <!--  <input type="text" name="adults[]" class="form-control col-sm-4" placeholder=""> -->
-                  <?php echo $this->Form->select('adults[]', $adults,['default' => '2','class'=>'form-control col-sm-3 adults']);?>
-                  <?php echo $this->Form->select('children[]', $children,['class'=>'form-control col-sm-3 ml-2 children']);?>
-                  <!--  <input type="text" name="children[]" class="form-control col-sm-4 ml-2" placeholder=""> -->
-                </div>
-
-
-
-
-                <!-- Copy Fields-These are the fields which we get through jquery and then add after the above input,-->
-                <div class="copy-fields hide">
-                  <div class="control-group input-group p-2 border" id="sophong">
-
-
-                    <span class="col-sm-3 text-center"> Room</span>
-                    <?php echo $this->Form->select('adults[]', $adults,['default' => '2','class'=>'form-control col-sm-3 adults']);?>
-                    <?php echo $this->Form->select('children[]', $children,['class'=>'form-control col-sm-3 ml-2 children']);?>
-                    <span class="fa fa-close remove col-sm-1"></span>
-                  </div>
-                </div>
-
-                <div style="background: #0a90e3;width: 100%;height: 38px;">
-                  <div class=""> 
-                    <button class="btn add-more" type="button" style="float: right;color: rgb(255, 255, 255);background: rgb(10, 144, 227);display: block;"><i class="glyphicon glyphicon-plus"></i> Add another room <i class="fa fa-plus-circle" aria-hidden="true" style="font-size: 13px;"></i></button>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <!-- <button class="btn border-0 nen-maucam" style="height: 34px;color: #fff;">Search</button> -->
-            <!-- <input type="button" class="button_search-twt" id="search_submit"  value="Search"> -->
-            <button class="button_search-twt" id="search_submit" type="submit">Search</button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
+<?php echo $this->element('search'); ?>
 
                 <!-- descript hotel -->
         <div class="wraper-descript">
@@ -747,14 +661,7 @@ if($( this ).hasClass( "abccc" )){
   $(this).addClass("abccc");
   stringcheck.push(stringc);
   $(this).find(".check_on_check").show();
-  //alert("2");
 };
-//
-
-//   var stringc = $(this).text();
-//   console.log(stringc);
-
-//   stringcheck.push(stringc);
   console.log(stringcheck);var abc = '';
 
 if($( this ).hasClass( "abccc" )){ 
@@ -773,10 +680,6 @@ if($( this ).hasClass( "abccc" )){
   // $(".pick_last_haha").parent().parent().parent().hide();
   }
  console.log(abc);
-  
-    //$(".pick_last_haha:contains(0room only),.pick_last_haha:contains(2room only),.pick_last_haha:contains(4room only)").parent().parent().parent().show();
-  //$("div:contains('thetext'), div:contains('thetext1'), div:contains('thetext2')")
-
 });
 
         //$(document).ready(function() {
@@ -785,7 +688,7 @@ if($( this ).hasClass( "abccc" )){
         $('[id^="chbchan"]').click(function(e) {
            $(this).toggleClass("clacls");
          // alert("ád");
-         if(num_check < <?php echo $total_room ?>){
+         if(num_check < <?php echo isset($total_room)?$total_room:0 ?>){
 
             var title = $( this ).attr( "id-hime" );
             var check_check = $( "#check_box_room_"+title ).val();
