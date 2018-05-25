@@ -14,14 +14,14 @@
         <div class="box-header">
           <h3 class="box-title"><?= __('List of') ?> Hotel Category</h3>
           <div class="box-tools">
-            <form action="<?php echo $this->Url->build(); ?>" method="POST">
+           <!--  <form action="<?php echo $this->Url->build(); ?>" method="POST">
               <div class="input-group input-group-sm"  style="width: 180px;">
                 <input type="text" name="search" class="form-control" placeholder="<?= __('Fill in to start search') ?>">
                 <span class="input-group-btn">
                 <button class="btn btn-info btn-flat" type="submit"><?= __('Filter') ?></button>
                 </span>
               </div>
-            </form>
+            </form> -->
           </div>
         </div>
         <!-- /.box-header -->
@@ -37,7 +37,7 @@
               <tr>
                 <td><?= $this->Number->format($hotelcategory->id) ?></td>
                 <td><?= h($hotelcategory->namecategory) ?></td>
-                <td><?= $this->Number->format($hotelcategory->status) ?></td>
+                <td><?php echo ($hotelcategory->status == 1) ? 'Ok' : 'No'?></td>
                 <td class="actions" style="white-space:nowrap">
                   <?= $this->Html->link(__('View'), ['action' => 'view', $hotelcategory->id], ['class'=>'btn btn-info btn-xs']) ?>
                   <?= $this->Html->link(__('Edit'), ['action' => 'edit', $hotelcategory->id], ['class'=>'btn btn-warning btn-xs']) ?>

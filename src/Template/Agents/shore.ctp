@@ -38,7 +38,7 @@
 <div class="container">
   <div class="row">
 
-<div class="col-md-2 offset-md-3 p-0"><button class="btn border-0 button-tour ditme" id="btn-tour-type"><div id="text-type">Activity Styles</div> <img src="img/arrow-down.png" style="margin-top: 8px;float: right;" ></button>
+<div class="col-md-2 offset-md-3 p-0"><button class="btn border-0 button-tour ditme" id="btn-tour-type"><div id="text-type">Activities Styles</div> <img src="img/arrow-down.png" style="margin-top: 8px;float: right;" ></button>
 
 </div>
     <div id="pick-input-tourtype" class="col-md-2 p-0">

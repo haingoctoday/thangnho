@@ -2,7 +2,7 @@
 
 <section class="content-header">
   <h1>
-    Add Inclusions of Activity
+    Add Inclusions of Activities 
     <small><?= __('Add Services') ?></small>
   </h1>
   <ol class="breadcrumb">

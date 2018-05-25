@@ -58,10 +58,6 @@ class ActivitiecategoryTable extends Table
         $validator
             ->allowEmpty('detailcategory');
 
-        $validator
-            ->integer('status')
-            ->requirePresence('status', 'create')
-            ->notEmpty('status');
 
         return $validator;
     }

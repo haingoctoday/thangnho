@@ -42,13 +42,19 @@
             </script>
 
             <div class="height-p-twt">
-              <p class="" ><?= h($hotel_hot_item['mota'])?></p>
+              <p class="" ><?= strip_tags($hotel_hot_item['mota'])?></p>
               
             </div>
             <div class="copy-fade"></div>
           </div>
           <div class="col-md-5 text-center mx-auto">
-            <button class="btn-block border-0 nen-maucam button-bk-twt">BOOK NOW</button>
+            <a class="btn-block border-0 nen-maucam button-bk-twt" href="<?php 
+            
+              echo $this->Url->build([
+               'controller' => 'Newhotel',
+               'action' => 'indexView',
+               '?' => array('hotel' => $hotel_title,'stt'=>$hotel_id),
+               ]); ?>">BOOK NOW</a>
           </div>
         </div>
       </div>

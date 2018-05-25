@@ -58,10 +58,7 @@ class HotelphongTable extends Table
         $validator
             ->requirePresence('detailroom', 'create')
             ->notEmpty('detailroom');
-        $validator
-            ->integer('status')
-            ->requirePresence('status', 'create')
-            ->notEmpty('status');
+       
 
         return $validator;
     }

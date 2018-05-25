@@ -5,7 +5,7 @@
 ?>
 <section class="content-header">
   <h1>
-    Hotelcategory
+    Hotel Category
     <small><?= __('Edit') ?></small>
   </h1>
   <ol class="breadcrumb">
@@ -30,9 +30,8 @@
         <?= $this->Form->create($hotelcategory, array('role' => 'form')) ?>
           <div class="box-body">
           <?php
-            echo $this->Form->input('namecategory');
-            echo $this->Form->input('detailcategory');
-            echo $this->Form->input('status');
+          echo $this->Form->input('namecategory',['label'=>'Name Category']);
+            echo $this->Form->input('detailcategory',['label'=>'Detail Category']);
           ?>
           </div>
           <!-- /.box-body -->

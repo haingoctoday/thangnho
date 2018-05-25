@@ -14,32 +14,32 @@
         <div class="box-header">
           <h3 class="box-title"><?= __('List of') ?> Services Hotel</h3>
           <div class="box-tools">
-            <form action="<?php echo $this->Url->build(); ?>" method="POST">
+            <!-- <form action="<?php echo $this->Url->build(); ?>" method="POST">
               <div class="input-group input-group-sm"  style="width: 180px;">
                 <input type="text" name="search" class="form-control" placeholder="<?= __('Fill in to start search') ?>">
                 <span class="input-group-btn">
                 <button class="btn btn-info btn-flat" type="submit"><?= __('Filter') ?></button>
                 </span>
               </div>
-            </form>
+            </form> -->
           </div>
         </div>
         <!-- /.box-header -->
         <div class="box-body table-responsive no-padding">
           <table class="table table-hover">
             <tr>
-              <th><?= $this->Paginator->sort('id') ?></th>
-              <th><?= $this->Paginator->sort('Name Services') ?></th>
+            
+              <th style="width: 300px"><?= $this->Paginator->sort('Name Services') ?></th>
                <th><?= $this->Paginator->sort('Detail Services') ?></th>
-              <th><?= $this->Paginator->sort('Status') ?></th>
+           
               <th><?= __('Actions') ?></th>
             </tr>
             <?php foreach ($hoteltienich as $hoteltienich): ?>
               <tr>
-                <td><?= $this->Number->format($hoteltienich->id) ?></td>
+              
                 <td><?= h($hoteltienich->nametienich) ?></td>
                  <td><?= h($hoteltienich->detailtienich) ?></td>
-                <td><?= $this->Number->format($hoteltienich->status) ?></td>
+               
                 <td class="actions" style="white-space:nowrap">
                   <?= $this->Html->link(__('View'), ['action' => 'view', $hoteltienich->id], ['class'=>'btn btn-info btn-xs']) ?>
                   <?= $this->Html->link(__('Edit'), ['action' => 'edit', $hoteltienich->id], ['class'=>'btn btn-warning btn-xs']) ?>

@@ -89,7 +89,9 @@
     text-align: center;
     height: 30px;
 }
-
+div#fix-card-hotel-20:nth-child(3) .card-wrapper {
+    width: 95%;
+}
 </style>
 <!-- display hotel -->
 <div class="wraper-display-twt">
@@ -150,7 +152,7 @@
                      </script>
                   </div>
                   <div class="height-p-twt">
-                     <p class="" ><?= h($hotel_hot_item['mota'])?></p>
+                     <p class="" ><?= strip_tags($hotel_hot_item['mota'])?></p>
                   </div>
                   <div class="copy-fade"></div>
                </div>

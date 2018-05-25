@@ -32,7 +32,7 @@
           <?php
              echo $this->Form->input('namechinhsach', ['label' => 'Name Policy']);
             echo $this->Form->input('detailchinhsach', ['label' => 'Detail Policy']);
-            echo $this->Form->input('status', ['label' => 'Status']);
+            // echo $this->Form->input('status', ['label' => 'Status']);
           ?>
           </div>
           <!-- /.box-body -->

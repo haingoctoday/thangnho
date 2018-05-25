@@ -25,9 +25,9 @@
         <?= $this->Form->create($hotelphong, array('role' => 'form')) ?>
           <div class="box-body">
           <?php
-            echo $this->Form->input('nameroom');
-            echo $this->Form->input('detailroom');
-            echo $this->Form->input('status');
+            echo $this->Form->input('nameroom', ['label' => 'Name Room']);
+            echo $this->Form->input('detailroom', ['label' => 'Detail Room']);
+           // echo $this->Form->input('status');
           ?>
           </div>
           <!-- /.box-body -->

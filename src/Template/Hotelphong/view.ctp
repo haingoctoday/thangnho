@@ -1,6 +1,6 @@
 <section class="content-header">
   <h1>
-    <?php echo __('Hotelphong'); ?>
+    <?php echo __(' Category Room Hotel'); ?>
 </h1>
 <ol class="breadcrumb">
     <li>
@@ -21,7 +21,7 @@
                 <!-- /.box-header -->
                 <div class="box-body">
                     <dl class="dl-horizontal">
-                        <dt><?= __('Nameroom') ?></dt>
+                        <dt><?= __('Name Room') ?></dt>
                         <dd>
                             <?= h($hotelphong->nameroom) ?>
                         </dd>
@@ -29,9 +29,9 @@
                         <dd>
                             <?= h($hotelphong->detailroom) ?>
                         </dd>
-                        <dt><?= __('Status') ?></dt>
+                        <dt><?php // __('Status') ?></dt>
                         <dd>
-                            <?= $this->Number->format($hotelphong->status) ?>
+                            <?php // $this->Number->format($hotelphong->status) ?>
                         </dd>
                     </dl>
                 </div>

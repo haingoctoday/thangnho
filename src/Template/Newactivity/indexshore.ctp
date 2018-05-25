@@ -32,7 +32,7 @@
           <table class="table table-hover">
             <tr>
               <th><?= $this->Paginator->sort('id',['label'=>'ID']) ?></th>
-              <th><?= $this->Paginator->sort('name',['label'=>'Name Activity']) ?></th>
+              <th><?= $this->Paginator->sort('name',['label'=>'Name Shore ']) ?></th>
                <th><?= $this->Paginator->sort('hinhanh',['label'=>'Picture']) ?></th>
               <th><?= $this->Paginator->sort('diachi',['label'=>'Address']) ?></th>
               <th><?= $this->Paginator->sort('songay',['label'=>'Number Day']) ?></th>
@@ -53,7 +53,7 @@
                     <?= $this->Html->link(__('Inclusions'), ['action' => 'inclusions', $newactivity->id], ['class'=>'btn btn-info btn-xs']) ?>
                       <?= $this->Html->link(__('Exclusions'), ['action' => 'exclusions', $newactivity->id], ['class'=>'btn btn-info btn-xs']) ?>
                         <?php // $this->Html->link(__('Add list day open'), ['action' => 'view', $newactivity->id], ['class'=>'btn btn-info btn-xs']) ?>
-                  <?= $this->Html->link(__('View'), ['action' => 'view', $newactivity->id], ['class'=>'btn btn-info btn-xs']) ?>
+                  <?php // $this->Html->link(__('View'), ['action' => 'view', $newactivity->id], ['class'=>'btn btn-info btn-xs']) ?>
                   <?= $this->Html->link(__('Edit'), ['action' => 'edit', $newactivity->id], ['class'=>'btn btn-warning btn-xs']) ?>
                   <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $newactivity->id], ['confirm' => __('Confirm to delete this entry?'), 'class'=>'btn btn-danger btn-xs']) ?>
                 </td>

@@ -59,10 +59,7 @@ class HotelcategoryTable extends Table
             ->requirePresence('detailcategory', 'create')
             ->notEmpty('detailcategory');
 
-        $validator
-            ->integer('status')
-            ->requirePresence('status', 'create')
-            ->notEmpty('status');
+      
 
         return $validator;
     }

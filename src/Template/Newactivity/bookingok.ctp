@@ -205,7 +205,7 @@
 <span><b>Photo Identification</b></span>
 <p>The activity operator ​may require valid photo identification such as a passport, driver's licence or any other form of identification displaying a current photo of the lead participant in the booking. This is required to protect the customer's purchase. Not all passengers will require photo identification. If the customer uses a different name to that on their photo identification, a valid secondary form of identification with the same name on the booking will be required.</p>
 <span><b>Pick-up</b></span>
-<p>Where pick-up services are provided, clients are required to reconfirm the pick-up service 24 hours prior to the service date directly with the ​activity operator. Activity operators will pick-up from the majority of major hotels, but there is no guarantee that a pick-up is available for all hotels. When reconfirming pick-up, if the requested hotel is not available, an alternative point will be provided. Pick-up time and duration periods are an approximation only and may be subject to delays, such as traffic conditions or poor weather.</p>
+<p>Where pick-up services are provided, clients are required to reconfirm the pick-up service 24 hours prior to the service date directly with the ​activity operator. Activities operators will pick-up from the majority of major hotels, but there is no guarantee that a pick-up is available for all hotels. When reconfirming pick-up, if the requested hotel is not available, an alternative point will be provided. Pick-up time and duration periods are an approximation only and may be subject to delays, such as traffic conditions or poor weather.</p>
 </div>
 </div>
 

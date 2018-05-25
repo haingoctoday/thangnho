@@ -149,7 +149,7 @@ class AgentsController extends AppController
         //$users = $this->paginate($this->Users);
       $users = array();
 
-       $this->set('title', 'Agent');
+       $this->set('title', 'Accommodation Hotel Search');
         $this->set('view_name', 'hotel');
   
 

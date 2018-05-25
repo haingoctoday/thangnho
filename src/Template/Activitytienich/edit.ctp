@@ -5,7 +5,7 @@
 ?>
 <section class="content-header">
   <h1>
-    Activitytienich
+   Activities Services
     <small><?= __('Edit') ?></small>
   </h1>
   <ol class="breadcrumb">
@@ -30,9 +30,8 @@
         <?= $this->Form->create($activitytienich, array('role' => 'form')) ?>
           <div class="box-body">
           <?php
-            echo $this->Form->input('nametienich');
-            echo $this->Form->input('detailtienich');
-            echo $this->Form->input('status');
+            echo $this->Form->input('nametienich', ['label' => 'Name Activities Services']);
+            echo $this->Form->input('detailtienich', ['label' => 'Detail Activities Services']);
           ?>
           </div>
           <!-- /.box-body -->

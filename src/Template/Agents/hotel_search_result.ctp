@@ -325,7 +325,7 @@ i.hotel-icon{display:block;height:32px;width:32px;background:transparent url(img
 function formatNumber (num) {
     return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1,")
 }
-
+//jq162 = jQuery.noConflict( true );
 $("#sli-price-acti").slider({
 	tooltip: 'always'
 });
@@ -336,6 +336,7 @@ $("#sli-price-acti").on("slide", function(slideEvt) {
 	}
 	$("#resultSliderVal").text(formatNumber(abc));
 });
+
 
 
 $( ".btn-circle-display" ).click(function() {

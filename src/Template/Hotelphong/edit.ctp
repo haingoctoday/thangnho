@@ -5,7 +5,7 @@
 ?>
 <section class="content-header">
   <h1>
-    Hotelphong
+    Category Room Hotel
     <small><?= __('Edit') ?></small>
   </h1>
   <ol class="breadcrumb">
@@ -23,16 +23,16 @@
       <!-- general form elements -->
       <div class="box box-primary">
         <div class="box-header with-border">
-          <h3 class="box-title"><?= __('Form') ?></h3>
+          <h3 class="box-title"><?= __('Category Room Hotel') ?></h3>
         </div>
         <!-- /.box-header -->
         <!-- form start -->
         <?= $this->Form->create($hotelphong, array('role' => 'form')) ?>
           <div class="box-body">
           <?php
-            echo $this->Form->input('nameroom');
-            echo $this->Form->input('detailroom');
-            echo $this->Form->input('status');
+           echo $this->Form->input('nameroom', ['label' => 'Name Room']);
+            echo $this->Form->input('detailroom', ['label' => 'Detail Room']);
+            //echo $this->Form->input('status');
           ?>
           </div>
           <!-- /.box-body -->

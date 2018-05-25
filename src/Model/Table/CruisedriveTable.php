@@ -63,10 +63,7 @@ class CruisedriveTable extends Table
             ->requirePresence('detail', 'create')
             ->notEmpty('detail');
 
-        $validator
-            ->integer('status')
-            ->requirePresence('status', 'create')
-            ->notEmpty('status');
+      
 
         return $validator;
     }

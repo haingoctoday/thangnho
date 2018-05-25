@@ -63,11 +63,7 @@ class NewcruiseTable extends Table
             ->requirePresence('price', 'create')
             ->notEmpty('price');
 
-        $validator
-            ->integer('status')
-            ->requirePresence('status', 'create')
-            ->notEmpty('status');
-
+       
        
 
         $validator

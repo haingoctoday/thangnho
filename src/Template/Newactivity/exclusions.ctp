@@ -2,7 +2,7 @@
 
 <section class="content-header">
   <h1>
-    Add Exclusions of Activity
+    Add Exclusions of Activities 
     <small><?= __('Add Services') ?></small>
   </h1>
   <ol class="breadcrumb">

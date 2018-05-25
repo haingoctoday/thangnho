@@ -38,7 +38,7 @@
 <div class="container">
   <div class="row">
 
-<div class="col-md-2 offset-md-3 p-0"><button class="btn border-0 button-tour ditme" id="btn-tour-type"><div id="text-type">Activity Styles</div> <img src="img/arrow-down.png" style="margin-top: 8px;float: right;" ></button>
+<div class="col-md-2 offset-md-3 p-0"><button class="btn border-0 button-tour ditme" id="btn-tour-type"><div id="text-type">Activities Styles</div> <img src="img/arrow-down.png" style="margin-top: 8px;float: right;" ></button>
 
 </div>
     <div id="pick-input-tourtype" class="col-md-2 p-0">
@@ -70,7 +70,7 @@
     <div class="row">
 
       <?php 
-      foreach ($hotel_hot as $key => $valuehotel_hot) {       
+      foreach ($hotel_hot as $key => $valuehotel_hot) {     
         ?>
         <div class="card-twt pr-0 col-12 col-md-6 col-lg-4" id="fix-card-hotel">
           <div class="card-wrapper" id="card-wrapper1" style="padding-bottom: 38px;background-color: #ffffff">
@@ -80,7 +80,15 @@
             </div>
             <div class="card-box text-center px-3">
               <div class="height-h-twt" style="height: 129px;">
-                <h4 class="mauxanh"><?= $valuehotel_hot->name ?></h4>
+                <h4 class="mauxanh"><a href="<?php 
+              $hotel_title = $valuehotel_hot->name ;
+              $hotel_id = $valuehotel_hot->id;
+              echo $this->Url->build([
+               'controller' => 'Agents',
+               'action' => 'toursbooknow',
+               '?' => array('hotel' => $hotel_title,'stt'=>$hotel_id),
+               ]); ?>" ><?= $valuehotel_hot->name ?> </a>
+               </h4>
                 <h4 class="mauxanh" style="white-space: nowrap;"><?= $valuehotel_hot->diachi ?></h4>
               </div>
 
@@ -91,7 +99,14 @@
               <div class="copy-fade-tour"></div>
             </div>
             <div class="col-md-5 text-center mx-auto">
-              <button class="btn-block border-0 nen-maucam button-bk-twt">BOOK NOW</button>
+               <a class="btn-block border-0 nen-maucam button-bk-twt" href="<?php 
+              echo $this->Url->build([
+               'controller' => 'Agents',
+               'action' => 'toursbooknow',
+               '?' => array('hotel' => $hotel_title,'stt'=>$hotel_id),
+               ]); ?>">BOOK NOW</a>
+
+              
             </div>
           </div>
         </div>

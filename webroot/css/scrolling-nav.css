@@ -385,7 +385,7 @@ position: absolute;
     display: inline-grid;
     position: fixed;
     /*right: 0;*/
-    z-index: 999999;
+    z-index: 0;
     top: 185px;
 }
 
@@ -668,6 +668,7 @@ input.fix-height-input-tour{
 
 .card-twt.card-fix-w-twt.col-12 {
     padding-left: 20px !important;
+    padding-bottom: 20px;
 }
 .container-banner-agency .bg-container-id-agt{
   padding-left: 20px;

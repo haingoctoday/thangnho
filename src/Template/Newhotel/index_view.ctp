@@ -80,7 +80,7 @@
                         <div class="bhoechie-tab-content active p-4">
                             <span class="style-sub text-black">General Description</span>
 
-                             <p class="style-p-twt"><?= htmlspecialchars_decode($newhotel->mota)?></p>
+                             <p class="style-p-twt"><?= htmlspecialchars_decode($newhotel->thongtinhotel)?></p>
 
                         </div>
                         <div class="bhoechie-tab-content">

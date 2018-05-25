@@ -59,10 +59,7 @@ class CruiseportTable extends Table
             ->requirePresence('portdetail', 'create')
             ->notEmpty('portdetail');
 
-        $validator
-            ->integer('status')
-            ->requirePresence('status', 'create')
-            ->notEmpty('status');
+       
 
         return $validator;
     }

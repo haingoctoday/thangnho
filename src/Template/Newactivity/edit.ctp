@@ -1,11 +1,26 @@
 <?php
-/**
-  * @var \App\View\AppView $this
-  */
+$type_site = '';
+ $page_current = $newactivity->loai;
+  switch ($page_current) {
+    case 'tour':
+      $loai = ['tour' => 'Tour'];
+      $type_site = 'Tour';
+      break;
+    case 'shore':
+      $loai = ['shore' => 'Shore'];
+       $type_site = 'Shore';
+      break;  
+    default:
+      $loai = ['activity' => 'Activity'];
+      $type_site = 'Activities';
+      
+      break;
+  }
 ?>
+
 <section class="content-header">
   <h1>
-    Newactivity
+    Edit <?= $type_site?> 
     <small><?= __('Edit') ?></small>
   </h1>
   <ol class="breadcrumb">
@@ -32,18 +47,30 @@
           <?php
              echo $this->Form->input('category', array('label'=>'Category', 'type'=>'select', 'options'=>$category_view));
 
-                $loai = ['tour' => 'Tour','activity' => 'Activity'];
+              //  $loai = ['tour' => 'Tour','activity' => 'Activity'];
         
-            echo $this->Form->input('loai', array('label'=>'Category', 'type'=>'select', 'options'=>$loai));
+            echo $this->Form->input('loai', array('label'=>'Type', 'type'=>'select', 'options'=>$loai));
 
 
 
-            echo $this->Form->input('name', ['label' => 'Name Activity']);
+            echo $this->Form->input('name', ['label' => 'Name Activities ']);
               echo $this->Html->image('/upload/activity/'.$newactivity->hinhanh, ['alt' => 'hinhanh','class'=>'image_hotel_admin']);
              echo $this->Form->input('hinhanh', ['type' => 'file','label' => 'Image']); 
             echo $this->Form->input('diachi', array('label'=>'Address', 'type'=>'select', 'options'=>$diachi_view));
-            echo $this->Form->input('mota', ['label' => 'Descrepsion']);
-            echo $this->Form->input('songay', ['label' => 'Duration']);
+            echo $this->Form->input('mota', ['label' => 'Description ']);
+             $duration = ['hours' => 'hours','days' => 'days','weeks' => 'weeks'];
+            echo '<div>Duration</div>';
+echo '<div >';
+echo '<div style="float: left;">';
+echo $this->Form->input('songay', array('label' => false, 'type' => 'text'));
+echo '</div>';
+echo '<div style="float: left;">-</div>';
+echo '<div style="float: left;">';
+echo $this->Form->input('songaya', array('label' => false, 'type' => 'select', 'options'=>$duration));
+echo '</div>';
+echo '<div style="clear: both;"></div>';
+echo '</div>';
+echo '<div style="clear: both;"></div>';
             echo $this->Form->input('lichtrinh', ['label' => 'Expect']);
             echo $this->Form->input('diemdon', ['label' => 'Departure Point']);
             echo $this->Form->input('thoigiandon', ['label' => 'Departure Time']);
@@ -51,7 +78,7 @@
             echo $this->Form->input('giatien', ['label' => 'Price']);
             echo $this->Form->input('thongtinbosung', ['label' => 'Additional Info']);
             echo $this->Form->input('sokhach', ['label' => 'Adult']);
-             echo $this->Form->input('treem', ['label' => 'Childent']);
+             echo $this->Form->input('treem', ['label' => 'Children']);
               $star = ['1' => '1 Star','2' => '2 Star','3' => '3 Star','4' => '4 Star','5' => '5 Star'];
         
           echo $this->Form->input('danhgia', array('label'=>'Vote', 'type'=>'select', 'options'=>$star));

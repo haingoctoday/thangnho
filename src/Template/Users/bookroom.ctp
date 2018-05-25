@@ -1,4 +1,10 @@
 <div class="wrapper-book-room">
+	<?php
+//debug($data_hotel);
+//debug($data_room);
+//debug(($this->request->session()->read('hotel.search')));
+$session_search = $this->request->session()->read('hotel.search');
+	?>
 <div class="info-panel">
   <table>
     <tbody style="font-size: 14px;">
@@ -7,49 +13,49 @@
           <i class="fa fa-map-marker fa-2x float-left color-fa pr-3" aria-hidden="true"></i>
           <div class="description12">
             <strong class="title">Destination</strong>
-            <span class="text">London, United Kingdom</span>
+            <span class="text"><?= $data_hotel[0]->diachi?></span>
           </div>
         </td>
         <td class="col-2f">
           <i class="fa fa-calendar fa-2x float-left color-fa pr-2" aria-hidden="true"></i>
           <div class="description12">
             <strong class="title">ARRIVAL DATE</strong>
-            <span class="text">12 Mar 2018</span>
+            <span class="text"><?php echo $this->request->session()->read('hotel.search.search_date_to')?></span>
           </div>
         </td>
         <td class="col-2f">
           <i class="fa fa-calendar fa-2x float-left color-fa pr-2" aria-hidden="true"></i>
           <div class="description12">
             <strong class="title">DEPARTURE DATE</strong>
-            <span class="text">12 Mar 2018</span>
+            <span class="text"><?php echo $this->request->session()->read('hotel.search.search_date_end')?></span>
           </div>
         </td>
         <td class="col-3f">
           <i class="fa fa-bed fa-2x float-left color-fa pr-2" aria-hidden="true"></i>
           <div class="description12">
             <strong class="title">&nbsp;</strong>
-            <span class="text">Room 1</span>
+            <span class="text">Room <?php echo $this->request->session()->read('hotel.search.room')?></span>
           </div>
         </td>
         <td class="col-4f">
           <i class="fa fa-male fa-2x float-left color-fa pr-2" aria-hidden="true"></i>
           <div class="description12">
             <strong class="title">ADULT</strong>
-            <span class="text">2</span>
+            <span class="text"><?= array_sum($session_search['adults_end'])?></span>
           </div>
         </td>
         <td class="col-4f">
           <i class="fa fa-child fa-2x float-left color-fa pr-2" aria-hidden="true"></i>
           <div class="description12">
             <strong class="title">CHILDREN</strong>
-            <span class="text">2</span>
+            <span class="text"><?= array_sum($session_search['children_end'])?></span>
           </div>
         </td>
         <td class="col-5f pl-3">
           <i class="fa fa-moon-o fa-2x float-left color-fa pr-2" aria-hidden="true"></i>
           <div class="description12">
             <strong class="title">NIGHTS</strong>
-            <span class="text">1</span>
+            <span class="text"><?= $session_search['search_night']?></span>
           </div>
         </td>
       </tr>
@@ -58,7 +64,7 @@
           <i class="fa fa-building fa-2x float-left color-fa pr-2" aria-hidden="true"></i>
           <div class="description12">
             <strong class="title">HOTEL NAME</strong>
-            <span class="text">Citadines Trafalgar Square London</span>
+            <span class="text"><?= $data_hotel[0]['namehotel']?></span>
           </div>
         </td>
       </tr>
@@ -67,7 +73,12 @@
 </div>
 
 <div class="form-book-room">
-	<div class="container">
+	<?php
+	$opt = 0;
+		for ($i=1; $i <= $this->request->session()->read('hotel.search.room'); $i++) { 
+		
+	?>
+	<div class="container" id="roombookinglist">
 		<div class="detail-room" style="margin-bottom: 1px;">
 			<div class="row">
 				<div class="colum-1 text-center" style="background-color: #464a4d;">
@@ -78,7 +89,7 @@
 				<div class="colum-2" style="background-color: #e2e2e2;">
 					<div class="row">
 						<div class="col-md-10 text-left">
-							<h4 class="style-room-head">Room 1</h4>
+							<h4 class="style-room-head">Room <?= $i?></h4>
 						</div>
 						<div class="col-md-2">
 							<div class="num-people">
@@ -86,8 +97,8 @@
 								<span>CHILDREN</span>
 							</div>
 							<div class="number">
-								<span style="padding-right: 53px;">2</span>
-								<span>2</span>
+								<span style="padding-right: 53px;"><?= $session_search['adults_end'][$opt]?></span>
+								<span><?= $session_search['children_end'][$opt]?></span>
 							</div>
 						</div>
 					</div>
@@ -122,15 +133,15 @@
 								<label class="display-7" style="padding-right: 40px;line-height: 38px;font-weight: bold;font-size: 15px;">Guest 1
 			                </label>
 			                    <select id="soflow1" class="mauxanh-input" style="width: 99px;">
-			                      <option>Mr</option>
-			                      <option>Mrs</option>
-			                      <option>Ms</option>
-			                      <option>Miss</option>
-			                      <option>Mstr</option>
-			                      <option>Dr</option>
-			                      <option>Pro</option>
-			                      <option>Sir</option>
-			                      <option>Lady</option>
+			                      <option value="Mr">Mr</option>
+									<option value="Mrs">Mrs</option>
+									<option value="Miss">Miss</option>
+									<option value="Ms">Ms</option>
+									<option value="Mstr">Mstr</option>
+									<option value="Dr">Dr</option>
+									<option value="Prof">Prof</option>
+									<option value="Sir">Sir</option>
+									<option value="Lady">Lady</option>
 			                    </select>
 							</div>
 							<div class="col-md-4">
@@ -145,15 +156,15 @@
 								<label class="display-7" style="padding-right: 40px;line-height: 38px;font-weight: bold;font-size: 15px;">Guest 2
 			                </label>
 			                    <select id="soflow1" class="mauxanh-input" style="width: 99px;">
-			                      <option>Mr</option>
-			                      <option>Mrs</option>
-			                      <option>Ms</option>
-			                      <option>Miss</option>
-			                      <option>Mstr</option>
-			                      <option>Dr</option>
-			                      <option>Pro</option>
-			                      <option>Sir</option>
-			                      <option>Lady</option>
+			                    <option value="Mr">Mr</option>
+									<option value="Mrs">Mrs</option>
+									<option value="Miss">Miss</option>
+									<option value="Ms">Ms</option>
+									<option value="Mstr">Mstr</option>
+									<option value="Dr">Dr</option>
+									<option value="Prof">Prof</option>
+									<option value="Sir">Sir</option>
+									<option value="Lady">Lady</option>
 			                    </select>
 							</div>
 							<div class="col-md-4">
@@ -319,7 +330,7 @@
 							</div>
 						</div>
 						<div class="text-standard">
-							<p class="m-0">* Unless confirmed in writing by Tweet World Travel, all special requests and comments are not guaranteed and will be at the full discretion of the hotel. There may be additional fees payable for special requests prior to check in, either to Excite Holidays or directly to the property in the local currency, including applicable taxes. Some special requests may not be possible and upgrades may be required to accommodate the request. If confirmation of your special request is required prior to check in, please email contact@tweetworldtravel.com.au for availability and applicable charges.</p>
+							<p class="m-0">* Unless confirmed in writing by Tweet World Travel’, all special requests and comments are not guaranteed and will be at the full discretion of the hotel. There may be additional fees payable for special requests prior to check in, either to Excite Holidays or directly to the property in the local currency, including applicable taxes. Some special requests may not be possible and upgrades may be required to accommodate the request. If confirmation of your special request is required prior to check in, please email res@exciteholidays.com for availability and applicable charges.</p>
 						</div>
 					</div>
 				</div>			
@@ -351,7 +362,7 @@
 				<div class="colum-2" style="background-color: #fff;">
 					<div class="contract-type">
 						<div id="full-comment" class="remarks-comments">
-                DOTW package Rate.<br><br>Please be advised that this room rate is based on existing bedding in the room and additional charges may apply for extra bedding. If you are unsure of the bedding configuration, please contact reservations on 1300 739 652.            
+                DOTW package Rate.<br><br>Please be advised that this room rate is based on existing bedding in the room and additional charges may apply for extra bedding. If you are unsure of the bedding configuration, please contact reservations on  1300 739 652.            
             			</div>
 					</div>
 				</div>			
@@ -372,6 +383,11 @@
 			</div>
 		</div>												
 	</div>
+	<div style="height: 20px">
+	</div>
+	<?php
+	$opt++;
+	 }?>
 </div>
 <div class="wrap-book-policy">
 	<h4 class="chudam" style="padding-top: 5px;padding-bottom: 10px;">Booking Policy</h4>
@@ -390,7 +406,7 @@
         <dt><b>Check-in time</b>:</dt>
         <dd class="m-0"> Please be aware that our check in time is 15:00 local time on the day of arrival. Any request for an earlier check in will be noted, however, please be advised that we are unable to confirm. In order to avoid disappointment we recommend that you pre-register your room from the night prior to guarantee your immediate access to your accommodation.</dd>
         <dt><b>Late Check-in</b>:</dt>
-        <dd class="m-0"> If check in is required after 7pm, Tweet World Travel strongly recommends advising of the late arrival. The hotel may release the room after this time if not advised of the late arrival.</dd>
+        <dd class="m-0"> If check in is required after 7pm, Tweet World Travel’ strongly recommends advising of the late arrival. The hotel may release the room after this time if not advised of the late arrival.</dd>
     </dl>
 </div>
 

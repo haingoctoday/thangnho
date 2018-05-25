@@ -59,10 +59,7 @@ class HotelchinhsachTable extends Table
             ->requirePresence('detailchinhsach', 'create')
             ->notEmpty('detailchinhsach');
 
-        $validator
-            ->integer('status')
-            ->requirePresence('status', 'create')
-            ->notEmpty('status');
+      
 
         return $validator;
     }

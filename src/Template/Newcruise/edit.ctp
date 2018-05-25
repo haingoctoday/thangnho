@@ -30,6 +30,7 @@
         <?= $this->Form->create($newcruise, array('role' => 'form')) ?>
           <div class="box-body">
           <?php
+           $category_view = array('1'=>'HaLong Bay','2'=>'Mekong');
               echo $this->Form->input('loai', array('label'=>'Cruise Category', 'type'=>'select', 'options'=>$category_view));
             echo $this->Form->input('portto',['label'=>'Port To']);
             echo $this->Form->input('portend',['label'=>'Port To']);

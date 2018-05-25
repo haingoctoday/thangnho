@@ -503,16 +503,26 @@ class UsersController extends AppController
           $this->set('view_name', 'mybooking');
     }
 
-    public function bookroom()
+public function bookroom()
     {
          $this->viewBuilder()->layout('agentslayout');
 
+
+//debug($this->request->data);
+
+
+  $this->loadModel("Hotelandphong");
+     $this->loadModel("Newhotel");
+
+      $data_room =  $this->Hotelandphong->find()->where(['id'=>$this->request->data['idroom-a']])->toArray();
+ $data_hotel =  $this->Newhotel->find()->where(['id'=>$this->request->data['idhotel']])->toArray();
+
         $users = array();
         $this->set(compact('users'));
-
-
+$this->set('data_hotel', $data_hotel);
+$this->set('data_room', $data_room);
         $this->set('_serialize', ['users']);
-        $this->set('title', 'Booking Room');
+        $this->set('title', 'Booking Room of '.$data_hotel[0]['namehotel'] );
         $this->set('view_name', 'bookroom');
     }
 

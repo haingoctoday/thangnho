@@ -1,6 +1,6 @@
 <section class="content-header">
   <h1>
-    Hotelcategory
+    Hotel Category
     <small><?= __('Add') ?></small>
   </h1>
   <ol class="breadcrumb">
@@ -27,7 +27,7 @@
           <?php
             echo $this->Form->input('namecategory',['label'=>'Name Category']);
             echo $this->Form->input('detailcategory',['label'=>'Detail Category']);
-            echo $this->Form->input('status',['label'=>'Status']);
+            // echo $this->Form->input('status',['label'=>'Status']);
           ?>
           </div>
           <!-- /.box-body -->

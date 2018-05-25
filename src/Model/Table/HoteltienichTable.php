@@ -59,10 +59,7 @@ class HoteltienichTable extends Table
             ->requirePresence('detailtienich', 'create')
             ->notEmpty('detailtienich');
 
-        $validator
-            ->integer('status')
-            ->requirePresence('status', 'create')
-            ->notEmpty('status');
+       
 
         return $validator;
     }

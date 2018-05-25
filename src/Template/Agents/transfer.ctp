@@ -1,3 +1,5 @@
+  <?php echo $this->Html->script('jquery-ui'); ?>
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/start/jquery-ui.css" rel="Stylesheet" type="text/css" />
 <div class="wrapper-tranfer">
     <div class="transfer-sreach-form">
         <h4 class="transfer-title-head">TRANFERS SEARCH</h4>
@@ -9,6 +11,12 @@
                         <div class="input-group">
                             <i class="fa fa-map-marker maucam" aria-hidden="true"></i>
                             <input class="form-control" type="text" name="firstname" id="firstname" placeholder="Destination">
+
+                        </div>
+                         <div class="input-group pt-2">
+                            <i class="fa fa-calendar maucam" aria-hidden="true"></i>
+                            <input class="form-control" type="text" name="firstname" id="pickdate" placeholder="Pick Date">
+
                         </div>
                     </div>
                 </div>
@@ -64,7 +72,7 @@
 .title-tranfer{padding-top: 40px;padding-bottom: 20px;font-size: 25px;}
 .display-tranfer{background-color: #f5f5f5;}
 .form-button-property-tranfer{padding-bottom: 19px;}
-i.fa.fa-map-marker.maucam {padding-right: 9px;font-size: 35px;line-height: 37px;}
+i.maucam {padding-right: 9px;font-size: 35px;line-height: 37px;width: 50px}
 .tranfer-span-des{font-size: 22px;padding-left: 33px;padding-bottom: 9px;}
 .transfer-title-head{font-weight: bold;font-size: 22px;padding-left: 15px;padding-top: 10px;}
 .transfer-sreach-form{background-color: #ebf1f1}
@@ -74,4 +82,51 @@ i.fa.fa-map-marker.maucam {padding-right: 9px;font-size: 35px;line-height: 37px;
 .form-control-transfer{display: block;width: 100%;font-size: 1rem;line-height: 1.5;color: #495057;background-color: #fff;background-image: none;background-clip: padding-box;border: 1px solid #ced4da;transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;}
 .border-transfer{border: 1px solid #dcdcdc;padding-bottom: 60px;}
 .height-p-twt-tran{height: 150px;}
+.ui-widget-header {
+    background: none;
+    color: black;
+    font-size: 12px;
+    border: none;
+    /*padding: 22px 0px 12px 0px !important;*/
+
+}
+
+.ui-datepicker table {
+    border: none !important;
+    border-collapse: collapse !important;
+}
+
+.ui-datepicker th {
+    font-size: 14px;
+    font-weight: lighter !important;
+}
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+    background: none !important;
+    color: #000;
+    padding: 3px;
+    text-align: center;
+    border-collapse: collapse;
+}
+.ui-widget-content .ui-state-default {
+    border: none ;
+  }
+ .ui-state-default.ui-state-hover{
+    background-color: #008efc !important;
+    color: #fff;
+  }
+
+.ui-datepicker-calendar td {
+    border: 1px solid #f5f5f5 !important;
+}
+.ui-datepicker-calendar td:hover {
+   padding:none;
+}
+.ui-widget-content {
+    background: white;
+}
 </style>
+<script type="text/javascript">
+    $("#pickdate").datepicker();
+
+</script>

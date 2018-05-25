@@ -1,17 +1,16 @@
   <?php echo $this->Html->script('jquery.typeahead.min'); ?>
 <?php echo $this->Html->css('jquery.typeahead.min'); ?>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"
-            type="text/javascript"></script>
+  <?php echo $this->Html->script('jquery-ui'); ?>
+
 <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker.min.css">  -->
-  <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/start/jquery-ui.css"
-          rel="Stylesheet" type="text/css" />
+  <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/start/jquery-ui.css" rel="Stylesheet" type="text/css" />
 
 <?php
 $adults = array('1'=>'Adults 1','2'=>'Adults 2','3'=>'Adults 3','4'=>'Adults 4','5'=>'Adults 5','6'=>'Adults 6');
 $children = array('0'=>'Children 0','1'=>'Children 1','2'=>'Children 2','3'=>'Children 3','4'=>'Children 4 ');
 
 $session_search = $this->request->session()->read('hotel.search');
-debug($session_search);
+//debug($session_search);
 if($session_search['room'] != ''){
 	$string_text = $session_search['room'].' Room and '.array_sum($session_search['adults_end']). " Adults";
 }else{

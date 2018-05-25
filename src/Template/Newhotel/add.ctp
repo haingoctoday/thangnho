@@ -35,7 +35,7 @@
                echo $this->Form->input('diachimap', ['label' => 'Location on Map']);
 
 
-            echo $this->Form->input('mota', ['label' => 'Descrepsion']);
+            echo $this->Form->input('mota', ['label' => 'Description ']);
       
             echo $this->Form->input('hinhanh', ['type' => 'file','label' => 'Image']); 
          

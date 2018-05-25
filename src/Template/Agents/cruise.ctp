@@ -1,3 +1,5 @@
+  <?php echo $this->Html->script('jquery-ui'); ?>
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/start/jquery-ui.css" rel="Stylesheet" type="text/css" />
 <div class="wrapper-cruise">
     <div class="cruise-sreach-form">
         <h4 class="cruise-title-head">FIJI FERRY REQUEST</h4>
@@ -25,7 +27,7 @@
              <div class="form-group">
                 <label class="form-control-label display-7">Date:
                 </label>
-                <input class="form-control" type="text" name="firstname" id="firstname" placeholder="Date">
+                <input class="form-control" type="text" name="firstname" id="pickdate" placeholder="Date">
             </div>
         </div>
     </div>
@@ -91,4 +93,51 @@ label.form-control-label.display-7.cruise-fix-label {padding-left: 30px;}
 .button-border-nut2 {font-size: 15px;font-weight: 400;border-radius: 5px;width: 111px;height: 45px;color: #ecf0f1;line-height: 40px;}
 .height-p-twt-crui{height: 150px;}
 .border-crui{border: 1px solid #dcdcdc;padding-bottom: 60px;}
+.ui-widget-header {
+    background: none;
+    color: black;
+    font-size: 12px;
+    border: none;
+    /*padding: 22px 0px 12px 0px !important;*/
+
+}
+
+.ui-datepicker table {
+    border: none !important;
+    border-collapse: collapse !important;
+}
+
+.ui-datepicker th {
+    font-size: 14px;
+    font-weight: lighter !important;
+}
+
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default {
+    background: none !important;
+    color: #000;
+    padding: 3px;
+    text-align: center;
+    border-collapse: collapse;
+}
+.ui-widget-content .ui-state-default {
+    border: none ;
+  }
+ .ui-state-default.ui-state-hover{
+    background-color: #008efc !important;
+    color: #fff;
+  }
+
+.ui-datepicker-calendar td {
+    border: 1px solid #f5f5f5 !important;
+}
+.ui-datepicker-calendar td:hover {
+   padding:none;
+}
+.ui-widget-content {
+    background: white;
+}
 </style>
+<script type="text/javascript">
+    $("#pickdate").datepicker();
+
+</script>

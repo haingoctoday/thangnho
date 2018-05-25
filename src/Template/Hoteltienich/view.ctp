@@ -1,6 +1,6 @@
 <section class="content-header">
   <h1>
-    <?php echo __('Hoteltienich'); ?>
+    <?php echo __('Services Hotel'); ?>
   </h1>
   <ol class="breadcrumb">
     <li>
@@ -21,21 +21,18 @@
             <!-- /.box-header -->
             <div class="box-body">
                 <dl class="dl-horizontal">
-                                                                                                                <dt><?= __('Nametienich') ?></dt>
-                                        <dd>
-                                            <?= h($hoteltienich->nametienich) ?>
-                                        </dd>
-                                                                                                                                    
-                                            
-                                                                                                                                                            <dt><?= __('Status') ?></dt>
-                                <dd>
-                                    <?= $this->Number->format($hoteltienich->status) ?>
-                                </dd>
-                                                                                                
-                                                                                                                                                                                                
-                                            
-                                                                        <dt><?= __('Detailtienich') ?></dt>
-                            <dd>
+                <dt><?= __('Name Services') ?></dt>
+<dd>
+<?= h($hoteltienich->nametienich) ?>
+</dd>
+                
+
+                                       
+
+
+
+<dt><?= __('Detail Services') ?></dt>
+<dd>
                             <?= $this->Text->autoParagraph(h($hoteltienich->detailtienich)); ?>
                             </dd>
                                                             </dl>
