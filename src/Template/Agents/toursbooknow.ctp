@@ -408,17 +408,7 @@
         </div>
       </div> 
       <div role="tabpanel" class="tab-pane in" id="Terms">
-        <p style="padding:30px">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text e<br>
-
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text e<br>
-
-          Lorem Ipsum is simply dummy text of the printing and typesetting <br>
-
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text e<br>
-
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text e<br>
-
-        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has bee</p>
+         <?= htmlspecialchars_decode($newactivity->term)?>
       </div> 
       <div role="tabpanel" class="tab-pane in" id="Customer">
         <div class="custome-tour-div-book">

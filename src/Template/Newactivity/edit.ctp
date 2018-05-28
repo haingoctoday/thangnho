@@ -45,11 +45,7 @@ $type_site = '';
         <!-- form start -->
         <?= $this->Form->create($newactivity, array('role' => 'form','enctype' => 'multipart/form-data')) ?>
           <div class="box-body">
-              <div id="toolbar" style="display: none;">
-    <a data-wysihtml-command="bold" title="CTRL+B">bold</a> |
-    <a data-wysihtml-command="italic" title="CTRL+I">italic</a>
-    <a data-wysihtml-action="change_view">switch to html view</a>
-  </div>
+          
           <?php
              echo $this->Form->input('category', array('label'=>'Category', 'type'=>'select', 'options'=>$category_view));
 
@@ -85,6 +81,7 @@ echo '<div style="clear: both;"></div>';
              echo $this->Form->input('treem', ['label' => 'Children']);
               echo $this->Form->input('incl', ['label' => 'Inclusions','id'=>'textarea']);
              echo $this->Form->input('excl', ['label' => 'Exclusions','id'=>'textarea']);
+             echo $this->Form->input('term', ['label' => 'Terms of Condition','id'=>'textarea']);
               $star = ['1' => '1 Star','2' => '2 Star','3' => '3 Star','4' => '4 Star','5' => '5 Star'];
         
           echo $this->Form->input('danhgia', array('label'=>'Vote', 'type'=>'select', 'options'=>$star));

@@ -20,7 +20,7 @@ if (!file_exists($file)) {
         <ul class="nav navbar-nav">
            
            
-     
+     <?php echo $this->element('nav-agent'); ?>
             <!-- User Account: style can be found in dropdown.less -->
             <li class="dropdown user user-menu">
                 <a href="#"  >

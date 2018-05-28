@@ -157,27 +157,27 @@ echo $this->Form->select('listroomid', $listroom, ['default' => 'm','id'=>'reser
                   
                   ?>
                 <tr>
-                  <td><?= $value_list_room_of_hotel['nameroom']?></td>
+                  <td>  <i class="fa fa-clone"></i> <?= $value_list_room_of_hotel['nameroom']?></td>
                    <!-- <td><?= $value_list_room_of_hotel['dayrange']?></td> -->
                  <!-- <td><?= $value_list_room_of_hotel['count']?></td> -->
                 <td>
                   <p>
-                   S1: <?= $value_list_room_of_hotel['giatienss1']?> USD
+                   <i class="fa fa-dollar"></i> S1: <?= $value_list_room_of_hotel['giatienss1']?> USD
                   </p>
                   <p>
-                   S2: <?= $value_list_room_of_hotel['giatienss2']?> USD
+                   <i class="fa fa-dollar"></i> S2: <?= $value_list_room_of_hotel['giatienss2']?> USD
                   </p>
                   <p>
-                   S3: <?= $value_list_room_of_hotel['giatienss3']?> USD
+                   <i class="fa fa-dollar"></i> S3: <?= $value_list_room_of_hotel['giatienss3']?> USD
                   </p>
                   <p>
-                   S4: <?= $value_list_room_of_hotel['giatienss4']?> USD
+                   <i class="fa fa-dollar"></i> S4: <?= $value_list_room_of_hotel['giatienss4']?> USD
                   </p>
                   <p>
-                   S5: <?= $value_list_room_of_hotel['giatienss5']?> USD
+                    <i class="fa fa-dollar"></i> S5: <?= $value_list_room_of_hotel['giatienss5']?> USD
                   </p>
                 </td>
-                  <td><?= $value_list_room_of_hotel['songuoi']?></td>
+                  <td> <i class="fa fa-male"></i> <?= $value_list_room_of_hotel['songuoi']?></td>
                    <td>
 <?php //$value_list_room_of_hotel['id']?>
   <a href="#" onclick="haha('<?= $value_list_room_of_hotel['id']?>','<?= $value_list_room_of_hotel['nameroom']?>','<?= $value_list_room_of_hotel['giatienss1']?>','<?= $value_list_room_of_hotel['songuoi']?>','<?= $value_list_room_of_hotel['giatienss2']?>','<?= $value_list_room_of_hotel['giatienss3']?>','<?= $value_list_room_of_hotel['giatienss4']?>','<?= $value_list_room_of_hotel['giatienss5']?>')" class="btn btn-info btn-xs"> Edit</a>

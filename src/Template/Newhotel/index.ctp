@@ -31,7 +31,7 @@
               <th><?= $this->Paginator->sort('namehotel', ['label' => 'Name Hotel']) ?></th>
               <th><?= $this->Paginator->sort('diachi', ['label' => 'Address Hotel']) ?></th>
               <th><?= $this->Paginator->sort('hinhanh', ['label' => 'Image ']) ?></th>
-            
+             <th><?= $this->Paginator->sort('discount', ['label' => 'Discount ']) ?></th>
               <th><?= $this->Paginator->sort('thongtinhotel', ['label' => 'Detail Hotel']) ?></th>
               <th><?= __('Actions') ?></th>
             </tr>
@@ -41,7 +41,7 @@
                 <td><?= h($newhotel->namehotel) ?></td>
                 <td><?= h($newhotel->diachi) ?></td>
                 <td><?php echo $this->Html->image('/upload/hotel/'.$newhotel->hinhanh, ['alt' => 'hinhanh','class'=>'image_hotel_admin']);?></td>
-               
+               <td><?= h($newhotel->discount) ?>%</td>
                 <td><?= substr(htmlspecialchars_decode($newhotel->thongtinhotel), 0,400) ?>...</td>
                 <td class="actions" style="white-space:nowrap">
                   <?php // $this->Html->link(__('View'), ['action' => 'view', $newhotel->id], ['class'=>'btn btn-info btn-xs']) ?>

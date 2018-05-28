@@ -56,7 +56,7 @@ $type_site = '';
             echo $this->Form->input('name', ['label' => 'Name Activities ']);
              echo $this->Form->input('hinhanh', ['type' => 'file','label' => 'Image']); 
             echo $this->Form->input('diachi', array('label'=>'Address', 'type'=>'select', 'options'=>$diachi_view));
-            echo $this->Form->input('mota', ['label' => 'Description ']);
+            echo $this->Form->input('mota', ['label' => 'Description ','id'=>'textarea']);
 
               $duration = ['hours' => 'hours','days' => 'days','weeks' => 'weeks'];
              // echo $this->Form->input('songay', array('label'=>'Duration', 'type'=>'select', 'options'=>$duration,'class' => 'col-sm-4',));
@@ -73,7 +73,7 @@ echo '</div>';
 echo '<div style="clear: both;"></div>';
 echo '</div>';
 echo '<div style="clear: both;"></div>';
-            echo $this->Form->input('lichtrinh', ['label' => 'Expect']);
+            echo $this->Form->input('lichtrinh', ['label' => 'Expect','id'=>'textarea']);
             echo $this->Form->input('diemdon', ['label' => 'Departure Point']);
             echo $this->Form->input('thoigiandon', ['label' => 'Departure Time']);
              $status_tour = ['Available' => 'Available','On Request' => 'On Request','Sold Out' => 'Sold Out'];
@@ -92,11 +92,12 @@ echo '<div style="clear: both;"></div>';
             }
             echo $this->Form->input('tansuat', ['label' => 'Operates']);
             echo $this->Form->input('giatien', ['label' => 'Price']);
-            echo $this->Form->input('thongtinbosung', ['label' => 'Additional Info']);
+            echo $this->Form->input('thongtinbosung', ['label' => 'Additional Info','id'=>'textarea']);
             echo $this->Form->input('sokhach', ['label' => 'Adult']);
              echo $this->Form->input('treem', ['label' => 'Children']);
-             echo $this->Form->input('incl', ['label' => 'Inclusions']);
-             echo $this->Form->input('excl', ['label' => 'Exclusions']);
+             echo $this->Form->input('incl', ['label' => 'Inclusions','id'=>'textarea']);
+             echo $this->Form->input('excl', ['label' => 'Exclusions','id'=>'textarea']);
+              echo $this->Form->input('term', ['label' => 'Terms of Condition','id'=>'textarea']);
               $star = ['1' => '1 Star','2' => '2 Star','3' => '3 Star','4' => '4 Star','5' => '5 Star'];
           echo $this->Form->input('danhgia', array('label'=>'Vote', 'type'=>'select', 'options'=>$star));
          
@@ -111,20 +112,17 @@ echo '<div style="clear: both;"></div>';
     </div>
   </div>
 </section>
-<style type="text/css">
-  .wysihtml5-sandbox{
-    height: 300px !important;
-  }
-</style>
+
+<script src="https://cdn.ckeditor.com/4.8.0/standard-all/ckeditor.js"></script>
 <?php
 $this->Html->css([
-    'AdminLTE./plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min',
+   // 'AdminLTE./plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min',
   ],
   ['block' => 'css']);
 
 $this->Html->script([
-  'https://cdn.ckeditor.com/4.4.3/standard/ckeditor.js',
-  'AdminLTE./plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min',
+  //'https://cdn.ckeditor.com/4.4.3/standard/ckeditor.js',
+ // 'AdminLTE./plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min',
 ],
 ['block' => 'script']);
 ?>
@@ -137,17 +135,15 @@ $this->Html->script([
     $('#diachi').select2();
      $('#category').select2();
 });
- $('textarea').wysihtml5({
-  toolbar: {
-    "font-styles": true, //Font styling, e.g. h1, h2, etc. Default true
-    "emphasis": true, //Italics, bold, etc. Default true
-    "lists": true, //(Un)ordered lists, e.g. Bullets, Numbers. Default true
-    "html": true, //Button which allows you to edit the generated HTML. Default false
-    "link": true, //Button to insert a link. Default true
-    "image": true, //Button to insert an image. Default true,
-    "color": false, //Button to change color of font  
-    "blockquote": true, //Blockquote  
-  }
+</script>
+<script>
+$( ".textarea" ).each(function( index ) {
+   CKEDITOR.replace( $(this).find('textarea').get(0), {
+    height: 300,
+    bodyClass: 'article-editor',
+    format_tags: 'p;h1;h2;h3;pre',
+    allowedContent:true,
+   } );
 });
 </script>
 <?php $this->end(); ?>

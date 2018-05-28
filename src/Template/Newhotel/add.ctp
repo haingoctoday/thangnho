@@ -30,7 +30,9 @@
           <?php
             echo $this->Form->input('loaihinhhotel', array('label'=>'Category Hotel', 'type'=>'select', 'options'=>$category_view));
             echo $this->Form->input('namehotel', ['label' => 'Name Hotel']);
-         
+          $sold = ['owner' => 'sold-out by owner','twt' => 'sold-out by TWT'];
+           echo $this->Form->input('soldout', array('label'=>'Sold-out by', 'type'=>'select', 'options'=>$sold));
+
             echo $this->Form->input('diachi', array('label'=>'Address', 'type'=>'select', 'options'=>$diachi_view));
             echo $this->Form->input('diachimap', ['label' => 'Location on Map']);
 
@@ -44,7 +46,7 @@
             $star = ['1' => '1 Star','2' => '2 Star','3' => '3 Star','4' => '4 Star','5' => '5 Star'];
         
           echo $this->Form->input('saohotel', array('label'=>'Number Star', 'type'=>'select', 'options'=>$star));
-      
+           echo $this->Form->input('discount', ['label' => 'Discount']);
           ?>
           </div>
           <!-- /.box-body -->
