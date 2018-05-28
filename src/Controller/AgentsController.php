@@ -211,7 +211,7 @@ class AgentsController extends AppController
 
         $this->set('_serialize', ['users']);
           $this->set('title', 'Agent Tours');
-             $this->set('view_name', 'tours');
+             $this->set('view_name', 'tour');
     }
 
   public function toursresult()
@@ -230,16 +230,50 @@ class AgentsController extends AppController
 
   public function toursbooknow()
     {
+
+         $this->loadModel('Agentstour');
+        $agentstype = $this->Agentstour->find('all');
+        $this->set('agentstype',$agentstype);
+
          $this->viewBuilder()->layout('agentslayout');
 
 
-        // debug($hotel_hot);
-        $users = array();
-        $this->set(compact('users'));
+          $session = $this->request->session();
+    
 
-        $this->set('_serialize', ['users']);
+
+
+  // if(!($session->read('hotel.search'))){
+  //   $this->set('check_book','no');
+  //  }else{
+  //    $this->set('check_book','yes');
+  //  }
+        
+      //$this->loadModel("Hotelandtienich");
+      $this->loadModel("Newactivity");
+
+     $hotel_name = $this->request->query('agent');
+     $id =  $this->request->query('stt');
+
+
+$this->set('idactivity',$id );
+
+
+ $newactivity = $this->Newactivity->get($id, [
+        'contain' => []
+    ]);
+
+
+//debug($newactivity);
+
+
+        // debug($hotel_hot);
+      //  $users = array();
+        $this->set(compact('newactivity'));
+
+        $this->set('_serialize', ['newactivity']);
           $this->set('title', 'Agent Tours');
-             $this->set('view_name', 'tours');
+             $this->set('view_name', $newactivity->loai);
     }
 
   public function activities()
@@ -327,7 +361,7 @@ class AgentsController extends AppController
 
         $this->set('_serialize', ['users']);
           $this->set('title', 'Agent Tours');
-             $this->set('view_name', 'tours');
+             $this->set('view_name', 'tour');
     }
 
 public function transfer()

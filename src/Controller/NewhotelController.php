@@ -4,7 +4,7 @@ namespace App\Controller;
 use App\Controller\AppController;
 use Cake\ORM\Query;
 use Cake\ORM\TableRegistry;
-
+use Cake\Event\Event;
 /**
  * Newhotel Controller
  *
@@ -12,6 +12,9 @@ use Cake\ORM\TableRegistry;
  */
 class NewhotelController extends AppController
 {
+
+   // private 
+
 
     public $paginate = [
         'limit' => 10,
@@ -27,15 +30,21 @@ class NewhotelController extends AppController
     public function adminhome()
     {
         $newhotel = $this->paginate($this->Newhotel);
-
         $this->set(compact('newhotel'));
         $this->set('_serialize', ['newhotel']);
     }
     
     public function index()
     {
-        $newhotel = $this->paginate($this->Newhotel);
-
+        $this->check_admin();
+        $newhotel = $this->Newhotel;
+        if ($this->request->is('post')) {
+          $var_search = $this->request->data['search'];
+          $newhotel = $this->Newhotel->find()->where( 
+            ['OR' => array(['namehotel LIKE' =>'%'.$var_search.'%'], ['diachi LIKE' =>'%'.$var_search.'%'])]
+          );
+        }
+        $newhotel = $this->paginate($newhotel);
         $this->set(compact('newhotel'));
         $this->set('_serialize', ['newhotel']);
     }
@@ -49,6 +58,7 @@ class NewhotelController extends AppController
      */
     public function view($id = null)
     {
+        $this->check_admin();
         $newhotel = $this->Newhotel->get($id, [
             'contain' => []
         ]);
@@ -64,6 +74,7 @@ class NewhotelController extends AppController
      */
     public function add()
     {
+        $this->check_admin();
         $this->loadModel("Hoteldiachi");
         $diachi = $this->Hoteldiachi->find("all");
         $diachi_view = array();
@@ -126,7 +137,7 @@ class NewhotelController extends AppController
     public function edit($id = null)
     {
 
-
+      $this->check_admin();
         $this->loadModel("Hoteldiachi");
         $diachi = $this->Hoteldiachi->find("all");
         $diachi_view = array();
@@ -189,6 +200,7 @@ $this->set('_serialize', ['newhotel']);
      */
     public function delete($id = null)
     {
+      $this->check_admin();
         $this->request->allowMethod(['post', 'delete']);
         $newhotel = $this->Newhotel->get($id);
         if ($this->Newhotel->delete($newhotel)) {
@@ -201,6 +213,7 @@ $this->set('_serialize', ['newhotel']);
 
     public function addservices($id = null)
     {
+      $this->check_admin();
      $this->loadModel("Hoteltienich");
      $this->loadModel("Hotelandtienich");
      $hoteltienich = $this->Newhotel->get($id, [
@@ -247,6 +260,7 @@ $this->set('_serialize', ['hoteltienich']);
 
 public function addroom($id = null)
 {
+  $this->check_admin();
  $this->loadModel("Hotelphong");
  $this->loadModel("Hotelandphong");
  $hotelroom = $this->Newhotel->get($id, [

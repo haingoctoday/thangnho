@@ -40,10 +40,16 @@ $type_site = '';
         <div class="box-header with-border">
           <h3 class="box-title"><?= __('Form') ?></h3>
         </div>
+
         <!-- /.box-header -->
         <!-- form start -->
         <?= $this->Form->create($newactivity, array('role' => 'form','enctype' => 'multipart/form-data')) ?>
           <div class="box-body">
+              <div id="toolbar" style="display: none;">
+    <a data-wysihtml-command="bold" title="CTRL+B">bold</a> |
+    <a data-wysihtml-command="italic" title="CTRL+I">italic</a>
+    <a data-wysihtml-action="change_view">switch to html view</a>
+  </div>
           <?php
              echo $this->Form->input('category', array('label'=>'Category', 'type'=>'select', 'options'=>$category_view));
 
@@ -51,13 +57,11 @@ $type_site = '';
         
             echo $this->Form->input('loai', array('label'=>'Type', 'type'=>'select', 'options'=>$loai));
 
-
-
             echo $this->Form->input('name', ['label' => 'Name Activities ']);
               echo $this->Html->image('/upload/activity/'.$newactivity->hinhanh, ['alt' => 'hinhanh','class'=>'image_hotel_admin']);
              echo $this->Form->input('hinhanh', ['type' => 'file','label' => 'Image']); 
             echo $this->Form->input('diachi', array('label'=>'Address', 'type'=>'select', 'options'=>$diachi_view));
-            echo $this->Form->input('mota', ['label' => 'Description ']);
+            echo $this->Form->input('mota', ['label' => 'Description ','id'=>'textarea']);
              $duration = ['hours' => 'hours','days' => 'days','weeks' => 'weeks'];
             echo '<div>Duration</div>';
 echo '<div >';
@@ -71,14 +75,16 @@ echo '</div>';
 echo '<div style="clear: both;"></div>';
 echo '</div>';
 echo '<div style="clear: both;"></div>';
-            echo $this->Form->input('lichtrinh', ['label' => 'Expect']);
+            echo $this->Form->input('lichtrinh', ['label' => 'Expect','id'=>'textarea']);
             echo $this->Form->input('diemdon', ['label' => 'Departure Point']);
             echo $this->Form->input('thoigiandon', ['label' => 'Departure Time']);
             echo $this->Form->input('tansuat', ['label' => 'Operates']);
             echo $this->Form->input('giatien', ['label' => 'Price']);
-            echo $this->Form->input('thongtinbosung', ['label' => 'Additional Info']);
+            echo $this->Form->input('thongtinbosung', ['label' => 'Additional Info','id'=>'textarea']);
             echo $this->Form->input('sokhach', ['label' => 'Adult']);
              echo $this->Form->input('treem', ['label' => 'Children']);
+              echo $this->Form->input('incl', ['label' => 'Inclusions','id'=>'textarea']);
+             echo $this->Form->input('excl', ['label' => 'Exclusions','id'=>'textarea']);
               $star = ['1' => '1 Star','2' => '2 Star','3' => '3 Star','4' => '4 Star','5' => '5 Star'];
         
           echo $this->Form->input('danhgia', array('label'=>'Vote', 'type'=>'select', 'options'=>$star));
@@ -93,26 +99,41 @@ echo '<div style="clear: both;"></div>';
     </div>
   </div>
 </section>
+<script src="https://cdn.ckeditor.com/4.8.0/standard-all/ckeditor.js"></script>
 <?php
 $this->Html->css([
-    'AdminLTE./plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min',
+    //'AdminLTE./plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min',
   ],
   ['block' => 'css']);
 
 $this->Html->script([
-  'https://cdn.ckeditor.com/4.4.3/standard/ckeditor.js',
-  'AdminLTE./plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min',
+  //'https://cdn.ckeditor.com/4.4.3/standard/ckeditor.js12',
+ // 'AdminLTE./plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min123',
+ //'editor/ckeditor'
 ],
 ['block' => 'script']);
 ?>
 <?php $this->start('scriptBotton'); ?>
 
+<style type="text/css">
 
+    
+</style>
 <script type="text/javascript">
   $(document).ready(function() {
     $('#diachi').select2();
      $('#category').select2();
 });
- $('textarea').wysihtml5();
+ 
+</script>
+<script>
+$( ".textarea" ).each(function( index ) {
+   CKEDITOR.replace( $(this).find('textarea').get(0), {
+    height: 300,
+    bodyClass: 'article-editor',
+    format_tags: 'p;h1;h2;h3;pre',
+    allowedContent:true,
+   } );
+});
 </script>
 <?php $this->end(); ?>

@@ -350,8 +350,10 @@ class UsersController extends AppController
         $this->set('email_u', $email);
         $users = $this->Users->newEntity();
         if ($this->request->is('post')) {
+            $hasher = new DefaultPasswordHasher();
+            $password_new =  $hasher->hash($this->request->data['password']);
+            $this->request->data['password'] = $password_new;
             $users = $this->Users->patchEntity($users, $this->request->data);
-         //    $user = $this->Users->patchEntity($user, $this->request->getData());
             if ($this->Users->save($users)) {
                 $this->Flash->success(__('The {0} has been saved.', 'Users'));
                 return $this->redirect(['action' => 'index']);
@@ -376,7 +378,12 @@ class UsersController extends AppController
             'contain' => []
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $usersm = $this->Users->patchEntity($users, $this->request->data);
+          //  print_r($this->request->data);
+           // die();
+            $hasher = new DefaultPasswordHasher();
+            $password_new =  $hasher->hash($this->request->data['password']);
+            $this->request->data['password'] = $password_new;
+            $users = $this->Users->patchEntity($users,  $this->request->data);
             if ($this->Users->save($users)) {
                 $this->Flash->success(__('The {0} has been saved.', 'Users'));
                 return $this->redirect(['action' => 'index']);

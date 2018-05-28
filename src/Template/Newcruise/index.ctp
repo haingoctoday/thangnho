@@ -28,21 +28,21 @@
         <div class="box-body table-responsive no-padding">
           <table class="table table-hover">
             <tr>
-              <th><?= $this->Paginator->sort('id') ?></th>
-              <th><?= $this->Paginator->sort('portto') ?></th>
-              <th><?= $this->Paginator->sort('portend') ?></th>
-              <th><?= $this->Paginator->sort('price') ?></th>
-              <th><?= $this->Paginator->sort('status') ?></th>
+              
+              <th><?= $this->Paginator->sort('portto', ['label' => 'Port To']) ?></th>
+              <th><?= $this->Paginator->sort('portend', ['label' => 'Port End']) ?></th>
+              <th><?= $this->Paginator->sort('price', ['label' => 'Price']) ?></th>
+         
              
               <th><?= __('Actions') ?></th>
             </tr>
             <?php foreach ($newcruise as $newcruise): ?>
               <tr>
-                <td><?= $this->Number->format($newcruise->id) ?></td>
+               
                 <td><?= h($newcruise->portto) ?></td>
                 <td><?= h($newcruise->portend) ?></td>
                 <td><?= h($newcruise->price) ?></td>
-                <td><?= $this->Number->format($newcruise->status) ?></td>
+              
                
                 <td class="actions" style="white-space:nowrap">
                   <?= $this->Html->link(__('View'), ['action' => 'view', $newcruise->id], ['class'=>'btn btn-info btn-xs']) ?>

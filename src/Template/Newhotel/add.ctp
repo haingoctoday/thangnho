@@ -31,8 +31,8 @@
             echo $this->Form->input('loaihinhhotel', array('label'=>'Category Hotel', 'type'=>'select', 'options'=>$category_view));
             echo $this->Form->input('namehotel', ['label' => 'Name Hotel']);
          
-             echo $this->Form->input('diachi', array('label'=>'Address', 'type'=>'select', 'options'=>$diachi_view));
-               echo $this->Form->input('diachimap', ['label' => 'Location on Map']);
+            echo $this->Form->input('diachi', array('label'=>'Address', 'type'=>'select', 'options'=>$diachi_view));
+            echo $this->Form->input('diachimap', ['label' => 'Location on Map']);
 
 
             echo $this->Form->input('mota', ['label' => 'Description ']);
@@ -56,6 +56,11 @@
     </div>
   </div>
 </section>
+<style type="text/css">
+  .wysihtml5-sandbox{
+    height: 300px !important;
+  }
+</style>
 <?php
 $this->Html->css([
     'AdminLTE./plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min',

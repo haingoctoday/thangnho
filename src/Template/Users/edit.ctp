@@ -35,10 +35,12 @@
             echo $this->Form->input('images');
             echo $this->Form->input('password');
             echo $this->Form->input('fullName');
-            echo $this->Form->input('phanloai');
+            $phanloai = array('admin'=>'Administration','user'=>'Users','nhacungcap'=>'Agents');
+           
+             echo $this->Form->input('phanloai', array('label'=>'Type User', 'type'=>'select', 'options'=>$phanloai));
             echo $this->Form->input('phone');
-            echo $this->Form->input('status');
-            echo $this->Form->input('admin_check');
+            //echo $this->Form->input('status');
+            //echo $this->Form->input('admin_check');
           ?>
           </div>
           <!-- /.box-body -->

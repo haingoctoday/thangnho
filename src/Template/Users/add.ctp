@@ -1,6 +1,6 @@
 <section class="content-header">
   <h1>
-    Usersm
+    Users
     <small><?= __('Add') ?></small>
   </h1>
   <ol class="breadcrumb">
@@ -30,9 +30,11 @@
          //   echo $this->Form->input('images');
             echo $this->Form->input('password');
             echo $this->Form->input('fullName',['label'=>'Full Name']);
-            //echo $this->Form->input('phanloai',['label'=>'UserName']);
+            $phanloai = array('admin'=>'Administration','user'=>'Users','nhacungcap'=>'Agents');
+           
+             echo $this->Form->input('phanloai', array('label'=>'Type User', 'type'=>'select', 'options'=>$phanloai));
             echo $this->Form->input('phone');
-            echo $this->Form->input('status');
+            //echo $this->Form->input('status');
            // echo $this->Form->input('admin_check');
           ?>
           </div>

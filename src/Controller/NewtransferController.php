@@ -18,8 +18,19 @@ class NewtransferController extends AppController
      */
     public function index()
     {
-        $newtransfer = $this->paginate($this->Newtransfer);
-
+        //$newtransfer = $this->paginate($this->Newtransfer);
+        $newtransfer = $this->Newtransfer;
+        if ($this->request->is('post')) {
+          $var_search = $this->request->data['search'];
+          $newtransfer = $this->Newtransfer->find()->where( 
+            ['OR' => array(
+                ['destination LIKE' =>'%'.$var_search.'%'],
+                ['dropoffto LIKE' =>'%'.$var_search.'%'],
+                ['pickupfrom LIKE' =>'%'.$var_search.'%'],
+            )]
+          );
+        }
+        $newtransfer = $this->paginate($newtransfer);
         $this->set(compact('newtransfer'));
         $this->set('_serialize', ['newtransfer']);
     }

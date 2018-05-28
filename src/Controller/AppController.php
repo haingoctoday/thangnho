@@ -124,4 +124,11 @@ public function beforeFilter(Event $event)
         return $days;
     }
 
+    public function check_admin(){
+        $phanloai = $this->request->session()->read('Auth.User.phanloai');
+          if($phanloai != 'admin'){
+            return $this->redirect(['controller'=>'Agents','action' => 'index']);
+          }
+    }
+
 }

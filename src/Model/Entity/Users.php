@@ -33,7 +33,7 @@ class Users extends Entity
      */
     protected $_accessible = [
         '*' => true,
-        'id' => false
+        //'id' => false
     ];
 
     /**
@@ -41,13 +41,20 @@ class Users extends Entity
      *
      * @var array
      */
-    protected $_hidden = [
-        'password'
-    ];
+    // protected $_hidden = [
+    //     'password'
+    // ];
 
-      protected function _setPassword($value)
+    //  protected function _setPassword($value)
+   // {
+        //$hasher = new DefaultPasswordHasher();
+        //return $hasher->hash($value);
+
+    //}
+    protected function _setPassword($password)
     {
-        $hasher = new DefaultPasswordHasher();
-        return $hasher->hash($value);
+        if (strlen($password) > 0) {
+            return (new DefaultPasswordHasher)->hash($password);
+        }
     }
 }

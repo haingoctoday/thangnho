@@ -32,7 +32,7 @@ class UsersTable extends Table
     {
         parent::initialize($config);
 
-        $this->table('usersm');
+        $this->table('users');
         $this->displayField('id');
         $this->primaryKey('id');
 

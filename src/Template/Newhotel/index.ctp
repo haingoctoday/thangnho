@@ -13,14 +13,14 @@
         <div class="box-header">
           <h3 class="box-title">Hotel List  (<?php echo $this->Paginator->ngoc(); ?>)</h3>
           <div class="box-tools">
-           <!--  <form action="<?php echo $this->Url->build(); ?>" method="POST">
+          <form action="<?php echo $this->Url->build(); ?>" method="POST">
               <div class="input-group input-group-sm"  style="width: 180px;">
                 <input type="text" name="search" class="form-control" placeholder="<?= __('Fill in to start search') ?>">
                 <span class="input-group-btn">
                 <button class="btn btn-info btn-flat" type="submit"><?= __('Filter') ?></button>
                 </span>
               </div>
-            </form> -->
+            </form> 
           </div>
         </div>
         <!-- /.box-header -->
@@ -45,7 +45,17 @@
                 <td><?= substr(htmlspecialchars_decode($newhotel->thongtinhotel), 0,400) ?>...</td>
                 <td class="actions" style="white-space:nowrap">
                   <?php // $this->Html->link(__('View'), ['action' => 'view', $newhotel->id], ['class'=>'btn btn-info btn-xs']) ?>
-                 
+                   <?php // $this->Html->link(__('View'), ['hotel-booking','?' => array('hotel' => $newhotel->namehotel,'stt'=>$newhotel->id) ], ['class'=>'btn btn-info btn-xs','target'=>'blank']) ?>
+
+                   <a href="<?php 
+             
+              echo $this->Url->build([
+               'controller' => 'Newhotel',
+               'action' => 'indexView',
+               '?' => array('hotel' => $newhotel->namehotel,'stt'=>$newhotel->id),
+               ]); ?>" class="btn btn-info btn-xs" target='blank'>View </a>
+
+
                     <?= $this->Html->link(__('Add room'), ['action' => 'addroom', $newhotel->id], ['class'=>'btn btn-info btn-xs']) ?>
                       <?= $this->Html->link(__('Add services'), ['action' => 'addservices', $newhotel->id], ['class'=>'btn btn-info btn-xs']) ?>
                   <?= $this->Html->link(__('Edit'), ['action' => 'edit', $newhotel->id], ['class'=>'btn btn-warning btn-xs']) ?>

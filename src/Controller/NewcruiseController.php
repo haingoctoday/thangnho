@@ -18,8 +18,19 @@ class NewcruiseController extends AppController
      */
     public function index()
     {
-        $newcruise = $this->paginate($this->Newcruise);
-
+       // $newcruise = $this->paginate($this->Newcruise);
+        $newcruise = $this->Newcruise;
+        if ($this->request->is('post')) {
+          $var_search = $this->request->data['search'];
+          $newcruise = $this->Newcruise->find()->where( 
+            ['OR' => array(
+                ['portto LIKE' =>'%'.$var_search.'%'],
+                ['portend LIKE' =>'%'.$var_search.'%'],
+               // ['pickupfrom LIKE' =>'%'.$var_search.'%'],
+            )]
+          );
+        }
+        $newcruise = $this->paginate($newcruise);
         $this->set(compact('newcruise'));
         $this->set('_serialize', ['newcruise']);
     }

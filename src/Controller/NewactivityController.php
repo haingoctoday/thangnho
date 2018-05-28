@@ -30,6 +30,15 @@ class NewactivityController extends AppController
     public function index()
     {
           $dataa = $this->Newactivity->find('all')->where(['loai' => 'activity']);
+        
+
+        if ($this->request->is('post')) {
+          $var_search = $this->request->data['search'];
+          $dataa = $this->Newactivity->find()->where([ 
+             ['loai' => 'activity'],
+            ['OR' => array(['name LIKE' =>'%'.$var_search.'%'], ['diachi LIKE' =>'%'.$var_search.'%'])]
+          ]);
+        }
         $newactivity = $this->paginate($dataa);
 
         $this->set(compact('newactivity'));
@@ -40,8 +49,14 @@ class NewactivityController extends AppController
 public function indexshore()
     {
           $dataa = $this->Newactivity->find('all')->where(['loai' => 'shore']);
+       if ($this->request->is('post')) {
+          $var_search = $this->request->data['search'];
+          $dataa = $this->Newactivity->find()->where([ 
+            ['loai' => 'shore'],
+            ['OR' => array(['name LIKE' =>'%'.$var_search.'%'], ['diachi LIKE' =>'%'.$var_search.'%'])]
+          ]);
+        }
         $newactivity = $this->paginate($dataa);
-
         $this->set(compact('newactivity'));
         $this->set('_serialize', ['newactivity']);
     }
@@ -50,10 +65,13 @@ public function indextour()
     {
 
         $dataa = $this->Newactivity->find('all')->where(['loai' => 'tour']);
-        //$this->set('newactivity', $this->paginate($dataa));
-
-
-
+        if ($this->request->is('post')) {
+          $var_search = $this->request->data['search'];
+          $dataa = $this->Newactivity->find()->where([ 
+            ['loai' => 'tour'],
+            ['OR' => array(['name LIKE' =>'%'.$var_search.'%'], ['diachi LIKE' =>'%'.$var_search.'%'])]
+          ]);
+        }
         $newactivity = $this->paginate($dataa);
 
         $this->set(compact('newactivity'));

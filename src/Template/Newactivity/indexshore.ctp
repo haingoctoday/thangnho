@@ -50,11 +50,12 @@
                 <td><?= h($newactivity->songay) ?></td>
              
                 <td class="actions" style="white-space:nowrap">
+                  <?= $this->Html->link(__('View'), ['controller' => 'Agents','action' => 'toursbooknow','?' => array('agents' => $newactivity->name,'stt'=>$newactivity->id) ], ['class'=>'btn btn-info btn-xs','target'=>'blank']) ?>
                     <?= $this->Html->link(__('Inclusions'), ['action' => 'inclusions', $newactivity->id], ['class'=>'btn btn-info btn-xs']) ?>
                       <?= $this->Html->link(__('Exclusions'), ['action' => 'exclusions', $newactivity->id], ['class'=>'btn btn-info btn-xs']) ?>
                         <?php // $this->Html->link(__('Add list day open'), ['action' => 'view', $newactivity->id], ['class'=>'btn btn-info btn-xs']) ?>
                   <?php // $this->Html->link(__('View'), ['action' => 'view', $newactivity->id], ['class'=>'btn btn-info btn-xs']) ?>
-                  <?= $this->Html->link(__('Edit'), ['action' => 'edit', $newactivity->id], ['class'=>'btn btn-warning btn-xs']) ?>
+                  <?php $this->Html->link(__('Edit'), ['action' => 'edit', $newactivity->id], ['class'=>'btn btn-warning btn-xs']) ?>
                   <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $newactivity->id], ['confirm' => __('Confirm to delete this entry?'), 'class'=>'btn btn-danger btn-xs']) ?>
                 </td>
               </tr>

@@ -143,7 +143,7 @@
                             <a class="nav-link js-scroll-trigger mau-nav-black <?php echo ($view_name == 'transfer') ? 'show_nav_on' : '' ?> " href="<?php echo $this->Url->build('/agents-transfer'); ?>">TRANSFERS</a>
                         </li>
                         <li class="nav-item pr-3">
-                            <a class="nav-link js-scroll-trigger mau-nav-black <?php echo ($view_name == 'tours') ? 'show_nav_on' : '' ?> " href="<?php echo $this->Url->build('/agents-tour'); ?>">TOURS</a>
+                            <a class="nav-link js-scroll-trigger mau-nav-black <?php echo ($view_name == 'tour') ? 'show_nav_on' : '' ?> " href="<?php echo $this->Url->build('/agents-tour'); ?>">TOURS</a>
                         </li>
                         <li class="nav-item pr-3">
                             <a class="nav-link js-scroll-trigger mau-nav-black <?php echo ($view_name == 'activities') ? 'show_nav_on' : '' ?> " href="<?php echo $this->Url->build('/agents-activities'); ?>">ACTIVITIES</a>
