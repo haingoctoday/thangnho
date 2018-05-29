@@ -595,7 +595,7 @@ input.fix-height-input-tour{
     padding-right: 15px !important;
 }
 #fix-card-hotel-20:last-child{
-    padding-right: 20px !important;
+    /*padding-right: 20px !important;*/
 }
 .div-blank-white{
   width: 100%;height: 35px;background: #fff;

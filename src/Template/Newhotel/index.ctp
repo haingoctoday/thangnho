@@ -14,12 +14,20 @@
           <h3 class="box-title">Hotel List  (<?php echo $this->Paginator->ngoc(); ?>)</h3>
           <div class="box-tools">
           <form action="<?php echo $this->Url->build(); ?>" method="POST">
-              <div class="input-group input-group-sm"  style="width: 180px;">
+            <div class="row input-group">
+               <div class="col-xs-6 input-group-sm"  style="width: 180px;">
+                <!-- <input type="text" name="search_city" class="form-control" placeholder="<?= __('Fill in to start search') ?>"> -->
+               <?php  echo $this->Form->input('diachi', array('label'=>false, 'type'=>'select', 'options'=>$diachi_view)); ?>
+              </div>
+                <div class="col-xs-6  input-group input-group-sm"  style="width: 180px;">
                 <input type="text" name="search" class="form-control" placeholder="<?= __('Fill in to start search') ?>">
                 <span class="input-group-btn">
                 <button class="btn btn-info btn-flat" type="submit"><?= __('Filter') ?></button>
                 </span>
               </div>
+            </div>
+          
+             
             </form> 
           </div>
         </div>
@@ -77,3 +85,10 @@
   </div>
 </section>
 <!-- /.content -->
+<?php $this->start('scriptBotton'); ?>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#diachi').select2(); 
+});
+</script>
+<?php $this->end(); ?>

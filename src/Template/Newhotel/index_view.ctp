@@ -7,7 +7,12 @@
                 <div class="row m-0">
                     <div class="col-md-9 col-xs-12" style="background: #f5f5f5;padding-top: 30px;padding-bottom: 10 px;">
                         <h3 class="mauxanh"><?= h($newhotel->namehotel)?></h3>
-
+                        <?php 
+                        if($newhotel->discount > 0){
+                         ?>
+                        
+    <div class="discount_hotel">Discount <?= h($newhotel->discount)?>%</div>
+    <?php } ?>
                         <span class="style-sub-twt"><?= h($newhotel->diachimap)?></span>
 
                         <p class="ratings pt-3 m-0 maucam" data-bind="rating: rating">
@@ -192,17 +197,31 @@ $total_room =  $this->request->session()->read('hotel.search.room');
                 </div>
                 <div class="col-md-3">
                   <div class="row">
-                  <div class="col-md-3" style="line-height: 74px;color: #ccc;">|</div>
-                  <div class="col-md-9 p-0">
+                  <div class="col-md-1" style="line-height: 74px;color: #ccc;">|</div>
+                  <div class="col-md-10 p-0">
                                         <div class="price-property">
                         <div class="row m-0">
-                        <div class="money mr-2" style="width: 60px;text-align: right;">
-                            <span class="chudam"><?= $valuelist_room_of_hotel['giatien'] * $tygia?></span>
+                        <div class="money mr-2 col-md-5" style="">
+                            
+                                <span class="chudam">
+
+                                    <?php
+                                $giatien = $valuelist_room_of_hotel['giatien'] * $tygia;
+                             //  dump($giatien);
+                                //dump($giatien/100);
+                             //   echo "<br>";
+                                $discount_t = $newhotel->discount;
+                                if( $discount_t > 0){
+                                  $giatien = $giatien - ( ( $giatien / 100 ) * $discount_t);
+                                }
+                            //    dump($giatien);
+                                echo number_format($giatien,2);
+                            ?></span>
                         </div>
-                        <div class="current">
+                        <div class="current col-md-2">
                             <span><?php echo $language?></span>
                         </div>
-                        <div class="checkbox ml-3" style="margin-top: 13px;">
+                        <div class="checkbox ml-3 col-md-1" style="margin-top: 13px;">
                             <label class="">
                                 <input type="checkbox" value="" id="check_box_room_<?php echo $valuelist_room_of_hotel['idphong']?>">
                                 <span class="cr"><i class="cr-icon fa fa-check" id="chbchan<?= $valuelist_room_of_hotel['idphong']?>" id-hime="<?= $valuelist_room_of_hotel['idphong']?>"></i></span>
@@ -256,6 +275,17 @@ $total_room =  $this->request->session()->read('hotel.search.room');
 
 
              <style type="text/css">
+             .discount_hotel {
+    float: right;
+    /*width: 100px;*/
+    padding: 5px;
+    border: 1px solid red;
+    /*height: 50px;*/
+    /*line-height: 50px;*/
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+}
              .nnnee{
                 width: 100%;
     background: #2a3c58;

@@ -100,7 +100,7 @@ echo '<div style="clear: both;"></div>';
               echo $this->Form->input('term', ['label' => 'Terms of Condition','id'=>'textarea']);
               $star = ['1' => '1 Star','2' => '2 Star','3' => '3 Star','4' => '4 Star','5' => '5 Star'];
           echo $this->Form->input('danhgia', array('label'=>'Vote', 'type'=>'select', 'options'=>$star));
-         
+          echo $this->Form->input('discount', ['label' => 'Discount']);
           ?>
           </div>
           <!-- /.box-body -->

@@ -37,12 +37,34 @@ class NewhotelController extends AppController
     public function index()
     {
         $this->check_admin();
+        $this->loadModel("Hoteldiachi");
+        $diachi = $this->Hoteldiachi->find("all");
+        $diachi_view = array();
+        $diachi_view['0'] =  "Select Place";
+        foreach ($diachi as $key => $valuediachi) {
+            $diachi_view[$valuediachi['diachi']] =  $valuediachi['diachi'];
+        }
+        $this->set('diachi_view', $diachi_view);
         $newhotel = $this->Newhotel;
         if ($this->request->is('post')) {
           $var_search = $this->request->data['search'];
-          $newhotel = $this->Newhotel->find()->where( 
-            ['OR' => array(['namehotel LIKE' =>'%'.$var_search.'%'], ['diachi LIKE' =>'%'.$var_search.'%'])]
-          );
+          $var_diachi = $this->request->data['diachi'];
+          if($var_search != ''){
+            $newhotel = $this->Newhotel->find()->where( 
+              ['OR' => array(['namehotel LIKE' =>'%'.$var_search.'%'], ['diachi LIKE' =>'%'.($var_diachi == '0')? $var_diachi : $var_search.'%'])]
+            );
+            if($var_diachi != '0'){
+              $newhotel = $this->Newhotel->find()->where( 
+              ['AND' => array(['namehotel LIKE' =>'%'.$var_search.'%'], ['diachi LIKE' =>'%'.($var_diachi == '0')? $var_diachi : $var_search.'%'])]
+              );
+            }
+          }else{
+            if($var_diachi != '0'){
+              $newhotel = $this->Newhotel->find()->where( 
+               ['diachi LIKE' =>'%'.$var_diachi.'%']
+              );
+            }
+          }  
         }
         $newhotel = $this->paginate($newhotel);
         $this->set(compact('newhotel'));

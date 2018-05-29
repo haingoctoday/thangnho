@@ -29,15 +29,43 @@ class NewactivityController extends AppController
 
     public function index()
     {
-          $dataa = $this->Newactivity->find('all')->where(['loai' => 'activity']);
-        
+        $dataa = $this->Newactivity->find('all')->where(['loai' => 'activity']);
 
+        $this->loadModel("Hoteldiachi");
+        $diachi = $this->Hoteldiachi->find("all");
+        $diachi_view = array();
+        $diachi_view['0'] =  "Select Place";
+        foreach ($diachi as $key => $valuediachi) {
+          $diachi_view[$valuediachi['diachi']] =  $valuediachi['diachi'];
+        }
+        $this->set('diachi_view', $diachi_view);
         if ($this->request->is('post')) {
           $var_search = $this->request->data['search'];
-          $dataa = $this->Newactivity->find()->where([ 
+          $var_diachi = $this->request->data['diachi'];
+          if($var_search != ''){
+            $dataa = $this->Newactivity->find()->where([ 
              ['loai' => 'activity'],
-            ['OR' => array(['name LIKE' =>'%'.$var_search.'%'], ['diachi LIKE' =>'%'.$var_search.'%'])]
-          ]);
+              ['OR' => array(['name LIKE' =>'%'.$var_search.'%'], ['diachi LIKE' =>'%'.($var_diachi == '0')? $var_diachi : $var_search.'%'])]
+            ]);
+            if($var_diachi != '0'){
+              $dataa = $this->Newactivity->find()->where([ 
+               ['loai' => 'activity'],
+                ['AND' => array(['name LIKE' =>'%'.$var_search.'%'], ['diachi LIKE' =>'%'.($var_diachi == '0')? $var_diachi : $var_search.'%'])]
+              ]);
+            }
+          }else{
+            if($var_diachi != '0'){
+               $dataa = $this->Newactivity->find()->where([ 
+               ['loai' => 'activity'],
+                 ['diachi LIKE' =>'%'.$var_diachi.'%']
+              ]);
+            }
+          }  
+
+
+          
+
+
         }
         $newactivity = $this->paginate($dataa);
 
@@ -48,13 +76,37 @@ class NewactivityController extends AppController
 
 public function indexshore()
     {
-          $dataa = $this->Newactivity->find('all')->where(['loai' => 'shore']);
-       if ($this->request->is('post')) {
+        $dataa = $this->Newactivity->find('all')->where(['loai' => 'shore']);
+        $this->loadModel("Hoteldiachi");
+        $diachi = $this->Hoteldiachi->find("all");
+        $diachi_view = array();
+        $diachi_view['0'] =  "Select Place";
+        foreach ($diachi as $key => $valuediachi) {
+          $diachi_view[$valuediachi['diachi']] =  $valuediachi['diachi'];
+        }
+        $this->set('diachi_view', $diachi_view);
+        if ($this->request->is('post')) {
           $var_search = $this->request->data['search'];
-          $dataa = $this->Newactivity->find()->where([ 
-            ['loai' => 'shore'],
-            ['OR' => array(['name LIKE' =>'%'.$var_search.'%'], ['diachi LIKE' =>'%'.$var_search.'%'])]
-          ]);
+          $var_diachi = $this->request->data['diachi'];
+          if($var_search != ''){
+            $dataa = $this->Newactivity->find()->where([ 
+             ['loai' => 'shore'],
+              ['OR' => array(['name LIKE' =>'%'.$var_search.'%'], ['diachi LIKE' =>'%'.($var_diachi == '0')? $var_diachi : $var_search.'%'])]
+            ]);
+            if($var_diachi != '0'){
+              $dataa = $this->Newactivity->find()->where([ 
+               ['loai' => 'shore'],
+                ['AND' => array(['name LIKE' =>'%'.$var_search.'%'], ['diachi LIKE' =>'%'.($var_diachi == '0')? $var_diachi : $var_search.'%'])]
+              ]);
+            }
+          }else{
+            if($var_diachi != '0'){
+               $dataa = $this->Newactivity->find()->where([ 
+               ['loai' => 'shore'],
+                 ['diachi LIKE' =>'%'.$var_diachi.'%']
+              ]);
+            }
+          }  
         }
         $newactivity = $this->paginate($dataa);
         $this->set(compact('newactivity'));
@@ -65,12 +117,36 @@ public function indextour()
     {
 
         $dataa = $this->Newactivity->find('all')->where(['loai' => 'tour']);
+         $this->loadModel("Hoteldiachi");
+        $diachi = $this->Hoteldiachi->find("all");
+        $diachi_view = array();
+        $diachi_view['0'] =  "Select Place";
+        foreach ($diachi as $key => $valuediachi) {
+          $diachi_view[$valuediachi['diachi']] =  $valuediachi['diachi'];
+        }
+        $this->set('diachi_view', $diachi_view);
         if ($this->request->is('post')) {
           $var_search = $this->request->data['search'];
-          $dataa = $this->Newactivity->find()->where([ 
-            ['loai' => 'tour'],
-            ['OR' => array(['name LIKE' =>'%'.$var_search.'%'], ['diachi LIKE' =>'%'.$var_search.'%'])]
-          ]);
+          $var_diachi = $this->request->data['diachi'];
+          if($var_search != ''){
+            $dataa = $this->Newactivity->find()->where([ 
+             ['loai' => 'tour'],
+              ['OR' => array(['name LIKE' =>'%'.$var_search.'%'], ['diachi LIKE' =>'%'.($var_diachi == '0')? $var_diachi : $var_search.'%'])]
+            ]);
+            if($var_diachi != '0'){
+              $dataa = $this->Newactivity->find()->where([ 
+               ['loai' => 'tour'],
+                ['AND' => array(['name LIKE' =>'%'.$var_search.'%'], ['diachi LIKE' =>'%'.($var_diachi == '0')? $var_diachi : $var_search.'%'])]
+              ]);
+            }
+          }else{
+            if($var_diachi != '0'){
+               $dataa = $this->Newactivity->find()->where([ 
+               ['loai' => 'tour'],
+                 ['diachi LIKE' =>'%'.$var_diachi.'%']
+              ]);
+            }
+          }  
         }
         $newactivity = $this->paginate($dataa);
 
