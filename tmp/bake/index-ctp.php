@@ -11,7 +11,6 @@ $fields = collection($fields)
 <section class="content-header">
   <h1>
     <?= $pluralHumanName ?>
-
     <div class="pull-right"><CakePHPBakeOpenTag= $this->Html->link(__('New'), ['action' => 'add'], ['class'=>'btn btn-success btn-xs']) CakePHPBakeCloseTag></div>
   </h1>
 </section>

@@ -235,6 +235,22 @@ public function bookingok()
       }
       $this->set('category_view', $category_view);
 
+        $this->loadModel('Agentstour');
+        $agentstype = $this->Agentstour->find('all');
+        $agentstype_Destinations = array();
+        $agentstype_Types = array();
+        foreach ($agentstype as $destination){ 
+          if($destination->type_tour == '1') {
+            // <div class="item-tour-des"><?php echo $destination->name
+             $agentstype_Destinations[$destination['name']] =  $destination['name'];
+          }
+          if($destination->type_tour == '3') {
+            // <div class="item-tour-des"><?php echo $destination->name
+             $agentstype_Types[$destination['name']] =  $destination['name'];
+          }
+        }
+        $this->set('agentstype_Destinations',$agentstype_Destinations);
+        $this->set('agentstype_Types',$agentstype_Types);
 
 
         $newactivity = $this->Newactivity->newEntity();
@@ -314,6 +330,22 @@ public function bookingok()
         foreach ($Activitiecategory as $key => $valueHotelcategory) {
           $category_view[$valueHotelcategory['namecategory']] =  $valueHotelcategory['namecategory'];
       }
+      $this->loadModel('Agentstour');
+        $agentstype = $this->Agentstour->find('all');
+        $agentstype_Destinations = array();
+        $agentstype_Types = array();
+        foreach ($agentstype as $destination){ 
+          if($destination->type_tour == '1') {
+            // <div class="item-tour-des"><?php echo $destination->name
+             $agentstype_Destinations[$destination['name']] =  $destination['name'];
+          }
+          if($destination->type_tour == '3') {
+            // <div class="item-tour-des"><?php echo $destination->name
+             $agentstype_Types[$destination['name']] =  $destination['name'];
+          }
+        }
+        $this->set('agentstype_Destinations',$agentstype_Destinations);
+        $this->set('agentstype_Types',$agentstype_Types);
       $this->set('category_view', $category_view);
         $image_old =  ($newactivity->hinhanh);
         if ($this->request->is(['patch', 'post', 'put'])) {
@@ -345,10 +377,15 @@ public function bookingok()
 
             if ($this->Newactivity->save($newactivity)) {
                 $this->Flash->success(__('The {0} has been saved.', 'Newactivity'));
-                if($this->request->data['loai'] == 'tour'){
+                 if($this->request->data['loai'] == 'tour'){
                   return $this->redirect(['action' => 'indextour']);
                 }else{
-                  return $this->redirect(['action' => 'index']); 
+                  if($this->request->data['loai'] == 'shore'){
+                    return $this->redirect(['action' => 'indexshore']);
+                  }else{
+                    return $this->redirect(['action' => 'index']); 
+                  }
+                 // return $this->redirect(['action' => 'index']); 
                 }
             } else {
                 $this->Flash->error(__('The {0} could not be saved. Please, try again.', 'Newactivity'));
@@ -442,6 +479,51 @@ public function bookingok()
         }
         $this->set(compact('newactivity'));
         $this->set('_serialize', ['newactivity']);
+    }
+    public function addItinerary($id = null)
+    {
+      $this->loadModel("Itinerary");
+      $itinerary = $this->Itinerary->newEntity();
+     $tienich_view_old =  $this->Itinerary->find('all')->where(['id_activity'=>$id])->toArray();
+     $datalist_drive = array(' ');
+     if(isset($tienich_view_old[0])){
+      $datalist_drive = json_decode($tienich_view_old[0]['mota'],TRUE);
+     }
+      $newactivity = $this->Newactivity->get($id, [
+            'contain' => []
+        ]);
+      $this->set('datalist_drive', $datalist_drive);
+      $this->set('loai', $newactivity->loai);
+         if ($this->request->is(['patch', 'post', 'put'])) {
+                $name = $this->request->data['name'];
+                $mota = $this->request->data['mota'];
+                $array_data = array_combine($name,$mota);
+                $json_data_insert = json_encode($array_data);
+                if(empty($tienich_view_old)){
+                  $itinerary = $this->Itinerary->newEntity(); 
+                  $itinerary->id_activity = $id; 
+                  $itinerary->mota = $json_data_insert;  
+                  $this->Itinerary->save($itinerary);
+                  $this->Flash->success(__('Has been saved.'));
+                }else{
+                  $itinerary = $this->Itinerary->get($tienich_view_old[0]['id']); // Return article with id 12
+                  $itinerary->mota = $json_data_insert;  
+                  $this->Itinerary->save($itinerary);
+                  $this->Flash->success(__('Has been saved.'));
+                }
+                if($this->request->data['loai'] == 'tour'){
+                  return $this->redirect(['action' => 'indextour']);
+                }else{
+                  if($this->request->data['loai'] == 'shore'){
+                    return $this->redirect(['action' => 'indexshore']);
+                  }else{
+                    return $this->redirect(['action' => 'index']); 
+                  }
+                }
+        }
+
+        $this->set(compact('itinerary'));
+        $this->set('_serialize', ['itinerary']);
     }
 
 }

@@ -104,7 +104,7 @@
    </div>
  </div>
 </div> -->
-
+<?php debug($newactivity) ?>
 <div class="wraper-display-twt" id="wraper-display-twt3">
   <div class="container">
     <div class="row">
@@ -126,10 +126,16 @@
                 <td style="width:150px" >Adult (Age 12 to 85)
                 </td>
                 <td>
+                  <?php // $newactivity->sokhach?>
                  <select id="select-child-num">
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
+                  <?php 
+                  for ($i=1; $i <= $newactivity->sokhach; $i++) { 
+                    ?>
+                     <option value="<?= $i?>"><?= $i?></option>
+                    <?php
+                   } ?>
+                 
+                 
                 </select>
               </td>
             </tr>
@@ -137,9 +143,12 @@
               <td >Child (Age 2 to 12)
               </td>
               <td> <select  id="select-child-num">
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
+               <?php 
+                  for ($j=1; $j <= $newactivity->treem; $j++) { 
+                    ?>
+                     <option value="<?= $i?>"><?= $j?></option>
+                    <?php
+                   } ?>
               </select>
             </td>
           </tr>
@@ -179,7 +188,11 @@
     <div class="col tour-ticket-price_box">
       <div class="row" style="height: ">
         <div class="col-md-8">
-            <div class="tour-ticket-price">Tour ticket (total price)</div>
+            <div class="tour-ticket-price ">Tour ticket (total price) <span class="chudam"><?php 
+            $price = ($newactivity->giatien != "")?$newactivity->giatien : 0;
+          echo $price * $tygia ;
+            
+          ?> <?php echo $language?></span></div>
         </div>
         <div class="col-md-4" style="margin-left: -5px;margin-top: 10px;">
           <button class="nen-maucam button-check-price-book">PROCEED</button>
@@ -228,8 +241,15 @@
 
 
           <div class="in_tour_hele">
+  <?php 
+ //debug($datalist_drive);
 
-            <?php for ($i=1; $i < 18 ; $i++) { 
+   ?>
+            <?php
+          //   for ($i=1; $i < 18 ; $i++) {
+          $i=0; 
+               foreach($datalist_drive as $id_drive => $value_drive){
+                $i++;
       # code...
               ?>
               <div class="content-info-tour">
@@ -237,13 +257,13 @@
                   <span class="m-0 p-0">DAY <?php echo $i?></span>
                 </div>
                 <div class="info-tour-left">
-                 <span class="style-sub-twt" style="padding-left: 30px;">Arrive Ho Chi Minh City</span> 
+                 <span class="style-sub-twt" style="padding-left: 30px;"><?= h($id_drive)?></span> 
 
                  <i class="material-icons arrow-up is-hidden">keyboard_arrow_up</i>
                  <i class="material-icons arrow-down">keyboard_arrow_down</i>
                </div>
                <div class="info-tour-left-detail">
-                Quý khách tự túc phương tiện tới Nha Trang như Máy bay, Tàu hỏa Quý khách tự túc phương tiện tới Nha Trang như Máy bay, Tàu hỏa
+                <?= h($value_drive)?>
               </div>
             </div>
 
@@ -279,17 +299,7 @@
           </div>
         </div>
         <div role="tabpanel" class="tab-pane in" id="Visa">
-          <p style="padding:30px">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text e<br>
-
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text e<br>
-
-            Lorem Ipsum is simply dummy text of the printing and typesetting <br>
-
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text e<br>
-
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text e<br>
-
-          Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has bee</p>
+         Visa
         </div>
         <div role="tabpanel" class="tab-pane in" id="Accommodation">
          <div class="row p-0 m-0 pt-4">

@@ -80,7 +80,14 @@
             </div>
             <div class="card-box text-center px-3">
               <div class="height-h-twt" style="height: 175px;">
-                <h4 class="mauxanh"><?= $valuehotel_hot->name ?></h4>
+                <h4 class="mauxanh"><a href="<?php 
+              $hotel_title = $valuehotel_hot->name ;
+              $hotel_id = $valuehotel_hot->id;
+              echo $this->Url->build([
+               'controller' => 'Agents',
+               'action' => 'toursbooknow',
+               '?' => array('hotel' => $hotel_title,'stt'=>$hotel_id),
+               ]); ?>" ><?= $valuehotel_hot->name ?> </a></h4>
                 <h4 class="mauxanh" style="white-space: nowrap;"><?= $valuehotel_hot->diachi ?></h4>
                 <h4 style="font-size:14px;padding-top: 5px;">Duration : <b><?= $valuehotel_hot->songay ?></b></h4>
               </div>
@@ -92,7 +99,12 @@
               <div class="copy-fade-tour"></div>
             </div>
             <div class="col-md-5 text-center mx-auto">
-              <button class="btn-block border-0 nen-maucam button-bk-twt">BOOK NOW</button>
+              <a class="btn-block border-0 nen-maucam button-bk-twt" href="<?php 
+              echo $this->Url->build([
+               'controller' => 'Agents',
+               'action' => 'toursbooknow',
+               '?' => array('hotel' => $hotel_title,'stt'=>$hotel_id),
+               ]); ?>">BOOK NOW</a>
             </div>
           </div>
         </div>

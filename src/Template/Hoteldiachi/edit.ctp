@@ -5,7 +5,7 @@
 ?>
 <section class="content-header">
   <h1>
-    Address
+    Location
     <small><?= __('Edit') ?></small>
   </h1>
   <ol class="breadcrumb">
@@ -30,12 +30,12 @@
         <?= $this->Form->create($hoteldiachi, array('role' => 'form','enctype' => 'multipart/form-data')) ?>
           <div class="box-body">
           <?php
-            echo $this->Form->input('diachi');
-            echo $this->Form->input('mota');
+           echo $this->Form->input('diachi',['label'=>'Location']);
+            echo $this->Form->input('mota',['label'=>'Detail Location']);
                echo $this->Html->image('/upload/localtion/'.$hoteldiachi->hinhanh, ['alt' => 'hinhanh','class'=>'image_hotel_admin']);
              echo $this->Form->input('hinhanh', ['type' => 'file','label' => 'Image']); 
-            echo $this->Form->input('status');
-            echo $this->Form->input('loai');
+          //  echo $this->Form->input('status');
+           // echo $this->Form->input('loai');
           ?>
           </div>
           <!-- /.box-body -->

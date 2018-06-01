@@ -28,6 +28,7 @@
         <?= $this->Form->create($newhotel, array('role' => 'form','enctype' => 'multipart/form-data')) ?>
           <div class="box-body">
           <?php
+           echo $this->Form->input('hot', ['type' => 'checkbox']);
             echo $this->Form->input('loaihinhhotel', array('label'=>'Category Hotel', 'type'=>'select', 'options'=>$category_view));
             echo $this->Form->input('namehotel', ['label' => 'Name Hotel']);
           $sold = ['owner' => 'sold-out by owner','twt' => 'sold-out by TWT'];
@@ -47,6 +48,7 @@
         
           echo $this->Form->input('saohotel', array('label'=>'Number Star', 'type'=>'select', 'options'=>$star));
            echo $this->Form->input('discount', ['label' => 'Discount']);
+
           ?>
           </div>
           <!-- /.box-body -->

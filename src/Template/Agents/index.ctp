@@ -1,65 +1,46 @@
 <div class="container-banner-agency">
 	<div class="bg-container-id-agt">
+
+    <?php 
+    $num_slide = count($slide);
+     ?>
 <div id="demo" class="carousel slide" data-ride="carousel">
 
-  <!-- Indicators -->
+  
   <ul class="carousel-indicators">
-    <li data-target="#demo" data-slide-to="0" class="active"></li>
-    <li data-target="#demo" data-slide-to="1"></li>
-    <li data-target="#demo" data-slide-to="2"></li>
-    <li data-target="#demo" data-slide-to="3"></li>
+    <?php
+    for ($num_s=0; $num_s < $num_slide; $num_s++) { 
+     ?>
+     <li data-target="#demo" data-slide-to="<?php echo $num_s ?>" <?php echo ($num_s == '0')?'class="active"':'' ?> ></li>
+     <?php
+    }
+    ?>
   </ul>
 
   <!-- The slideshow -->
   <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="img/th_d8beabb2b5464a87b95d1539e80d4846_valentine.jpg" alt="Los Angeles" class="img_slider_top">
+<?php 
+  $bum_slide = 0;
+foreach ($slide as $key_slide => $value_slide) {
+     ?>
+
+    <div class="carousel-item <?php echo ($bum_slide == '0')?'active':'' ?>">
+      <?php echo $this->Html->image('/upload/slide/'.$value_slide['hinhanh'], ['alt' => $value_slide['name_slide'],'class'=>'img_slider_top']);?>  
       <div class="carousel-caption1">
-         <h3 class="h3_slider_top">Maldives</h3>
+         <h3 class="h3_slider_top"><?= $value_slide['name_slide'] ?></h3>
        <div class="content_slider">
-          <p class="price_slider_top">From $1,257</p>
-         <p class="text_slider_top">Return flights Adelaide to the Maldives</p>
-         <a class="readmore_slider" href="#">&nbsp;Read more</a>
+          <p class="price_slider_top">From $<?= $value_slide['price'] ?></p>
+         <p class="text_slider_top"><?= $value_slide['detail_slide'] ?></p>
+         <a class="readmore_slider" href="<?= $value_slide['linkslide'] ?>">&nbsp;Read more</a>
        </div>
       
      </div>
     </div>
-    <div class="carousel-item">
-      <img src="img/th_d8beabb2b5464a87b95d1539e80d4846_bali-21.jpg" alt="Chicago" class="img_slider_top">
-     <div class="carousel-caption1">
-         <h3 class="h3_slider_top">Return Flights from Adelaide to Paris</h3>
-       <div class="content_slider">
-          <p class="price_slider_top">From $1,383</p>
-         <p class="text_slider_top">Return airfares to Hawaii departing from Adelaide</p>
-              <a class="readmore_slider" href="#">&nbsp;Read more</a>
-       </div>
-      
-     </div>
-    </div>
-    <div class="carousel-item">
-      <img src="img/th_d8beabb2b5464a87b95d1539e80d4846_bay_bridge_new_york-wallpaper-1680x1260.jpg" alt="New York" class="img_slider_top">
-     <div class="carousel-caption1">
-         <h3 class="h3_slider_top">Return Flight from </h3>
-       <div class="content_slider">
-          <p class="price_slider_top">From $1,383</p>
-          <p class="text_slider_top">Return airfares to New York departing from Sydney.</p>
-             <a class="readmore_slider" href="#">&nbsp;Read more</a>
-       </div>
-      
-     </div>
-    </div>
-     <div class="carousel-item">
-      <img src="img/th_d8beabb2b5464a87b95d1539e80d4846_bali-21.jpg" alt="Chicago" class="img_slider_top">
-     <div class="carousel-caption1">
-         <h3 class="h3_slider_top">Return Flights from Adelaide to Paris</h3>
-       <div class="content_slider">
-          <p class="price_slider_top">From $1,383</p>
-         <p class="text_slider_top">Return airfares to Hawaii departing from Adelaide</p>
-             <a class="readmore_slider" href="#">&nbsp;Read more</a>
-       </div>
-      
-     </div>
-    </div>
+
+  <?php  
+  $bum_slide++;
+} ?>
+
 
 
   </div>

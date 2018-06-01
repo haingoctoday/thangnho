@@ -1,7 +1,6 @@
 <section class="content-header">
   <h1>
-    Slide Agent Page
-    <small><?= __('Add') ?></small>
+    Contact    <small><?= __('Add') ?></small>
   </h1>
   <ol class="breadcrumb">
     <li>
@@ -17,19 +16,17 @@
     <div class="col-md-12">
       <!-- general form elements -->
       <div class="box box-primary">
-        
+        <div class="box-header with-border">
+          <h3 class="box-title"><?= __('Form') ?></h3>
+        </div>
         <!-- /.box-header -->
         <!-- form start -->
-        <?= $this->Form->create($slideagent, array('role' => 'form','enctype' => 'multipart/form-data')) ?>
+        <?= $this->Form->create($contact, array('role' => 'form')) ?>
           <div class="box-body">
           <?php
-            echo $this->Form->input('name_slide',['label'=>'Name Slide']);
-            //echo $this->Form->input('image_slide');
-          
-             echo $this->Form->input('hinhanh', ['type' => 'file','label' => 'Image ( size image : than more 720px x 320px )']); 
-            echo $this->Form->input('detail_slide',['label'=>'Detail Slide']); 
-            echo $this->Form->input('linkslide');
-            echo $this->Form->input('price',['label'=>'Price']); 
+            echo $this->Form->input('username',['label'=>'User Name']);
+            echo $this->Form->input('detail',['label'=>'Detail Contact']);
+            //echo $this->Form->input('status');
           ?>
           </div>
           <!-- /.box-body -->

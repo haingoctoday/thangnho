@@ -1,3 +1,10 @@
+<style type="text/css">
+  .inner h4{
+        margin: 0;
+    font-size: 25px;
+    font-weight: bold;
+  }
+</style>
 <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
@@ -18,14 +25,16 @@
           <!-- small box -->
           <div class="small-box bg-aqua">
             <div class="inner">
-              <h3>150</h3>
+              <h4><?= $array_count['count_hotel']?> Hotel</h4> 
+               <h4><?= $array_count['count_activity']?> Activities &  <?= $array_count['count_tour']?> Tour</h4>
+               <h4><?= $array_count['count_shore']?> Shore excursions</h4>
 
-              <p>New Orders</p>
+            
             </div>
             <div class="icon">
-              <i class="ion ion-bag"></i>
+              <i class="ion ion-map"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <!-- <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a> -->
           </div>
         </div>
         <!-- ./col -->
@@ -33,14 +42,15 @@
           <!-- small box -->
           <div class="small-box bg-green">
             <div class="inner">
-              <h3>53<sup style="font-size: 20px">%</sup></h3>
-
-              <p>Bounce Rate</p>
+              <!-- <h3>53<sup style="font-size: 20px">%</sup></h3> -->
+                <h4 style="margin: 10px"><?= $array_count['count_transfer']?> Transfer</h4> 
+               <h4 style="margin: 10px"><?= $array_count['count_cruise']?> Cruise</h4>
+            
             </div>
             <div class="icon">
-              <i class="ion ion-stats-bars"></i>
+              <i class="ion ion-android-boat"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <!-- <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a> -->
           </div>
         </div>
         <!-- ./col -->
@@ -48,14 +58,17 @@
           <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3>44</h3>
+              <!-- <h3><?= $array_count['count_users']?></h3> -->
 
-              <p>User Registrations</p>
+              <!-- <p>User Registrations</p> -->
+               <h4 style="margin: 10px"><?= $array_count['count_users']?> User Registrations</p</h4> 
+             
+               <h4 style="margin: 10px"><?= $array_count['count_custome']?> Agent Loading</h4>
             </div>
             <div class="icon">
               <i class="ion ion-person-add"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <!-- <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a> -->
           </div>
         </div>
         <!-- ./col -->
@@ -65,12 +78,12 @@
             <div class="inner">
               <h3>65</h3>
 
-              <p>Unique Visitors</p>
+              <p>Booking</p>
             </div>
             <div class="icon">
               <i class="ion ion-pie-graph"></i>
             </div>
-            <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+            <!-- <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a> -->
           </div>
         </div>
         <!-- ./col -->
@@ -79,254 +92,149 @@
       <!-- Main row -->
       <div class="row">
         <!-- Left col -->
-        <section class="col-lg-7 connectedSortable">
+        <section class="col-lg-7 ">
           <!-- Custom tabs (Charts with tabs)-->
-          <div class="nav-tabs-custom">
-            <!-- Tabs within a box -->
-            <ul class="nav nav-tabs pull-right">
-              <li class="active"><a href="#revenue-chart" data-toggle="tab">Area</a></li>
-              <li><a href="#sales-chart" data-toggle="tab">Donut</a></li>
-              <li class="pull-left header"><i class="fa fa-inbox"></i> Sales</li>
-            </ul>
-            <div class="tab-content no-padding">
-              <!-- Morris chart - Sales -->
-              <div class="chart tab-pane active" id="revenue-chart" style="position: relative; height: 300px;"></div>
-              <div class="chart tab-pane" id="sales-chart" style="position: relative; height: 300px;"></div>
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Quickly Add</h3>
             </div>
+            <div class="box-body">
+             
+              <a class="btn btn-app" href="<?php echo $this->Url->build('/admin-hotel'); ?>">
+                <i class="fa fa-building"></i> Hotel
+              </a>
+              <a class="btn btn-app" href="<?php echo $this->Url->build('/admin-activity'); ?>">
+                <i class="fa fa-tree"></i> Activities
+              </a>
+              <a class="btn btn-app" href="<?php echo $this->Url->build('/admin-tour'); ?>">
+                <i class="fa fa-map"></i> Tour
+              </a>
+              <a class="btn btn-app" href="<?php echo $this->Url->build('/admin-shore'); ?>">
+                <i class="fa fa-plane"></i> Shore
+              </a>
+              <a class="btn btn-app" href="<?php echo $this->Url->build('/admin-transfers'); ?>">
+                <i class="fa fa-motorcycle"></i> Tranfer
+              </a>
+               <a class="btn btn-app" href="<?php echo $this->Url->build('/admin-cruise'); ?>">
+                <i class="fa fa-ship"></i> Cruise
+              </a>
+              <a class="btn btn-app" href="<?php echo $this->Url->build('/admin-slide'); ?>">
+                
+                <i class="fa fa-image"></i> Slide Home
+              </a>
+            
+              <a class="btn btn-app" href="<?php echo $this->Url->build('/admin-custome'); ?>">
+                <span class="badge bg-purple"><?= $array_count['count_users']?></span>
+                <i class="fa fa-users"></i> Users
+              </a>
+              <a class="btn btn-app">
+                <span class="badge bg-teal">67</span>
+                <i class="fa fa-inbox"></i> Orders
+              </a>
+              <a class="btn btn-app">
+                <span class="badge bg-aqua"><?= $array_count['count_contact']?></span>
+                <i class="fa fa-envelope"></i> Inbox
+              </a>
+              <a class="btn btn-app" href="<?php echo $this->Url->build('/admin-user-review'); ?>">
+                <span class="badge bg-red"><?= $array_count['count_userreview']?></span>
+                <i class="fa fa-heart-o"></i> Likes
+              </a>
+            </div>
+            <!-- /.box-body -->
           </div>
           <!-- /.nav-tabs-custom -->
 
-          <!-- Chat box -->
-          <div class="box box-success">
-            <div class="box-header">
-              <i class="fa fa-comments-o"></i>
+         
 
-              <h3 class="box-title">Chat</h3>
+        
 
-              <div class="box-tools pull-right" data-toggle="tooltip" title="Status">
-                <div class="btn-group" data-toggle="btn-toggle">
-                  <button type="button" class="btn btn-default btn-sm active"><i class="fa fa-square text-green"></i>
-                  </button>
-                  <button type="button" class="btn btn-default btn-sm"><i class="fa fa-square text-red"></i></button>
-                </div>
-              </div>
-            </div>
-            <div class="box-body chat" id="chat-box">
-              <!-- chat item -->
-              <div class="item">
-                <?php echo $this->Html->image('user4-128x128.jpg', ['alt' => 'user image', 'class' => 'online']); ?>
+           <!-- TABLE: LATEST ORDERS -->
+      <div class="box box-info">
+        <div class="box-header with-border">
+          <h3 class="box-title">Latest Orders</h3>
 
-                <p class="message">
-                  <a href="#" class="name">
-                    <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 2:15</small>
-                    Mike Doe
-                  </a>
-                  I would like to meet you to discuss the latest news about
-                  the arrival of the new theme. They say it is going to be one the
-                  best themes on the market
-                </p>
-                <div class="attachment">
-                  <h4>Attachments:</h4>
-
-                  <p class="filename">
-                    Theme-thumbnail-image.jpg
-                  </p>
-
-                  <div class="pull-right">
-                    <button type="button" class="btn btn-primary btn-sm btn-flat">Open</button>
-                  </div>
-                </div>
-                <!-- /.attachment -->
-              </div>
-              <!-- /.item -->
-              <!-- chat item -->
-              <div class="item">
-              <?php echo $this->Html->image('user3-128x128.jpg', ['alt' => 'user image', 'class' => 'offline']); ?>
-
-                <p class="message">
-                  <a href="#" class="name">
-                    <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 5:15</small>
-                    Alexander Pierce
-                  </a>
-                  I would like to meet you to discuss the latest news about
-                  the arrival of the new theme. They say it is going to be one the
-                  best themes on the market
-                </p>
-              </div>
-              <!-- /.item -->
-              <!-- chat item -->
-              <div class="item">
-                <?php echo $this->Html->image('user2-160x160.jpg', ['alt' => 'user image', 'class' => 'offline']); ?>
-
-                <p class="message">
-                  <a href="#" class="name">
-                    <small class="text-muted pull-right"><i class="fa fa-clock-o"></i> 5:30</small>
-                    Susan Doe
-                  </a>
-                  I would like to meet you to discuss the latest news about
-                  the arrival of the new theme. They say it is going to be one the
-                  best themes on the market
-                </p>
-              </div>
-              <!-- /.item -->
-            </div>
-            <!-- /.chat -->
-            <div class="box-footer">
-              <div class="input-group">
-                <input class="form-control" placeholder="Type message...">
-
-                <div class="input-group-btn">
-                  <button type="button" class="btn btn-success"><i class="fa fa-plus"></i></button>
-                </div>
-              </div>
-            </div>
+          <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+            </button>
+            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
           </div>
-          <!-- /.box (chat box) -->
-
-          <!-- TO DO List -->
-          <div class="box box-primary">
-            <div class="box-header">
-              <i class="ion ion-clipboard"></i>
-
-              <h3 class="box-title">To Do List</h3>
-
-              <div class="box-tools pull-right">
-                <ul class="pagination pagination-sm inline">
-                  <li><a href="#">&laquo;</a></li>
-                  <li><a href="#">1</a></li>
-                  <li><a href="#">2</a></li>
-                  <li><a href="#">3</a></li>
-                  <li><a href="#">&raquo;</a></li>
-                </ul>
-              </div>
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-              <ul class="todo-list">
-                <li>
-                  <!-- drag handle -->
-                      <span class="handle">
-                        <i class="fa fa-ellipsis-v"></i>
-                        <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                  <!-- checkbox -->
-                  <input type="checkbox" value="" name="">
-                  <!-- todo text -->
-                  <span class="text">Design a nice theme</span>
-                  <!-- Emphasis label -->
-                  <small class="label label-danger"><i class="fa fa-clock-o"></i> 2 mins</small>
-                  <!-- General tools such as edit or delete-->
-                  <div class="tools">
-                    <i class="fa fa-edit"></i>
-                    <i class="fa fa-trash-o"></i>
-                  </div>
-                </li>
-                <li>
-                      <span class="handle">
-                        <i class="fa fa-ellipsis-v"></i>
-                        <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                  <input type="checkbox" value="" name="">
-                  <span class="text">Make the theme responsive</span>
-                  <small class="label label-info"><i class="fa fa-clock-o"></i> 4 hours</small>
-                  <div class="tools">
-                    <i class="fa fa-edit"></i>
-                    <i class="fa fa-trash-o"></i>
-                  </div>
-                </li>
-                <li>
-                      <span class="handle">
-                        <i class="fa fa-ellipsis-v"></i>
-                        <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                  <input type="checkbox" value="" name="">
-                  <span class="text">Let theme shine like a star</span>
-                  <small class="label label-warning"><i class="fa fa-clock-o"></i> 1 day</small>
-                  <div class="tools">
-                    <i class="fa fa-edit"></i>
-                    <i class="fa fa-trash-o"></i>
-                  </div>
-                </li>
-                <li>
-                      <span class="handle">
-                        <i class="fa fa-ellipsis-v"></i>
-                        <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                  <input type="checkbox" value="" name="">
-                  <span class="text">Let theme shine like a star</span>
-                  <small class="label label-success"><i class="fa fa-clock-o"></i> 3 days</small>
-                  <div class="tools">
-                    <i class="fa fa-edit"></i>
-                    <i class="fa fa-trash-o"></i>
-                  </div>
-                </li>
-                <li>
-                      <span class="handle">
-                        <i class="fa fa-ellipsis-v"></i>
-                        <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                  <input type="checkbox" value="" name="">
-                  <span class="text">Check your messages and notifications</span>
-                  <small class="label label-primary"><i class="fa fa-clock-o"></i> 1 week</small>
-                  <div class="tools">
-                    <i class="fa fa-edit"></i>
-                    <i class="fa fa-trash-o"></i>
-                  </div>
-                </li>
-                <li>
-                      <span class="handle">
-                        <i class="fa fa-ellipsis-v"></i>
-                        <i class="fa fa-ellipsis-v"></i>
-                      </span>
-                  <input type="checkbox" value="" name="">
-                  <span class="text">Let theme shine like a star</span>
-                  <small class="label label-default"><i class="fa fa-clock-o"></i> 1 month</small>
-                  <div class="tools">
-                    <i class="fa fa-edit"></i>
-                    <i class="fa fa-trash-o"></i>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <!-- /.box-body -->
-            <div class="box-footer clearfix no-border">
-              <button type="button" class="btn btn-default pull-right"><i class="fa fa-plus"></i> Add item</button>
-            </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+          <div class="table-responsive">
+            <table class="table no-margin">
+              <thead>
+              <tr>
+                <th>Order ID</th>
+                <th>Item</th>
+                <th>Status</th>
+                <th>Price</th>
+              </tr>
+              </thead>
+              <tbody>
+                <?php 
+                  for ($b=0; $b < 10; $b++) { 
+               
+                ?>
+              <tr>
+                <td><a href="#">OR984<?= $b?></a></td>
+                <td>Hotel and Tour</td>
+                <td><span class="label label-warning">Pending</span></td>
+                <td>
+                  <div class="sparkbar" data-color="#00a65a" data-height="20">50 $</div>
+                </td>
+              </tr>
+              <?php } ?>
+              </tbody>
+            </table>
           </div>
-          <!-- /.box -->
+          <!-- /.table-responsive -->
+        </div>
+        <!-- /.box-body -->
+        <div class="box-footer clearfix">
+          <a href="javascript::;" class="btn btn-sm btn-info btn-flat pull-left">Place New Order</a>
+          <a href="javascript::;" class="btn btn-sm btn-default btn-flat pull-right">View All Orders</a>
+        </div>
+        <!-- /.box-footer -->
+      </div>
+      <!-- /.box -->
+ <!-- PRODUCT LIST -->
+      <div class="box box-primary">
+        <div class="box-header with-border">
+          <h3 class="box-title">Contact me !!</h3>
 
-          <!-- quick email widget -->
-          <div class="box box-info">
-            <div class="box-header">
-              <i class="fa fa-envelope"></i>
-
-              <h3 class="box-title">Quick Email</h3>
-              <!-- tools box -->
-              <div class="pull-right box-tools">
-                <button type="button" class="btn btn-info btn-sm" data-widget="remove" data-toggle="tooltip" title="Remove">
-                  <i class="fa fa-times"></i></button>
-              </div>
-              <!-- /. tools -->
-            </div>
-            <div class="box-body">
-              <form action="#" method="post">
-                <div class="form-group">
-                  <input type="email" class="form-control" name="emailto" placeholder="Email to:">
-                </div>
-                <div class="form-group">
-                  <input type="text" class="form-control" name="subject" placeholder="Subject">
-                </div>
-                <div>
-                  <textarea class="textarea" placeholder="Message" style="width: 100%; height: 125px; font-size: 14px; line-height: 18px; border: 1px solid #dddddd; padding: 10px;"></textarea>
-                </div>
-              </form>
-            </div>
-            <div class="box-footer clearfix">
-              <button type="button" class="pull-right btn btn-default" id="sendEmail">Send
-                <i class="fa fa-arrow-circle-right"></i></button>
-            </div>
+          <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+            </button>
+            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
           </div>
-
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+          <ul class="products-list product-list-in-box">
+         <?php foreach ($data_contact as $key => $value_data_contact) { ?>
+            <li class="item">
+              <div class="product-img">
+              <?php echo $this->Html->image('default-50x50.gif', array('alt' => 'Product Image')); ?>
+              </div>
+              <div class="product-info">
+                <a href="#" class="product-title"><?= $value_data_contact['username']?>
+                  <span class="label label-warning pull-right"></span></a>
+                    <span class="product-description">
+                      <?= h($value_data_contact['detail'])?>
+                    </span>
+              </div>
+            </li>
+           <?php } ?>
+          </ul>
+        </div>
+        <!-- /.box-body -->
+        <div class="box-footer text-center">
+          <a href="<?php echo $this->Url->build('/admin-contact'); ?>" class="uppercase">View All Contact </a>
+        </div>
+        <!-- /.box-footer -->
+      </div>
+      <!-- /.box -->
         </section>
         <!-- /.Left col -->
         <!-- right col (We are only adding the ID to make the widgets sortable)-->
@@ -377,127 +285,91 @@
           </div>
           <!-- /.box -->
 
-          <!-- solid sales graph -->
-          <div class="box box-solid bg-teal-gradient">
-            <div class="box-header">
-              <i class="fa fa-th"></i>
+         <!-- TABLE: LATEST ORDERS -->
+      <div class="box box-info">
+        <div class="box-header with-border">
+          <h3 class="box-title">Latest Customer</h3>
 
-              <h3 class="box-title">Sales Graph</h3>
-
-              <div class="box-tools pull-right">
-                <button type="button" class="btn bg-teal btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                <button type="button" class="btn bg-teal btn-sm" data-widget="remove"><i class="fa fa-times"></i>
-                </button>
-              </div>
-            </div>
-            <div class="box-body border-radius-none">
-              <div class="chart" id="line-chart" style="height: 250px;"></div>
-            </div>
-            <!-- /.box-body -->
-            <div class="box-footer no-border">
-              <div class="row">
-                <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
-                  <input type="text" class="knob" data-readonly="true" value="20" data-width="60" data-height="60" data-fgColor="#39CCCC">
-
-                  <div class="knob-label">Mail-Orders</div>
-                </div>
-                <!-- ./col -->
-                <div class="col-xs-4 text-center" style="border-right: 1px solid #f4f4f4">
-                  <input type="text" class="knob" data-readonly="true" value="50" data-width="60" data-height="60" data-fgColor="#39CCCC">
-
-                  <div class="knob-label">Online</div>
-                </div>
-                <!-- ./col -->
-                <div class="col-xs-4 text-center">
-                  <input type="text" class="knob" data-readonly="true" value="30" data-width="60" data-height="60" data-fgColor="#39CCCC">
-
-                  <div class="knob-label">In-Store</div>
-                </div>
-                <!-- ./col -->
-              </div>
-              <!-- /.row -->
-            </div>
-            <!-- /.box-footer -->
+          <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+            </button>
+            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
           </div>
-          <!-- /.box -->
-
-          <!-- Calendar -->
-          <div class="box box-solid bg-green-gradient">
-            <div class="box-header">
-              <i class="fa fa-calendar"></i>
-
-              <h3 class="box-title">Calendar</h3>
-              <!-- tools box -->
-              <div class="pull-right box-tools">
-                <!-- button with a dropdown -->
-                <div class="btn-group">
-                  <button type="button" class="btn btn-success btn-sm dropdown-toggle" data-toggle="dropdown">
-                    <i class="fa fa-bars"></i></button>
-                  <ul class="dropdown-menu pull-right" role="menu">
-                    <li><a href="#">Add new event</a></li>
-                    <li><a href="#">Clear events</a></li>
-                    <li class="divider"></li>
-                    <li><a href="#">View calendar</a></li>
-                  </ul>
-                </div>
-                <button type="button" class="btn btn-success btn-sm" data-widget="collapse"><i class="fa fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-success btn-sm" data-widget="remove"><i class="fa fa-times"></i>
-                </button>
-              </div>
-              <!-- /. tools -->
-            </div>
-            <!-- /.box-header -->
-            <div class="box-body no-padding">
-              <!--The calendar -->
-              <div id="calendar" style="width: 100%"></div>
-            </div>
-            <!-- /.box-body -->
-            <div class="box-footer text-black">
-              <div class="row">
-                <div class="col-sm-6">
-                  <!-- Progress bars -->
-                  <div class="clearfix">
-                    <span class="pull-left">Task #1</span>
-                    <small class="pull-right">90%</small>
-                  </div>
-                  <div class="progress xs">
-                    <div class="progress-bar progress-bar-green" style="width: 90%;"></div>
-                  </div>
-
-                  <div class="clearfix">
-                    <span class="pull-left">Task #2</span>
-                    <small class="pull-right">70%</small>
-                  </div>
-                  <div class="progress xs">
-                    <div class="progress-bar progress-bar-green" style="width: 70%;"></div>
-                  </div>
-                </div>
-                <!-- /.col -->
-                <div class="col-sm-6">
-                  <div class="clearfix">
-                    <span class="pull-left">Task #3</span>
-                    <small class="pull-right">60%</small>
-                  </div>
-                  <div class="progress xs">
-                    <div class="progress-bar progress-bar-green" style="width: 60%;"></div>
-                  </div>
-
-                  <div class="clearfix">
-                    <span class="pull-left">Task #4</span>
-                    <small class="pull-right">40%</small>
-                  </div>
-                  <div class="progress xs">
-                    <div class="progress-bar progress-bar-green" style="width: 40%;"></div>
-                  </div>
-                </div>
-                <!-- /.col -->
-              </div>
-              <!-- /.row -->
-            </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+          <div class="table-responsive">
+            <table class="table no-margin">
+              <thead>
+              <tr>
+                <th>Email</th>
+                <th>Full Name</th>
+                <th>Phone</th>
+                <th></th>
+              </tr>
+              </thead>
+              <tbody>
+                <?php
+                //$data_custome
+                foreach ($data_custome as $key => $value_data_custome) {
+              //debug($value_data_custome);
+                ?>
+              <tr>
+                <td><?= $value_data_custome['email']?></td>
+                <td><?= $value_data_custome['fullname']?></td>
+               <td><?= $value_data_custome['phone']?></td>
+               <td>
+               <?= $this->Html->link('Active',['controller' => 'Users', 'action' => 'add', $value_data_custome['email']],['class' => 'label label-warning pull-right']); ?>
+               </td>
+              </tr>
+              <?php } ?>
+              </tbody>
+            </table>
           </div>
-          <!-- /.box -->
+          <!-- /.table-responsive -->
+        </div>
+        <!-- /.box-body -->
+       
+        <!-- /.box-footer -->
+      </div>
+      <!-- /.box -->
+          <!-- PRODUCT LIST -->
+      <div class="box box-primary">
+        <div class="box-header with-border">
+          <h3 class="box-title">Reviews list »</h3>
+
+          <div class="box-tools pull-right">
+            <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+            </button>
+            <button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+          </div>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
+          <ul class="products-list product-list-in-box">
+             <?php foreach ($data_userreview as $key => $value_data_userreview) { ?>
+            <li class="item">
+              <div class="product-img">
+              <?php echo $this->Html->image('default-50x50.gif', array('alt' => 'Product Image')); ?>
+              </div>
+              <div class="product-info">
+                <a href="javascript::;" class="product-title"><?= $value_data_userreview['id_activity']?>
+                  <span class="label label-warning pull-right"><?= $value_data_userreview['rating']?> <i class="fa fa-star"></i></span></a>
+                    <span class="product-description">
+                      <?= $value_data_userreview['review']?>
+                    </span>
+              </div>
+            </li>
+            <?php }?>
+          </ul>
+        </div>
+        <!-- /.box-body -->
+        <div class="box-footer text-center">
+           <a href="<?php echo $this->Url->build('/admin-user-review'); ?>" class="uppercase">View All Review </a>
+        </div>
+        <!-- /.box-footer -->
+      </div>
+      <!-- /.box -->
 
         </section>
         <!-- right col -->
@@ -535,77 +407,6 @@ $this->Html->script([
 
 <?php $this->start('scriptBotton'); ?>
     <script type="text/javascript">
-      var area = new Morris.Area({
-        element: 'revenue-chart',
-        resize: true,
-        data: [
-          {y: '2011 Q1', item1: 2666, item2: 2666},
-          {y: '2011 Q2', item1: 2778, item2: 2294},
-          {y: '2011 Q3', item1: 4912, item2: 1969},
-          {y: '2011 Q4', item1: 3767, item2: 3597},
-          {y: '2012 Q1', item1: 6810, item2: 1914},
-          {y: '2012 Q2', item1: 5670, item2: 4293},
-          {y: '2012 Q3', item1: 4820, item2: 3795},
-          {y: '2012 Q4', item1: 15073, item2: 5967},
-          {y: '2013 Q1', item1: 10687, item2: 4460},
-          {y: '2013 Q2', item1: 8432, item2: 5713}
-        ],
-        xkey: 'y',
-        ykeys: ['item1', 'item2'],
-        labels: ['Item 1', 'Item 2'],
-        lineColors: ['#a0d0e0', '#3c8dbc'],
-        hideHover: 'auto'
-      });
-      var line = new Morris.Line({
-        element: 'line-chart',
-        resize: true,
-        data: [
-          {y: '2011 Q1', item1: 2666},
-          {y: '2011 Q2', item1: 2778},
-          {y: '2011 Q3', item1: 4912},
-          {y: '2011 Q4', item1: 3767},
-          {y: '2012 Q1', item1: 6810},
-          {y: '2012 Q2', item1: 5670},
-          {y: '2012 Q3', item1: 4820},
-          {y: '2012 Q4', item1: 15073},
-          {y: '2013 Q1', item1: 10687},
-          {y: '2013 Q2', item1: 8432}
-        ],
-        xkey: 'y',
-        ykeys: ['item1'],
-        labels: ['Item 1'],
-        lineColors: ['#efefef'],
-        lineWidth: 2,
-        hideHover: 'auto',
-        gridTextColor: "#fff",
-        gridStrokeWidth: 0.4,
-        pointSize: 4,
-        pointStrokeColors: ["#efefef"],
-        gridLineColor: "#efefef",
-        gridTextFamily: "Open Sans",
-        gridTextSize: 10
-      });
-
-      //Donut Chart
-      var donut = new Morris.Donut({
-        element: 'sales-chart',
-        resize: true,
-        colors: ["#3c8dbc", "#f56954", "#00a65a"],
-        data: [
-          {label: "Download Sales", value: 12},
-          {label: "In-Store Sales", value: 30},
-          {label: "Mail-Order Sales", value: 20}
-        ],
-        hideHover: 'auto'
-      });
-
-      //Fix for charts under tabs
-      $('.box ul.nav a').on('shown.bs.tab', function () {
-        area.redraw();
-        donut.redraw();
-        line.redraw();
-      });
-
       //jvectormap data
       var visitorsData = {
         "US": 398, //USA
@@ -647,19 +448,19 @@ $this->Html->script([
       });
 
       /* jQueryKnob */
-      $(".knob").knob();
+      //$(".knob").knob();
 
       /* The todo list plugin */
-      $(".todo-list").todolist({
-        onCheck: function (ele) {
-          window.console.log("The element has been checked");
-          return ele;
-        },
-        onUncheck: function (ele) {
-          window.console.log("The element has been unchecked");
-          return ele;
-        }
-      });
+      // $(".todo-list").todolist({
+      //   onCheck: function (ele) {
+      //     window.console.log("The element has been checked");
+      //     return ele;
+      //   },
+      //   onUncheck: function (ele) {
+      //     window.console.log("The element has been unchecked");
+      //     return ele;
+      //   }
+      // });
 
       //bootstrap WYSIHTML5 - text editor
       $(".textarea").wysihtml5();
@@ -680,12 +481,12 @@ $this->Html->script([
       });
 
       //The Calender
-      $("#calendar").datepicker();
+      //$("#calendar").datepicker();
 
       //SLIMSCROLL FOR CHAT WIDGET
-      $('#chat-box').slimScroll({
-        height: '250px'
-      });
+      // $('#chat-box').slimScroll({
+      //   height: '250px'
+      // });
 
     </script>
 <?php  $this->end(); ?>

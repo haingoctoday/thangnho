@@ -29,8 +29,56 @@ class NewhotelController extends AppController
      */
     public function adminhome()
     {
-        $newhotel = $this->paginate($this->Newhotel);
-        $this->set(compact('newhotel'));
+     // die
+      //$this->loadModel("Newhotel");
+      $this->loadModel("Newactivity");
+      $this->loadModel("Newcruise");
+      $this->loadModel("Newtransfer");
+      $this->loadModel("Users");
+      $this->loadModel("Custome");
+      $this->loadModel("Contact");
+      $this->loadModel("Userreview");
+
+       $count_hotel = $this->Newhotel->find()->count();
+       $count_activity = $this->Newactivity->find()->where(['loai'=>'activity'])->count();
+       $count_tour = $this->Newactivity->find()->where(['loai'=>'tour'])->count();
+       $count_shore = $this->Newactivity->find()->where(['loai'=>'shore'])->count();
+       $count_cruise = $this->Newcruise->find()->count();
+       $count_transfer = $this->Newtransfer->find()->count();
+       $count_users = $this->Users->find()->count();
+       $count_custome = $this->Custome->find()->count();
+       $count_contact = $this->Contact->find()->count();
+       $count_userreview = $this->Userreview->find()->count();
+       $data_custome = $this->Custome->find('all')->limit(10);;
+       $data_contact = $this->Contact->find('all')->limit(10);;
+       $data_userreview = $this->Userreview->find('all')->limit(10);;
+       $array_count = array(
+          'count_hotel' => $count_hotel,
+          'count_activity' => $count_activity,
+          'count_tour' => $count_tour,
+          'count_shore' => $count_shore,
+          'count_cruise' => $count_cruise,
+          'count_transfer' => $count_transfer,
+          'count_users' => $count_users,
+          'count_custome' => $count_custome,
+          'count_contact' => $count_contact,
+          'count_userreview' => $count_userreview
+       );
+       $this->set('array_count', $array_count);
+       $this->set('data_custome', $data_custome);
+       $this->set('data_contact', $data_contact);
+       $this->set('data_userreview', $data_userreview);
+   //echo $count_activity;
+
+
+      //$this->loadModel("Booking");
+      //$this->loadModel("Contact");
+      //$this->loadModel("Userreview");
+
+
+
+      //  $newhotel = $this->paginate($this->Newhotel);
+       // $this->set(compact('newhotel'));
         $this->set('_serialize', ['newhotel']);
     }
     
@@ -139,7 +187,7 @@ class NewhotelController extends AppController
 
 
                 if ($this->Newhotel->save($newhotel)) {
-                    $this->Flash->success('Your profile has been sucessfully updated.');
+                    $this->Flash->success('Has been sucessfully updated.');
                     return $this->redirect(['action' => 'index']);
                 } else {
                     $this->Flash->error('Records not be saved. Please, try again.');
@@ -202,7 +250,7 @@ class NewhotelController extends AppController
          $newhotel->hinhanh = $image_old;
      }
      if ($this->Newhotel->save($newhotel)) {
-       $this->Flash->success('Your profile has been sucessfully updated.');
+       $this->Flash->success('sucessfully updated.');
        return $this->redirect(['action' => 'index']);
    } else {
        $this->Flash->error('Records not be saved. Please, try again.');

@@ -46,10 +46,12 @@ $type_site = '';
           <div class="box-body">
           <?php
        
- 
+  echo $this->Form->input('hot', ['type' => 'checkbox']);
            echo $this->Form->input('category', array('label'=>'Category', 'type'=>'select', 'options'=>$category_view));
 
-             
+              echo $this->Form->input('destinations', array('label'=>'Destinations', 'type'=>'select', 'options'=>$agentstype_Destinations));
+               echo $this->Form->input('types', array('label'=>'Types', 'type'=>'select', 'options'=>$agentstype_Types));
+
         
             echo $this->Form->input('loai', array('label'=>'Type', 'type'=>'select', 'options'=>$loai));
 
@@ -61,18 +63,18 @@ $type_site = '';
               $duration = ['hours' => 'hours','days' => 'days','weeks' => 'weeks'];
              // echo $this->Form->input('songay', array('label'=>'Duration', 'type'=>'select', 'options'=>$duration,'class' => 'col-sm-4',));
             //echo $this->Form->input('songay', ['label' => 'Duration','class' => 'col-sm-4']);
-echo '<div>Duration</div>';
-echo '<div >';
-echo '<div style="float: left;">';
-echo $this->Form->input('songay', array('label' => false, 'type' => 'text'));
-echo '</div>';
-echo '<div style="float: left;">-</div>';
-echo '<div style="float: left;">';
-echo $this->Form->input('songaya', array('label' => false, 'type' => 'select', 'options'=>$duration));
-echo '</div>';
-echo '<div style="clear: both;"></div>';
-echo '</div>';
-echo '<div style="clear: both;"></div>';
+            echo '<div>Duration</div>';
+            echo '<div >';
+            echo '<div style="float: left;">';
+            echo $this->Form->input('songay', array('label' => false, 'type' => 'text'));
+            echo '</div>';
+            echo '<div style="float: left;">-</div>';
+            echo '<div style="float: left;">';
+            echo $this->Form->input('songaya', array('label' => false, 'type' => 'select', 'options'=>$duration));
+            echo '</div>';
+            echo '<div style="clear: both;"></div>';
+            echo '</div>';
+            echo '<div style="clear: both;"></div>';
             echo $this->Form->input('lichtrinh', ['label' => 'Expect','id'=>'textarea']);
             echo $this->Form->input('diemdon', ['label' => 'Departure Point']);
             echo $this->Form->input('thoigiandon', ['label' => 'Departure Time']);

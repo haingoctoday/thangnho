@@ -165,7 +165,6 @@ foreach ($relations as $alias => $details):
 
                                     <th>
                                     <?= Inflector::humanize($field) ?>
-
                                     </th>
                                         
                                 <?php endforeach; ?>
@@ -188,9 +187,7 @@ foreach ($relations as $alias => $details):
                                     <?php $otherPk = "\${$otherSingularVar}->{$details['primaryKey'][0]}"; ?>
                                     <td class="actions">
                                     <CakePHPBakeOpenTag= $this->Html->link(__('View'), ['controller' => '<?= $details['controller'] ?>', 'action' => 'view', <?= $otherPk ?>], ['class'=>'btn btn-info btn-xs']) ?>
-
                                     <CakePHPBakeOpenTag= $this->Html->link(__('Edit'), ['controller' => '<?= $details['controller'] ?>', 'action' => 'edit', <?= $otherPk ?>], ['class'=>'btn btn-warning btn-xs']) ?>
-
                                     <CakePHPBakeOpenTag= $this->Form->postLink(__('Delete'), ['controller' => '<?= $details['controller'] ?>', 'action' => 'delete', <?= $otherPk ?>], ['confirm' => __('Are you sure you want to delete # {0}?', <?= $otherPk ?>), 'class'=>'btn btn-danger btn-xs']) ?>    
                                     </td>
                                 </tr>

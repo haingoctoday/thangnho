@@ -129,6 +129,8 @@ $routes->connect('/resetpass-admin/*', ['controller' => 'Users', 'action' => 're
   $routes->connect('/admin-policy/*', ['controller' => 'Hotelchinhsach', 'action' => 'index']);
   $routes->connect('/admin-hotel-category/*', ['controller' => 'Hotelcategory', 'action' => 'index']);
   $routes->connect('/admin-hotel-address/*', ['controller' => 'Hoteldiachi', 'action' => 'index']);
+   $routes->connect('/admin-user-review/*', ['controller' => 'Userreview', 'action' => 'index']);
+   $routes->connect('/admin-contact/*', ['controller' => 'Contact', 'action' => 'index']);
 
   //newactivity admin
   $routes->connect('/admin-activity/*', ['controller' => 'Newactivity', 'action' => 'index']);

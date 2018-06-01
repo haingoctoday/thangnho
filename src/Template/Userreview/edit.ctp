@@ -1,7 +1,11 @@
+<?php
+/**
+  * @var \App\View\AppView $this
+  */
+?>
 <section class="content-header">
   <h1>
-    Slide Agent Page
-    <small><?= __('Add') ?></small>
+     User Review Activity    <small><?= __('Edit') ?></small>
   </h1>
   <ol class="breadcrumb">
     <li>
@@ -17,19 +21,20 @@
     <div class="col-md-12">
       <!-- general form elements -->
       <div class="box box-primary">
-        
+        <div class="box-header with-border">
+          <h3 class="box-title"><?= __('Form') ?></h3>
+        </div>
         <!-- /.box-header -->
         <!-- form start -->
-        <?= $this->Form->create($slideagent, array('role' => 'form','enctype' => 'multipart/form-data')) ?>
+        <?= $this->Form->create($userreview, array('role' => 'form')) ?>
           <div class="box-body">
           <?php
-            echo $this->Form->input('name_slide',['label'=>'Name Slide']);
-            //echo $this->Form->input('image_slide');
-          
-             echo $this->Form->input('hinhanh', ['type' => 'file','label' => 'Image ( size image : than more 720px x 320px )']); 
-            echo $this->Form->input('detail_slide',['label'=>'Detail Slide']); 
-            echo $this->Form->input('linkslide');
-            echo $this->Form->input('price',['label'=>'Price']); 
+           echo $this->Form->input('id_activity',['label'=>'ID Activity']);
+            echo $this->Form->input('id_user',['label'=>'ID Users']);
+            echo $this->Form->input('review',['label'=>'Review']);
+            $star = ['1' => '1 Star','2' => '2 Star','3' => '3 Star','4' => '4 Star','5' => '5 Star'];
+        
+          echo $this->Form->input('rating', array('label'=>'Rating', 'type'=>'select', 'options'=>$star));
           ?>
           </div>
           <!-- /.box-body -->

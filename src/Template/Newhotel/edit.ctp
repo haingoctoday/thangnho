@@ -31,6 +31,7 @@
         <?= $this->Form->create($newhotel, array('role' => 'form')) ?>
           <div class="box-body">
           <?php
+           echo $this->Form->input('hot', ['type' => 'checkbox','class'=>'']);
             echo $this->Form->input('namehotel', ['label' => 'Name Hotel']);
            $sold = ['owner' => 'Sold-out by owner','twt' => 'Sold-out by TWT'];
            echo $this->Form->input('soldout', array('label'=>'Sold-out by', 'type'=>'select', 'options'=>$sold));
@@ -48,6 +49,7 @@
         
           echo $this->Form->input('saohotel', array('label'=>'Number Star', 'type'=>'select', 'options'=>$star));
        echo $this->Form->input('discount', ['label' => 'Discount']);
+
           ?>
           </div>
           <!-- /.box-body -->

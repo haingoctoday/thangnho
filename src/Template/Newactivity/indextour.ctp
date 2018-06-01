@@ -37,7 +37,7 @@
         <div class="box-body table-responsive no-padding">
           <table class="table table-hover">
             <tr>
-              <th><?= $this->Paginator->sort('id',['label'=>'ID']) ?></th>
+              <th></th>
               <th><?= $this->Paginator->sort('name',['label'=>'Name Tour']) ?></th>
                <th><?= $this->Paginator->sort('hinhanh',['label'=>'Picture']) ?></th>
               <th><?= $this->Paginator->sort('diachi',['label'=>'Address']) ?></th>
@@ -48,15 +48,16 @@
             </tr>
             <?php foreach ($newactivity as $newactivity): ?>
               <tr>
-                <td><?= $this->Number->format($newactivity->id) ?></td>
+                 <td  <?= ($newactivity->hot == '1')?'style="background: #00a65a"':'' ?>><?php // $this->Number->format($newhotel->id) ?></td>
                 <td><?= h($newactivity->name) ?></td>
                  <td><?php echo $this->Html->image('/upload/activity/'.$newactivity->hinhanh, ['alt' => 'hinhanh','class'=>'image_hotel_admin']);?></td>
               
               <td><?= h($newactivity->diachi) ?></td>
                 <td><?= h($newactivity->songay) ?></td>
               <td><?= h($newactivity->discount) ?> %</td>
-                <td class="actions" style="white-space:nowrap">
+                <td class="actions" style="">
                   <?= $this->Html->link(__('View'), ['controller' => 'Agents','action' => 'toursbooknow','?' => array('agents' => $newactivity->name,'stt'=>$newactivity->id) ], ['class'=>'btn btn-info btn-xs','target'=>'blank']) ?>
+                   <?= $this->Html->link(__('Itinerary'), ['action' => 'addItinerary', $newactivity->id], ['class'=>'btn btn-info btn-xs']) ?>
                     <?= $this->Html->link(__('Inclusions'), ['action' => 'inclusions', $newactivity->id], ['class'=>'btn btn-info btn-xs']) ?>
                       <?= $this->Html->link(__('Exclusions'), ['action' => 'exclusions', $newactivity->id], ['class'=>'btn btn-info btn-xs']) ?>
                         <?php // $this->Html->link(__('Add list day open'), ['action' => 'view', $newactivity->id], ['class'=>'btn btn-info btn-xs']) ?>

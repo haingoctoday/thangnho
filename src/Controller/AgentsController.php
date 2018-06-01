@@ -37,11 +37,11 @@ class AgentsController extends AppController
      
 
          $this->loadModel("Newhotel");
-         $hotel_hot = $this->Newhotel->find('all',array('limit'=>6));
+         $hotel_hot = $this->Newhotel->find('all',array('limit'=>6))->where(['hot =' => '1']);
           $this->set('hotel_hot', $hotel_hot);
 
           $this->loadModel("Slideagent");
-         $slide = $this->Slideagent->find('all',array('limit'=>3));
+         $slide = $this->Slideagent->find('all',array('limit'=>3))->toArray();
           $this->set('slide', $slide);
 
 
@@ -190,7 +190,7 @@ class AgentsController extends AppController
      
 
          $this->loadModel("Newactivity");
-         $hotel_hot = $this->Newactivity->find('all',array('limit'=>3))->where(['loai =' => 'tour']);
+         $hotel_hot = $this->Newactivity->find('all',array('limit'=>3))->where(['loai =' => 'tour'])->where(['hot =' => '1']);
           $this->set('hotel_hot', $hotel_hot);
 
           $this->loadModel("Hoteldiachi");
@@ -230,7 +230,11 @@ class AgentsController extends AppController
 
   public function toursbooknow()
     {
+  $hotel_name = $this->request->query('agent');
+     $id =  $this->request->query('stt');
 
+
+      $this->set('idactivity',$id );
          $this->loadModel('Agentstour');
         $agentstype = $this->Agentstour->find('all');
         $this->set('agentstype',$agentstype);
@@ -239,9 +243,17 @@ class AgentsController extends AppController
 
 
           $session = $this->request->session();
-    
 
 
+
+          $this->loadModel("Itinerary");
+           $tienich_view_old =  $this->Itinerary->find('all')->where(['id_activity'=>$id])->toArray();
+     $datalist_drive = array(' ');
+     if(isset($tienich_view_old[0])){
+      $datalist_drive = json_decode($tienich_view_old[0]['mota'],TRUE);
+     }
+     
+      $this->set('datalist_drive', $datalist_drive);
 
   // if(!($session->read('hotel.search'))){
   //   $this->set('check_book','no');
@@ -252,11 +264,7 @@ class AgentsController extends AppController
       //$this->loadModel("Hotelandtienich");
       $this->loadModel("Newactivity");
 
-     $hotel_name = $this->request->query('agent');
-     $id =  $this->request->query('stt');
-
-
-$this->set('idactivity',$id );
+   
 
 
  $newactivity = $this->Newactivity->get($id, [
@@ -282,7 +290,7 @@ $this->set('idactivity',$id );
      
 
          $this->loadModel("Newactivity");
-         $hotel_hot = $this->Newactivity->find('all',array('limit'=>3))->where(['loai =' => 'activity']);
+         $hotel_hot = $this->Newactivity->find('all',array('limit'=>3))->where(['loai =' => 'activity'])->where(['hot =' => '1']);
           $this->set('hotel_hot', $hotel_hot);
 
           $this->loadModel("Hoteldiachi");
@@ -298,7 +306,14 @@ $this->set('idactivity',$id );
         $this->loadModel('Agentstour');
         $agentstype = $this->Agentstour->find('all');
         $this->set('agentstype',$agentstype);
-
+        //  $agentstype_abc = array();
+        // foreach ($agentstype as $destination){ 
+        //    if($destination->type_tour == '1') {
+        //     // <div class="item-tour-des"><?php echo $destination->name
+        //      $agentstype_abc[$destination['name']] =  $destination['name'];
+        //   }
+        // }
+        // $this->set('agentstype_abc',$agentstype_abc);
 
 
         $this->set('_serialize', ['users']);
@@ -312,7 +327,7 @@ $this->set('idactivity',$id );
      
 
          $this->loadModel("Newactivity");
-         $hotel_hot = $this->Newactivity->find('all',array('limit'=>3))->where(['loai =' => 'shore']);
+         $hotel_hot = $this->Newactivity->find('all',array('limit'=>3))->where(['loai =' => 'shore'])->where(['hot =' => '1']);
           $this->set('hotel_hot', $hotel_hot);
 
           $this->loadModel("Hoteldiachi");

@@ -45,7 +45,7 @@
             </tr>
             <?php foreach ($newhotel as $newhotel): ?>
               <tr>
-                <td><?php // $this->Number->format($newhotel->id) ?></td>
+                <td  <?= ($newhotel->hot == '1')?'style="background: #00a65a"':'' ?>><?php // $this->Number->format($newhotel->id) ?></td>
                 <td><?= h($newhotel->namehotel) ?></td>
                 <td><?= h($newhotel->diachi) ?></td>
                 <td><?php echo $this->Html->image('/upload/hotel/'.$newhotel->hinhanh, ['alt' => 'hinhanh','class'=>'image_hotel_admin']);?></td>

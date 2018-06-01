@@ -4,7 +4,6 @@ use Cake\Utility\Inflector;
 <section class="content-header">
   <h1>
     <?= $singularHumanName ?>
-
     <small><CakePHPBakeOpenTag= __('<?= Inflector::humanize($action) ?>') CakePHPBakeCloseTag></small>
   </h1>
   <ol class="breadcrumb">

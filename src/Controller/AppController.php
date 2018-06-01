@@ -55,7 +55,7 @@ class AppController extends Controller
             ],
             'loginRedirect' => [
                 'controller' => 'Newhotel',
-                'action' => 'index'
+                'action' => 'adminhome'
             ],
             'logoutRedirect' => [
                 'controller' => 'Homes',

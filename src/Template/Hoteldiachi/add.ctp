@@ -1,6 +1,6 @@
 <section class="content-header">
   <h1>
-    Address
+    Location
     <small><?= __('Add') ?></small>
   </h1>
   <ol class="breadcrumb">
@@ -25,8 +25,8 @@
         <?= $this->Form->create($hoteldiachi, array('role' => 'form','enctype' => 'multipart/form-data')) ?>
           <div class="box-body">
           <?php
-            echo $this->Form->input('diachi',['label'=>'Address']);
-            echo $this->Form->input('mota',['label'=>'Detail Address']);
+            echo $this->Form->input('diachi',['label'=>'Location']);
+            echo $this->Form->input('mota',['label'=>'Detail Location']);
               echo $this->Form->input('hinhanh', ['type' => 'file','label' => 'Image']); 
          //   echo $this->Form->input('status',['label'=>'Status']);
        //     echo $this->Form->input('loai',['label'=>'Category']);

@@ -33,10 +33,10 @@
             echo $this->Form->input('name_slide',['label'=>'Name Slide']);
             //echo $this->Form->input('image_slide');
             echo $this->Html->image('/upload/slide/'.$slideagent->hinhanh, ['alt' => 'hinhanh','class'=>'image_hotel_admin']);
-              echo $this->Form->input('hinhanh', ['type' => 'file','label' => 'Image ( size image : 734px x 412px )']); 
+              echo $this->Form->input('hinhanh', ['type' => 'file','label' => 'Image ( size image : than more 720px x 320px )']); 
             echo $this->Form->input('detail_slide',['label'=>'Detail Slide']); 
          echo $this->Form->input('linkslide');
-           
+             echo $this->Form->input('price',['label'=>'Price']); 
           ?>
           </div>
           <!-- /.box-body -->
