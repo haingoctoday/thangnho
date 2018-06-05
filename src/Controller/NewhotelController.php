@@ -38,25 +38,29 @@ class NewhotelController extends AppController
       $this->loadModel("Custome");
       $this->loadModel("Contact");
       $this->loadModel("Userreview");
+      $this->loadModel("Booking");
 
        $count_hotel = $this->Newhotel->find()->count();
        $count_activity = $this->Newactivity->find()->where(['loai'=>'activity'])->count();
        $count_tour = $this->Newactivity->find()->where(['loai'=>'tour'])->count();
        $count_shore = $this->Newactivity->find()->where(['loai'=>'shore'])->count();
+       $count_order = $this->Booking->find()->count();
        $count_cruise = $this->Newcruise->find()->count();
        $count_transfer = $this->Newtransfer->find()->count();
        $count_users = $this->Users->find()->count();
        $count_custome = $this->Custome->find()->count();
        $count_contact = $this->Contact->find()->count();
        $count_userreview = $this->Userreview->find()->count();
-       $data_custome = $this->Custome->find('all')->limit(10);;
-       $data_contact = $this->Contact->find('all')->limit(10);;
-       $data_userreview = $this->Userreview->find('all')->limit(10);;
+       $data_custome = $this->Custome->find('all')->limit(10);
+       $data_contact = $this->Contact->find('all')->limit(10);
+       $data_userreview = $this->Userreview->find('all')->limit(10);
+       $data_booking = $this->Booking->find('all')->limit(10);
        $array_count = array(
           'count_hotel' => $count_hotel,
           'count_activity' => $count_activity,
           'count_tour' => $count_tour,
           'count_shore' => $count_shore,
+          'count_order' => $count_order,
           'count_cruise' => $count_cruise,
           'count_transfer' => $count_transfer,
           'count_users' => $count_users,
@@ -68,6 +72,7 @@ class NewhotelController extends AppController
        $this->set('data_custome', $data_custome);
        $this->set('data_contact', $data_contact);
        $this->set('data_userreview', $data_userreview);
+        $this->set('data_booking', $data_booking);
    //echo $count_activity;
 
 
@@ -698,6 +703,102 @@ $this->set(compact('newhotel'));
       //  ->group('Hotelandphong.loaiphong')
         ;
         $this->set('list_room_of_hotel',$query);
+    }
+
+     public function bookroomok()
+    {
+        // $this->check_admin();
+        // $newhotel = $this->Newhotel->get($id, [
+        //     'contain' => []
+        // ]);
+     // debug($this->request->data);
+      $data_request = array();
+       if ($this->request->is('post')) {
+      foreach ($this->request->data['pre_name'] as $key => $value_data_request) {
+          foreach($value_data_request as $uukey => $uuvalue){
+          $data_user_name[$key][] =  $this->request->data['pre_name'][$key][$uukey]. ". ".$this->request->data['firstname'][$key][$uukey]. " ".  $this->request->data['lastname'][$key][$uukey];
+          }
+      }
+//debug($data_user_name);
+$data_hotel =  $this->Newhotel->find()->where(['id'=>$this->request->data['hotel_name']])->toArray();
+
+ $session = $this->request->session();
+      $search_old = $session->read('hotel.search');
+
+
+$data_ex_room = array();
+$value_xacnhan = 0;
+foreach ($this->request->data['room_name'] as $key_i => $value_data_ex_room) {
+ // print_r($value_data_ex_room);
+   $data_ex_room[] = array(
+      'name_room' => $value_data_ex_room[0],
+       'room_id' => $key_i,
+       'FROM'=> $search_old['search_date_to'],
+       'TO'=> $search_old['search_date_end'],
+       'NIGHTS'=> $search_old['search_night'],
+        'HotelName'=> $data_hotel[0]['namehotel'],
+       'price'=>$this->request->data['room_price'][$value_xacnhan],
+   );
+   $value_xacnhan++;
+  # code...
+}
+$this->set('data_price_sum', $this->request->data['room_price']);
+$this->set('data_user_room', $data_user_name);
+$this->set('data_save', base64_encode(json_encode(array('user'=>$data_user_name,'data_ex_room'=>$data_ex_room))));
+$this->set('data_ex_room', $data_ex_room);
+}
+      $this->set('view_name', 'hotel');
+  $this->viewBuilder()->layout('agentslayout');
+        $this->set('newhotel', []);
+        $this->set('_serialize', ['newhotel']);
+         $this->set('title', 'Agent');
+    }
+
+
+    public function bookroomokConfirm(){
+
+       $this->viewBuilder()->layout('agentslayout');
+       $this->loadModel("Booking");
+       $booking = $this->Booking->newEntity();
+        if ($this->request->is('post')) {
+          //debug($this->request->data);
+          $this->request->data['data_order'] = base64_decode($this->request->data['data_order']);
+            $booking = $this->Booking->patchEntity($booking, $this->request->data);
+            $booking['id_order'] = "TWT".substr(str_shuffle(str_repeat("0123456789", 5)), 0, 5);
+           // $booking['data'] =
+          //  base64_encode
+            if ($this->Booking->save($booking)) {
+                $this->Flash->success(__('The {0} has been saved.', 'Booking'));
+               // return $this->redirect(['action' => 'index']);
+                print_r("123");
+            } else {
+                print_r("12311111111");
+             //   $this->Flash->error(__('The {0} could not be saved. Please, try again.', 'Booking'));
+            }
+
+ $session = $this->request->session();
+            $session->delete('hotel.search');
+            $session->write('bookingidOn', $booking->id_order);
+            return $this->redirect(['action' => 'thankbook']); 
+        }
+
+//die();
+        $this->set('newhotel', []);
+        $this->set('_serialize', ['newhotel']);
+         $this->set('title', 'Agent');
+    }
+
+public function thankbook(){
+
+       $this->viewBuilder()->layout('agentslayout');
+       $this->loadModel("Booking");
+       $booking = $this->Booking->newEntity();
+
+ $this->set('view_name', 'hotel');
+//die();
+        $this->set('newhotel', []);
+        $this->set('_serialize', ['newhotel']);
+         $this->set('title', 'Agent');
     }
 
 }

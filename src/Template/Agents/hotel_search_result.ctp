@@ -558,7 +558,7 @@ $('#search_hotel').submit(function(event) {
   });
 
 function sample() {
-    window.location = "/accommodation-hotel-result1";
+    window.location = "/accommodation-hotel-result";
 }
 </script>
 

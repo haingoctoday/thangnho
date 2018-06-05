@@ -71,12 +71,13 @@ $session_search = $this->request->session()->read('hotel.search');
     </tbody>
   </table>
 </div>
-
+  <form action="/agents-bookroomok" method="post" id="target">
 <div class="form-book-room">
 	<?php
-	$opt = 0;
-		for ($i=1; $i <= $this->request->session()->read('hotel.search.room'); $i++) { 
-		
+	$opt = 0;$key_rom=0;
+		//for ($i=1; $i <= $this->request->session()->read('hotel.search.room'); $i++) { 
+		foreach ($data_room as $key => $value_data_room) {
+			$key_rom++;
 	?>
 	<div class="container" id="roombookinglist">
 		<div class="detail-room" style="margin-bottom: 1px;">
@@ -89,7 +90,7 @@ $session_search = $this->request->session()->read('hotel.search');
 				<div class="colum-2" style="background-color: #e2e2e2;">
 					<div class="row">
 						<div class="col-md-10 text-left">
-							<h4 class="style-room-head">Room <?= $i?></h4>
+							<h4 class="style-room-head">Room <?= $key_rom?></h4>
 						</div>
 						<div class="col-md-2">
 							<div class="num-people">
@@ -114,7 +115,7 @@ $session_search = $this->request->session()->read('hotel.search');
 				</div>
 				<div class="colum-2" style="background-color: #fff;">
 					<div class="info-type">
-						<p class="m-0">double Gararden Courtyard Room One</p>
+						<p class="m-0"><?=  $value_data_room['c']['nameroom']?></p>
 					</div>
 				</div>			
 			</div>
@@ -128,11 +129,14 @@ $session_search = $this->request->session()->read('hotel.search');
 				</div>
 				<div class="colum-2" style="background-color: #fff;">
 					<div class="info-guest">
+						<?php for ($g1=1; $g1 <= $session_search['adults_end'][$opt]; $g1++) { 
+							# code...
+						?>
 						<div class="row">
 							<div class="col-md-3" style="padding-left: 40px;">
 								<label class="display-7" style="padding-right: 40px;line-height: 38px;font-weight: bold;font-size: 15px;">Guest 1
 			                </label>
-			                    <select id="soflow1" class="mauxanh-input" style="width: 99px;">
+			                    <select id="soflow1" class="mauxanh-input" name="pre_name[<?php echo $value_data_room['id']?>][]" style="width: 99px;">
 			                      <option value="Mr">Mr</option>
 									<option value="Mrs">Mrs</option>
 									<option value="Miss">Miss</option>
@@ -145,35 +149,13 @@ $session_search = $this->request->session()->read('hotel.search');
 			                    </select>
 							</div>
 							<div class="col-md-4">
-								<input class="form-control" type="text" name="firstname" id="firstname" placeholder="First Name" style="">
+								<input class="form-control" type="text" name="firstname[<?php echo $value_data_room['id']?>][]" id="firstname" placeholder="First Name" style="">
 							</div>
 							<div class="col-md-4">
-								<input class="form-control" type="text" name="firstname" id="firstname" placeholder="Last Name" style="">
+								<input class="form-control" type="text" name="lastname[<?php echo $value_data_room['id']?>][]" id="lastname" placeholder="Last Name" style="">
 							</div>
 						</div>
-						<div class="row">
-							<div class="col-md-3" style="padding-left: 40px;">
-								<label class="display-7" style="padding-right: 40px;line-height: 38px;font-weight: bold;font-size: 15px;">Guest 2
-			                </label>
-			                    <select id="soflow1" class="mauxanh-input" style="width: 99px;">
-			                    <option value="Mr">Mr</option>
-									<option value="Mrs">Mrs</option>
-									<option value="Miss">Miss</option>
-									<option value="Ms">Ms</option>
-									<option value="Mstr">Mstr</option>
-									<option value="Dr">Dr</option>
-									<option value="Prof">Prof</option>
-									<option value="Sir">Sir</option>
-									<option value="Lady">Lady</option>
-			                    </select>
-							</div>
-							<div class="col-md-4">
-								<input class="form-control" type="text" name="firstname" id="firstname" placeholder="First Name" style="">
-							</div>
-							<div class="col-md-4">
-								<input class="form-control" type="text" name="firstname" id="firstname" placeholder="Last Name" style="">
-							</div>
-						</div>
+						<?php  }?>
 						<div class="row" style="padding-bottom: 6px;">
 					            <div class="col-md-7" style="padding-left: 40px;">
 					            	<div class="row">
@@ -182,7 +164,7 @@ $session_search = $this->request->session()->read('hotel.search');
 					                		</label>					            			
 					            		</div>
 					            		<div class="col-md-7">
-					            			<input class="form-control" type="text" name="firstname" id="firstname" placeholder="Opitional">
+					            			<input class="form-control" type="text" name="reference[<?php echo $value_data_room['id']?>][]" id="reference" placeholder="Opitional">
 					            		</div>
 					            	</div>
 
@@ -330,7 +312,7 @@ $session_search = $this->request->session()->read('hotel.search');
 							</div>
 						</div>
 						<div class="text-standard">
-							<p class="m-0">* Unless confirmed in writing by Tweet World Travel’, all special requests and comments are not guaranteed and will be at the full discretion of the hotel. There may be additional fees payable for special requests prior to check in, either to Excite Holidays or directly to the property in the local currency, including applicable taxes. Some special requests may not be possible and upgrades may be required to accommodate the request. If confirmation of your special request is required prior to check in, please email res@exciteholidays.com for availability and applicable charges.</p>
+							<p class="m-0">* Unless confirmed in writing by Tweet World Travel’, all special requests and comments are not guaranteed and will be at the full discretion of the hotel. There may be additional fees payable for special requests prior to check in, either to TWT or directly to the property in the local currency, including applicable taxes. Some special requests may not be possible and upgrades may be required to accommodate the request. If confirmation of your special request is required prior to check in, please email res@exciteholidays.com for availability and applicable charges.</p>
 						</div>
 					</div>
 				</div>			
@@ -346,7 +328,7 @@ $session_search = $this->request->session()->read('hotel.search');
 				<div class="colum-2" style="background-color: #fff;">
 					<div class="additional-type">
 						<div class="form-group m-0">
-						  <textarea class="form-control fix-khung" rows="1" id="comment"></textarea>
+						  <textarea class="form-control fix-khung" name="comment[<?php echo $value_data_room['id']?>][]" rows="1" id="comment"></textarea>
 						</div>
 					</div>
 				</div>			
@@ -377,12 +359,20 @@ $session_search = $this->request->session()->read('hotel.search');
 				</div>
 				<div class="colum-2" style="background-color: #fff;">
 					<div class="total-type text-center">
-							<span>281AUD</span>
+							<span><?php 
+								$price = ($value_data_room['giatienss1'] != "")?$value_data_room['giatienss1'] : 0;
+								echo $price * $tygia ;
+								echo " ".$language;
+							 ?></span>
 					</div>
 				</div>			
 			</div>
 		</div>												
 	</div>
+	<input type="hidden" name="id_room[]" value="<?php echo $value_data_room['id'] ?>">
+	<input type="hidden" name="room_price[]" value="<?php echo $price ?>">
+	<input type="hidden" name="hotel_name" value="<?php echo $data_hotel[0]['id'] ?>">
+	<input type="hidden" name="room_name[<?php echo $value_data_room['id']?>][]" value="<?=  $value_data_room['c']['nameroom']?>">
 	<div style="height: 20px">
 	</div>
 	<?php
@@ -428,7 +418,7 @@ $session_search = $this->request->session()->read('hotel.search');
 </div>
 
 
-
+</form>
 
 
 

@@ -92,6 +92,11 @@ $routes->connect('/registration/*', ['controller' => 'Users', 'action' => 'regis
 $routes->connect('/registration-thankyou/*', ['controller' => 'Users', 'action' => 'thankyou']);
 $routes->connect('/agents-bookroom/*', ['controller' => 'Users', 'action' => 'bookroom']);
 
+$routes->connect('/agents-bookroomok/*', ['controller' => 'Newhotel', 'action' => 'bookroomok']);
+$routes->connect('/agents-bookroomok_confirm/*', ['controller' => 'Newhotel', 'action' => 'bookroomokConfirm']);
+
+$routes->connect('/agents-thank/*', ['controller' => 'Newhotel', 'action' => 'thankbook']);
+
 $routes->connect('/forgotpass/*', ['controller' => 'Users', 'action' => 'fotgotpass']);
 $routes->connect('/forgotpass-check-inbox/*', ['controller' => 'Users', 'action' => 'fotgotpassinbox']);
 $routes->connect('/forgotpass-check-inbox-ok/*', ['controller' => 'Users', 'action' => 'fotgotpassinboxok']);

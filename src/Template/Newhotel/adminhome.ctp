@@ -76,7 +76,7 @@
           <!-- small box -->
           <div class="small-box bg-red">
             <div class="inner">
-              <h3>65</h3>
+              <h3><?= $array_count['count_order']?></h3>
 
               <p>Booking</p>
             </div>
@@ -128,7 +128,7 @@
                 <i class="fa fa-users"></i> Users
               </a>
               <a class="btn btn-app">
-                <span class="badge bg-teal">67</span>
+                <span class="badge bg-teal"><?= $array_count['count_order']?></span>
                 <i class="fa fa-inbox"></i> Orders
               </a>
               <a class="btn btn-app">
@@ -173,15 +173,19 @@
               </thead>
               <tbody>
                 <?php 
-                  for ($b=0; $b < 10; $b++) { 
+                
+                foreach ($data_booking as $key => $value_data_booking) {
+                  # code...
+              //  }
+             //     for ($b=0; $b < 10; $b++) { 
                
                 ?>
               <tr>
-                <td><a href="#">OR984<?= $b?></a></td>
-                <td>Hotel and Tour</td>
-                <td><span class="label label-warning">Pending</span></td>
+                <td><a href="#"><?php echo $value_data_booking['id_order'] ?></a></td>
+                <td><?php echo $value_data_booking['loai'] ?></td>
+                <td><span class="label label-warning"><?php echo $value_data_booking['status'] ?></span></td>
                 <td>
-                  <div class="sparkbar" data-color="#00a65a" data-height="20">50 $</div>
+                  <div class="sparkbar" data-color="#00a65a" data-height="20"><?php echo $value_data_booking['sumprice'] * $tygia ?> $</div>
                 </td>
               </tr>
               <?php } ?>

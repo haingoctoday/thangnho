@@ -2,7 +2,7 @@
     <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/start/jquery-ui.css" rel="Stylesheet" type="text/css" />
 <div class="wrapper-cruise">
     <div class="cruise-sreach-form">
-        <h4 class="cruise-title-head">FIJI FERRY REQUEST</h4>
+        <h4 class="cruise-title-head">CRUISE REQUEST</h4>
         <div class="input-search-tranfer pb-5 pt-4">
             <div class="container">
                <div class="row">

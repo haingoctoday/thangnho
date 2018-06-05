@@ -265,7 +265,7 @@ $total_room =  $this->request->session()->read('hotel.search.room');
                         <?php
                             if($check_book != 'no'){
                         ?>
-                         <button class="btn-block border-0 nen-maucam button-border-nut mx-auto">Proceed</button>
+                         <button class="btn-block border-0 nen-maucam button-border-nut mx-auto" id="index_view_hotel_proceed">Proceed</button>
                          <?php }else{?>
                           <button class="btn-block border-0 nen-maucam button-border-nut mx-auto" id='btn_book_disable'>Proceed</button>
                          <?php }?>
@@ -715,10 +715,10 @@ if($( this ).hasClass( "abccc" )){
         //$(document).ready(function() {
          // $('[id="chbchan"]');
            var num_check = 0;
+           var room_pick = [];
         $('[id^="chbchan"]').click(function(e) {
            $(this).toggleClass("clacls");
-         // alert("ád");
-         if(num_check < <?php echo isset($total_room)?$total_room:0 ?>){
+         //if(num_check < <?php echo isset($total_room)?$total_room:0 ?>){
 
             var title = $( this ).attr( "id-hime" );
             var check_check = $( "#check_box_room_"+title ).val();
@@ -726,25 +726,39 @@ if($( this ).hasClass( "abccc" )){
             if(check_check){
              num_check--;
               $( "#check_box_room_"+title ).val("");
+              room_pick = $.grep(room_pick, function(value) {
+                return value != title;
+              });
             }else{
              num_check++;
               $( "#check_box_room_"+title ).val(title);
+              room_pick.push(title);
             }
             $( "h3.mauxanh.p-3.m-0" ).text(num_check);
+          //  console.log(room_pick);
+          console.log(title);
+            if(num_check > <?php echo isset($total_room)?$total_room:0 ?>){
+               alert("please research !!");
+              // e.preventDefault();
+                room_pick = $.grep(room_pick, function(value) {
+                return value != title;
+              });
+            }
+  $(".idroom-a").val(JSON.stringify(room_pick));
+         //}else{
+
+         //  e.preventDefault();
+         //  alert("please research !!");
 
 
-         }else{
-
-           e.preventDefault();
-           alert("no");
 
 
-
-
-         }
+        // }
            
           //  alert(num_check);
         });
    // });
+        $("#index_view_hotel_proceed").click(function(event){ 
 
+        });
     </script>
