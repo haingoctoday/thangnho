@@ -530,7 +530,8 @@ public function bookroom()
 //     'idhotel' => '4',
 //     'idroom-a' => '["13","14","15"]'
 // ];
-           $input_room = json_decode($this->request->data['idroom-a']);
+           $input_room = json_decode($this->request->data['idroom-a'],TRUE);
+           $this->set('count_room', count($input_room));
   $this->loadModel("Hotelandphong");
      $this->loadModel("Newhotel");
         $data_room =  $this->Hotelandphong->find('all')

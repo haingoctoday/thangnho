@@ -788,20 +788,19 @@ if($( this ).hasClass( "abccc" )){
               $( "#check_box_room_"+title ).val(title);
               room_pick.push(title);
             }
-           // $( "h3.mauxanh.p-3.m-0" ).text(num_check);
-          //  console.log(room_pick);
+          
           console.log(title);
-            if(num_check > <?php echo isset($total_room)?$total_room:0 ?>){
-               alert("please research !!");
-               if(num_check = 1){
-                 $("#search_name").focus();
-               }
+          //  if(num_check > <?php echo isset($total_room)?$total_room:0 ?>){
+               // alert("please research !!");
+               // if(num_check = 1){
+               //   $("#search_name").focus();
+               // }
               
-               e.preventDefault();
-                room_pick = $.grep(room_pick, function(value) {
-                return value != title;
-              });
-            }
+             //  e.preventDefault();
+             //   room_pick = $.grep(room_pick, function(value) {
+            //    return value != title;
+             // });
+          //  }
   $(".idroom-a").val(JSON.stringify(room_pick));
          //}else{
 

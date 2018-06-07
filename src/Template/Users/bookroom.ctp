@@ -4,6 +4,28 @@
 //debug($data_room);
 //debug(($this->request->session()->read('hotel.search')));
 $session_search = $this->request->session()->read('hotel.search');
+if(empty($session_search)){
+	$today = date("m/d/Y");  
+	$tomorrow = new DateTime('tomorrow');
+	$tomorrow =  $tomorrow->format("m/d/Y");  
+	$adults_end_r = array();
+	$children_end_r = array();
+	for ($jm=0; $jm < $count_room ; $jm++) { 
+		$adults_end_r[] = '2';
+		$children_end_r[] = '0';
+	}
+	$session_search = [
+			'search_name' => $data_hotel[0]['namehotel'],
+			'search_date_to' => $today,
+			'search_date_end' => $tomorrow,
+			'search_night' => '1',
+			'room' => $count_room,
+			'adults_end' => $adults_end_r,
+			'children_end' => $children_end_r
+		];
+		$this->request->session()->write('hotel.search', $session_search);
+}
+
 	?>
 <div class="info-panel">
   <table>
