@@ -51,10 +51,10 @@ class NewhotelController extends AppController
        $count_custome = $this->Custome->find()->count();
        $count_contact = $this->Contact->find()->count();
        $count_userreview = $this->Userreview->find()->count();
-       $data_custome = $this->Custome->find('all')->limit(10);
-       $data_contact = $this->Contact->find('all')->limit(10);
-       $data_userreview = $this->Userreview->find('all')->limit(10);
-       $data_booking = $this->Booking->find('all')->limit(10);
+       $data_custome = $this->Custome->find('all',['order'=>['id'=>'DESC']])->limit(10);
+       $data_contact = $this->Contact->find('all',['order'=>['id'=>'DESC']])->limit(10);
+       $data_userreview = $this->Userreview->find('all',['order'=>['id'=>'DESC']])->limit(10);
+       $data_booking = $this->Booking->find('all',['order'=>['id'=>'DESC']])->limit(10);
        $array_count = array(
           'count_hotel' => $count_hotel,
           'count_activity' => $count_activity,
@@ -86,34 +86,43 @@ class NewhotelController extends AppController
        // $this->set(compact('newhotel'));
         $this->set('_serialize', ['newhotel']);
     }
-    
+       public function status_code($number){
+        $array_code = [
+            '1'=>'Pending',
+            '2'=>'UnPaid',
+            '3'=>'Paid',
+            //'4'=>'Paid',
+            //'5'=>'Paid',
+        ];
+        return $array_code[$number];
+    }
     public function index()
     {
         $this->check_admin();
         $this->loadModel("Hoteldiachi");
-        $diachi = $this->Hoteldiachi->find("all");
+        $diachi = $this->Hoteldiachi->find("all",['order' => ['id' => 'DESC']]);
         $diachi_view = array();
         $diachi_view['0'] =  "Select Place";
         foreach ($diachi as $key => $valuediachi) {
             $diachi_view[$valuediachi['diachi']] =  $valuediachi['diachi'];
         }
         $this->set('diachi_view', $diachi_view);
-        $newhotel = $this->Newhotel;
+        $newhotel = $this->Newhotel->find('all',['order' => ['id' => 'DESC']]);
         if ($this->request->is('post')) {
           $var_search = $this->request->data['search'];
           $var_diachi = $this->request->data['diachi'];
           if($var_search != ''){
-            $newhotel = $this->Newhotel->find()->where( 
+            $newhotel = $this->Newhotel->find('all',['order' => ['id' => 'DESC']])->where( 
               ['OR' => array(['namehotel LIKE' =>'%'.$var_search.'%'], ['diachi LIKE' =>'%'.($var_diachi == '0')? $var_diachi : $var_search.'%'])]
             );
             if($var_diachi != '0'){
-              $newhotel = $this->Newhotel->find()->where( 
+              $newhotel = $this->Newhotel->find('all',['order' => ['id' => 'DESC']])->where( 
               ['AND' => array(['namehotel LIKE' =>'%'.$var_search.'%'], ['diachi LIKE' =>'%'.($var_diachi == '0')? $var_diachi : $var_search.'%'])]
               );
             }
           }else{
             if($var_diachi != '0'){
-              $newhotel = $this->Newhotel->find()->where( 
+              $newhotel = $this->Newhotel->find('all',['order' => ['id' => 'DESC']])->where( 
                ['diachi LIKE' =>'%'.$var_diachi.'%']
               );
             }
@@ -355,7 +364,7 @@ if ($this->request->is(['patch', 'post', 'put'])) {
     if($this->request->data['id_room'] != ""){
 
         if($this->request->data['delete_room'] != ""){
-          die();
+        //  die();
             $newhotel = $this->Hotelandphong->get($this->request->data['id_room']);
             if ($this->Hotelandphong->delete($newhotel)) {
                 $this->Flash->success(__('The {0} has been deleted.', 'Room'));
@@ -707,51 +716,85 @@ $this->set(compact('newhotel'));
 
      public function bookroomok()
     {
-        // $this->check_admin();
-        // $newhotel = $this->Newhotel->get($id, [
-        //     'contain' => []
-        // ]);
-     // debug($this->request->data);
       $data_request = array();
-       if ($this->request->is('post')) {
-      foreach ($this->request->data['pre_name'] as $key => $value_data_request) {
-          foreach($value_data_request as $uukey => $uuvalue){
-          $data_user_name[$key][] =  $this->request->data['pre_name'][$key][$uukey]. ". ".$this->request->data['firstname'][$key][$uukey]. " ".  $this->request->data['lastname'][$key][$uukey];
-          }
+      if ($this->request->is('post')) {
+      
+      if($this->request->data['loai'] == 'hotel'){
+        foreach ($this->request->data['pre_name'] as $key => $value_data_request) {
+            foreach($value_data_request as $uukey => $uuvalue){
+            $data_user_name[$key][] =  $this->request->data['pre_name'][$key][$uukey]. ". ".$this->request->data['firstname'][$key][$uukey]. " ".  $this->request->data['lastname'][$key][$uukey];
+            }
+        }
+        $data_hotel =  $this->Newhotel->find()->where(['id'=>$this->request->data['hotel_name']])->toArray();
+        $session = $this->request->session();
+        $search_old = $session->read('hotel.search');
+        $data_ex_room = array();
+        $value_xacnhan = 0;
+        foreach ($this->request->data['room_name'] as $key_i => $value_data_ex_room) {
+           $data_ex_room[] = array(
+              'name_room' => $value_data_ex_room[0],
+               'room_id' => $key_i,
+               'FROM'=> $search_old['search_date_to'],
+               'TO'=> $search_old['search_date_end'],
+               'NIGHTS'=> $search_old['search_night'],
+               'HotelName'=> $data_hotel[0]['namehotel'],
+               'price'=>$this->request->data['room_price'][$value_xacnhan],
+               'loai'=>'hotel',
+               'id_activity'=>$this->request->data['hotel_name'],
+               'address'=>$data_hotel[0]['diachi']
+           );
+           $value_xacnhan++;
+        }
+         $id_order = "TWT".substr(str_shuffle(str_repeat("0123456789", 5)), 0, 5);
+        $this->set('id_order', $id_order);
+        $this->set('data_save_post', base64_encode(json_encode($this->request->data)));
+        $this->set('data_price_sum', $this->request->data['room_price']);
+        $this->set('data_user_room', $data_user_name);
+        $this->set('data_save', base64_encode(json_encode(array('user'=>$data_user_name,'data_ex_room'=>$data_ex_room))));
+        $this->set('data_ex_room', $data_ex_room);
+      }else{
+        foreach ($this->request->data['selectbasic'] as $key => $value_data_request) {
+                  $data_user_name[] =  $this->request->data['selectbasic'][$key]. ". ".$this->request->data['firtname'][$key]. " ".  $this->request->data['lastname'][$key];
+              }
+
+        $data_order = base64_decode($this->request->data['data_order']);  
+        $data_order_array = json_decode($data_order, true);
+        $this->loadModel("Newactivity");
+        $data_hotel =  $this->Newactivity->find()->where(['id'=>$data_order_array['id_activity']])->toArray();
+        $session = $this->request->session();
+        $search_old = $session->read('activity.search');
+        $data_day_s = json_decode(base64_decode($this->request->data['data_order']),TRUE);
+        $data_ex_room[0] = array(
+               'name_room' => $data_hotel[0]['name'],
+               'room_id' => $data_hotel[0]['id'],
+               'FROM'=> $data_day_s['date_pick'],
+               'TO'=> "",
+               'NIGHTS'=> "",
+               'HotelName'=> $data_hotel[0]['name'],
+               'price'=>$this->request->data['sumprice'],
+               'loai'=>$data_hotel[0]['loai'],
+               'id_activity'=>$data_order_array['id_activity'],
+               'address'=>$data_hotel[0]['diachi']
+        );
+        //debug($data_user_name);
+        $id_order = "TWT".substr(str_shuffle(str_repeat("0123456789", 5)), 0, 5);
+        $this->set('id_order', $id_order);
+         $this->set('data_save_post', base64_encode(json_encode($this->request->data)));
+        $this->set('data_price_sum', [$this->request->data['sumprice']]);
+        $this->set('data_user_room', $data_user_name);
+        $this->set('data_ex_room', $data_ex_room);
+        $this->set('data_save', base64_encode(json_encode(array('user'=>$data_user_name,'data_ex_room'=>$data_ex_room))));
+       // array('user'=>$data_user_name,'data_ex_room'=>json_decode(base64_decode($this->request->data['data_order']),TRUE));  
       }
-//debug($data_user_name);
-$data_hotel =  $this->Newhotel->find()->where(['id'=>$this->request->data['hotel_name']])->toArray();
-
- $session = $this->request->session();
-      $search_old = $session->read('hotel.search');
 
 
-$data_ex_room = array();
-$value_xacnhan = 0;
-foreach ($this->request->data['room_name'] as $key_i => $value_data_ex_room) {
- // print_r($value_data_ex_room);
-   $data_ex_room[] = array(
-      'name_room' => $value_data_ex_room[0],
-       'room_id' => $key_i,
-       'FROM'=> $search_old['search_date_to'],
-       'TO'=> $search_old['search_date_end'],
-       'NIGHTS'=> $search_old['search_night'],
-        'HotelName'=> $data_hotel[0]['namehotel'],
-       'price'=>$this->request->data['room_price'][$value_xacnhan],
-   );
-   $value_xacnhan++;
-  # code...
+
 }
-$this->set('data_price_sum', $this->request->data['room_price']);
-$this->set('data_user_room', $data_user_name);
-$this->set('data_save', base64_encode(json_encode(array('user'=>$data_user_name,'data_ex_room'=>$data_ex_room))));
-$this->set('data_ex_room', $data_ex_room);
-}
-      $this->set('view_name', 'hotel');
-  $this->viewBuilder()->layout('agentslayout');
+        $this->set('view_name', 'hotel');
+        $this->viewBuilder()->layout('agentslayout');
         $this->set('newhotel', []);
         $this->set('_serialize', ['newhotel']);
-         $this->set('title', 'Agent');
+        $this->set('title', 'Agent');
     }
 
 
@@ -762,24 +805,59 @@ $this->set('data_ex_room', $data_ex_room);
        $booking = $this->Booking->newEntity();
         if ($this->request->is('post')) {
           //debug($this->request->data);
-          $this->request->data['data_order'] = base64_decode($this->request->data['data_order']);
-            $booking = $this->Booking->patchEntity($booking, $this->request->data);
-            $booking['id_order'] = "TWT".substr(str_shuffle(str_repeat("0123456789", 5)), 0, 5);
-           // $booking['data'] =
-          //  base64_encode
-            if ($this->Booking->save($booking)) {
-                $this->Flash->success(__('The {0} has been saved.', 'Booking'));
-               // return $this->redirect(['action' => 'index']);
-                print_r("123");
-            } else {
-                print_r("12311111111");
-             //   $this->Flash->error(__('The {0} could not be saved. Please, try again.', 'Booking'));
-            }
+           $session = $this->request->session();
+          $loai_booking = $this->request->data['loai'];
+          switch ($loai_booking) {
+            case 'hotel':
+              $this->request->data['data_order'] = base64_decode($this->request->data['data_order']);
+              $booking = $this->Booking->patchEntity($booking, $this->request->data);
+              $booking['user_order'] = $session->read('Auth.User.id');
+              $this->Booking->save($booking);
+              $session->delete('hotel.search');
+              $session->write('bookingidOn', $booking->id_order);
+              break;
+            case 'activity':
+              $this->request->data['data_order'] = base64_decode($this->request->data['data_order']);
+              $booking = $this->Booking->patchEntity($booking, $this->request->data);
+              $data_post = json_decode(base64_decode($this->request->data['data_post']),TRUE);
+              $booking['reference'] =$data_post['reference'];
+              $booking['message'] =$data_post['message'];
+              $booking['user_order'] = $session->read('Auth.User.id');
+              $this->Booking->save($booking);
+              $session->delete('activity.search');
+              $session->write('bookingidOn', $booking->id_order);
+              break;
+            case 'tour':
+              $this->request->data['data_order'] = base64_decode($this->request->data['data_order']);
+              $booking = $this->Booking->patchEntity($booking, $this->request->data);
+              $data_post = json_decode(base64_decode($this->request->data['data_post']),TRUE);
+              $booking['reference'] =$data_post['reference'];
+              $booking['message'] =$data_post['message'];
+              $booking['user_order'] = $session->read('Auth.User.id');
+              $this->Booking->save($booking);
+              $session->delete('activity.search');
+              $session->write('bookingidOn', $booking->id_order);
 
- $session = $this->request->session();
-            $session->delete('hotel.search');
-            $session->write('bookingidOn', $booking->id_order);
-            return $this->redirect(['action' => 'thankbook']); 
+              break;
+            case 'shore':
+              $this->request->data['data_order'] = base64_decode($this->request->data['data_order']);
+              $booking = $this->Booking->patchEntity($booking, $this->request->data);
+              $data_post = json_decode(base64_decode($this->request->data['data_post']),TRUE);
+              $booking['reference'] =$data_post['reference'];
+              $booking['message'] =$data_post['message'];
+              $booking['user_order'] = $session->read('Auth.User.id');
+              $this->Booking->save($booking);
+              $session->delete('activity.search');
+              $session->write('bookingidOn', $booking->id_order);
+
+              break;  
+            default:
+              # code...
+              break;
+          }
+           
+            
+           return $this->redirect(['action' => 'thankbook']); 
         }
 
 //die();

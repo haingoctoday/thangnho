@@ -60,6 +60,7 @@
                    <?= $this->Html->link(__('Itinerary'), ['action' => 'addItinerary', $newactivity->id], ['class'=>'btn btn-info btn-xs']) ?>
                     <?= $this->Html->link(__('Inclusions'), ['action' => 'inclusions', $newactivity->id], ['class'=>'btn btn-info btn-xs']) ?>
                       <?= $this->Html->link(__('Exclusions'), ['action' => 'exclusions', $newactivity->id], ['class'=>'btn btn-info btn-xs']) ?>
+                       <?= $this->Html->link(__('Add Reviews'), ['action' => 'addReviews', $newactivity->id], ['class'=>'btn btn-info btn-xs']) ?>
                         <?php // $this->Html->link(__('Add list day open'), ['action' => 'view', $newactivity->id], ['class'=>'btn btn-info btn-xs']) ?>
                   <?php // $this->Html->link(__('View'), ['action' => 'view', $newactivity->id], ['class'=>'btn btn-info btn-xs']) ?>
                   <?= $this->Html->link(__('Edit'), ['action' => 'edit', $newactivity->id], ['class'=>'btn btn-warning btn-xs']) ?>

@@ -2,108 +2,8 @@
  <?php echo $this->Html->css('bootstrap-slider'); ?>
 
       <!-- div banner -->
-      <div class="search-accom">
-      	<div class="container">
-      		<div class="form-group-search-tour" style="padding: 20px 10px 20px 10px;">
-      			<div class="input_search_tour mb-2">
-      				<div class="col-md-12 col-xs-12">
-      					<div class="input-group">
-      						<input type="button" class="button_search-twt11" data-toggle="collapse" data-target="#pick-input-tour-input">
-      						<input type="text" class="form-control" value="" placeholder="Search by destination or activity..." id="texxt-search" />
-      						<input type="button" class="button_search-twt1" value="SEARCH">
-      					</div>
-      					<div id="pick-input-tour-input" class="collapse" style="position: absolute;z-index: 99;width: 95%;">
-      						<div class="panel-body">
-
-      							<div class="input-group control-group style-drop-type" style="width: 168px;">
-      								<div class="item-drop-tour">
-
-
-      									<div class="item-tour-des">All Destinations</div>
-      									<div class="item-tour-des">Borneo/Malaysia Tour</div>
-      									<div class="item-tour-des">Bhutan Tours</div>
-      									<div class="item-tour-des">Cambodia Tours</div>
-      									<div class="item-tour-des">China/Hongkong Tours</div>
-      									<div class="item-tour-des">Japan Tours</div>
-      									<div class="item-tour-des">South Korea Tours</div>
-      									<div class="item-tour-des">Laos Tours</div>
-      									<div class="item-tour-des">Mongolia Tours</div>
-      									<div class="item-tour-des">Myanmar Tours</div>
-      									<div class="item-tour-des">Sri Lanka Tours</div>
-      									<div class="item-tour-des">Taiwan Tours</div>
-      									<div class="item-tour-des">Thailand Tours</div>
-      									<div class="item-tour-des">Vietnam Tours</div>
-      									<div class="item-tour-des">Multi-country tours</div>
-      									<div class="item-tour-des">Asia River Cruise</div>
-      									<div class="item-tour-des">Mekong River Cruise</div>     
-      									<div class="item-tour-des">Halong Bay Cruise</div>
-      								</div>
-      							</div>
-      						</div>
-      					</div>
-
-      				</div>
-      			</div>
-      			<div class="container">
-
-
-
-
-
-      				<div class="container">
-      					<div class="row">
-
-      						<div class="col-md-2 offset-md-3 p-0"><button class="btn border-0 button-tour ditme" id="btn-tour-type"><div id="text-type">Tour Types</div> <img src="img/arrow-down.png" style="margin-top: 8px;float: right;" ></button>
-
-      					</div>
-      					<div id="pick-input-tourtype" class="col-md-2 p-0">
-      						<div class="panel-body">
-
-      							<div class="input-group control-group style-drop-type style-drop-type">
-      								<div class="item-drop-tour">
-      									<div class="item-tour-type">All types</div>
-      									<div class="item-tour-type">Escorted Tours</div>
-      									<div class="item-tour-type">Group Tours</div>
-      									<div class="item-tour-type">Independent Tours</div>
-      									<div class="item-tour-type">Family Tours</div>
-      									<div class="item-tour-type">Private Tours</div>
-      									<div class="item-tour-type">School Tours</div>
-      									<div class="item-tour-type">Specialty Tours</div>
-      									<div class="item-tour-type">Health & Well-being Tours</div>
-      									<div class="item-tour-type">Wildlife Tours</div>
-      								</div>
-      							</div>
-      						</div>
-      					</div>
-                <div class="col-md-2 offset-md-2 p-0" id="div-show-1"><button class="btn border-0 button-tour ditmea" id="btn-tour-type1"><div id="text-style">Tour Styles</div><img src="img/arrow-down.png" style="margin-top: 8px;float: right;" ></button>
-              </div>
-              <div id="pick-input-tourtype1" class="col-md-2 p-0">
-               <div class="panel-body">
-                <div class="input-group control-group style-drop-type">
-                 <div class="item-drop-tour">
-                  <div class="item-tour-type1">All types</div>
-                  <div class="item-tour-type1">Adventure</div>
-                  <div class="item-tour-type1">Classic</div>
-                  <div class="item-tour-type1">Cruising</div>
-                  <div class="item-tour-type1">Culture</div>
-                  <div class="item-tour-type1">Cycling</div>
-                  <div class="item-tour-type1">Culinary</div>
-                  <div class="item-tour-type1">Discovery</div>
-                  <div class="item-tour-type1">Free & Easy</div>
-                  <div class="item-tour-type1">Honeymoon</div>
-                  <div class="item-tour-type1">Luxury</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-  </div>
-</div>
-</div>
+   
+<?php echo $this->element('searchactivity'); ?>
 <div class="filter-name-tour">
 	<div class="container">
 		<div class="row">
@@ -119,7 +19,7 @@
 			<div class="col-md-8 border-trs-md8">
 				<div class="row">
 					<div class="form-input-acti">
-           <input class="input-filter-acti form-control21" style="height: 71px;" type="text" name="" placeholder="Filter by activity name..." >
+           <input class="input-filter-acti form-control21 input_filter" style="height: 71px;" type="text" name="" placeholder="Filter by activity name..." >
            <!-- <i class="fa fa-pencil" aria-hidden="true"></i> -->
          </div>
        </div>
@@ -162,8 +62,10 @@
 <div class="listing-activities" id="listing-activities-twt">
  <div class="container">
   <div class="row">
-   <?php for ($i=0; $i < 6; $i++) { 
+   <?php //for ($i=0; $i < 6; $i++) { 
     				# code...
+    foreach ($list_hotels as $key => $valuelist_hotels) {
+      
      ?>
      <div class="col-md-4 pr-0">
       <div class="card-listing-activities">
@@ -175,11 +77,18 @@
       </div>
       <div class="content-list" style="">
         <div class="border-bottom-card-list">
-          <h4 class="m-0 title-head-trs"><a href="agents-tour-book">8 Affordable must-do destinations around the world...</a></h4>
-          <span class="style-sp-list">Hanoi</span>
-          <p class="style-list-acti">The twenties are the best times for traveling. We are young and broke at this ripe age. Most importantly, we are more than willing to spend a night in a cheap hotel, ...</p>
+          <h4 class="m-0 title-head-trs"><a href="<?php 
+              $hotel_title = $valuelist_hotels->name;
+              $hotel_id = $valuelist_hotels->id;
+              echo $this->Url->build([
+               'controller' => 'Agents',
+               'action' => 'toursbooknow',
+               '?' => array('activity' => $hotel_title,'stt'=>$hotel_id),
+               ]); ?>"><?=  $valuelist_hotels['name']?></a></h4>
+          <span class="style-sp-list"><?=  $valuelist_hotels['diachi']?></span>
+          <p class="style-list-acti"><?=  substr(strip_tags($valuelist_hotels['mota']),0,100)."..."?></p>
           <div class="time-listing-activities">
-           <span class="style-day-list">2 days</span>
+           <span class="style-day-list"><?=  $valuelist_hotels['songay']?></span>
            <i class="fa fa-clock-o fa-fw" style="color: #999;" aria-hidden="true"></i>
          </div>
        </div>
@@ -189,15 +98,16 @@
      <div class="end-card-list"> 
       <div class="row">
         <div class="col-md-6 rating-heart-activities text-left">
+          <?php
+            for ($star_i=0; $star_i < $valuelist_hotels['danhgia']; $star_i++) { 
+          ?>
           <i class="fa fa-heart" aria-hidden="true"></i>
-          <i class="fa fa-heart" aria-hidden="true"></i>
-          <i class="fa fa-heart" aria-hidden="true"></i>
-          <i class="fa fa-heart" aria-hidden="true"></i>
-          <i class="fa fa-heart" aria-hidden="true"></i>
+         <?php } ?>
         </div>
         <div class="col-md-6 price-listing-activities text-right">
-          <span class="font-size-22 chudam">246</span>
-          <span class="font-size-22">AUD</span>
+          <span class="font-size-22 chudam"><?php $price = ($valuelist_hotels['giatien'] != "")?$valuelist_hotels['giatien'] : 0;
+echo $price * $tygia ;  ?></span>
+          <span class="font-size-22"><?php echo $language ?></span>
         </div>
       </div>
     </div>
@@ -374,3 +284,18 @@ select#jjkk:hover{color:#4bc7dc;}
 .dropdowntbn:after{font-family: FontAwesome;content: "\F107";color: #4bc7dc;position: absolute;right: 6px;top: 2px;pointer-events: none;font-size: 20px;font-weight: 700;}
 .form-input-acti:after{font-family: FontAwesome;content: "\f040";position: absolute;right: 15px;top: 20px;pointer-events: none;font-size: 22px;color: #fff;}
 </style>
+<script type="text/javascript">
+  $('.input_filter').keyup(function(){
+    var valThis = $(this).val().toLowerCase();
+    console.log(valThis);
+    if(valThis == ""){
+        $('.listing-activities > div > div > div').show();
+    } else {
+        $('.title-head-trs a').each(function(){
+           var text = $(this).text().toLowerCase();
+            console.log(this);
+           (text.indexOf(valThis) >= 0) ? $(this).parent().parent().parent().parent().parent().show() : $(this).parent().parent().parent().parent().parent().hide();
+        });
+   };
+});
+</script>

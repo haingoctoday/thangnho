@@ -260,6 +260,7 @@ $total_room =  $this->request->session()->read('hotel.search.room');
                  <form action="/agents-bookroom" method="post" id="target">
                         <input type="hidden" name="idhotel" class="idhotel" value="<?= $idhotel ?>">
                         <input type="hidden" name="idroom-a" class="idroom-a" value="">
+                        <input type="hidden" name="loai" class="" value="hotel">
                         <!-- <input type="hidden" name="idroom-a" value=""> -->
 
                         <?php
@@ -490,6 +491,71 @@ input::-webkit-input-placeholder {
     </style>
 
      <script>
+       $("#search_name" ).focus(function() {
+  $("body").css('background',"rgba(0, 0, 0, 0.45)");
+        //$(".form-group-search").css('background',"#fff");
+        $(".wraper-descript").css('opacity',".3");
+        $("nav#mainNav").css('opacity',".3");
+        $(".ihihihih").css('opacity',".3");
+      });
+ $( "#search_name" ).blur(function() {
+  $("body").css('background',"#efefef");
+  $(".wraper-descript").css('opacity',"1");
+  $("nav#mainNav").css('opacity',"1");
+  $(".ihihihih").css('opacity',"1");
+});
+ $("#search_date_to" ).focus(function() {
+  $("body").css('background',"rgba(0, 0, 0, 0.45)");
+        //$(".form-group-search").css('background',"#fff");
+        $(".wraper-descript").css('opacity',".3");
+        $("nav#mainNav").css('opacity',".3");
+        $(".ihihihih").css('opacity',".3");
+      });
+ $( "#search_date_to" ).blur(function() {
+  $("body").css('background',"#efefef");
+  $(".wraper-descript").css('opacity',"1");
+  $("nav#mainNav").css('opacity',"1");
+  $(".ihihihih").css('opacity',"1");
+});
+ $("#search_date_end" ).focus(function() {
+  $("body").css('background',"rgba(0, 0, 0, 0.45)");
+        //$(".form-group-search").css('background',"#fff");
+        $(".wraper-descript").css('opacity',".3");
+        $("nav#mainNav").css('opacity',".3");
+        $(".ihihihih").css('opacity',".3");
+      });
+ $( "#search_date_end" ).blur(function() {
+  $("body").css('background',"#efefef");
+  $(".wraper-descript").css('opacity',"1");
+  $("nav#mainNav").css('opacity',"1");
+  $(".ihihihih").css('opacity',"1");
+});
+ $(".input_room" ).focus(function() {
+  $("body").css('background',"rgba(0, 0, 0, 0.45)");
+        //$(".form-group-search").css('background',"#fff");
+        $(".wraper-descript").css('opacity',".3");
+        $("nav#mainNav").css('opacity',".3");
+        $(".ihihihih").css('opacity',".3");
+      });
+ $( ".input_room" ).blur(function() {
+  $("body").css('background',"#efefef");
+  $(".wraper-descript").css('opacity',"1");
+  $("nav#mainNav").css('opacity',"1");
+  $(".ihihihih").css('opacity',"1");
+});
+  $("button.btn.add-more.btn-am" ).focus(function() {
+  $("body").css('background',"rgba(0, 0, 0, 0.45)");
+        //$(".form-group-search").css('background',"#fff");
+        $(".wraper-descript").css('opacity',".3");
+        $("nav#mainNav").css('opacity',".3");
+        $(".ihihihih").css('opacity',".3");
+      });
+ $( "button.btn.add-more.btn-am" ).blur(function() {
+  $("body").css('background',"#efefef");
+  $(".wraper-descript").css('opacity',"1");
+  $("nav#mainNav").css('opacity',"1");
+  $(".ihihihih").css('opacity',"1");
+});
         $(document).ready(function() {
         $("div.bhoechie-tab-menu>div.list-group>a").click(function(e) {
             e.preventDefault();
@@ -526,49 +592,37 @@ count++;
       });
 
     });
-  var nowTemp = new Date();
-  var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
-
-  var checkin = $('#search_date_to').datepicker({
-   format: 'dd M yyyy',
-   beforeShowDay: function(date) {
-    return date.valueOf() >= now.valueOf();
-  },
-  autoclose: true
-
-}).on('changeDate', function(ev) {
-  if (ev.date.valueOf() > checkout.datepicker("getDate").valueOf() || !checkout.datepicker("getDate").valueOf()) {
-
-    var newDate = new Date(ev.date);
-    newDate.setDate(newDate.getDate() + 1);
-    checkout.datepicker("update", newDate);
-
-  }
-  $('#search_date_end')[0].focus();
-});
-
-
-var checkout = $('#search_date_end').datepicker({
-  format: 'dd M yyyy',
-  beforeShowDay: function(date) {
-    if (!checkin.datepicker("getDate").valueOf()) {
-      return date.valueOf() >= new Date().valueOf();
-    } else {
-      return date.valueOf() > checkin.datepicker("getDate").valueOf();
-    }
-
-
-  },
-  autoclose: true
-
-}).on('changeDate', function(ev) {
-
-  var start = $("#search_date_to").datepicker("getDate");
-  var end = $("#search_date_end").datepicker("getDate");
-  var days = (end - start) / (1000 * 60 * 60 * 24);
-  console.log(days);
-  $("#search_night").val(days);
-});
+var nowTemp = new Date();
+var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0);
+ $(function () {
+            $("#search_date_to").datepicker({
+                numberOfMonths: 2,
+                format: 'dd M yyyy',
+             minDate: new Date(), 
+                onSelect: function (selected) {
+                    var dt = new Date(selected);
+                    console.log(dt);
+                    dt.setDate(dt.getDate() + 1);
+                    $("#search_date_end").datepicker("option", "minDate", dt);
+                   // $('#search_date_end')[0].focus();
+                }
+            });
+            $("#search_date_end").datepicker({
+                numberOfMonths: 2,
+               // format: 'dd M yyyy',
+                onSelect: function (selected) {
+                    var dt = new Date(selected);
+                    dt.setDate(dt.getDate() - 1);
+                    console.log(dt);
+                    $("#search_date_to").datepicker("option", "maxDate", dt);
+                      var start = $("#search_date_to").datepicker("getDate");
+                      var end = $("#search_date_end").datepicker("getDate");
+                      var days = (end - start) / (1000 * 60 * 60 * 24);
+                      console.log(days);
+                      $("#search_night").val(days);
+                }
+            });
+        });
 $.typeahead({
     input: '#search_name',
     minLength: 1,
@@ -646,7 +700,7 @@ $('#search_hotel').submit(function(event) {
     function(data, status){
       console.log(data['status']);
         $("body").css('background',"rgba(0, 0, 0, 0.45)");
-        $(".wraper-display-twt").css('opacity',".3");
+        $(".wraper-descript").css('opacity',".3");
         $("nav#mainNav").css('opacity',".3");
         $(".ihihihih").css('opacity',".3");
         $(".search-accom").css('opacity',".3");
@@ -734,12 +788,16 @@ if($( this ).hasClass( "abccc" )){
               $( "#check_box_room_"+title ).val(title);
               room_pick.push(title);
             }
-            $( "h3.mauxanh.p-3.m-0" ).text(num_check);
+           // $( "h3.mauxanh.p-3.m-0" ).text(num_check);
           //  console.log(room_pick);
           console.log(title);
             if(num_check > <?php echo isset($total_room)?$total_room:0 ?>){
                alert("please research !!");
-              // e.preventDefault();
+               if(num_check = 1){
+                 $("#search_name").focus();
+               }
+              
+               e.preventDefault();
                 room_pick = $.grep(room_pick, function(value) {
                 return value != title;
               });

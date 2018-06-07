@@ -496,9 +496,17 @@ class UsersController extends AppController
     public function mybooking()
     {
          $this->viewBuilder()->layout('agentslayout');
-     
+         $u = $_SESSION['Auth'];
+     $id_user = $u['User']['id'];
 
-     
+        
+
+         $this->loadModel("Booking");
+          $booking_data =  $this->Booking->find()->where(['user_order'=>$id_user])->toArray();
+
+//debug($booking_data);
+
+ $this->set('booking_data',$booking_data);
         $users = array();
         $this->set(compact('users'));
 
@@ -517,27 +525,14 @@ public function bookroom()
 
 //
  if ($this->request->is(['patch', 'post', 'put'])) {
-            // // $this->request->data
-            //  debug( $this->request->data);
-            //  die();
-debug($this->request->data);
+        
 // $this->request->data = [
 //     'idhotel' => '4',
 //     'idroom-a' => '["13","14","15"]'
 // ];
            $input_room = json_decode($this->request->data['idroom-a']);
-        
-
   $this->loadModel("Hotelandphong");
      $this->loadModel("Newhotel");
-
-
-// $fields = $query->aliasFields(
-//     $this->Annonces->schema()->columns(),
-//     $this->Annonces->alias()
-// );
-
-     
         $data_room =  $this->Hotelandphong->find('all')
         //->select(['*','c.nameroom'])
 ->select(['c.nameroom'])
@@ -549,7 +544,6 @@ debug($this->request->data);
             'type' => 'LEFT',
             'conditions' => 'c.id = Hotelandphong.loaiphong',
         ]
-     
     ])->toArray();
         $data_hotel =  $this->Newhotel->find()->where(['id'=>$this->request->data['idhotel']])->toArray();
 //debug($data_room);

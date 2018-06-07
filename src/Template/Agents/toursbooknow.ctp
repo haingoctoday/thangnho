@@ -104,7 +104,7 @@
    </div>
  </div>
 </div> -->
-<?php debug($newactivity) ?>
+<?php //debug($newactivity) ?>
 <div class="wraper-display-twt" id="wraper-display-twt3">
   <div class="container">
     <div class="row">
@@ -127,7 +127,7 @@
                 </td>
                 <td>
                   <?php // $newactivity->sokhach?>
-                 <select id="select-child-num">
+                 <select id="select-adult-num">
                   <?php 
                   for ($i=1; $i <= $newactivity->sokhach; $i++) { 
                     ?>
@@ -146,13 +146,13 @@
                <?php 
                   for ($j=1; $j <= $newactivity->treem; $j++) { 
                     ?>
-                     <option value="<?= $i?>"><?= $j?></option>
+                     <option value="<?= $j?>"><?= $j?></option>
                     <?php
                    } ?>
               </select>
             </td>
           </tr>
-          <tr style="height:40px">
+        <!--   <tr style="height:40px">
             <td >Infant (Under 2)
             </td>
             <td>
@@ -162,7 +162,7 @@
                 <option>3</option>
               </select>
             </td>
-          </tr>
+          </tr> -->
         </table>
       </div>
 
@@ -195,7 +195,17 @@
           ?> <?php echo $language?></span></div>
         </div>
         <div class="col-md-4" style="margin-left: -5px;margin-top: 10px;">
-          <button class="nen-maucam button-check-price-book">PROCEED</button>
+          <form action="bookingok" method="post">
+            <input type="hidden" name="date_pick" id="date_pick"  value="">
+              <input type="hidden" name="price" id="price" value="<?php echo $newactivity->giatien ?>">
+               <input type="hidden" name="tygia" id="tygia" value="<?php echo $tygia ?>">
+              <input type="hidden" name="adult" id="adult" value="">
+              <input type="hidden" name="child" id="child" value="">
+             
+              <input type="hidden" name="id_activity" id="id_activity" value="<?php echo $newactivity->id ?>">
+             <button class="nen-maucam button-check-price-book">PROCEED</button>
+          </form>
+         
         </div>
       </div>
     </div>
@@ -422,12 +432,20 @@
       </div> 
       <div role="tabpanel" class="tab-pane in" id="Customer">
         <div class="custome-tour-div-book">
-          <?php for ($m  =0; $m   < 10; $m ++) { 
-                        # code...
+          <?php //for ($m  =0; $m   < 10; $m ++) { 
+              foreach ($Userreview_list as $key_review => $value_review) {
+              
             ?>
             <div class="custome-tour-warp-comment" >
-              <a class="custome-tour-book">Lorem Ipsum</a> <img src="img/starab.png" style="" >
-              <div class="font-size-14">Situated on its own private stretch of beach, this resort boasts an immaculate outdoor pool,  ever si 1s,Situated on its own private stretch of beach, this resort boasts an immaculate outdoor pool,  ever si 1sSituated on its own private stretch of beach, this resort boasts an immaculate outdoor pool,  ever si 1s... <span style="color: #36c5b0;font-weight: bold">Read more</span></div>
+              <a class="custome-tour-book"><?= $value_review['name']?></a> 
+              <?php //foreach ($value_review['rating'] as $key_rating => $value_rating) { 
+                for ($rating=0; $rating < $value_review['rating']; $rating++) { 
+              
+               
+                ?>
+              <img src="img/star1.png" style="" >
+              <?php } ?>
+              <div class="font-size-14"><?= $value_review['review']?><span style="color: #36c5b0;font-weight: bold">Read more</span></div>
             </div>
             <?php }?>
           </div>
@@ -517,7 +535,7 @@ div#text-type,div#text-style {width: 100px;white-space: nowrap;overflow: hidden;
 .menu-info-tour{background-color: #fff;width: 202px;box-shadow: inset 0px -10px 5px -11px #e0e0e0;border: 1px solid #e0e0e0;height: 60px;letter-spacing: -1px;padding-left: 10px;}
 .content-info-tour{ /*margin-left: 26px;*/ clear: both;}
 #select-child-num{width: 60px;height: 37px;border: 2px solid #c3c1c1;}
-
+#select-adult-num{width: 60px;height: 37px;border: 2px solid #c3c1c1;}
 @media screen and (min-width: 769px) {
   #nav-tabs-wrapper {
     display: block!important;
@@ -627,11 +645,20 @@ tr.chil-ev-ac:nth-child(even) {background-color: #fee6d0;}
   $( function() {
     $( "#datepicker" ).datepicker({
       minDate: 0,  showOtherMonths: true,
-      selectOtherMonths: true
+      selectOtherMonths: true,
+       onSelect: function (date) {
+       // alert(date);
+        $("#date_pick").val(date);
+    }
     });
   } );
 
-
+$( "#select-adult-num" ).change(function() {
+  $("#adult").val($(this).val());
+});
+$( "#select-child-num" ).change(function() {
+   $("#child").val($(this).val());
+});
 $('#nav-tabs-wrapper a[data-toggle="tab"]').on('click', function(e) {
 
 
@@ -671,12 +698,21 @@ $(".info-tour-left-detail").toggle();
  });
 
   $('#btn_check_book').on('click', function(e) {
-
+//var nowTemp = new Date();
+//var now = new Date(nowTemp.getFullYear(), nowTemp.getMonth(), nowTemp.getDate(), 0, 0, 0, 0).format("MM/dd/yyyy");
     e.preventDefault();
+  var date_check = $( "#date_pick" ).val();
+ // console.log(date_check);
+    if(date_check == ''){
+     $( "#date_pick" ).datepicker().datepicker("setDate", new Date());
+    }
+    //console.log(now);
+    //$("#date_pick").val(date);
     $(this).text('EDIT BOOKING');
     $(this).css('background-color', '#2ca7e0');
     $(".tour-ticket-price_box").css('display','block');
     $(".fix-h5-hd").remove();
     $(".name_hien_activity").remove();
+    
  });
   </script>

@@ -38,6 +38,10 @@
           <table class="table table-hover">
             <tr>
               <th><?php // $this->Paginator->sort('id', ['label' => 'ID']) ?></th>
+              
+               <th><?= $this->Paginator->sort('category',['label'=>'Category ']) ?></th>
+               <th><?= $this->Paginator->sort('destinations',['label'=>'Destinations ']) ?></th>
+               
               <th><?= $this->Paginator->sort('name',['label'=>'Name Activities ']) ?></th>
                <th><?= $this->Paginator->sort('hinhanh',['label'=>'Picture']) ?></th>
               <th><?= $this->Paginator->sort('diachi',['label'=>'Address']) ?></th>
@@ -49,6 +53,8 @@
             <?php foreach ($newactivity as $newactivity): ?>
               <tr>
                 <td  <?= ($newactivity->hot == '1')?'style="background: #00a65a"':'' ?>><?php // $this->Number->format($newhotel->id) ?></td>
+                 <td><?= h($newactivity->category) ?></td>
+                  <td><?= h($newactivity->destinations) ?></td>
                 <td><?= h($newactivity->name) ?></td>
                  <td><?php echo $this->Html->image('/upload/activity/'.$newactivity->hinhanh, ['alt' => 'hinhanh','class'=>'image_hotel_admin']);?></td>
               
@@ -60,7 +66,7 @@
                     <?= $this->Html->link(__('Itinerary'), ['action' => 'addItinerary', $newactivity->id], ['class'=>'btn btn-info btn-xs']) ?>
                     <?= $this->Html->link(__('Inclusions'), ['action' => 'inclusions', $newactivity->id], ['class'=>'btn btn-info btn-xs']) ?>
                       <?= $this->Html->link(__('Exclusions'), ['action' => 'exclusions', $newactivity->id], ['class'=>'btn btn-info btn-xs']) ?>
-              
+               <?= $this->Html->link(__('Add Reviews'), ['action' => 'addReviews', $newactivity->id], ['class'=>'btn btn-info btn-xs']) ?>
                   <?= $this->Html->link(__('Edit'), ['action' => 'edit', $newactivity->id], ['class'=>'btn btn-warning btn-xs']) ?>
                   <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $newactivity->id], ['confirm' => __('Confirm to delete this entry?'), 'class'=>'btn btn-danger btn-xs']) ?>
                 </td>

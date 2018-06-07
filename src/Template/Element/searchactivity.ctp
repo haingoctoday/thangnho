@@ -1,11 +1,13 @@
-      <div class="search-accom">
+<?php 
+$session_search = $this->request->session()->read('activity.search');
+ ?>      <div class="search-accom">
         <div class="container">
           <div class="form-group-search-tour" style="padding: 20px 10px 20px 10px;">
             <div class="input_search_tour mb-2">
               <div class="col-md-12 col-xs-12">
                         <div class="input-group">
             <input type="button" class="button_search-twt11" data-toggle="collapse" data-target="#pick-input-tour-input" id="text-search-des">
-            <input type="text" class="form-control" value="" placeholder="Search by destination or activity..." id="texxt-search" />
+            <input type="text" class="form-control" value="<?php echo $session_search['textSearch'] ?>" placeholder="Search by destination or activity..." id="texxt-search" />
             <input type="button" class="button_search-twt1" value="SEARCH">
         </div>
             <div id="pick-input-tour-input" class="collapse" style="position: absolute;z-index: 99;width: 95%;">

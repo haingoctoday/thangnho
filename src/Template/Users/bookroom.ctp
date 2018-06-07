@@ -372,6 +372,7 @@ $session_search = $this->request->session()->read('hotel.search');
 	<input type="hidden" name="id_room[]" value="<?php echo $value_data_room['id'] ?>">
 	<input type="hidden" name="room_price[]" value="<?php echo $price ?>">
 	<input type="hidden" name="hotel_name" value="<?php echo $data_hotel[0]['id'] ?>">
+	<input type="hidden" name="loai" value="hotel">
 	<input type="hidden" name="room_name[<?php echo $value_data_room['id']?>][]" value="<?=  $value_data_room['c']['nameroom']?>">
 	<div style="height: 20px">
 	</div>

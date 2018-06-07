@@ -5,6 +5,17 @@
     font-weight: bold;
   }
 </style>
+<?php 
+
+ $array_code = [
+            '1'=>'Pending',
+            '2'=>'UnPaid',
+            '3'=>'Paid',
+            //'4'=>'Paid',
+            //'5'=>'Paid',
+        ];
+
+         ?>
 <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
@@ -181,9 +192,9 @@
                
                 ?>
               <tr>
-                <td><a href="#"><?php echo $value_data_booking['id_order'] ?></a></td>
+                <td><a href="agents-view-booking/<?php echo $value_data_booking['id_order'] ?>" target="_blank"><?php echo $value_data_booking['id_order'] ?></a></td>
                 <td><?php echo $value_data_booking['loai'] ?></td>
-                <td><span class="label label-warning"><?php echo $value_data_booking['status'] ?></span></td>
+                <td><span class="label label-warning"><?php echo $array_code[$value_data_booking['status']] ?></span></td>
                 <td>
                   <div class="sparkbar" data-color="#00a65a" data-height="20"><?php echo $value_data_booking['sumprice'] * $tygia ?> $</div>
                 </td>

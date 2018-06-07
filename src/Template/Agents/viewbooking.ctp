@@ -116,7 +116,7 @@
 										</h3>
 										<span class="place-region"><?= $valuedata_ex_room['address']?></span>
 										<p class="m-0" style="color: #38a7c2;">Cancellation Policy</p>
-										<p class="details-room-text">Deluxe Room, Breakfast</p>
+										<p class="details-room-text"> </p>
 										<p class="details-promotion-text"></p>
 										<p class="details-pax-text"><?php echo implode(" , ",$data_user_ofroom); ?> </p>
 									</td>
@@ -231,34 +231,34 @@
 
 
 					</div>
-                    <form action="/agents-bookroomok_confirm" method="post" id="target">
+                    <!-- <form action="/agents-bookroomok_confirm" method="post" id="target"> -->
 										<div class="submit-bk">
 						<div class="form-button-property" style="padding-bottom: 19px;">
 						    <div class="w-100 mx-auto">
 						    	<div class="row">
                                     
-                                    <input type="hidden" name="data_post" value="<?php echo $data_save_post ?>">
+                                  
                                 
-                                        <input type="hidden" name="data_order" value="<?php echo $data_save ?>">
+                                      
                                         <input type="hidden" name="id_order" value="<?php echo $id_order ?>">
                                          <input type="hidden" name="status" value="1">
                                      <input type="hidden" name="loai" value="<?php echo $valuedata_ex_room['loai'] ?>">
                                         <input type="hidden" name="sumprice" value="<?php echo $total_array ?>">
                                         <input type="hidden" name="tygiacurrent" value="<?php echo $tygia ?>">
 							        <div class="border-nut-bookok mx-auto">
-                                         <input type="checkbox" value="" id="terms_check" required>
+                                        <!--  <input type="checkbox" value="" id="terms_check" required>
                        
 							        	<label for="terms_check" class="">
 							        		<strong>I understand and accept the Booking Terms and Conditions</strong>
-							        	</label>
-							            <button  class="btn-block border-0 nen-banned button-border-nut-prook mx-auto" id="buton_submit" style="float: right;margin: 0;">Confirm Quotes</button>
+							        	</label> -->
+							            <button  class="btn-block border-0 nen-banned button-border-nut-prook mx-auto" id="buton_submit" style="float: right;margin: 0;">Booking Complete</button>
 							        </div>    
                                     
 						    	</div>
 						    </div>
 						</div>
 					</div>
-                    </form>     
+                    <!-- </form>      -->
 					</div>
 				</div>
 			</div>
@@ -280,7 +280,7 @@ body .form-button-property label[for=terms_check]{
     font-size: 18px;
     font-weight: 400;
     border-radius: 5px;
-    width: 160px;
+    /*width: 160px;*/
     height: 45px;
     color: #fff;
     line-height: 40px;

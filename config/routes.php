@@ -62,6 +62,8 @@ Router::scope('/', function (RouteBuilder $routes) {
   $routes->connect('/accommodation-hotel-result/*', ['controller' => 'Agents', 'action' => 'hotel_search_result']);
  $routes->connect('/api_search_hotel/*', ['controller' => 'Agents', 'action' => 'api_search_hotel']);
   $routes->connect('/test2.php/*', ['controller' => 'Newhotel', 'action' => 'Test2']);
+ $routes->connect('/api_search_activity/*', ['controller' => 'Agents', 'action' => 'api_search_activity']);
+
 
  $routes->connect('/jquerytypeahead/beer_v1.json/*', ['controller' => 'Agents', 'action' => 'testsearch']);
   $routes->connect('/agents-activities/*', ['controller' => 'Agents', 'action' => 'activities']);
@@ -73,6 +75,7 @@ Router::scope('/', function (RouteBuilder $routes) {
   $routes->connect('/agents-shore/*', ['controller' => 'Agents', 'action' => 'shore']);
   $routes->connect('/agents-shore-book/*', ['controller' => 'Agents', 'action' => 'shorebooknow']);
   $routes->connect('/agents-shore-result/*', ['controller' => 'Agents', 'action' => 'shoreresult']);
+$routes->connect('/agents-view-booking/*', ['controller' => 'Agents', 'action' => 'viewbooking']);
 
 $routes->connect('/agents/*', ['controller' => 'Agents', 'action' => 'index']);
 $routes->connect('/agents-transfer/*', ['controller' => 'Agents', 'action' => 'transfer']);

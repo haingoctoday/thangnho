@@ -182,6 +182,9 @@ table td {
 dd.pax-names {
     font-weight: 700;
 }
+#mybooking_link:hover{
+    text-decoration: none;
+}
 </style>
 
 
@@ -402,6 +405,13 @@ dd.pax-names {
 <div class="header-title" style="background-color: #fff;margin-top: 4px;margin-bottom: 6px;">
         <h4 style="font-weight: bold;padding-left: 22px;padding-top: 15px;padding-bottom: 10px;margin: 0px;">Bookings</h4>       
 </div>
+<?php 
+    foreach ($booking_data as $key => $valuebooking_data) {
+     //   debug($valuebooking_data);
+    $user_order_view = json_decode($valuebooking_data['data_order'],TRUE);
+ //debug($user_order_view['user']);
+ ?>
+ <a href="agents-view-booking/<?php echo $valuebooking_data['id_order'] ?>" id="mybooking_link">
 <div class="container px-0">    
     <div class="card-booking">
         <div class="row m-0">
@@ -411,16 +421,16 @@ dd.pax-names {
                 <a href="">
                     <span class="id">ID
                
-                <strong>2965673</strong>
+                <strong><?php echo $valuebooking_data['id_order'] ?></strong>
                 </span>
                  </a>
             </td>
             <td class="col-2">
                 <dl class="date m-0">
                     <dt>Created</dt>
-                    <dd>07 Dec 2017</dd>
+                    <dd><?php echo $valuebooking_data['created'] ?></dd>
                     <dt>Service</dt>
-                    <dd>08 Jan 2018</dd>
+                    <dd><?php echo $valuebooking_data['id_order'] ?></dd>
                     <dt>Payment Due Date</dt>
                     <dd>12 Dec 2017 23:29 ACDT</dd>
                 </dl>
@@ -428,106 +438,30 @@ dd.pax-names {
             <td class="col-3">
                     <dl class="info">
                         <dt>Product</dt>
-                        <dd>Hotel</dd>
+                        <dd style="text-transform:capitalize;"><?php echo $valuebooking_data['loai'] ?></dd>
                         <dt>User</dt>
                         <dd><acronym title="minhtran@tweetworldtravel.com.au">minhtran</acronym></dd>
                         <dt>Guest</dt>
-                        <dd class="pax-names">Peter Evans</dd>
+                        <?php if($valuebooking_data['loai'] != 'hotel') { ?>
+                        <dd class="pax-names"><?php echo implode(" , ",$user_order_view['user']); ?></dd>
+                        <?php }else{ ?>
+                         <dd class="pax-names"><?php 
+                         //print_r($user_order_view['user']);
+                         foreach ($user_order_view['user'] as $key => $value_user) {
+                         echo implode(" , ",$value_user); }?></dd>   
+                        <?php } ?>
                     </dl>
             </td>
 			<td class="col-4">
                     <span class="description">quote</span>
-                    <span class="place">Empress Angkor Resort And Spa<br></span>
-                    <span class="city">Siem Reap</span>
+                    <span class="place"><?php echo $user_order_view['data_ex_room'][0]['HotelName'] ?><br></span>
+                    <span class="city"><?php echo $user_order_view['data_ex_room'][0]['address'] ?></span>
             </td>
         </tr>
     	</table>
         </div>
     </div>     
 </div>
-<div class="container px-0">    
-    <div class="card-booking">
-        <div class="row m-0">
-        <table  style="background-color: #fff">
-          <tr data-id-booking="" class="id_booking">
-            <td class="col-1">
-                <a href="">
-                    <span class="id">ID
-               
-                <strong>2965673</strong>
-                </span>
-                 </a>
-            </td>
-            <td class="col-2">
-                <dl class="date m-0">
-                    <dt>Created</dt>
-                    <dd>07 Dec 2017</dd>
-                    <dt>Service</dt>
-                    <dd>08 Jan 2018</dd>
-                    <dt>Payment Due Date</dt>
-                    <dd>12 Dec 2017 23:29 ACDT</dd>
-                </dl>
-            </td>
-            <td class="col-3">
-                    <dl class="info">
-                        <dt>Product</dt>
-                        <dd>Hotel</dd>
-                        <dt>User</dt>
-                        <dd><acronym title="minhtran@tweetworldtravel.com.au">minhtran</acronym></dd>
-                        <dt>Guest</dt>
-                        <dd class="pax-names">Peter Evans</dd>
-                    </dl>
-            </td>
-			<td class="col-4">
-                    <span class="description">quote</span>
-                    <span class="place">Empress Angkor Resort And Spa<br></span>
-                    <span class="city">Siem Reap</span>
-            </td>
-        </tr>
-    	</table>
-        </div>
-    </div>     
-</div>
-<div class="container px-0">    
-    <div class="card-booking">
-        <div class="row m-0">
-        <table  style="background-color: #fff">
-          <tr data-id-booking="" class="id_booking">
-            <td class="col-1">
-                <a href="">
-                    <span class="id">ID
-               
-                <strong>2965673</strong>
-                </span>
-                 </a>
-            </td>
-            <td class="col-2">
-                <dl class="date m-0">
-                    <dt>Created</dt>
-                    <dd>07 Dec 2017</dd>
-                    <dt>Service</dt>
-                    <dd>08 Jan 2018</dd>
-                    <dt>Payment Due Date</dt>
-                    <dd>12 Dec 2017 23:29 ACDT</dd>
-                </dl>
-            </td>
-            <td class="col-3">
-                    <dl class="info">
-                        <dt>Product</dt>
-                        <dd>Hotel</dd>
-                        <dt>User</dt>
-                        <dd><acronym title="minhtran@tweetworldtravel.com.au">minhtran</acronym></dd>
-                        <dt>Guest</dt>
-                        <dd class="pax-names">Peter Evans</dd>
-                    </dl>
-            </td>
-			<td class="col-4">
-                    <span class="description">quote</span>
-                    <span class="place">Empress Angkor Resort And Spa<br></span>
-                    <span class="city">Siem Reap</span>
-            </td>
-        </tr>
-    	</table>
-        </div>
-    </div>     
-</div>
+</a>
+<div style="height: 5px"></div>
+<?php } ?>

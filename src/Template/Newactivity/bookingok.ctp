@@ -1,5 +1,13 @@
-
+<?php 
+//debug($data_post);
+//debug($data_activity);
+$data_activity = $data_activity[0];
+ ?>
+<!-- <form action="/agents-bookroomok_confirm" method="post" id="target"> -->
+<form action="/agents-bookroomok" method="post" id="target">
+    
 <section class="form-acti-ok">
+  
     <div class="container p-0">
         <div class="wrapper-acti-ok" style="background-color: #fff;">
             <div class="container">
@@ -11,12 +19,12 @@
 
             <div class="col-md-7">
                 <div class="wrapper-about-acti-ok">
-                <span class="name-title">One day in Halong</span>
-                <span class="sub-title">Tour Ticket</span>
+                <span class="name-title"><?php echo $data_activity['name'] ?></span>
+                <span class="sub-title" style="text-transform:capitalize"><?php echo $data_activity['loai'] ?></span>
                 <div class="price-info">
                     <span style="font-size: 13px;">Total</span>
-                    <span style="font-size: 30px;font-weight: 600;">139</span>
-                    <span style="font-size: 19px;font-weight: 600;">AUD</span>
+                    <span style="font-size: 30px;font-weight: 600;"><?php echo $data_post['price'] * $tygia ?></span>
+                    <span style="font-size: 19px;font-weight: 600;"><?php echo $language ?></span>
 
                 </div>
                 </div>
@@ -26,19 +34,19 @@
                 <div class="wrapper-about">
                     <div class="row bor-acti">
                         <div class="col-md-6 title">Date</div>
-                        <div class="col-md-6 detail">14 Jan 2018</div>
+                        <div class="col-md-6 detail"><?php echo $data_post['date_pick'] ?></div>
                     </div>
                     <div class="row bor-acti">
                         <div class="col-md-6 title">Destination</div>
-                        <div class="col-md-6 detail">Halong</div>
+                        <div class="col-md-6 detail"><?php echo $data_activity['destinations'] ?></div>
                     </div>
                     <div class="row bor-acti">
                         <div class="col-md-6 title">Adults</div>
-                        <div class="col-md-6 detail">2</div>
+                        <div class="col-md-6 detail"><?php echo $data_post['adult'] ?></div>
                     </div>                
                     <div class="row">
                         <div class="col-md-6 title">Children</div>
-                        <div class="col-md-6 detail"></div>
+                        <div class="col-md-6 detail"><?php echo $data_post['child'] ?></div>
                     </div>
                 </div>
 
@@ -58,33 +66,46 @@
 
 <div class="title-acti-book-ok pt-5">
     <i class="fa fa-user fa-fw" aria-hidden="true" style="font-size: 25px;"></i>
-    <span class="text">Participants, <span>2 Adults</span>
+    <span class="text">Participants,
+        <?php if($data_post['adult'] > 0){
+            ?>
+             <span><?php echo $data_post['adult'] ?> Adults</span>
+            <?php
+        } ?>
+        <?php if($data_post['child'] > 0){
+            ?>
+             <span><?php echo $data_post['child'] ?> Child</span>
+            <?php
+        } ?>
     </span>
 </div>
 
     <div class="row pt-3 border-acti-ok">
+    <?php for ($nump=0; $nump < $data_post['adult'] ; $nump++) { 
+      
+    ?>
         <div class="col-md-12">
             <div class="row">
                   <div class="col-md-2">
                         <div class="form-group">
-                            <select id="selectbasic" name="selectbasic" class="form-control">
-                                <option value="1">Mr</option>
-                                <option value="2">Mrs</option>
-                                <option value="1">Ms</option>
-                                <option value="2">Mstr</option>
-                                <option value="1">Miss</option>
-                                <option value="2">Dr</option>
-                                <option value="2">Prof</option>
-                                <option value="1">Sir</option>
-                                <option value="2">Lady</option>
+                            <select id="selectbasic" name="selectbasic[]" class="form-control">
+                                <option value="Mr">Mr</option>
+                                <option value="Mrs">Mrs</option>
+                                <option value="Ms">Ms</option>
+                                <option value="Mstr">Mstr</option>
+                                <option value="Miss">Miss</option>
+                                <option value="Dr">Dr</option>
+                                <option value="Prof">Prof</option>
+                                <option value="Sir">Sir</option>
+                                <option value="Lady">Lady</option>
                             </select>
                         </div>
                     </div>
                   <div class="col-md-4">                    
-                    <input class="form-control" type="text" placeholder="First Name">
+                    <input class="form-control" name="firtname[]" type="text" placeholder="First Name">
             </div>           
                 <div class="col-md-4">                    
-                    <input class="form-control" type="text" placeholder="Last Name">
+                    <input class="form-control" name="lastname[]" type="text" placeholder="Last Name">
             </div>
                     <div class="col-md-2">                    
                      <span>Adult (12 - 99)</span>
@@ -92,35 +113,7 @@
     </div>
 
 </div>
-        <div class="col-md-12">
-            <div class="row">
-                  <div class="col-md-2">
-                        <div class="form-group">
-                            <select id="selectbasic" name="selectbasic" class="form-control">
-                                <option value="1">Mr</option>
-                                <option value="2">Mrs</option>
-                                <option value="1">Ms</option>
-                                <option value="2">Mstr</option>
-                                <option value="1">Miss</option>
-                                <option value="2">Dr</option>
-                                <option value="2">Prof</option>
-                                <option value="1">Sir</option>
-                                <option value="2">Lady</option>
-                            </select>
-                        </div>
-                    </div>
-                  <div class="col-md-4">                    
-                    <input class="form-control" type="text" placeholder="First Name">
-            </div>           
-                <div class="col-md-4">                    
-                    <input class="form-control" type="text" placeholder="Last Name">
-            </div>
-                    <div class="col-md-2">                    
-                     <span>Adult (12 - 99)</span>
-            </div>
-    </div>
-
-</div>
+        <?php } ?>   
 </div>
 
 
@@ -131,7 +124,7 @@
 </div>
 <div class="row pt-3 border-acti-ok">
                       <div class="col-md-4">                    
-                    <input class="form-control" type="text" placeholder="Your reference...">
+                    <input class="form-control" type="text" name="reference" placeholder="Your reference...">
             </div>    
 
 </div>
@@ -160,7 +153,7 @@
     
 </div>
 
-<div class="title-acti-book-ok">
+<!-- <div class="title-acti-book-ok">
     <i class="fa fa-question-circle fa-fw" aria-hidden="true" style="font-size: 25px;"></i>
     <span class="text">Special Questions
     </span>
@@ -183,7 +176,7 @@
                         <input class="form-control" type="text" placeholder="Passenger #2 home phone">
             </div> 
 </div>
-
+ -->
 <div class="title-acti-book-ok">
     <i class="fa fa-file-text fa-fw" aria-hidden="true" style="font-size: 25px;"></i>
     <span class="text">Special Requests
@@ -211,10 +204,36 @@
 
 </div>
 
-<div class="submit-acti">
-    <div class="container submit-acti-ok">1</div>
-</div>
-
+<!-- <div class="submit-acti">
+    <div class="container submit-acti-ok"> <button  class="btn-block border-0 nen-banned button-border-nut-prook mx-auto" id="buton_submit" style="float: right;margin: 0;">Confirm Quotes</button></div>
+</div> -->
+ <!-- <form action="/agents-bookroomok_confirm" method="post" id="target"> -->
+                                        <div class="submit-bk">
+                        <div class="form-button-property" style="padding-bottom: 19px;">
+                            <div class="w-100 mx-auto">
+                                <div class="row">
+                                    
+                                  
+                                        <input type="hidden" name="data_order" value="<?php  echo $data_post_save ?>">
+                                        <input type="hidden" name="id_order" value="<?php  echo $this->request->session()->read('Auth.User.id') ?>">
+                                         <input type="hidden" name="status" value="1">
+                                     <input type="hidden" name="loai" value="<?php echo $data_activity['loai'] ?>">
+                                        <input type="hidden" name="sumprice" value="<?php echo $data_post['price'] ?>">
+                                        <input type="hidden" name="tygiacurrent" value="<?php echo $tygia ?>">
+                                    <div class="border-nut-bookok mx-auto">
+                                         <input type="checkbox" value="" id="terms_check" required>
+                       
+                                        <label for="terms_check" class="">
+                                            <strong>I understand and accept the Booking Terms and Conditions</strong>
+                                        </label>
+                                        <button  class="btn-block border-0 nen-banned button-border-nut-prook mx-auto" id="buton_submit" style="float: right;margin: 0;">Confirm Quotes</button>
+                                    </div>    
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    </form>     
 
  
   <style>
@@ -301,6 +320,29 @@ display: block;
 .form-control.hv-acti:hover, .form-control.hv-acti:focus{
     border-color: #2f414463;
 }
-
+.button-border-nut-prook {
+    font-size: 18px;
+    font-weight: 400;
+    border-radius: 5px;
+    /*width: 160px;*/
+    height: 45px;
+    color: #fff;
+    line-height: 40px;
+    cursor: pointer;
+    background-color: red;
+}
+.button-border-nut-prook:hover{
+     background-color: #f39c12 !important;
+}
+.border-nut-bookok{
+    /*border: 5px solid #f3f3f3 !important;*/
+    /*border-radius: 9px;*/
+    /*width: 430px;*/
+    height: 55px;
+    line-height: 40px;
+    margin-top: -28px;
+    background-color: #f3f3f3;
+    margin-bottom: 100px;
+}
   </style>
 

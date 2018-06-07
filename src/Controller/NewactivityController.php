@@ -29,7 +29,7 @@ class NewactivityController extends AppController
 
     public function index()
     {
-        $dataa = $this->Newactivity->find('all')->where(['loai' => 'activity']);
+        $dataa = $this->Newactivity->find('all',['order' => ['id' => 'DESC']])->where(['loai' => 'activity']);
 
         $this->loadModel("Hoteldiachi");
         $diachi = $this->Hoteldiachi->find("all");
@@ -76,7 +76,7 @@ class NewactivityController extends AppController
 
 public function indexshore()
     {
-        $dataa = $this->Newactivity->find('all')->where(['loai' => 'shore']);
+        $dataa = $this->Newactivity->find('all',['order' => ['id' => 'DESC']])->where(['loai' => 'shore']);
         $this->loadModel("Hoteldiachi");
         $diachi = $this->Hoteldiachi->find("all");
         $diachi_view = array();
@@ -89,19 +89,19 @@ public function indexshore()
           $var_search = $this->request->data['search'];
           $var_diachi = $this->request->data['diachi'];
           if($var_search != ''){
-            $dataa = $this->Newactivity->find()->where([ 
+            $dataa = $this->Newactivity->find('all',['order' => ['id' => 'DESC']])->where([ 
              ['loai' => 'shore'],
               ['OR' => array(['name LIKE' =>'%'.$var_search.'%'], ['diachi LIKE' =>'%'.($var_diachi == '0')? $var_diachi : $var_search.'%'])]
             ]);
             if($var_diachi != '0'){
-              $dataa = $this->Newactivity->find()->where([ 
+              $dataa = $this->Newactivity->find('all',['order' => ['id' => 'DESC']])->where([ 
                ['loai' => 'shore'],
                 ['AND' => array(['name LIKE' =>'%'.$var_search.'%'], ['diachi LIKE' =>'%'.($var_diachi == '0')? $var_diachi : $var_search.'%'])]
               ]);
             }
           }else{
             if($var_diachi != '0'){
-               $dataa = $this->Newactivity->find()->where([ 
+               $dataa = $this->Newactivity->find('all',['order' => ['id' => 'DESC']])->where([ 
                ['loai' => 'shore'],
                  ['diachi LIKE' =>'%'.$var_diachi.'%']
               ]);
@@ -116,7 +116,7 @@ public function indexshore()
 public function indextour()
     {
 
-        $dataa = $this->Newactivity->find('all')->where(['loai' => 'tour']);
+        $dataa = $this->Newactivity->find('all',['order' => ['id' => 'DESC']])->where(['loai' => 'tour']);
          $this->loadModel("Hoteldiachi");
         $diachi = $this->Hoteldiachi->find("all");
         $diachi_view = array();
@@ -129,19 +129,19 @@ public function indextour()
           $var_search = $this->request->data['search'];
           $var_diachi = $this->request->data['diachi'];
           if($var_search != ''){
-            $dataa = $this->Newactivity->find()->where([ 
+            $dataa = $this->Newactivity->find('all',['order' => ['id' => 'DESC']])->where([ 
              ['loai' => 'tour'],
               ['OR' => array(['name LIKE' =>'%'.$var_search.'%'], ['diachi LIKE' =>'%'.($var_diachi == '0')? $var_diachi : $var_search.'%'])]
             ]);
             if($var_diachi != '0'){
-              $dataa = $this->Newactivity->find()->where([ 
+              $dataa = $this->Newactivity->find('all',['order' => ['id' => 'DESC']])->where([ 
                ['loai' => 'tour'],
                 ['AND' => array(['name LIKE' =>'%'.$var_search.'%'], ['diachi LIKE' =>'%'.($var_diachi == '0')? $var_diachi : $var_search.'%'])]
               ]);
             }
           }else{
             if($var_diachi != '0'){
-               $dataa = $this->Newactivity->find()->where([ 
+               $dataa = $this->Newactivity->find('all',['order' => ['id' => 'DESC']])->where([ 
                ['loai' => 'tour'],
                  ['diachi LIKE' =>'%'.$var_diachi.'%']
               ]);
@@ -172,13 +172,36 @@ public function bookingok()
  $this->viewBuilder()->layout('agentslayout');
         //$dataa = $this->Newactivity->find('all')->where(['loai' => 'tour']);
         //$this->set('newactivity', $this->paginate($dataa));
+        //  $newactivity = $this->paginate($dataa);
+       if ($this->request->is('post')) {
+        //  debug($this->request->data);
 
+//  $data = [
+//   'date_pick' => '06/15/2018',
+//   'price' => '145',
+//   'tygia' => '1.29',
+//   'adult' => '4',
+//   'child' => '2',
+//   'id_activity' => '9'
+// ];
+        if($this->request->data['adult'] == ""){
+          $this->request->data['adult'] = '1';
+        }
+        // if($this->request->data['adult'] == ""){
+        //   $this->request->data['adult'] = '1';
+        // }
+        $data  = $this->request->data;
 
+ $dataa = $this->Newactivity->find()->where(['id' => $data['id_activity']])->toArray();
 
-      //  $newactivity = $this->paginate($dataa);
-
+$this->set('data_post',$data);
+$this->set('data_post_save',base64_encode(json_encode($data)));
+$this->set('data_activity',$dataa);
+        }
         $this->set(compact('newactivity'));
         $this->set('_serialize', ['newactivity']);
+        $this->set('view_name', 'toursresult');
+        $this->set('title', 'Agent Booking');
     }
     public function activitisresult()
     {
@@ -525,5 +548,54 @@ public function bookingok()
         $this->set(compact('itinerary'));
         $this->set('_serialize', ['itinerary']);
     }
+
+public function addReviews($id = null)
+    {
+      $this->loadModel("Userreview");
+       $Userreview = $this->Userreview->newEntity();
+     // $tienich_view_old =  $this->Itinerary->find('all')->where(['id_activity'=>$id])->toArray();
+     // $datalist_drive = array(' ');
+     // if(isset($tienich_view_old[0])){
+     //  $datalist_drive = json_decode($tienich_view_old[0]['mota'],TRUE);
+     // }
+
+      $newactivity = $this->Newactivity->get($id, [
+            'contain' => []
+        ]);
+      $this->set('newactivity', $newactivity);
+     //  $this->set('loai', $newactivity->loai);
+      if ($this->request->is(['patch', 'post', 'put'])) {
+      
+
+        if($this->request->data['id_activity_c'] != ""){
+      
+          if($this->request->data['delete_room'] != ""){
+       
+
+             $user = $this->Userreview->get($this->request->data['id_activity_c']);
+            $this->Userreview->delete($user);
+
+          }else{
+          
+            $newhotel = $this->Userreview->get($this->request->data['id_activity_c'], [
+                'contain' => []
+            ]);
+             $newhotel = $this->Userreview->patchEntity($newhotel, $this->request->data);
+             $this->Userreview->save($newhotel);
+          }
+        }else{
+        
+          $newhotel = $this->Userreview->patchEntity($Userreview, $this->request->data);
+          $this->Userreview->save($newhotel);
+        }
+         $this->Flash->success(__('Has been saved.'));
+
+      }
+      $query = $this->Userreview->find('all',['order' => ['id' => 'DESC']])->where(['id_activity'=>$id]);
+      $this->set('list_room_of_hotel',$query);
+        $this->set(compact('Userreview'));
+        $this->set('_serialize', ['Userreview']);
+    }
+
 
 }
