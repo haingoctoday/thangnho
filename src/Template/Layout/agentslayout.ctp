@@ -30,7 +30,7 @@
 ?>
         <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav" style="background-color: #2a3c58;height: 65px;">
         <div class="container">
-            <a class="navbar-brand js-scroll-trigger" href="#page-top">
+            <a class="navbar-brand js-scroll-trigger" href="<?php echo $this->Url->build('/agents'); ?>">
                 <div class="col-md-6"><?= $this->request->session()->read('Auth.User.fullName') ?></div>
                 <div class="col-md-6"><span class="login-font agency-font"><?= $this->request->session()->read('Auth.User.email')?></span></div>
             </a>
@@ -150,6 +150,7 @@
                         </li>
                         <li class="nav-item pr-3">
                             <a class="nav-link js-scroll-trigger mau-nav-black <?php echo ($view_name == 'cruise') ? 'show_nav_on' : '' ?> " href="<?php echo $this->Url->build('/agents-cruise'); ?>">CRUISE</a>
+                           
                         </li>
                         <li class="nav-item">
                             <a class="nav-link js-scroll-trigger mau-nav-black <?php echo ($view_name == 'shore') ? 'show_nav_on' : '' ?> " href="<?php echo $this->Url->build('/agents-shore'); ?>">SHORE EXCURSIONS</a>
@@ -167,7 +168,7 @@
       <div class="col-md-8 p-0">
          <ul class="p-0">
             <li class="nav-item-ft">
-               <a class="js-scroll-trigger mau-nav-black" href="#">HOME</a>
+               <a class="js-scroll-trigger mau-nav-black" href="<?php echo $this->Url->build('/agents'); ?>">HOME</a>
             </li>
             <li class="nav-item-ft">
                <a class="js-scroll-trigger mau-nav-black" href="#">FAQS</a>

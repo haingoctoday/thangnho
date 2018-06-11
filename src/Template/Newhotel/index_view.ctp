@@ -74,10 +74,13 @@
                                 <img class="sa" src="img/faci.png"><br/>Facilities
                             </a>
                             <a href="#" class="list-group-item text-center p-3 bhoechie-hv">
-          <img class="sa" src="img/map.png"></h4><br/>Map
-      </a>
+                                <img class="sa" src="img/map.png"></h4><br/>Map
+                            </a>
                             <a href="#" class="list-group-item text-center p-3 bhoechie-hv">
                                 <h4 class="fa fa-tripadvisor fa-2x"></h4><br/>Trip Advisor
+                            </a>
+                             <a href="#" class="list-group-item text-center p-3 bhoechie-hv">
+                                <h4 class="fa fa-exclamation-circle fa-2x"></h4><br/>Term & Conditions
                             </a>
                         </div>
                     </div>
@@ -119,6 +122,9 @@
                                    <a href="" class="maucam" style="font-weight: bold;">Read reviews »</a>
                             </div>
                             </div>
+                        </div>
+                         <div class="bhoechie-tab-content">
+                             <p class="style-p-twt"><?= htmlspecialchars_decode($newhotel->term)?></p>
                         </div>
                     </div>
                 </div>
@@ -173,11 +179,21 @@ $total_room =  $this->request->session()->read('hotel.search.room');
             <div class="horver-property">
             <div class="row card-color-1 m-0 px-2" style="height: 74px;font-size: 14px;">
                 <div class="col-md-1 fix-img-proprety">
-                    <img src="img/sprite-bg_03.png" style="height: 35px;">
-                        <div class="many-people font-num-people">
-                        <span class="adult-number" data-bind=""><?= $valuelist_room_of_hotel['songuoi']?></span>
-                        <span class="child-number" data-bind=""><?= $valuelist_room_of_hotel['numberperchildren']?></span>
-                    </div>
+        
+                  <?php 
+                  if($valuelist_room_of_hotel['songuoi'] > 6){
+                    echo "<img class='' src='img/user_n6.png' style='height:35px'>";
+                  }else{
+                    echo "<img class='' src='img/user_n".$valuelist_room_of_hotel['songuoi'].".png' style='height:35px'>";
+                  } ?>
+                 
+                    <!-- <img src="img/sprite-bg_03.png" style="height: 35px;"> -->
+                        <!-- <div class="many-people font-num-people"> -->
+  
+
+                        <!-- <span class="adult-number" data-bind=""><?= $valuelist_room_of_hotel['songuoi']?></span> -->
+                        <!-- <span class="child-number" data-bind=""><?= $valuelist_room_of_hotel['numberperchildren']?></span> -->
+                    <!-- </div> -->
                 </div>
                 <div class="col-md-6">
                     <div class="type-room" style="padding-top: 5px;">

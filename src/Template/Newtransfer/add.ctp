@@ -25,7 +25,8 @@
         <?= $this->Form->create($newtransfer, array('role' => 'form')) ?>
           <div class="box-body">
           <?php
-            echo $this->Form->input('destination', ['label' => 'Destination']);
+            //echo $this->Form->input('destination', ['label' => 'Destination']);
+            echo $this->Form->input('destination', array('label'=>'Destination', 'type'=>'select', 'options'=>$diachi_view));
             echo $this->Form->input('pickupfrom', ['label' => 'Pick-Up From']);
             echo $this->Form->input('dropoffto', ['label' => 'Drop-off To']);
           ?>
@@ -39,3 +40,10 @@
     </div>
   </div>
 </section>
+<?php $this->start('scriptBotton'); ?>
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('#destination').select2();
+});
+</script>
+<?php $this->end(); ?>

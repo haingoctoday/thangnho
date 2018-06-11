@@ -65,26 +65,27 @@
    <?php //for ($i=0; $i < 6; $i++) { 
     				# code...
     foreach ($list_hotels as $key => $valuelist_hotels) {
-      
+      $hotel_title = $valuelist_hotels->name;
+              $hotel_id = $valuelist_hotels->id;
+              $link_book =  $this->Url->build([
+               'controller' => 'Agents',
+               'action' => 'toursbooknow',
+               '?' => array('activity' => $hotel_title,'stt'=>$hotel_id),
+               ]);
      ?>
      <div class="col-md-4 pr-0">
       <div class="card-listing-activities">
        <div class="img-list">
-        <img src="img/Tour_Listing_03.png" class="fix-img-list">
+        <!-- <img src="img/Tour_Listing_03.png" class="fix-img-list"> -->
+         <?php echo $this->Html->image('/upload/activity/'.$valuelist_hotels['hinhanh'], ['alt' => $valuelist_hotels['name'],'media-simple'=>'true','class'=>'fix-img-display']);?>  
         <div class="overlay">
-          <div class="text">BOOK NOW</div>
+           <a href="<?php echo $link_book ?>"><div class="text text_link_book">BOOK NOW</div></a>
         </div>
       </div>
       <div class="content-list" style="">
         <div class="border-bottom-card-list">
-          <h4 class="m-0 title-head-trs"><a href="<?php 
-              $hotel_title = $valuelist_hotels->name;
-              $hotel_id = $valuelist_hotels->id;
-              echo $this->Url->build([
-               'controller' => 'Agents',
-               'action' => 'toursbooknow',
-               '?' => array('activity' => $hotel_title,'stt'=>$hotel_id),
-               ]); ?>"><?=  $valuelist_hotels['name']?></a></h4>
+          <h4 class="m-0 title-head-trs"><a href="<?php echo $link_book 
+               ?>"><?=  $valuelist_hotels['name']?></a></h4>
           <span class="style-sp-list"><?=  $valuelist_hotels['diachi']?></span>
           <p class="style-list-acti"><?=  substr(strip_tags($valuelist_hotels['mota']),0,100)."..."?></p>
           <div class="time-listing-activities">
@@ -283,6 +284,10 @@ select#jjkk:hover{color:#4bc7dc;}
 .dropdowntbn ul {position: absolute;left: -9999px;}
 .dropdowntbn:after{font-family: FontAwesome;content: "\F107";color: #4bc7dc;position: absolute;right: 6px;top: 2px;pointer-events: none;font-size: 20px;font-weight: 700;}
 .form-input-acti:after{font-family: FontAwesome;content: "\f040";position: absolute;right: 15px;top: 20px;pointer-events: none;font-size: 22px;color: #fff;}
+.fix-img-display{width:100%;height:260px;}
+.text_link_book {
+    color: #fff;
+}
 </style>
 <script type="text/javascript">
   $('.input_filter').keyup(function(){

@@ -405,6 +405,13 @@ public function transfer()
     {
          $this->viewBuilder()->layout('agentslayout');
      
+          $this->loadModel("Hoteldiachi");
+        $diachi = $this->Hoteldiachi->find("all");
+        $diachi_view = array();
+        foreach ($diachi as $key => $valuediachi) {
+            $diachi_view[] =  $valuediachi['diachi'];
+        }
+        $this->set('diachi_view', $diachi_view);
 
          $this->loadModel("Transferdrive");
          $transfer_hot = $this->Transferdrive->find('all',array('limit'=>3));
@@ -426,6 +433,45 @@ public function transfer()
           $this->set('title', 'Agent');
           $this->set('view_name', 'transfer');
     }
+    public function jsongetlocationtransfer(){
+        $data_logo = $this->request->data;
+        //print_r($data_logo);
+         $this->loadModel("Newtransfer");
+         $arau_from = array();
+         $arau_to = array();
+         $top_localtion = $this->Newtransfer->find('all')->where(['destination =' => $data_logo['label']]);
+         foreach ($top_localtion as $key => $value) {
+          //print_r($value['pickupfrom']);
+          $arau_from[] = $value['pickupfrom'];
+          $arau_to[] = $value['dropoffto'];
+         }
+        ///print_r($arau_from);
+        // echo json_encode($arau_from);
+         $data_result = array('from'=>$arau_from,'to'=>$arau_to);
+        echo json_encode($data_result);
+        die();
+    }
+    public function jsongetlocationcruise(){
+        $data_logo = $this->request->data;
+        //print_r($data_logo);
+         $this->loadModel("NewCruise");
+         $arau_from = array();
+         $arau_to = array();
+         $arau_price = array();
+         $top_localtion = $this->NewCruise->find('all')->where(['loai =' => $data_logo['label']]);
+         foreach ($top_localtion as $key => $value) {
+        //  print_r($value);
+           $arau_from[] = $value['portto'];
+           $arau_to[] = $value['portend'];
+           $arau_price[] = $value['price'];
+         }
+        ///print_r($arau_from);
+        // echo json_encode($arau_from);
+         $data_result = array('from'=>$arau_from,'to'=>$arau_to);
+        echo json_encode($data_result);
+        die();
+    }
+
 //ferries?sub_categ_name=mediterranean
 public function ferries()
     {

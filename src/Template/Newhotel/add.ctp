@@ -39,7 +39,7 @@
 
 
             echo $this->Form->input('mota', ['label' => 'Description ']);
-      
+             echo $this->Form->input('term', ['label' => 'Term & Conditions ']);
             echo $this->Form->input('hinhanh', ['type' => 'file','label' => 'Image']); 
          
             echo $this->Form->input('thongtinhotel', ['label' => 'Detail Hotel']);
@@ -67,13 +67,13 @@
 </style>
 <?php
 $this->Html->css([
-    'AdminLTE./plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min',
+   // 'AdminLTE./plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min',
   ],
   ['block' => 'css']);
 
 $this->Html->script([
-  'https://cdn.ckeditor.com/4.4.3/standard/ckeditor.js',
-  'AdminLTE./plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min',
+//  'https://cdn.ckeditor.com/4.4.3/standard/ckeditor.js',
+ // 'AdminLTE./plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min',
 ],
 ['block' => 'script']);
 ?>
@@ -84,6 +84,16 @@ $this->Html->script([
     $('#diachi').select2();
      $('#loaihinhhotel').select2();
 });
- $('textarea').wysihtml5();
+</script>
+<script src="https://cdn.ckeditor.com/4.8.0/standard-all/ckeditor.js"></script>
+<script>
+$( ".textarea" ).each(function( index ) {
+   CKEDITOR.replace( $(this).find('textarea').get(0), {
+    height: 300,
+    bodyClass: 'article-editor',
+    format_tags: 'p;h1;h2;h3;pre',
+    allowedContent:true,
+   } );
+});
 </script>
 <?php $this->end(); ?>

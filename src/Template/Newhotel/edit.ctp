@@ -40,6 +40,7 @@
               echo $this->Form->input('diachimap', ['label' => 'Location on Map']);
 
             echo $this->Form->input('mota', ['label' => 'Description ']);
+             echo $this->Form->input('term', ['label' => 'Term & Conditions ']);
               echo $this->Html->image('/upload/hotel/'.$newhotel->hinhanh, ['alt' => 'hinhanh','class'=>'image_hotel_admin']);
             echo $this->Form->input('hinhanh', ['type' => 'file','label' => 'Image']); 
          
@@ -66,15 +67,16 @@
     height: 300px !important;
   }
 </style>
+
 <?php
 $this->Html->css([
-    'AdminLTE./plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min',
+    //'AdminLTE./plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min',
   ],
   ['block' => 'css']);
 
 $this->Html->script([
-  'https://cdn.ckeditor.com/4.4.3/standard/ckeditor.js',
-  'AdminLTE./plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min',
+  //'https://cdn.ckeditor.com/4.4.3/standard/ckeditor.js',
+  //'AdminLTE./plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min',
 ],
 ['block' => 'script']);
 ?>
@@ -86,6 +88,17 @@ $this->Html->script([
 });
 //CKEDITOR.replace('editor1');
     //bootstrap WYSIHTML5 - text editor
-    $('textarea').wysihtml5();
+    //$('textarea').wysihtml5();
+</script>
+<script src="https://cdn.ckeditor.com/4.8.0/standard-all/ckeditor.js"></script>
+<script>
+$( ".textarea" ).each(function( index ) {
+   CKEDITOR.replace( $(this).find('textarea').get(0), {
+    height: 300,
+    bodyClass: 'article-editor',
+    format_tags: 'p;h1;h2;h3;pre',
+    allowedContent:true,
+   } );
+});
 </script>
 <?php $this->end(); ?>

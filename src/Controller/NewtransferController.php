@@ -60,6 +60,13 @@ class NewtransferController extends AppController
     public function add()
     {
         $newtransfer = $this->Newtransfer->newEntity();
+               $this->loadModel("Hoteldiachi");
+        $diachi = $this->Hoteldiachi->find("all");
+        $diachi_view = array();
+        foreach ($diachi as $key => $valuediachi) {
+            $diachi_view[$valuediachi['diachi']] =  $valuediachi['diachi'];
+        }
+        $this->set('diachi_view', $diachi_view);
         if ($this->request->is('post')) {
             $newtransfer = $this->Newtransfer->patchEntity($newtransfer, $this->request->data);
             if ($this->Newtransfer->save($newtransfer)) {
@@ -85,6 +92,13 @@ class NewtransferController extends AppController
         $newtransfer = $this->Newtransfer->get($id, [
             'contain' => []
         ]);
+                      $this->loadModel("Hoteldiachi");
+        $diachi = $this->Hoteldiachi->find("all");
+        $diachi_view = array();
+        foreach ($diachi as $key => $valuediachi) {
+            $diachi_view[$valuediachi['diachi']] =  $valuediachi['diachi'];
+        }
+        $this->set('diachi_view', $diachi_view);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $newtransfer = $this->Newtransfer->patchEntity($newtransfer, $this->request->data);
             if ($this->Newtransfer->save($newtransfer)) {

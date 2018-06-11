@@ -62,6 +62,9 @@ Router::scope('/', function (RouteBuilder $routes) {
   $routes->connect('/accommodation-hotel-result/*', ['controller' => 'Agents', 'action' => 'hotel_search_result']);
  $routes->connect('/api_search_hotel/*', ['controller' => 'Agents', 'action' => 'api_search_hotel']);
   $routes->connect('/test2.php/*', ['controller' => 'Newhotel', 'action' => 'Test2']);
+  $routes->connect('/transfer.php/*', ['controller' => 'Newhotel', 'action' => 'TransferApi']);
+ $routes->connect('/cruise.php/*', ['controller' => 'Newhotel', 'action' => 'CruiseApi']);
+
  $routes->connect('/api_search_activity/*', ['controller' => 'Agents', 'action' => 'api_search_activity']);
 
 
@@ -104,7 +107,8 @@ $routes->connect('/forgotpass/*', ['controller' => 'Users', 'action' => 'fotgotp
 $routes->connect('/forgotpass-check-inbox/*', ['controller' => 'Users', 'action' => 'fotgotpassinbox']);
 $routes->connect('/forgotpass-check-inbox-ok/*', ['controller' => 'Users', 'action' => 'fotgotpassinboxok']);
 $routes->connect('/resetpass/*', ['controller' => 'Users', 'action' => 'resetpass']);
-
+$routes->connect('/json_getlocation_transfer/*', ['controller' => 'Agents', 'action' => 'jsongetlocationtransfer']);
+$routes->connect('/json_getlocation_cruise/*', ['controller' => 'Agents', 'action' => 'jsongetlocationcruise']);
 
   $routes->connect('/activitis-result/*', ['controller' => 'Newactivity', 'action' => 'activitisresult']);
 

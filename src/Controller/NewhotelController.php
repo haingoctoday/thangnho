@@ -109,11 +109,23 @@ class NewhotelController extends AppController
         $this->set('diachi_view', $diachi_view);
         $newhotel = $this->Newhotel->find('all',['order' => ['id' => 'DESC']]);
         if ($this->request->is('post')) {
+         // debug($this->request->data['owen']);
+          $owen = $this->request->data['owen'];
           $var_search = $this->request->data['search'];
           $var_diachi = $this->request->data['diachi'];
+          if($owen != ''){
+             $newhotel = $this->Newhotel->find('all',['order' => ['id' => 'DESC']])->where( 
+               ['soldout' =>$owen]
+              );
+          }
           if($var_search != ''){
             $newhotel = $this->Newhotel->find('all',['order' => ['id' => 'DESC']])->where( 
-              ['OR' => array(['namehotel LIKE' =>'%'.$var_search.'%'], ['diachi LIKE' =>'%'.($var_diachi == '0')? $var_diachi : $var_search.'%'])]
+              [
+                'OR' => array(
+                          ['namehotel LIKE' =>'%'.$var_search.'%'],
+                          ['diachi LIKE' =>'%'.($var_diachi == '0')? $var_diachi : $var_search.'%']
+                        )
+              ]
             );
             if($var_diachi != '0'){
               $newhotel = $this->Newhotel->find('all',['order' => ['id' => 'DESC']])->where( 
@@ -166,7 +178,6 @@ class NewhotelController extends AppController
             $diachi_view[$valuediachi['diachi']] =  $valuediachi['diachi'];
         }
         $this->set('diachi_view', $diachi_view);
-
         $this->loadModel("Hotelcategory");
         $Hotelcategory = $this->Hotelcategory->find("all");
         $category_view = array();
@@ -640,6 +651,77 @@ $query->select([
 ;
 $this->set('list_room_of_hotel',$query->toArray());
       //  debug($query);
+}
+
+public function TransferApi($slug = null)
+{
+   $this->viewBuilder()->layout('ajax');
+
+    $id =  $this->request->data;
+      $session = $this->request->session();
+      $session->write('transfer.search', $id);
+      $session->write('transfer.status', '1');
+   // debug($id);
+$this->loadModel("Transferdrive");
+$this->loadModel("Newtransfer");
+        $transferdrive = $this->Transferdrive->find("all");
+        $transferdrive_view = array();
+        foreach ($transferdrive as $key => $valuetransferdrive) {
+          $transferdrive_view[$valuetransferdrive['id']] =  ['name'=>$valuetransferdrive['name'],'image'=>$valuetransferdrive['hinhanh']];
+        }
+     //   debug($transferanddrive['driver']);
+       
+        $tienich_view_old =  $this->Newtransfer->find()->where(
+          [
+            'destination'=>$id['destination'],
+            'pickupfrom'=>$id['pick_up'],
+            'dropoffto'=>$id['pick_off'],
+          ]
+        )->toArray();
+        $datalist_drive =  array();
+        if(isset($tienich_view_old[0])){
+         $datalist_drive = json_decode($tienich_view_old[0]['driver'],TRUE);
+        }
+        $this->set('datalist_drive', $datalist_drive);
+        $this->set('transferdrive_view', $transferdrive_view);
+    //debug($transferdrive_view);
+    // debug($datalist_drive);
+}
+
+public function cruiseApi($slug = null)
+{
+   $this->viewBuilder()->layout('ajax');
+
+    $id =  $this->request->data;
+      $session = $this->request->session();
+      $session->write('cruise.search', $id);
+      $session->write('cruise.status', '1');
+   // debug($id);
+$this->loadModel("Cruisedrive");
+$this->loadModel("Newcruise");
+        $transferdrive = $this->Cruisedrive->find("all");
+        $transferdrive_view = array();
+        foreach ($transferdrive as $key => $valuetransferdrive) {
+          $transferdrive_view[$valuetransferdrive['id']] =  ['name'=>$valuetransferdrive['name'],'image'=>$valuetransferdrive['hinhanh']];
+        }
+    //  debug($id);
+       
+        $tienich_view_old =  $this->Newcruise->find()->where(
+          [
+            'loai'=>$id['destination'],
+            'portto'=>$id['formm'],
+            'portend'=>$id['to'],
+          ]
+        )->toArray();
+       //  debug($tienich_view_old);
+        $datalist_drive =  array();
+        if(isset($tienich_view_old[0])){
+         $datalist_drive = json_decode($tienich_view_old[0]['driver'],TRUE);
+        }
+        $this->set('datalist_drive', $datalist_drive);
+        $this->set('transferdrive_view', $transferdrive_view);
+    //debug($transferdrive_view);
+    // debug($datalist_drive);
 }
 
 public function indexView($slug = null)
