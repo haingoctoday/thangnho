@@ -110,7 +110,8 @@
     <div class="row">
       <div class="col">
         <div class="img-head-tour">
-          <img class="w-100" src="img/tours-book-now-03.png">
+          <!-- <img class="w-100" src="img/tours-book-now-03.png"> -->
+          <?php echo $this->Html->image('/upload/activity/'.$newactivity->hinhanh, ['alt' => $newactivity->name,'class'=>'w-100']);?>  
         </div>
       </div>
       <div class="col px-0">
@@ -313,18 +314,20 @@
         </div>
         <div role="tabpanel" class="tab-pane in" id="Accommodation">
          <div class="row p-0 m-0 pt-4">
-          <?php for ($j=0; $j < 12; $j++) { 
-                          # code...
+          <?php //r ($j=0; $j < 12; $j++) { 
+                foreach ($acco as $key => $valueacco) {
+             //  debug($valueacco);
             ?>
             <div class="col-md-4 pr-0 acconmadation-list-clid">
-              <img src="img/tours-book-now-03.png" style="height: 175px;width: 100%" >  
-              <a class="acconmadation-in-image">
-                Xuân hương
+              <!-- <img src="img/tours-book-now-03.png" style="height: 175px;width: 100%" >   -->
+               <?php echo $this->Html->image('/upload/activity/'.$valueacco['hinhanh'], ['alt' => 'hinhanh','style'=>'height: 175px;width: 100%']);?>
+              <a class="acconmadation-in-image" style="white-space: nowrap;width: 80%;overflow: hidden;">
+                <?php  echo $valueacco['name'] ?>
               </a>
               <div>
                 <img src="img/starab.png" style="" >
               </div>
-              <div class="font-size-14">Situated on its own private stretch of beach, this resort boasts an immaculate outdoor pool,  ever si 1s... <span style="color: #36c5b0;font-weight: bold">Read more</span></div>
+              <div class="font-size-14" style="height: 109px;overflow: hidden;text-overflow: ellipsis;"><?php  echo strip_tags($valueacco['mota']) ?>... <span style="color: #36c5b0;font-weight: bold;position: absolute;bottom: 6px;right: 0;">Read more</span></div>
 
             </div>
             <?php }?>

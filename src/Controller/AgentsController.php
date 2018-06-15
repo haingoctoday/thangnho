@@ -296,7 +296,8 @@ $this->loadModel("Userreview");
  $Userreview =  $this->Userreview->find('all')->where(['id_activity'=>$id])->toArray();
 //debug($newactivity);
  $this->set('Userreview_list', $Userreview);
-
+$acco =  $this->Newactivity->find('all')->where(['loai'=>$newactivity->loai])->toArray();
+$this->set('acco', $acco);
         // debug($hotel_hot);
       //  $users = array();
         $this->set(compact('newactivity'));
