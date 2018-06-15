@@ -5,8 +5,7 @@
 ?>
 <section class="content-header">
   <h1>
-    Edit Cruise
-    <small><?= __('Edit') ?></small>
+    Groupuser    <small><?= __('Edit') ?></small>
   </h1>
   <ol class="breadcrumb">
     <li>
@@ -27,16 +26,14 @@
         </div>
         <!-- /.box-header -->
         <!-- form start -->
-        <?= $this->Form->create($newcruise, array('role' => 'form')) ?>
+        <?= $this->Form->create($groupuser, array('role' => 'form')) ?>
           <div class="box-body">
-          <?php
-           $category_view = array('1'=>'HaLong Bay','2'=>'Mekong');
-              echo $this->Form->input('loai', array('label'=>'Cruise Category', 'type'=>'select', 'options'=>$category_view));
-            echo $this->Form->input('portto',['label'=>'Port To']);
-            echo $this->Form->input('portend',['label'=>'Port To']);
-          //  echo $this->Form->input('price',['label'=>'Price']);
-         //   echo $this->Form->input('status',['label'=>'status']);
-          ?>
+            <?php echo $groupuser['nameGroup'] ?>
+            <br>
+         Add User into Group 
+         <?php 
+           echo $this->Form->input('userGroup', array('label'=>'Email User', 'type'=>'select', 'options'=>$user_view,'multiple'=>'multiple'));
+           ?>
           </div>
           <!-- /.box-body -->
           <div class="box-footer">
@@ -47,3 +44,20 @@
     </div>
   </div>
 </section>
+<?php $this->start('scriptBotton'); ?>
+<script type="text/javascript">
+  $(document).ready(function() {
+    var s2 = $('#usergroup').select2();
+$('#usergroup').val(<?php echo ($groupuser['userGroup']) ?>);
+$('#usergroup').trigger('change.select2');
+ // var vals = <?php // echo ($groupuser['userGroup']) ?>;
+
+//vals.forEach(function(e){
+// if(!s2.find('option:contains(' + e + ')').length) 
+//   s2.append($('<option>').text(e));
+// });
+
+//s2.val(vals).trigger("change"); 
+});
+</script>
+<?php $this->end(); ?>

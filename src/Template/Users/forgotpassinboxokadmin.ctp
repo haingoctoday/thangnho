@@ -7,7 +7,7 @@
         <div class="wrapper-twt text-center">
           <p class="login-font1 m-0">To reset your password, click the following link and follow the instructions:</p>
           <div class="col-md-3 mx-auto py-4">
-            <a class="btn-block border-0 nen-maucam" style="border-radius:5px;height: 40px;color: #fff;line-height: 38px;" href="<?php echo $this->Url->build('/resetpassadmin/'.$url_send); ?>">RESET YOUR PASSWORD</a>
+            <a class="btn-block border-0 nen-maucam" style="border-radius:5px;height: 40px;color: #fff;line-height: 38px;" href="<?php echo $this->Url->build('/resetpass-admin/'.$url_send); ?>">RESET YOUR PASSWORD</a>
           </div>
           <h5>If you didn’t make this request</h5>
           <p class="login-font1 m-0 py-2">or are having issues with resetting you password, please call our Help Desk</p>

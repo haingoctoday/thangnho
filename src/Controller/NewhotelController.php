@@ -621,10 +621,12 @@ public function Test2($slug = null)
 $this->set(compact('newhotel'));
 $this->set('_serialize', ['newhotel']);
        //   $this->set('title', $hotel_name);
+$this->set('idhotel', $id);
 $this->set('view_name', 'hotel');
 $articles  = TableRegistry::get('Hotelandphong');
 $query = $articles->find();
 $query->select([
+  'idphong' => 'Hotelandphong.id',
     'giatienss1' => 'Hotelandphong.giatienss1',
           //  'count' => $query->func()->count('Hotelandphong.id'),
     'dayrange' => 'Hotelandphong.dayrange',
@@ -667,7 +669,7 @@ $this->loadModel("Newtransfer");
         $transferdrive = $this->Transferdrive->find("all");
         $transferdrive_view = array();
         foreach ($transferdrive as $key => $valuetransferdrive) {
-          $transferdrive_view[$valuetransferdrive['id']] =  ['name'=>$valuetransferdrive['name'],'image'=>$valuetransferdrive['hinhanh']];
+          $transferdrive_view[$valuetransferdrive['id']] =  ['name'=>$valuetransferdrive['name'],'image'=>$valuetransferdrive['hinhanh'],'price'=>$valuetransferdrive['price']];
         }
      //   debug($transferanddrive['driver']);
        
@@ -682,6 +684,7 @@ $this->loadModel("Newtransfer");
         if(isset($tienich_view_old[0])){
          $datalist_drive = json_decode($tienich_view_old[0]['driver'],TRUE);
         }
+            $this->set('idhotel', $tienich_view_old[0]['id']);
         $this->set('datalist_drive', $datalist_drive);
         $this->set('transferdrive_view', $transferdrive_view);
     //debug($transferdrive_view);
@@ -702,7 +705,7 @@ $this->loadModel("Newcruise");
         $transferdrive = $this->Cruisedrive->find("all");
         $transferdrive_view = array();
         foreach ($transferdrive as $key => $valuetransferdrive) {
-          $transferdrive_view[$valuetransferdrive['id']] =  ['name'=>$valuetransferdrive['name'],'image'=>$valuetransferdrive['hinhanh']];
+          $transferdrive_view[$valuetransferdrive['id']] =  ['name'=>$valuetransferdrive['name'],'image'=>$valuetransferdrive['hinhanh'],'price'=>$valuetransferdrive['price']];
         }
     //  debug($id);
        
@@ -718,6 +721,8 @@ $this->loadModel("Newcruise");
         if(isset($tienich_view_old[0])){
          $datalist_drive = json_decode($tienich_view_old[0]['driver'],TRUE);
         }
+      
+        $this->set('idhotel', $tienich_view_old[0]['id']);
         $this->set('datalist_drive', $datalist_drive);
         $this->set('transferdrive_view', $transferdrive_view);
     //debug($transferdrive_view);
@@ -800,7 +805,7 @@ $this->set(compact('newhotel'));
     {
       $data_request = array();
       if ($this->request->is('post')) {
-      
+
       if($this->request->data['loai'] == 'hotel'){
         foreach ($this->request->data['pre_name'] as $key => $value_data_request) {
             foreach($value_data_request as $uukey => $uuvalue){
@@ -834,7 +839,7 @@ $this->set(compact('newhotel'));
         $this->set('data_user_room', $data_user_name);
         $this->set('data_save', base64_encode(json_encode(array('user'=>$data_user_name,'data_ex_room'=>$data_ex_room))));
         $this->set('data_ex_room', $data_ex_room);
-      }else{
+      }else if($this->request->data['loai'] == 'activity' || $this->request->data['loai'] == 'tour' || $this->request->data['loai'] == 'shore'){
         foreach ($this->request->data['selectbasic'] as $key => $value_data_request) {
                   $data_user_name[] =  $this->request->data['selectbasic'][$key]. ". ".$this->request->data['firtname'][$key]. " ".  $this->request->data['lastname'][$key];
               }
@@ -867,6 +872,79 @@ $this->set(compact('newhotel'));
         $this->set('data_ex_room', $data_ex_room);
         $this->set('data_save', base64_encode(json_encode(array('user'=>$data_user_name,'data_ex_room'=>$data_ex_room))));
        // array('user'=>$data_user_name,'data_ex_room'=>json_decode(base64_decode($this->request->data['data_order']),TRUE));  
+      }else{
+
+         if($this->request->data['loai'] == 'cruise'){
+            $id_order = "TWT".substr(str_shuffle(str_repeat("0123456789", 5)), 0, 5);
+            $this->set('id_order', $id_order);
+            foreach ($this->request->data['selectbasic'] as $key => $value_data_request) {
+                      $data_user_name[] =  $this->request->data['selectbasic'][$key]. ". ".$this->request->data['firtname'][$key]. " ".  $this->request->data['lastname'][$key];
+                  }
+
+            $data_order = base64_decode($this->request->data['data_order']);  
+            $data_order_array = json_decode($data_order, true);
+           // debug($data_order_array);
+             $this->loadModel("Newcruise");
+            $data_hotel =  $this->Newcruise->find()->where(['id'=>$data_order_array['idhotel']])->toArray();
+             $session = $this->request->session();
+            $search_old = $session->read('cruise.search');
+            $data_day_s = json_decode(base64_decode($this->request->data['data_order']),TRUE);
+          //  debug($data_hotel);
+            $titel_loai = ($data_hotel[0]['loai'] == '1')?'HaLong Bay':'Mekong';
+            $name_room = $titel_loai." - ".$data_hotel[0]['portto']. " > ".$data_hotel[0]['portend'];
+             $data_ex_room[0] = array(
+                   'name_room' =>  $name_room,
+                   'room_id' => $data_hotel[0]['id'],
+                   'FROM'=> $search_old['pickdate'],
+                   'TO'=> "",
+                   'NIGHTS'=> "",
+                   'HotelName'=> $name_room,
+                   'price'=>$this->request->data['sumprice'],
+                   'loai'=>$data_order_array['loai'],
+                   'id_activity'=>$data_order_array['idhotel'],
+                   'address'=>$titel_loai
+            );
+              $this->set('data_save_post', base64_encode(json_encode($this->request->data)));
+            $this->set('data_price_sum', [$this->request->data['sumprice']]);
+            $this->set('data_user_room', $data_user_name);
+            $this->set('data_ex_room', $data_ex_room);
+            $this->set('data_save', base64_encode(json_encode(array('user'=>$data_user_name,'data_ex_room'=>$data_ex_room))));
+          }else{
+             $id_order = "TWT".substr(str_shuffle(str_repeat("0123456789", 5)), 0, 5);
+              $this->set('id_order', $id_order);
+              foreach ($this->request->data['selectbasic'] as $key => $value_data_request) {
+                        $data_user_name[] =  $this->request->data['selectbasic'][$key]. ". ".$this->request->data['firtname'][$key]. " ".  $this->request->data['lastname'][$key];
+                    }
+
+              $data_order = base64_decode($this->request->data['data_order']);  
+              $data_order_array = json_decode($data_order, true);
+              //debug($data_order_array);
+               $this->loadModel("Newtransfer");
+              $data_hotel =  $this->Newtransfer->find()->where(['id'=>$data_order_array['idhotel']])->toArray();
+               $session = $this->request->session();
+              $search_old = $session->read('transfer.search');
+              $data_day_s = json_decode(base64_decode($this->request->data['data_order']),TRUE);
+            //debug($data_hotel);
+              //$titel_loai = ($data_hotel[0]['loai'] == '1')?'HaLong Bay':'Mekong';
+              $name_room = $data_hotel[0]['destination']." - ".$data_hotel[0]['pickupfrom']. " > ".$data_hotel[0]['dropoffto'];
+               $data_ex_room[0] = array(
+                     'name_room' =>  $name_room,
+                     'room_id' => $data_hotel[0]['id'],
+                     'FROM'=> $search_old['pickdate'],
+                     'TO'=> "",
+                     'NIGHTS'=> "",
+                     'HotelName'=> $name_room,
+                     'price'=>$this->request->data['sumprice'],
+                     'loai'=>$data_order_array['loai'],
+                     'id_activity'=>$data_order_array['idhotel'],
+                     'address'=>$data_hotel[0]['destination']
+              );
+                $this->set('data_save_post', base64_encode(json_encode($this->request->data)));
+              $this->set('data_price_sum', [$this->request->data['sumprice']]);
+              $this->set('data_user_room', $data_user_name);
+              $this->set('data_ex_room', $data_ex_room);
+              $this->set('data_save', base64_encode(json_encode(array('user'=>$data_user_name,'data_ex_room'=>$data_ex_room))));
+          }
       }
 
 
@@ -930,6 +1008,30 @@ $this->set(compact('newhotel'));
               $booking['user_order'] = $session->read('Auth.User.id');
               $this->Booking->save($booking);
               $session->delete('activity.search');
+              $session->write('bookingidOn', $booking->id_order);
+
+              break;  
+            case 'cruise':
+              $this->request->data['data_order'] = base64_decode($this->request->data['data_order']);
+              $booking = $this->Booking->patchEntity($booking, $this->request->data);
+              $data_post = json_decode(base64_decode($this->request->data['data_post']),TRUE);
+              $booking['reference'] =$data_post['reference'];
+              $booking['message'] =$data_post['message'];
+              $booking['user_order'] = $session->read('Auth.User.id');
+              $this->Booking->save($booking);
+              $session->delete('cruise.search');
+              $session->write('bookingidOn', $booking->id_order);
+
+              break;  
+            case 'transfer':
+              $this->request->data['data_order'] = base64_decode($this->request->data['data_order']);
+              $booking = $this->Booking->patchEntity($booking, $this->request->data);
+              $data_post = json_decode(base64_decode($this->request->data['data_post']),TRUE);
+              $booking['reference'] =$data_post['reference'];
+              $booking['message'] =$data_post['message'];
+              $booking['user_order'] = $session->read('Auth.User.id');
+              $this->Booking->save($booking);
+              $session->delete('transfer.search');
               $session->write('bookingidOn', $booking->id_order);
 
               break;  

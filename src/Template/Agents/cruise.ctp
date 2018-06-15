@@ -47,6 +47,49 @@
             </div>
         </div>
     </div>
+     <div class="row">
+                  <div class="col-md-5">
+                     <div class="form-group" style="width: 93% !important">
+                       <label class="form-control-label display-7 cruise-fix-label">Adult :
+                       </label>
+                       <div class="input-group">
+                           <i class="fa fa-user maucam" aria-hidden="true"></i>
+                           <!-- <input class="form-control" type="text" name="adult" id="adult" placeholder="From (Port name)"> -->
+                            <select id="select-adult-num" class="form-control adult"  name="adult" >
+                              <?php 
+                              for ($i=1; $i <= 10; $i++) { 
+                                ?>
+                                 <option value="<?= $i?>"><?= $i?></option>
+                                <?php
+                               } ?>
+                             
+                             
+                            </select>
+                       </div>
+                   </div>
+               </div>
+              <div class="col-md-5">
+                     <div class="form-group" style="width: 93% !important">
+                       <label class="form-control-label display-7 cruise-fix-label">Child :
+                       </label>
+                       <div class="input-group">
+                           <i class="fa fa-user maucam" aria-hidden="true"></i>
+                           <!-- <input class="form-control" type="text" name="adult" id="adult" placeholder="From (Port name)"> -->
+                            <select id="select-child-num" class="form-control child"  name="child">
+                              <?php 
+                              for ($i=0; $i <= 10; $i++) { 
+                                ?>
+                                 <option value="<?= $i?>"><?= $i?></option>
+                                <?php
+                               } ?>
+                             
+                             
+                            </select>
+                       </div>
+                   </div>
+               </div>
+           
+    </div>
 </div>
 </div>
 </div>
@@ -221,12 +264,19 @@
   }
   .ui-widget-content {
       background: white;
+      z-index: 9;
   }
   i.fa.fa-ship.maucam {
       padding-right: 9px;
       font-size: 28px;
           margin: auto;
   }
+    i.fa.fa-user.maucam {
+      padding-right: 9px;
+      font-size: 28px;
+          margin: auto;
+  }
+  
 </style>
 <script type="text/javascript">
     //$("#pickdate").datepicker();
@@ -236,52 +286,18 @@
     $("#pickdate").datepicker({ minDate: new Date()});
 $( function() {
   loadpage_C();
-    //  
-    // $( "#firstname" ).autocomplete({
-    //   source: availableTags,
-    //   select: function (event, ui) {
-    //     //console.log("12312");
-    //      //alert(ui.item.label);  //will show you the selected item
-
-    //    $.ajax({
-    //       type: 'POST',
-    //       url: 'json_getlocation_cruise',  //whatever any url
-    //       data: {label: ui.item.label},
-    //       success: function(message) { 
-    //        // if(message.data == true){
-    //             var availableTagspick_up = message.from;
-    //             $( "#pick_up" ).autocomplete({
-    //               source: availableTagspick_up
-    //             });
-    //             var availableTagspick_off = message.to;
-    //             $( "#pick_off" ).autocomplete({
-    //               source: availableTagspick_off
-    //             });
-    //        //   }else{
-
-    //         //  }
-    //        },
-    //       dataType: 'json'
-    //    });
-    //   }
-    // });
   } );
 
 function loadpage_C(){
-  //$("#soflow1").val('1');
-  //$("#soflow1").val("1").change();;
   $( "#soflow1" ).change(function() {
     $("#fromm").val("");
     $("#to").val("");
-  // alert();
     var id_p = $(this).val();
-    //alert(id_p);
            $.ajax({
           type: 'POST',
           url: 'json_getlocation_cruise',  //whatever any url
           data: {label: id_p},
           success: function(message) { 
-           // if(message.data == true){
                 var availableTagspick_up = message.from;
                 $( "#fromm" ).autocomplete({
                   source: availableTagspick_up
@@ -290,14 +306,10 @@ function loadpage_C(){
                 $( "#to" ).autocomplete({
                   source: availableTagspick_off
                 });
-           //   }else{
-
-            //  }
            },
           dataType: 'json'
        });
   });
- // alert(id_p);
 }
 
 
@@ -310,16 +322,18 @@ $( "#check_availability" ).click(function() {
                 'pickdate': $('#pickdate').val(),
                 'formm': $('#fromm').val(),
                 'to': $('#to').val(),
+                 'adult': $(".adult").val(),
+                  'child': $(".child").val(),
             };
 
-
+console.log(formData);
   $.ajax({
             type: "POST",
             url: "cruise.php",
             data:formData,
             //contentType: "application/json; charset=utf-8",
             success: function(result) {
-                //alert(result);
+          
                 $(".div_room_showw").html(result);
                // $("#icon_button_change"+id_hotel).text('remove');
             }

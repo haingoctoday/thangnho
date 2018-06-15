@@ -454,11 +454,11 @@ public function transfer()
     public function jsongetlocationcruise(){
         $data_logo = $this->request->data;
         //print_r($data_logo);
-         $this->loadModel("NewCruise");
+         $this->loadModel("Newcruise");
          $arau_from = array();
          $arau_to = array();
          $arau_price = array();
-         $top_localtion = $this->NewCruise->find('all')->where(['loai =' => $data_logo['label']]);
+         $top_localtion = $this->Newcruise->find('all')->where(['loai =' => $data_logo['label']]);
          foreach ($top_localtion as $key => $value) {
         //  print_r($value);
            $arau_from[] = $value['portto'];
@@ -565,22 +565,92 @@ die();
           echo json_encode($data_result);
           die();
         }
-
+        public function ApiSearchBooking()
+        {
+          $data_logo = $this->request->data['data'];
+          $data_result = array();
+          if($data_logo){
+          $this->loadModel("Booking");
+            $data_order_view =  $this->Booking->find('all')->where(['id_order'=>$data_logo])->toArray();
+            if(!empty($data_order_view)){
+              $data_result = array('code'=>'oke','status'=>'agents-view-booking?id='.$data_logo); 
+            }else{
+              $data_result = array('code'=>'noorder','status'=>'No result by Booking ID');
+            }
+          }else{
+             $data_result = array('code'=>'cancel','status'=>'Enter Code Booking ID');
+          }
+          echo json_encode($data_result);
+          die();
+        }
+        public function apiSearchBookingG()
+        {
+          $data_logo = $this->request->data['data'];
+          $data_result = array();
+          if($data_logo){
+          $this->loadModel("Booking");
+            $data_order_view =  $this->Booking->find('all')->where(['data_order LIKE'=>'%'.$data_logo.'%'])->toArray();
+         
+            if(!empty($data_order_view)){
+              $data_result = array('code'=>'oke','status'=>'agents-view-booking?id='.$data_order_view[0]['id_order']); 
+            }else{
+              $data_result = array('code'=>'noorder','status'=>'No result by Booking ID');
+            }
+          }else{
+             $data_result = array('code'=>'cancel','status'=>'Enter Code Booking ID');
+          }
+          echo json_encode($data_result);
+          die();
+        }
+        public function apiSupdateBooking()
+        {
+          $data_logo = json_decode($this->request->data['data'],TRUE);
+          $data_result = array();
+       
+          if($data_logo){
+            $this->loadModel("Booking");
+           $data_order_view =  $this->Booking->find('all')->where(['id_order'=>$data_logo[1]])->first();;
+            //$this->request->data['status'] = $data_logo[0];
+            $data_order_view->status = $data_logo[0];
+        //   $booking = $this->Booking->patchEntity($data_order_view);
+           if ($this->Booking->save($data_order_view)) {
+              $data_result = array('code'=>'oke','status'=>'Status has changed');
+              } else {
+              $data_result = array('code'=>'noorder','status'=>'Status not update');
+            }
+          }else{
+              $data_result = array('code'=>'noorder','status'=>'Status not update');
+          }
+          echo json_encode($data_result);
+          die();
+        }
+        
      public function viewbooking($id_order = null)
     {
       $data_request = array();
-     
+      $id_order =  $this->request->query('id');
+      if(empty($id_order)){
+         $this->redirect(['action'=>'index']);
+      }
       $this->loadModel("Booking");
       $data_order_view =  $this->Booking->find()->where(['id_order'=>$id_order])->toArray();
-     //  debug($data_order);
-       $this->set('id_order', $id_order);
-      $data_order = $data_order_view[0]['data_order'];
-     
-      $data_ex_room = json_decode($data_order,TRUE);
-    
-      $this->set('data_user_room', $data_ex_room['user']);
+      if(isset($data_order_view[0])){
+          $this->set('id_order', $id_order);
+          $this->set('status_o', $data_order_view[0]['status']);
+          $data_order = $data_order_view[0]['data_order'];
+          $data_ex_room = json_decode($data_order,TRUE);
+           $this->set('data_user_room', $data_ex_room['user']);
        $this->set('data_ex_room', $data_ex_room['data_ex_room']);
        $this->set('data_price_sum', [$data_order_view[0]['sumprice']]);
+      }else{
+        $this->set('id_order',  $id_order); 
+        $this->set('data_ex_room', array());
+        $this->set('data_price_sum', array());
+      }
+     //  debug($data_order);
+      
+    
+     
         $this->set('view_name', 'hotel');
         $this->viewBuilder()->layout('agentslayout');
         $this->set('newhotel', []);

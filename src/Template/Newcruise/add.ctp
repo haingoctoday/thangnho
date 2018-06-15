@@ -38,8 +38,8 @@
             echo $this->Form->input('portend', array('label'=>'Port End', 'type'=>'select', 'options'=>$diachi_view));
 
 
-            echo $this->Form->input('price',['label'=>'Price']);
-            echo $this->Form->input('status',['label'=>'status']);
+           // echo $this->Form->input('price',['label'=>'Price']);
+        //    echo $this->Form->input('status',['label'=>'status']);
            
           ?>
           </div>

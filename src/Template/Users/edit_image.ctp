@@ -5,7 +5,7 @@
 ?>
 <section class="content-header">
   <h1>
-    Edit Cruise
+    Edit Image Users
     <small><?= __('Edit') ?></small>
   </h1>
   <ol class="breadcrumb">
@@ -27,15 +27,15 @@
         </div>
         <!-- /.box-header -->
         <!-- form start -->
-        <?= $this->Form->create($newcruise, array('role' => 'form')) ?>
+        <?= $this->Form->create($users,array('role' => 'form','enctype' => 'multipart/form-data')) ?>
           <div class="box-body">
           <?php
-           $category_view = array('1'=>'HaLong Bay','2'=>'Mekong');
-              echo $this->Form->input('loai', array('label'=>'Cruise Category', 'type'=>'select', 'options'=>$category_view));
-            echo $this->Form->input('portto',['label'=>'Port To']);
-            echo $this->Form->input('portend',['label'=>'Port To']);
-          //  echo $this->Form->input('price',['label'=>'Price']);
-         //   echo $this->Form->input('status',['label'=>'status']);
+       //  if (!file_exists(WWW_ROOT . '/upload/users/'.$users->images)):
+               echo $this->Html->image('/upload/users/'.$users->images, ['alt' => 'hinhanh','class'=>'image_hotel_admin']);
+        //  endif;
+         
+            echo $this->Form->input('images', ['type' => 'file','label' => 'Image']); 
+          
           ?>
           </div>
           <!-- /.box-body -->

@@ -30,9 +30,20 @@
 				<div class="col-md col-md-6">
 				</div>
 				<div class="col-md col-md-6">
-				    <button type="button" class="pull-right btn-update-quote" id="bt-refresh-quote" data-id-client="11941" data-id-booking="3239174" data-applicable-id-baskets="[&quot;2567372&quot;]" data-dialog-message="Expired!!!!" data-show-waiting-view="#waiting-view-bar-refresh">
-			     		<span class="icon eh-refresh"></span>Refresh quote for latest rates		</button>
-				    <div class="pull-right" id="label-refersh-quote" style="color: #777;">(last updated <span class="refresh-quote timeago" title="2018-03-29T12:30:16+11:00">2 months ago</span>)</div>
+					
+					  <?php 
+					  $phanloai = $this->request->session()->read('Auth.User.phanloai');
+					  $phanloai = 'admin';
+					if($phanloai == 'admin'){
+	           echo $this->Form->input('userGroup', array('label'=>false, 'type'=>'select', 'options'=>$status_order_main,'default' => $status_o));
+	           ?>
+
+	      
+				    <button type="button" class="pull-right btn-update-quote" id="bt_refresh_quote" >
+			     		<span class="icon eh-refresh"></span>Update status order</button>
+			     	<?php } else { ?>
+			     		<button type="button" class="pull-right btn-update-quote" id="bt-refresh-quote" >Status order : <?php echo $status_order_main[$status_o] ?></button>
+			     	<?php } ?>
 				</div>
 			</div>
 		</div>
@@ -55,6 +66,7 @@
 			</div>
 		</div>
 	</div> -->
+	<?php if(!empty($data_price_sum)){ ?>
 					<div class="table-hotel">
 						<table class="payment-table">
 							<tbody>
@@ -242,7 +254,7 @@
                                       
                                         <input type="hidden" name="id_order" value="<?php echo $id_order ?>">
                                          <input type="hidden" name="status" value="1">
-                                     <input type="hidden" name="loai" value="<?php echo $valuedata_ex_room['loai'] ?>">
+                                     <input type="hidden" name="loai" value="<?php echo isset($valuedata_ex_room['loai'])?$valuedata_ex_room['loai']:'' ?>">
                                         <input type="hidden" name="sumprice" value="<?php echo $total_array ?>">
                                         <input type="hidden" name="tygiacurrent" value="<?php echo $tygia ?>">
 							        <div class="border-nut-bookok mx-auto">
@@ -258,6 +270,20 @@
 						    </div>
 						</div>
 					</div>
+<?php }else{ ?>
+	<div class="container">
+		<div class="row" style="height: 200px">
+			
+
+			<div class="col-md-12 text-center">
+					<h2>No Booking <?php echo $id_order ?></h2>
+				</div>
+				 <?php echo $this->Html->link('Back to Home', ['controller'=>'Agents','action' => 'index'], ['escape' => false,'id'=>'mybooking_link']) ?>
+		</div>
+		
+	</div>
+</div>
+<?php } ?>
                     <!-- </form>      -->
 					</div>
 				</div>
@@ -789,11 +815,19 @@ a{
 	$( ".onclick_div_menu_show" ).click(function() {
   $( ".div_menu_show" ).toggle();
 });
-</script>
-<!-- //todo
+	$( "#bt_refresh_quote" ).click(function() {
+	  var status =  $( "#usergroup" ).val();
+	  var booking_orde =  '<?php echo $id_order ?>';
+	  var data_b = [status,booking_orde];
+		
+		$.post("api_supdate_booking",
+     { data: JSON.stringify(data_b)},
+    function(data, status){
+    obj = jQuery.parseJSON(data);
+    	 location.reload();
+     });
+   event.preventDefault();
+	});
 
-- THAY BUTTON WITH DÂT GET SANG THE DIV FULL WIDTH
-- HOVER TITLE DUOI TEN KHACH SAN HIEN TOOL TIP
-- THEM MENU VA SELECT ALL
--->
+</script>
 

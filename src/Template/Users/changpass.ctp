@@ -5,7 +5,7 @@
 ?>
 <section class="content-header">
   <h1>
-    Edit Cruise
+    Change Password
     <small><?= __('Edit') ?></small>
   </h1>
   <ol class="breadcrumb">
@@ -27,15 +27,13 @@
         </div>
         <!-- /.box-header -->
         <!-- form start -->
-        <?= $this->Form->create($newcruise, array('role' => 'form')) ?>
+        <?= $this->Form->create($users, array('role' => 'form','enctype' => 'multipart/form-data')) ?>
           <div class="box-body">
           <?php
-           $category_view = array('1'=>'HaLong Bay','2'=>'Mekong');
-              echo $this->Form->input('loai', array('label'=>'Cruise Category', 'type'=>'select', 'options'=>$category_view));
-            echo $this->Form->input('portto',['label'=>'Port To']);
-            echo $this->Form->input('portend',['label'=>'Port To']);
-          //  echo $this->Form->input('price',['label'=>'Price']);
-         //   echo $this->Form->input('status',['label'=>'status']);
+            
+            echo $this->Form->input('password1',['label'=>'PassWord','type'=>'password']);
+            echo $this->Form->input('password2',['label'=>'Re-PassWord','type'=>'password']);
+           
           ?>
           </div>
           <!-- /.box-body -->

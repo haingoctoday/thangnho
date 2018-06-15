@@ -45,7 +45,6 @@
                 <td><?= h($usersm->email) ?></td>
                 <td><?= h($usersm->tendangnhap) ?></td>
                 <td><?= h($usersm->phone) ?></td>
-              
                 <td><?= h($usersm->fullName) ?></td>
                 <td><?php
                 switch ($usersm->phanloai) {
@@ -62,7 +61,7 @@
                 //echo $this->Form->input('phanloai', array('label'=>'false', 'type'=>'select', 'options'=>$phanloai));
                  //= h($usersm->phanloai) ?></td>
                 <td class="actions" style="white-space:nowrap">
-                  <?php //= $this->Html->link(__('View'), ['action' => 'view', $usersm->id], ['class'=>'btn btn-info btn-xs']) ?>
+                  <?php echo $this->Html->link(__('Gruop User'), ['action' => 'groupuser', $usersm->id], ['class'=>'btn btn-info btn-xs']) ?>
                   <?= $this->Html->link(__('Edit'), ['action' => 'edit', $usersm->id], ['class'=>'btn btn-warning btn-xs']) ?>
                   <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $usersm->id], ['confirm' => __('Confirm to delete this entry?'), 'class'=>'btn btn-danger btn-xs']) ?>
                 </td>

@@ -61,6 +61,11 @@ Router::scope('/', function (RouteBuilder $routes) {
   //$routes->connect('/accommodation-hotel-result/*', ['controller' => 'Agents', 'action' => 'hotel_search_result']);
   $routes->connect('/accommodation-hotel-result/*', ['controller' => 'Agents', 'action' => 'hotel_search_result']);
  $routes->connect('/api_search_hotel/*', ['controller' => 'Agents', 'action' => 'api_search_hotel']);
+
+ $routes->connect('/api_search_booking/*', ['controller' => 'Agents', 'action' => 'api_search_booking']);
+  $routes->connect('/api_search_booking_g/*', ['controller' => 'Agents', 'action' => 'api_search_booking_g']);
+    $routes->connect('/api_supdate_booking/*', ['controller' => 'Agents', 'action' => 'api_supdate_booking']);
+ 
   $routes->connect('/test2.php/*', ['controller' => 'Newhotel', 'action' => 'Test2']);
   $routes->connect('/transfer.php/*', ['controller' => 'Newhotel', 'action' => 'TransferApi']);
  $routes->connect('/cruise.php/*', ['controller' => 'Newhotel', 'action' => 'CruiseApi']);
@@ -97,7 +102,7 @@ $routes->connect('/bookingok/*', ['controller' => 'Newactivity', 'action' => 'bo
 $routes->connect('/registration/*', ['controller' => 'Users', 'action' => 'registration']);
 $routes->connect('/registration-thankyou/*', ['controller' => 'Users', 'action' => 'thankyou']);
 $routes->connect('/agents-bookroom/*', ['controller' => 'Users', 'action' => 'bookroom']);
-
+$routes->connect('/booking-process/*', ['controller' => 'Newcruise', 'action' => 'bookingprocess']);
 $routes->connect('/agents-bookroomok/*', ['controller' => 'Newhotel', 'action' => 'bookroomok']);
 $routes->connect('/agents-bookroomok_confirm/*', ['controller' => 'Newhotel', 'action' => 'bookroomokConfirm']);
 
@@ -143,7 +148,8 @@ $routes->connect('/resetpass-admin/*', ['controller' => 'Users', 'action' => 're
   $routes->connect('/admin-hotel-address/*', ['controller' => 'Hoteldiachi', 'action' => 'index']);
    $routes->connect('/admin-user-review/*', ['controller' => 'Userreview', 'action' => 'index']);
    $routes->connect('/admin-contact/*', ['controller' => 'Contact', 'action' => 'index']);
-
+      $routes->connect('/admin-booking/*', ['controller' => 'Booking', 'action' => 'index']);
+    $routes->connect('/admin-group-user/*', ['controller' => 'Groupuser', 'action' => 'index']);
   //newactivity admin
   $routes->connect('/admin-activity/*', ['controller' => 'Newactivity', 'action' => 'index']);
   $routes->connect('/admin-category-activity/*', ['controller' => 'Activitiecategory', 'action' => 'index']);

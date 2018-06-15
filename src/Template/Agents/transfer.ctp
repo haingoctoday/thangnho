@@ -46,6 +46,47 @@
                         </div>
                     </div> 
                     </div>
+                    <div class="drop-to">
+                    <span class="tranfer-span-des">Adult</span>
+                    <div class="row pt-3">
+                        <div class="col-md-12">
+                            <div class="input-group">
+                                <i class="fa fa-user maucam fa-fw" aria-hidden="true"></i>
+                            <select id="select-adult-num" class="form-control adult"  name="adult" >
+                              <?php 
+                              for ($i=1; $i <= 10; $i++) { 
+                                ?>
+                                 <option value="<?= $i?>"><?= $i?></option>
+                                <?php
+                               } ?>
+                             
+                             
+                            </select>
+                        </div>
+                        </div>
+                    </div> 
+                    </div>
+                    <div class="drop-to">
+                    <span class="tranfer-span-des">Child</span>
+                    <div class="row pt-3">
+                        <div class="col-md-12">
+                            <div class="input-group">
+                                <i class="fa fa-user maucam fa-fw" aria-hidden="true"></i>
+                               
+                             <select id="select-child-num" class="form-control child"  name="child">
+                              <?php 
+                              for ($i=0; $i <= 10; $i++) { 
+                                ?>
+                                 <option value="<?= $i?>"><?= $i?></option>
+                                <?php
+                               } ?>
+                             
+                             
+                            </select>
+                        </div>
+                        </div>
+                    </div> 
+                    </div>
                     <div class="end-table-tf pt-3">
                         <div class="row text-center">
                             <!-- <div class="col-md-10 mx-auto"> -->
@@ -238,6 +279,7 @@ i.maucam {padding-right: 9px;font-size: 35px;line-height: 37px;width: 50px}
 }
 .ui-widget-content {
     background: white;
+    z-index: 9;
 }
 input {
     border: 1px solid #ccc !important;
@@ -317,6 +359,8 @@ $( "#check_availability" ).click(function() {
                 'pickdate': $('#pickdate').val(),
                 'pick_up': $('#pick_up').val(),
                 'pick_off': $('#pick_off').val(),
+                 'adult': $(".adult").val(),
+                  'child': $(".child").val(),
             };
 
 

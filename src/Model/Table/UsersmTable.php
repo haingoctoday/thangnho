@@ -19,7 +19,7 @@ use Cake\Auth\DefaultPasswordHasher;
  *
  * @mixin \Cake\ORM\Behavior\TimestampBehavior
  */
-class UsersTable extends Table
+class UsersmTable extends Table
 {
 
     /**

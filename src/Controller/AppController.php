@@ -47,13 +47,36 @@ class AppController extends Controller
 
         $this->loadComponent('RequestHandler');
         $this->loadComponent('Flash');
-        $this->loadComponent('Auth', [
+        // $this->loadComponent('Auth', [
+        //     'authenticate' => [
+        //         'Form' => [
+        //             'fields' => [
+        //                 'username' => 'email',
+        //                 'password' => 'password'
+        //             ]
+        //         ]
+        //     ],
+        //     'loginRedirect' => [
+        //         'controller' => 'Newhotel',
+        //         'action' => 'adminhome'
+        //     ],
+        //     'logoutRedirect' => [
+        //         'controller' => 'Homes',
+        //         'action' => 'index',
+        //         'home'
+        //     ]
+        // ]);
+          $this->loadComponent('Auth', [
+            // 'authorize'=> 'Controller',
             'authenticate' => [
                 'Form' => [
-                    'fields' => ['username' => 'email']
+                    'fields' => [
+                        'username' => 'email',
+                        'password' => 'password'
+                    ]
                 ]
             ],
-            'loginRedirect' => [
+           'loginRedirect' => [
                 'controller' => 'Newhotel',
                 'action' => 'adminhome'
             ],
@@ -100,6 +123,32 @@ class AppController extends Controller
 
       //debug($slideagent[0]->tygia);
     $this->set('tygia',$slideagent[0]->tygia);
+
+    $status_order_main = array(
+      '1'=>'pending Quote',
+      '2'=>'instant purchase (item not held)',
+      '3'=>'amendment pending',
+      '4'=>'pending unconfirmed',
+      '5'=>'confirmed unpaid',
+      '6'=>'payment Due in 48 hours',
+      '7'=>'confirmed (paid)',
+      '8'=>'refund pending',
+      '9'=>'refund Quote',
+      '10'=>'Payment Due In 30 Days',
+      '11'=>'Departure Within 7 Days',
+      '12'=>'Departure Within 21 Days'
+    );
+     $this->set('status_order_main',$status_order_main);
+     $product_type = array(
+      ''=>'All Product Type',
+      'hotel'=>'Hotel',
+      'activity'=>'Activities',
+      'tour'=>'Tour',
+      'shore'=>'Shore excursions',
+      'transfer'=>'Transfer',
+      'cruise'=>'Cruise',
+    );
+     $this->set('product_type',$product_type);
       //die();
 }
 

@@ -138,11 +138,11 @@
                 <span class="badge bg-purple"><?= $array_count['count_users']?></span>
                 <i class="fa fa-users"></i> Users
               </a>
-              <a class="btn btn-app">
+              <a class="btn btn-app" href="<?php echo $this->Url->build('/admin-booking'); ?>">
                 <span class="badge bg-teal"><?= $array_count['count_order']?></span>
                 <i class="fa fa-inbox"></i> Orders
               </a>
-              <a class="btn btn-app">
+              <a class="btn btn-app" href="<?php echo $this->Url->build('/admin-contact'); ?>" >
                 <span class="badge bg-aqua"><?= $array_count['count_contact']?></span>
                 <i class="fa fa-envelope"></i> Inbox
               </a>
@@ -192,9 +192,9 @@
                
                 ?>
               <tr>
-                <td><a href="agents-view-booking/<?php echo $value_data_booking['id_order'] ?>" target="_blank"><?php echo $value_data_booking['id_order'] ?></a></td>
+                <td><a href="agents-view-booking?id=<?php echo $value_data_booking['id_order'] ?>" target="_blank"><?php echo $value_data_booking['id_order'] ?></a></td>
                 <td><?php echo $value_data_booking['loai'] ?></td>
-                <td><span class="label label-warning"><?php echo $array_code[$value_data_booking['status']] ?></span></td>
+                <td><span class="label label-warning"><?php echo $status_order_main[$value_data_booking['status']] ?></span></td>
                 <td>
                   <div class="sparkbar" data-color="#00a65a" data-height="20"><?php echo $value_data_booking['sumprice'] * $tygia ?> $</div>
                 </td>
@@ -207,8 +207,8 @@
         </div>
         <!-- /.box-body -->
         <div class="box-footer clearfix">
-          <a href="javascript::;" class="btn btn-sm btn-info btn-flat pull-left">Place New Order</a>
-          <a href="javascript::;" class="btn btn-sm btn-default btn-flat pull-right">View All Orders</a>
+           <!-- <a class="btn btn-app" href="<?php echo $this->Url->build('/admin-activity'); ?>"> -->
+          <a href="<?php echo $this->Url->build('/admin-booking'); ?>" class="btn btn-sm btn-default btn-flat pull-right">View All Orders</a>
         </div>
         <!-- /.box-footer -->
       </div>

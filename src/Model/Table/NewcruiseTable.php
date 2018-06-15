@@ -59,10 +59,7 @@ class NewcruiseTable extends Table
             ->requirePresence('portend', 'create')
             ->notEmpty('portend');
 
-        $validator
-            ->requirePresence('price', 'create')
-            ->notEmpty('price');
-
+      
        
        
 

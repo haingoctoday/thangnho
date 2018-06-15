@@ -5,6 +5,7 @@
 //debug(($this->request->session()->read('hotel.search')));
 $session_search = $this->request->session()->read('hotel.search');
 if(empty($session_search)){
+	//debug($count_room);
 	$today = date("m/d/Y");  
 	$tomorrow = new DateTime('tomorrow');
 	$tomorrow =  $tomorrow->format("m/d/Y");  

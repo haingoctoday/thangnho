@@ -24,37 +24,24 @@
 <div class="content-agent-detail">
     <div class="container">
     <div class="row" style="padding-bottom: 6px;">
+
+        <?php 
+        foreach ($user_view_data as $key => $valueuser_view_data) {
+       
+         ?>
         <div class="col-md-4 padding-card">
             <div class="card-col-user">
-                <span>contact@tweetworldtravel.com.au</span>
+                <span><?php echo $user_view[$valueuser_view_data] ?></span>
             </div>
         </div>
-        <div class="col-md-4 padding-card">
-            <div class="card-col-user">
-                <span>info@tweetworldtravel.com.au</span>
-            </div>
-        </div>
-        <div class="col-md-4 padding-card">
-            <div class="card-col-user">
-                <span>judith@tweetworldtravel.com.au</span>
-            </div>
-        </div>        
-        <div class="col-md-4 padding-card">
-            <div class="card-col-user">
-                <span>thuy@tweetworldtravel.com.au</span>
-            </div>
-        </div>
-        <div class="col-md-4 padding-card">
-            <div class="card-col-user">
-                <span>minhtran@tweetworldtravel.com.au</span>
-            </div>
-        </div>
-                               
+        <?php 
+            }
+         ?>                         
     </div>
     </div>
 </div>
 
 
 
-
+</div>
 </div>

@@ -27,24 +27,25 @@
         <div class="box-body table-responsive no-padding">
           <table class="table table-hover">
             <tr>
-              <th><?= $this->Paginator->sort('id') ?></th>
+              <th></th>
               <th><?= $this->Paginator->sort('id_order') ?></th>
               <th><?= $this->Paginator->sort('status') ?></th>
               <th><?= $this->Paginator->sort('user_order') ?></th>
               <th><?= $this->Paginator->sort('reference') ?></th>
-              <th><?= $this->Paginator->sort('info_sale') ?></th>
+              <th><?= $this->Paginator->sort('total order') ?></th>
               <th><?= __('Actions') ?></th>
             </tr>
             <?php foreach ($booking as $booking): ?>
               <tr>
-                <td><?= $this->Number->format($booking->id) ?></td>
+                <td><?php // $this->Number->format($booking->id) ?></td>
                 <td><?= h($booking->id_order) ?></td>
-                <td><?= $this->Number->format($booking->status) ?></td>
-                <td><?= $this->Number->format($booking->user_order) ?></td>
+                <td><?= $status_order_main[$booking->status] ?></td>
+                <td><?php
+echo $user_view[$booking->user_order];?></td>
                 <td><?= h($booking->reference) ?></td>
-                <td><?= h($booking->info_sale) ?></td>
+                <td><?php echo $booking->sumprice * $tygia ?> $</td>
                 <td class="actions" style="white-space:nowrap">
-                  <?= $this->Html->link(__('View'), ['action' => 'view', $booking->id], ['class'=>'btn btn-info btn-xs']) ?>
+                  <?= $this->Html->link(__('View'), ['controller'=>'Agents','action' => 'viewbooking', '?'=>['id'=>$booking->id_order]], ['class'=>'btn btn-info btn-xs']) ?>
                   <?= $this->Html->link(__('Edit'), ['action' => 'edit', $booking->id], ['class'=>'btn btn-warning btn-xs']) ?>
                   <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $booking->id], ['confirm' => __('Confirm to delete this entry?'), 'class'=>'btn btn-danger btn-xs']) ?>
                 </td>

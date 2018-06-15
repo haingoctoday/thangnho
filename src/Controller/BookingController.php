@@ -22,6 +22,14 @@ class BookingController extends AppController
 
         $this->set(compact('booking'));
         $this->set('_serialize', ['booking']);
+         $this->loadModel("Usersm");
+        $data_user = $this->Usersm->find('all')->toArray();
+       $user_view = array();
+       foreach ($data_user as $key => $value_user) {
+                $user_view[$value_user['id']] =  $value_user['email'];
+       }
+        $this->set('user_view', $user_view);
+
     }
 
     /**

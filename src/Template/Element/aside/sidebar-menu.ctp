@@ -102,6 +102,8 @@ if (!file_exists($file)) {
         <ul class="treeview-menu">
              <li><a href="<?php echo $this->Url->build('/admin-agency-signup'); ?>"><i class="fa fa-map-signs"></i>New Agent Registration</a></li>
            <li><a href="<?php echo $this->Url->build('/admin-custome'); ?>"><i class="fa fa-map"></i> Customer </a></li>
+ <li><a href="<?php echo $this->Url->build('/admin-group-user'); ?>"><i class="fa fa-map"></i> Group User </a></li>
+
            <li><a href="<?php echo $this->Url->build('/admin-user-review'); ?>"><i class="fa fa-map"></i> Customer Review Activity </a></li>
             <!-- <li><a href="<?php echo $this->Url->build('/'); ?>"><i class="fa fa-level-down"></i> Địa điểm</a></li> -->
             <!-- <li><a href="<?php echo $this->Url->build('/'); ?>"><i class="fa fa-meh-o"></i>Loại hình Tour</a></li> -->

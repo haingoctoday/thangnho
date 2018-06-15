@@ -5,8 +5,7 @@
 ?>
 <section class="content-header">
   <h1>
-    Edit Cruise
-    <small><?= __('Edit') ?></small>
+    Groupuser    <small><?= __('Edit') ?></small>
   </h1>
   <ol class="breadcrumb">
     <li>
@@ -27,15 +26,11 @@
         </div>
         <!-- /.box-header -->
         <!-- form start -->
-        <?= $this->Form->create($newcruise, array('role' => 'form')) ?>
+        <?= $this->Form->create($groupuser, array('role' => 'form')) ?>
           <div class="box-body">
           <?php
-           $category_view = array('1'=>'HaLong Bay','2'=>'Mekong');
-              echo $this->Form->input('loai', array('label'=>'Cruise Category', 'type'=>'select', 'options'=>$category_view));
-            echo $this->Form->input('portto',['label'=>'Port To']);
-            echo $this->Form->input('portend',['label'=>'Port To']);
-          //  echo $this->Form->input('price',['label'=>'Price']);
-         //   echo $this->Form->input('status',['label'=>'status']);
+            echo $this->Form->input('nameGroup');
+         //   echo $this->Form->input('userGroup');
           ?>
           </div>
           <!-- /.box-body -->

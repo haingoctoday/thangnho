@@ -6,6 +6,10 @@ if (!file_exists($file)) {
     include_once $file;
     echo ob_get_clean();
 } else {
+
+
+    // $a  = $this->request->session();
+    // debug($a->read('Auth.User.id'));
 ?>
 <nav class="navbar navbar-static-top" role="navigation">
     <!-- Sidebar toggle button-->
@@ -37,7 +41,7 @@ if (!file_exists($file)) {
             <?php
             echo $this->Html->link(
             'Profile',
-            ['controller'=>'Users', 'action'=>'edit',$this->request->session()->read('user.id')],
+            ['controller'=>'Users', 'action'=>'edit',$this->request->session()->read('Auth.User.id')],
             ['escape' => false]  // important 
             );
             ?>
@@ -46,7 +50,7 @@ if (!file_exists($file)) {
             <?php
             echo $this->Html->link(
             'Thay đổi ảnh đại diện',
-            ['controller'=>'Users', 'action'=>'edit_image'],
+            ['controller'=>'Users', 'action'=>'edit_image',$this->request->session()->read('Auth.User.id')],
             ['escape' => false]  // important 
             );
             ?>
@@ -55,7 +59,7 @@ if (!file_exists($file)) {
             <?php
             echo $this->Html->link(
             'Đổi mật khẩu',
-            ['controller'=>'Users', 'action'=>'changpass',$this->request->session()->read('user.id')],
+            ['controller'=>'Users', 'action'=>'changpass',$this->request->session()->read('Auth.User.id')],
             ['escape' => false]  // important 
             );
             ?>

@@ -26,7 +26,7 @@
           <div class="box-body">
           <?php
             echo $this->Form->input('email',['value'=>$email_u]);
-            echo $this->Form->input('tendangnhap',['label'=>'UserName']);
+          //  echo $this->Form->input('tendangnhap',['label'=>'UserName']);
          //   echo $this->Form->input('images');
             echo $this->Form->input('password');
             echo $this->Form->input('fullName',['label'=>'Full Name']);

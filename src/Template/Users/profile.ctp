@@ -96,7 +96,7 @@ input[type="radio"]:checked + label span { -webkit-transition: background-color 
             <div class="col-md-6 display-tn">
                 <label class="display-7" style="width: 102px;">Username
                 </label>
-                <input class="form-control" type="text" name="firstname" id="firstname" placeholder=""  value="<?= $users['username']?>">
+                <input class="form-control" type="text" name="username1" id="username" placeholder="" disabled value="<?= $users['username']?>">
             </div>
     </div>
 
@@ -114,7 +114,7 @@ input[type="radio"]:checked + label span { -webkit-transition: background-color 
             <div class="col display-tn pl-0">
                 <label class="display-7" style="width: 157px;letter-spacing: -2px;">Preferred Name
                 </label>
-                <input class="form-control" type="text" name="preferredName" id="preferredName" placeholder="" value="<?= $users['preferredName']?>">
+                <input class="form-control" type="text" name="preferredName" id="preferredName" placeholder=""  value="<?= $users['preferredName']?>">
             </div>
     </div>
 
@@ -122,7 +122,7 @@ input[type="radio"]:checked + label span { -webkit-transition: background-color 
             <div class="col-md-6 display-tn">
                 <label class="display-7" style="width: 270px;">Preferred Email Address
                 </label>
-                <input class="form-control" type="text" name="email" id="email" placeholder="" value="<?= $users['email']?>">
+                <input class="form-control" type="text" name="email1" id="email" placeholder="" value="<?= $users['email']?>" disabled>
             </div>
             <div class="col-md-5 display-tn">
                 <label class="display-7" style="width: 176px;">Phone Number
@@ -155,8 +155,8 @@ input[type="radio"]:checked + label span { -webkit-transition: background-color 
                     </select>             
                     <div class="hjhjhj"> 
                         <span>Gender:</span>
-                        <input id="option-one" name="sex"  type="radio" value="Male"> <label for="option-one" style="margin-right: 10px;margin-left: 10px;"> <span></span> Male </label> 
-                        <input id="option-two" name="sex"  type="radio" value="Female"> <label for="option-two"> <span></span> Female </label> 
+<input id="option-one" name="sex"  type="radio" value="Male" <?php echo ( $users['sex'] == 'Male') ? "checked" : ""?>> <label for="option-one" style="margin-right: 10px;margin-left: 10px;"> <span></span> Male </label> 
+<input id="option-two" name="sex"  type="radio" value="Female" <?php echo ( $users['sex'] == 'Female') ? "checked" : ""?>> <label for="option-two"> <span></span> Female </label> 
                     </div>
                 </div>
             </div>
@@ -168,46 +168,26 @@ input[type="radio"]:checked + label span { -webkit-transition: background-color 
 
                 <div class="checkbox" style="font-size: 16px;letter-spacing: -1px;">
                     <label class="display-7" style="padding-right: 5px;">Interests:</label>
-                    <label class="pl-2 pr-2">
-                        <input type="checkbox" value="Arts" name="Interests[]">
-                        <span class="cr"><i class="cr-icon fa fa-check mauxanh-input"></i></span>Arts
-                    </label>
-                    <label class="pl-2 pr-2">
-                        <input type="checkbox" value="Family" name="Interests[]">
-                        <span class="cr"><i class="cr-icon fa fa-check mauxanh-input"></i></span>Family
-                    </label>
-                    <label class="pl-2 pr-2">
-                        <input type="checkbox" value="Food" name="Interests[]">
-                        <span class="cr"><i class="cr-icon fa fa-check mauxanh-input"></i></span>Food
-                    </label>
-                    <label class="pl-2 pr-2">
-                        <input type="checkbox" value="">
-                        <span class="cr"><i class="cr-icon fa fa-check mauxanh-input"></i></span>Literature
-                    </label>
-                    <label class="pl-2 pr-2">
-                        <input type="checkbox" value="">
-                        <span class="cr"><i class="cr-icon fa fa-check mauxanh-input"></i></span>Music
-                    </label>
-                    <label class="pl-2 pr-2">
-                        <input type="checkbox" value="">
-                        <span class="cr"><i class="cr-icon fa fa-check mauxanh-input"></i></span>Photography
-                    </label>
-                    <label class="pl-2 pr-2">
-                        <input type="checkbox" value="">
-                        <span class="cr"><i class="cr-icon fa fa-check mauxanh-input"></i></span>Sport
-                    </label> 
-                    <label class="pl-2 pr-2">
-                        <input type="checkbox" value="">
-                        <span class="cr"><i class="cr-icon fa fa-check mauxanh-input"></i></span>Technology
-                    </label>
-                    <label class="pl-2 pr-2">
-                        <input type="checkbox" value="">
-                        <span class="cr"><i class="cr-icon fa fa-check mauxanh-input"></i></span>Travel
-                    </label>
-                    <label class="pl-2">
-                        <input type="checkbox" value="">
-                        <span class="cr"><i class="cr-icon fa fa-check mauxanh-input"></i></span>TV/Movies
-                    </label>
+                    <?php 
+                    $array_interest = array('Arts','Family','Food','Literature','Music','Photography','Sport','Technology','Travel','TV/Movies');
+                    $interests_a = json_decode($users['interests'],TRUE);
+                    if(empty($interests_a)){
+                        $interests_a = array();
+                    }
+                    foreach ($array_interest as $key => $value) {
+                   //debug( $interests_a);  
+                    if (in_array($value,$interests_a)) {
+                      $check_in = 'checked';
+                    }else{
+                        $check_in = '';
+                    }  
+                     ?>
+                        <label class="pl-2 pr-2">
+                            <input type="checkbox" value="<?php echo $value ?>" name="interests[]" <?php echo $check_in ?>>
+                            <span class="cr"><i class="cr-icon fa fa-check mauxanh-input"></i></span><?php echo $value ?>
+                        </label>
+                    <?php  } ?>
+                 
                 </div>
             </div>
         </div>

@@ -27,7 +27,7 @@
         </div>
         <!-- /.box-header -->
         <!-- form start -->
-        <?= $this->Form->create($newtransfer, array('role' => 'form')) ?>
+        <?= $this->Form->create($newtransfer,array('role' => 'form','enctype' => 'multipart/form-data')) ?>
           <div class="box-body">
           <?php
             // echo $this->Form->input('destination', ['label' => 'Destination']);

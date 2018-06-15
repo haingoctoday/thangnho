@@ -239,55 +239,28 @@
         </button>
                 </div>
                 <div class="modal-body">
-                   <!--  <div class="container pt-3">
-                        <div class="row pb-3">
-                            <div class="col-md-4">
-                                <label class="form-control-label style-font-label login-font">Agency and name
-              </label>
-                            </div>
-                            <div class="col-md-8">
-                                <input class="form-control maukhung-input" type="text" placeholder="">
-                            </div>
-
-                        </div>
-                        <div class="row pb-3">
-                            <div class="col-md-4">
-                                <label class="form-control-label style-font-label login-font">Subject
-              </label>
-                            </div>
-                            <div class="col-md-8">
-                                <input class="form-control maukhung-input" type="text" placeholder="">
-                            </div>
-                        </div>
-                        <div class="row pb-3">
-                            <div class="col">
-                                <label class="form-control-label style-font-label login-font">Message
-              </label>
-                                <textarea class="form-control maukhung-input" rows="5" id="comment"></textarea>
-                            </div>
-                        </div>
-
-                    </div> -->
                      <div class="col-md-12" style="">
             <div class="manage-bk">
-              <!--  <h5 class="text-manager-booking">MANAGE MY BOOKINGS</h5> -->
                <div id="imaginary_container">
                   <div class="input-group stylish-input-group">
-                     <input type="text" class="form-control" placeholder="Booking ID">
+                     <input type="text" class="form-control" placeholder="Booking ID" id="search_booking_text">
                      <span class="input-group-addon">
-                     <button type="submit">
+                     <button type="button" class="search_booking_btn">
                      <span class="fa fa-search fa-fw"></span>
                      </button>
                      </span>
+                     
                   </div>
+                  <span id="search_booking_text_alert" style="color: red"></span>
                   <div class="input-group stylish-input-group">
-                     <input type="text" class="form-control" placeholder="Guest Name">
+                     <input type="text" class="form-control" placeholder="Guest Name" id="search_booking_g_text">
                      <span class="input-group-addon">
-                     <button type="submit">
+                     <button type="button" class="search_booking_g_btn">
                      <span class="fa fa-search fa-fw"></span>
                      </button>
                      </span>
-                  </div>
+                    
+                  </div> <span id="search_booking_g_text_alert" style="color: red"></span>
                </div>
                <div class="container" style="margin-top: 14px;">
                   <div class="row">
@@ -385,6 +358,54 @@
     overflow: hidden;
 }
 </style>
+<script type="text/javascript">
+  
+  $( ".search_booking_btn" ).click(function() {
+    var text_search =  $("#search_booking_text").val();
+    $.post("api_search_booking",
+     { data: text_search},
+    function(data, status){
+    obj = jQuery.parseJSON(data);
+    if(obj.code == 'oke'){
+       window.location = "/"+obj.status;
+    }
+    if(obj.code == 'cancel'){
+      $("#search_booking_text").blur();
+      $("#search_booking_text").css('border',"1px solid red");
+      $("#search_booking_text_alert").text("");
+    }
+    if(obj.code == 'noorder'){
+      $("#search_booking_text").blur();
+      $("#search_booking_text_alert").text(obj.status);
+    }
+     });
+   event.preventDefault();
+
+  });
+  $( ".search_booking_g_btn" ).click(function() {
+    var text_search =  $("#search_booking_g_text").val();
+    $.post("api_search_booking_g",
+     { data: text_search},
+    function(data, status){
+    obj = jQuery.parseJSON(data);
+    if(obj.code == 'oke'){
+       window.location = "/"+obj.status;
+    }
+    if(obj.code == 'cancel'){
+      $("#search_booking_g_text").blur();
+      $("#search_booking_g_text").css('border',"1px solid red");
+      $("#search_booking_g_text_alert").text("");
+    }
+    if(obj.code == 'noorder'){
+      $("#search_booking_g_text").blur();
+      $("#search_booking_g_text_alert").text(obj.status);
+    }
+     });
+   event.preventDefault();
+
+  });
+
+</script>
   </body>
 
 </html>

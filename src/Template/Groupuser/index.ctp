@@ -1,8 +1,7 @@
 <!-- Content Header (Page header) -->
 <section class="content-header">
   <h1>
-    Cruise List
-    <div class="pull-right"><?= $this->Html->link(__('New'), ['action' => 'add'], ['class'=>'btn btn-success btn-xs']) ?></div>
+    Group User    <div class="pull-right"><?= $this->Html->link(__('New'), ['action' => 'add'], ['class'=>'btn btn-success btn-xs']) ?></div>
   </h1>
 </section>
 
@@ -12,7 +11,7 @@
     <div class="col-xs-12">
       <div class="box">
         <div class="box-header">
-          <h3 class="box-title"><?= __('List of') ?> Cruise</h3>
+          <h3 class="box-title"><?= __('List of') ?> Group User</h3>
           <div class="box-tools">
             <form action="<?php echo $this->Url->build(); ?>" method="POST">
               <div class="input-group input-group-sm"  style="width: 180px;">
@@ -28,28 +27,21 @@
         <div class="box-body table-responsive no-padding">
           <table class="table table-hover">
             <tr>
-               <th> Destination</th>
-              <th><?= $this->Paginator->sort('portto', ['label' => 'Port To']) ?></th>
-              <th><?= $this->Paginator->sort('portend', ['label' => 'Port End']) ?></th>
-           
-         
-             
+              
+              <th><?= $this->Paginator->sort('nameGroup') ?></th>
+              <th><?= __('Number User in Group') ?></th>
               <th><?= __('Actions') ?></th>
             </tr>
-            <?php foreach ($newcruise as $newcruise): ?>
+            <?php foreach ($groupuser as $groupuser): ?>
               <tr>
-                 <td><?= ($newcruise->loai == '1')?'HaLong Bay':'Mekong' ?></td>
-                <td><?= h($newcruise->portto) ?></td>
-                <td><?= h($newcruise->portend) ?></td>
-             
-              
                
-                <td class="actions" style="">
-                   <?= $this->Html->link(__('Add transfers'), ['action' => 'addtransfer', $newcruise->id], ['class'=>'btn btn-info btn-xs']) ?>
-                  <?= $this->Html->link(__('View'), ['action' => 'view', $newcruise->id], ['class'=>'btn btn-info btn-xs']) ?>
-
-                  <?= $this->Html->link(__('Edit'), ['action' => 'edit', $newcruise->id], ['class'=>'btn btn-warning btn-xs']) ?>
-                  <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $newcruise->id], ['confirm' => __('Confirm to delete this entry?'), 'class'=>'btn btn-danger btn-xs']) ?>
+                <td><?= h($groupuser->nameGroup) ?></td>
+                <td><?= count(json_decode($groupuser->userGroup)) ?> member</td>
+                <td class="actions" style="white-space:nowrap">
+                  <?php // $this->Html->link(__('View'), ['action' => 'view', $groupuser->id], ['class'=>'btn btn-info btn-xs']) ?>
+                   <?= $this->Html->link(__('Add Member into Group'), ['action' => 'addUser', $groupuser->id], ['class'=>'btn btn-info btn-xs']) ?>
+                  <?= $this->Html->link(__('Edit'), ['action' => 'edit', $groupuser->id], ['class'=>'btn btn-warning btn-xs']) ?>
+                  <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $groupuser->id], ['confirm' => __('Confirm to delete this entry?'), 'class'=>'btn btn-danger btn-xs']) ?>
                 </td>
               </tr>
             <?php endforeach; ?>

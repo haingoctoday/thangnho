@@ -185,7 +185,20 @@ dd.pax-names {
 #mybooking_link:hover{
     text-decoration: none;
 }
+.form-group.select {
+    width: 100%;
+}
 </style>
+
+<?php 
+//debug($booking_data);
+$array_count = array();
+foreach ($booking_data as $key => $v_booking_data) {
+   
+   $array_count[$v_booking_data['status']][] = $v_booking_data['status'];
+}
+//debug($array_count);
+ ?>
 
 
 <div class="wrapper-mybooking" id="manage">
@@ -194,36 +207,46 @@ dd.pax-names {
             <h4 style="font-weight: bold;padding-left: 22px;padding-top: 15px;padding-bottom: 10px;">BOOKING SEARCH</h4>       
         </div>
         <div class="content-agent-detail">
+               <form action="<?php echo $this->Url->build(array('controller' => 'Users', 'action' => 'mybooking')); ?>" method="post">
             <div class="row" style="padding-bottom: 6px;">
                 <div class="col-md-6 display-tn">
                     <label class="display-7" style="width: 320px;">Booking ID
                     </label>
-                    <input class="form-control" type="text" name="firstname" id="firstname" placeholder="">
+                    <input class="form-control" type="text" name="bookingid" id="firstname" placeholder="">
 
                     <label class="display-7" style="width: 420px;padding-left: 15px;padding-right: 10px;">Your Reference
                     </label>
-                    <input class="form-control" type="text" name="firstname" id="firstname" placeholder="">
+                    <input class="form-control" type="text" name="reference" id="firstname" placeholder="">
                 </div>
                 <div class="col-md-6 display-tn">
-                    <select id="soflow" class="form-control mauxanh-input" >
+                    <?php 
+                     array_unshift($status_order_main, "All Status");
+                     echo $this->Form->input('status_order_main', array('label'=>false, 'type'=>'select', 'options'=>$status_order_main,'class'=>'form-control mauxanh-input','id'=>'soflow'));
+                     ?>
+                   <!--  <select id="soflow" class="form-control mauxanh-input" >
                       <option>Status</option>
                       <option>Option 1</option>
                       <option>Option 2</option>
-                    </select>
+                    </select> -->
                 </div>
             </div>
             <div class="row" style="padding-bottom: 6px;">
                 <div class="col-md-6 display-tn">
                     <label class="display-7" style="width: 185px;">Destination Name
                     </label>
-                    <input class="form-control" type="text" name="firstname" id="firstname" placeholder="">
+                    <input class="form-control" type="text" name="destination" id="firstname" placeholder="">
                 </div>
                 <div class="col-md-6 display-tn">
-                    <select id="soflow" class="form-control mauxanh-input" >
+                    <!-- <select id="soflow" class="form-control mauxanh-input" >
                       <option>User Name</option>
                       <option>Option 1</option>
                       <option>Option 2</option>
-                    </select>
+                    </select> -->
+                    <?php 
+                  //  $product_type.unshift(34);
+                   // array_unshift($product_type, "All Product Type");
+                     echo $this->Form->input('product_type', array('label'=>false, 'type'=>'select', 'options'=>$product_type,'default' => '0','class'=>'form-control mauxanh-input','id'=>'soflow'));
+                     ?>
                 </div>
             </div>
             <div class="row" style="padding-bottom: 6px;">
@@ -234,50 +257,44 @@ dd.pax-names {
 
                     <label class="display-7" style="width: 360px;padding-left: 15px;padding-right: 15px;">Last Name
                     </label>
-                    <input class="form-control" type="text" name="firstname" id="firstname" placeholder="">
+                    <input class="form-control" type="text" name="lastname" id="firstname" placeholder="">
                 </div>
-                <div class="col-md-6 display-tn">
-                    <select id="soflow" class="form-control mauxanh-input" >
-                      <option>Product Type</option>
-                      <option>Option 1</option>
-                      <option>Option 2</option>
-                    </select>
-                </div>
+              
             </div>
             <div class="row" style="padding-bottom: 6px;">
                 <div class="col-md-3 display-tn pr-0">
                     <label class="display-7" style="width: 320px;">Created From
                     </label>
-                    <input class="form-control" type="text" name="firstname" id="firstname" placeholder="">
+                    <input class="form-control" type="text" name="createdform" id="firstname" placeholder="">
                     <button class="button-calendar"></button>
                 </div>
                 <div class="col-md-3 display-tn" style="padding-left: 36px;">
                     <label class="display-7" style="width: 250px;">Created To
                     </label>
-                    <input class="form-control" type="text" name="firstname" id="firstname" placeholder="">
+                    <input class="form-control" type="text" name="createdto" id="firstname" placeholder="">
                     <button class="button-calendar"></button>
                 </div>
                 <div class="col-md-6 display-tn">
                     <label class="display-7" style="width: 880px;letter-spacing: -2px;">Departure Within (days)
                     </label>
-                    <input class="form-control" type="text" name="firstname" id="firstname" placeholder="">
+                    <input class="form-control" type="text" name="departure" id="firstname" placeholder="">
 
                     <label class="display-7" style="width: 1010px;padding-left: 10px;padding-right: 10px;letter-spacing: -2px;">Payment Due Within (days)
                     </label>
-                    <input class="form-control" type="text" name="firstname" id="firstname" placeholder="">
+                    <input class="form-control" type="text" name="paymentdue" id="firstname" placeholder="">
                 </div>
             </div>
             <div class="row" style="padding-bottom: 6px;">
                 <div class="col-md-3 display-tn pr-0">
                     <label class="display-7" style="width: 320px;">Service From
                     </label>
-                    <input class="form-control" type="text" name="firstname" id="firstname" placeholder="">
+                    <input class="form-control" type="text" name="servicefrom" id="firstname" placeholder="">
                     <button class="button-calendar"></button>
                 </div>
                 <div class="col-md-3 display-tn" style="padding-left: 36px;">
                     <label class="display-7" style="width: 250px;">Service To
                     </label>
-                    <input class="form-control" type="text" name="firstname" id="firstname" placeholder="">
+                    <input class="form-control" type="text" name="serviceto" id="firstname" placeholder="">
                     <button class="button-calendar"></button>
                 </div>
             </div>
@@ -290,13 +307,14 @@ dd.pax-names {
             </div>
         </div>
 	</div> 
+    <?= $this->Form->end() ?>
 </div>
 <div class="wrapper-refined-book">
 <div class="container" style="background-color: #ebf1f1;margin-top: 4px;">    
         <div class="row" style="background-color: #fff">
             <h4 style="font-weight: bold;padding-left: 22px;padding-top: 15px;padding-bottom: 10px;">REFINED BOOKING SEARCH FILTERSH</h4>       
         </div>
-
+    <?php //debug($status_order_main) ?>
         <div class="content-refined-book">
             <div class="row" style="padding-left: 28px;padding-right: 12px;">
             	<div class="col-md-4">
@@ -310,19 +328,19 @@ dd.pax-names {
                      <div class="col-md-8 pr-0" style="padding-left: .3rem!important;">
                         <div class="row book-form-agency m-0 fix-row-book">
                            <div class="col-md-10 text-left p-0"><a href="" class="text-color-a">Quote</a></div>
-                           <div class="col-md-2 text-right text-color-num">0</div>
+                           <div class="col-md-2 text-right text-color-num"><?php echo count(!empty($array_count[1])?$array_count[1]:array()) ?></div>
                         </div>
                         <div class="row book-form-agency m-0 fix-row-book">
                            <div class="col-md-10 text-left p-0"><a href="" class="text-color-a">instant purchase (item not held)</a></div>
-                           <div class="col-md-2 text-right text-color-num">0</div>
+                           <div class="col-md-2 text-right text-color-num"><?php echo count(!empty($array_count[2])?$array_count[2]:array()) ?></div>
                         </div>
                         <div class="row book-form-agency m-0 fix-row-book">
                            <div class="col-md-9 text-left p-0"><a href="" class="text-color-a">amendment pending</a></div>
-                           <div class="col-md-3 text-right text-color-num">0</div>
+                           <div class="col-md-3 text-right text-color-num"><?php echo count(!empty($array_count[3])?$array_count[3]:array()) ?></div>
                         </div>
                         <div class="row book-form-agency m-0 fix-row-book">
                            <div class="col-md-9 text-left p-0"><a href="" class="text-color-a">pending unconfirmed</a></div>
-                           <div class="col-md-3 text-right text-color-num">0</div>
+                           <div class="col-md-3 text-right text-color-num"><?php echo count(!empty($array_count[4])?$array_count[4]:array()) ?></div>
                         </div>
                      </div>
                  </div>
@@ -338,11 +356,11 @@ dd.pax-names {
                      <div class="col-md-8 pr-0" style="padding-left: .3rem!important;">
                         <div class="row book-form-agency m-0">
                            <div class="col-md-9 text-left p-0"><a href="" class="text-color-a">confirmed unpaid</a></div>
-                           <div class="col-md-3 text-right text-color-num">0</div>
+                           <div class="col-md-3 text-right text-color-num"><?php echo count(!empty($array_count[5])?$array_count[5]:array()) ?></div>
                         </div>
                         <div class="row book-form-agency m-0">
                            <div class="col-md-9 text-left p-0"><a href="" class="text-color-a">payment Due in 48 hours</a></div>
-                           <div class="col-md-3 text-right text-color-num">0</div>
+                           <div class="col-md-3 text-right text-color-num"><?php echo count(!empty($array_count[6])?$array_count[6]:array()) ?></div>
                         </div>
                      </div>
                     </div>
@@ -356,15 +374,15 @@ dd.pax-names {
                      <div class="col-md-8 pr-0" style="padding-left: .3rem!important;">
                         <div class="row book-form-agency m-0">
                            <div class="col-md-9 text-left p-0"><a href="" class="text-color-a">confirmed (paid)</a></div>
-                           <div class="col-md-3 text-right text-color-num">0</div>
+                           <div class="col-md-3 text-right text-color-num"><?php echo count(!empty($array_count[7])?$array_count[7]:array()) ?></div>
                         </div>
                         <div class="row book-form-agency m-0">
                            <div class="col-md-9 text-left p-0"><a href="" class="text-color-a">refund pending</a></div>
-                           <div class="col-md-3 text-right text-color-num">0</div>
+                           <div class="col-md-3 text-right text-color-num"><?php echo count(!empty($array_count[8])?$array_count[8]:array()) ?></div>
                         </div>
                         <div class="row book-form-agency m-0">
                            <div class="col-md-9 text-left p-0"><a href="" class="text-color-a">Quote</a></div>
-                           <div class="col-md-3 text-right text-color-num">0</div>
+                           <div class="col-md-3 text-right text-color-num"><?php echo count(!empty($array_count[9])?$array_count[9]:array()) ?></div>
                         </div>
                      </div>
                   </div>
@@ -380,15 +398,15 @@ dd.pax-names {
                      <div class="col-md-8 pr-0" style="padding-left: .3rem!important;">
                         <div class="row book-form-agency m-0 fix-row-book">
                            <div class="col-md-10 text-left p-0"><a href="" class="text-color-a">Payment Due In 30 Days</a></div>
-                           <div class="col-md-2 text-right text-color-num">1</div>
+                           <div class="col-md-2 text-right text-color-num"><?php echo count(!empty($array_count[10])?$array_count[10]:array()) ?></div>
                         </div>
                         <div class="row book-form-agency m-0 fix-row-book">
                            <div class="col-md-10 text-left p-0"><a href="" class="text-color-a">Departure Within 7 Days</a></div>
-                           <div class="col-md-2 text-right text-color-num">0</div>
+                           <div class="col-md-2 text-right text-color-num"><?php echo count(!empty($array_count[11])?$array_count[11]:array()) ?></div>
                         </div>
                         <div class="row book-form-agency m-0 fix-row-book">
                            <div class="col-md-9 text-left p-0"><a href="" class="text-color-a">Departure Within 21 Days</a></div>
-                           <div class="col-md-3 text-right text-color-num">0</div>
+                           <div class="col-md-3 text-right text-color-num"><?php echo count(!empty($array_count[12])?$array_count[12]:array()) ?></div>
                         </div>
                         <div class="row book-form-agency m-0 fix-row-book">
                            <div class="col-md-9 text-left p-0"><a href="" class="text-color-a"></a></div>
@@ -411,7 +429,9 @@ dd.pax-names {
     $user_order_view = json_decode($valuebooking_data['data_order'],TRUE);
  //debug($user_order_view['user']);
  ?>
- <a href="agents-view-booking/<?php echo $valuebooking_data['id_order'] ?>" id="mybooking_link">
+ <a href="<?php echo  $this->Url->build('/agents-view-booking?id='. $valuebooking_data['id_order'], ['escape' => false,'fullBase' => true,]); ?>" id="mybooking_link">
+    
+    <?php // $this->Html->link('', ['controller'=>'Agents','action' => 'viewbooking',$valuebooking_data['id_order']], ['escape' => false,'id'=>'mybooking_link']) ?>
 <div class="container px-0">    
     <div class="card-booking">
         <div class="row m-0">
@@ -431,8 +451,10 @@ dd.pax-names {
                     <dd><?php echo $valuebooking_data['created'] ?></dd>
                     <dt>Service</dt>
                     <dd><?php echo $valuebooking_data['id_order'] ?></dd>
-                    <dt>Payment Due Date</dt>
-                    <dd>12 Dec 2017 23:29 ACDT</dd>
+                    <dt>Payment </dt>
+                    <dd>xxx xxx</dd>
+                    <dt>Due Date </dt>
+                    <dd>xxx xxx</dd>
                 </dl>
             </td>
             <td class="col-3">
@@ -440,7 +462,7 @@ dd.pax-names {
                         <dt>Product</dt>
                         <dd style="text-transform:capitalize;"><?php echo $valuebooking_data['loai'] ?></dd>
                         <dt>User</dt>
-                        <dd><acronym title="minhtran@tweetworldtravel.com.au">minhtran</acronym></dd>
+                        <dd><acronym title="#"><?php echo $user_view[$valuebooking_data['user_order']] ?></acronym></dd>
                         <dt>Guest</dt>
                         <?php if($valuebooking_data['loai'] != 'hotel') { ?>
                         <dd class="pax-names"><?php echo implode(" , ",$user_order_view['user']); ?></dd>
@@ -465,3 +487,32 @@ dd.pax-names {
 </a>
 <div style="height: 5px"></div>
 <?php } ?>
+<!-- <div class="container"> -->
+    <div class="box-footer clearfix">
+          <ul class="pagination pagination-sm no-margin pull-right">
+            <?php echo $this->Paginator->numbers(); ?>
+          </ul>
+        </div>
+    <!-- </div> -->
+  <style>
+/*.pagination {
+    display: inline-block;
+}*/
+
+.pagination a {
+      color: #fff;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    transition: background-color .3s;
+    background: #2a3c58;
+    border: 1px solid #fff;
+}
+
+.pagination a.active {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.pagination a:hover:not(.active) {background-color: #ddd;}
+</style>

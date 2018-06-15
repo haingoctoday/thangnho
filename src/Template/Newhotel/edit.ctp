@@ -28,7 +28,7 @@
         
         <!-- /.box-header -->
         <!-- form start -->
-        <?= $this->Form->create($newhotel, array('role' => 'form')) ?>
+        <?= $this->Form->create($newhotel, array('role' => 'form','enctype' => 'multipart/form-data')) ?>
           <div class="box-body">
           <?php
            echo $this->Form->input('hot', ['type' => 'checkbox','class'=>'']);

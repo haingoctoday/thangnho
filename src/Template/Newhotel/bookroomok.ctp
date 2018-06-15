@@ -87,6 +87,8 @@
                                                 break;
                                             case 'cruise':
                                                 echo "<span class='ico ico-cruise'>&nbsp;</span>";
+                                            case 'transfer':
+                                                echo "<span class='ico ico-motorcycle'>&nbsp;</span>";
                                                 break;    
                                             default:
                                                 # code...
@@ -116,7 +118,7 @@
 										</h3>
 										<span class="place-region"><?= $valuedata_ex_room['address']?></span>
 										<p class="m-0" style="color: #38a7c2;">Cancellation Policy</p>
-										<p class="details-room-text">Deluxe Room, Breakfast</p>
+										<!-- <p class="details-room-text">Deluxe Room, Breakfast</p> -->
 										<p class="details-promotion-text"></p>
 										<p class="details-pax-text"><?php echo implode(" , ",$data_user_ofroom); ?> </p>
 									</td>
@@ -539,6 +541,11 @@ body .form-button-property label[for=terms_check]{
 .ico-cruise {
     background-position:-415px -1244px;
     width: 24px;
+    height: 26px;
+}
+.ico-motorcycle {
+    background-position: -429px -35px;
+    width: 37px;
     height: 26px;
 }
 .payment-table dl:first-child {

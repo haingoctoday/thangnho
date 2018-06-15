@@ -74,27 +74,7 @@ $session_search = $this->request->session()->read('cruise.search');
                         <i class="fa fa-info-circle" aria-hidden="true" style="font-size: 30px;color: #17b9e4;"></i></a>
                 </div>                
                 <div class="col-md-3">
-               <!--    <div class="row">
-                  <div class="col-md-3 pl-0" style="line-height: 80px;color: #ccc;">|</div>
-                  <div class="col-md-9 p-0">
-                                        <div class="price-property">
-                        <div class="row m-0">
-                        <div class="money mr-2" style="width: 60px;text-align: right;">
-                            <span class="chudam"><?php  echo  $valuedatalist_drive * $tygia ?></span>
-                        </div>
-                        <div class="current">
-                            <span><?php echo $language ?></span>
-                        </div>
-                        <div class="checkbox ml-3" style="margin-top: 13px;">
-                            <label class="">
-                                <input type="checkbox" value="" id="check_box_room">
-                                <span class="cr"><i class="cr-icon fa fa-check" id="chbchan" id-hime=""></i></span>
-                            </label>
-                        </div>
-                        </div>
-                    </div>
-                  </div>
-                  </div> -->
+            
                                     <div class="row">
                   <div class="col-md-1" style="line-height: 74px;color: #ccc;">|</div>
                   <div class="col-md-10 p-0">
@@ -120,8 +100,8 @@ $session_search = $this->request->session()->read('cruise.search');
                         </div>
                         <div class="checkbox ml-3 col-md-1" style="margin-top: 13px;">
                             <label class="">
-                                <input type="checkbox" value="" id="check_box_room_<?php //echo $valuelist_room_of_hotel['idphong']?>">
-                                <span class="cr"><i class="cr-icon fa fa-check" id="chbchan<?php // $valuelist_room_of_hotel['idphong']?>" id-hime="<?php // $valuelist_room_of_hotel['idphong']?>"></i></span>
+                                <input type="checkbox" value="" id="check_box_room_<?php echo $key?>">
+                                <span class="cr"><i class="cr-icon fa fa-check" id="chbchan<?php $key?>" id-hime="<?php echo $key?>"></i></span>
                             </label>
                         </div>
                         </div>
@@ -136,6 +116,25 @@ $session_search = $this->request->session()->read('cruise.search');
     <div class="see-more-property text-right mx-auto pt-3">
     <span class="table-description-to">* rate may update on next page</span>
     </div>
+    <div class="form-button-property">
+                <div class="w-100 mx-auto">
+                    <div class="border-nut mx-auto">
+                 <form action="/booking-process" method="post" id="target">
+                        <input type="hidden" name="idhotel" class="idhotel" value="<?= $idhotel ?>">
+                        <input type="hidden" name="idroom-a" class="idroom-a" value="">
+                        <input type="hidden" name="loai" class="" value="cruise">
+                        <!-- <input type="hidden" name="idroom-a" value=""> -->
+
+                        <?php
+                           // if($check_book != 'no'){
+                        ?>
+                         <button class="btn-block border-0 nen-maucam button-border-nut mx-auto" id="index_view_hotel_proceed">Proceed</button>
+                         <?php // }else{?>
+                          <!-- <button class="btn-block border-0 nen-maucam button-border-nut mx-auto" id='btn_book_disable'>Proceed</button> -->
+                         <?php // }?>
+                      </form></div>
+            </div>
+</div>
      <?php }else{?>
 <div class="khung-property">
     
@@ -143,3 +142,40 @@ $session_search = $this->request->session()->read('cruise.search');
 </div>
         <?php  }?>
 </div>
+<style type="text/css">
+  .button-border-nut {
+    font-size: 15px;
+    font-weight: 400;
+    border-radius: 5px;
+    width: 111px;
+    height: 45px;
+    color: #fff;
+    line-height: 40px;
+}
+</style>
+<script type="text/javascript">
+             var num_check = 0;
+           var room_pick = [];
+        $('[id^="chbchan"]').click(function(e) {
+           $(this).toggleClass("clacls");
+         //if(num_check < <?php echo isset($total_room)?$total_room:0 ?>){
+
+            var title = $( this ).attr( "id-hime" );
+            var check_check = $( "#check_box_room_"+title ).val();
+           // console.log(check_check);
+            if(check_check){
+             num_check--;
+              $( "#check_box_room_"+title ).val("");
+              room_pick = $.grep(room_pick, function(value) {
+                return value != title;
+              });
+            }else{
+             num_check++;
+              $( "#check_box_room_"+title ).val(title);
+              room_pick.push(title);
+            }
+          
+          console.log(title);
+  $(".idroom-a").val(JSON.stringify(room_pick));
+        });
+</script>

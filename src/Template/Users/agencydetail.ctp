@@ -78,29 +78,29 @@ input {
         <div class="row" style="background-color: #fff">
             <h3 style="font-weight: bold;padding-left: 22px;padding-top: 15px;padding-bottom: 10px;">My Profile</h3>       
         </div>
-
+<?php // debug($data_view)  ?>
         <div class="content-agent-detail">
             <div class="row" style="padding-bottom: 6px;">
                 <div class="col-md-6 display-tn">
                     <label class="display-7" style="width: 140px;">Agency name
                     </label>
-                    <input class="form-control" type="text" name="firstname" id="firstname" placeholder="">
+                    <input class="form-control" type="text" name="firstname" id="firstname" placeholder="" value="<?php echo $data_view['firstname'] ?> <?php echo $data_view['lastname'] ?>">
                 </div>
                 <div class="col-md-6 display-tn">
                     <label class="display-7" style="width: 140px;">Email copied to
                     </label>
-                    <input class="form-control" type="text" name="firstname" id="firstname" placeholder="">
+                    <input class="form-control" type="text" name="firstname" id="firstname" placeholder="" value="<?php echo $data_view['email'] ?>">
                 </div>
             </div>
             <div class="row" style="padding-bottom: 6px;">
                 <div class="col-md-6 display-tn">
                     <label class="display-7" style="width: 485px;">Pricing structure
                     </label>
-                    <input class="form-control" type="text" name="firstname" id="firstname" placeholder="">
+                    <input class="form-control" type="text" name="firstname" id="firstname" placeholder="" value="<?php echo $data_view['Pricing'] ?>">
 
                     <label class="display-7" style="width: 140px;padding-left: 20px;padding-right: 10px;">Currency
                     </label>
-                    <input class="form-control" type="text" name="firstname" id="firstname" placeholder="">
+                    <input class="form-control" type="text" name="firstname" id="firstname" placeholder="" value="<?php echo $data_view['Currency'] ?>">
                 </div>
             </div>
         </div>
@@ -116,7 +116,7 @@ input {
                 <div class="col-md-4 display-tn">
                     <label class="display-7" style="width: 325px;">Default commission %
                     </label>
-                    <input class="form-control" type="text" name="firstname" id="firstname" placeholder="">
+                    <input class="form-control" type="text" name="firstname" id="firstname" placeholder="" value="<?php echo $data_view['commission'] ?>">
                 </div>
             </div>
         </div>
@@ -131,58 +131,58 @@ input {
                 <div class="col-md-6 display-tn">
                     <label class="display-7" style="width: 160px;">Manager name
                     </label>
-                    <input class="form-control" type="text" name="firstname" id="firstname" placeholder="">
+                    <input class="form-control" type="text" name="firstname" id="firstname" placeholder="" value="<?php echo $data_view['firstname'] ?> <?php echo $data_view['lastname'] ?>">
                 </div>
                 <div class="col-md-6 display-tn">
                     <label class="display-7" style="width: 160px;">Manager email
                     </label>
-                    <input class="form-control" type="text" name="firstname" id="firstname" placeholder="">
+                    <input class="form-control" type="text" name="firstname" id="firstname" placeholder="" value="<?php echo $data_view['email'] ?>">
                 </div>
             </div>
             <div class="row" style="padding-bottom: 6px;">
                 <div class="col-md-6 display-tn">
                     <label class="display-7" style="width: 290px;">Manager contact number
                     </label>
-                    <input class="form-control" type="text" name="firstname" id="firstname" placeholder="">
+                    <input class="form-control" type="text" name="firstname" id="firstname" placeholder="" value="<?php echo $data_view['phone'] ?>" >
                 </div>
             </div>
             <div class="row" style="padding-bottom: 6px;">
                 <div class="col-md-6 display-tn">
                     <label class="display-7" style="width: 560px;">Business street number & street name
                     </label>
-                    <input class="form-control" type="text" name="firstname" id="firstname" placeholder="">
+                    <input class="form-control" type="text" name="firstname" id="firstname" placeholder="" value="<?php echo $data_view['street'] ?>">
                 </div>
                 <div class="col-md-6 display-tn">
                     <label class="display-7" style="width: 80px;">Suburb
                     </label>
-                    <input class="form-control" type="text" name="firstname" id="firstname" placeholder="">
+                    <input class="form-control" type="text" name="firstname" id="firstname" placeholder="" value="<?php echo $data_view['street'] ?>">
                 </div>
             </div>  
             <div class="row" style="padding-bottom: 6px;">
                 <div class="col-md-6 display-tn">
                     <label class="display-7" style="width: 60px;">State
                     </label>
-                    <input class="form-control" type="text" name="firstname" id="firstname" placeholder="">
+                    <input class="form-control" type="text" name="firstname" id="firstname" placeholder="" value="<?php echo $data_view['state'] ?>">
                 </div>
                 <div class="col-md-6 display-tn">
                     <label class="display-7" style="width: 95px;">Postcode
                     </label>
-                    <input class="form-control" type="text" name="firstname" id="firstname" placeholder="">
+                    <input class="form-control" type="text" name="firstname" id="firstname" placeholder="" value="<?php echo $data_view['postcode'] ?>">
                 </div>
             </div>
             <div class="row" style="padding-bottom: 6px;">
                 <div class="col-md-6 display-tn">
                     <label class="display-7" style="width: 80px;">Country
                     </label>
-                    <input class="form-control" type="text" name="firstname" id="firstname" placeholder="">
+                    <input class="form-control" type="text" name="firstname" id="firstname" placeholder="" value="<?php echo $data_view['country'] ?>">
                 </div>
-                <div class="col-md-6 display-tn">
+                <!-- <div class="col-md-6 display-tn">
                     <select id="soflow" class="form-control" >
                       <option>Select</option>
                       <option>Option 1</option>
                       <option>Option 2</option>
                     </select>
-                </div>
+                </div> -->
             </div>                                   
         </div>
 </div>

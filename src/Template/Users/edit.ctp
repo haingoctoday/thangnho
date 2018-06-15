@@ -27,12 +27,12 @@
         </div>
         <!-- /.box-header -->
         <!-- form start -->
-        <?= $this->Form->create($users, array('role' => 'form')) ?>
+        <?= $this->Form->create($users, array('role' => 'form','enctype' => 'multipart/form-data')) ?>
           <div class="box-body">
           <?php
             echo $this->Form->input('email');
-            echo $this->Form->input('tendangnhap');
-            echo $this->Form->input('images');
+           // echo $this->Form->input('tendangnhap');
+            //echo $this->Form->input('images');
             echo $this->Form->input('password');
             echo $this->Form->input('fullName');
             $phanloai = array('admin'=>'Administration','user'=>'Users','nhacungcap'=>'Agents');

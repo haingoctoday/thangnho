@@ -29,7 +29,7 @@
           <table class="table table-hover">
             <tr>
               <th><?= $this->Paginator->sort('id') ?></th>
-              <th><?= $this->Paginator->sort('id_users') ?></th>
+         
               <th><?= $this->Paginator->sort('firstname') ?></th>
               <th><?= $this->Paginator->sort('lastname') ?></th>
               <th><?= $this->Paginator->sort('jobtype') ?></th>
@@ -40,7 +40,7 @@
             <?php foreach ($agencydetail as $agencydetail): ?>
               <tr>
                 <td><?= $this->Number->format($agencydetail->id) ?></td>
-                <td><?= $this->Number->format($agencydetail->id_users) ?></td>
+             
                 <td><?= h($agencydetail->firstname) ?></td>
                 <td><?= h($agencydetail->lastname) ?></td>
                 <td><?= h($agencydetail->jobtype) ?></td>
