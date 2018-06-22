@@ -603,7 +603,7 @@ class UsersController extends AppController
         'limit' => 10,
           ];
            if ($this->request->is(['patch', 'post', 'put'])) {
-            debug($this->request->data);
+          //  debug($this->request->data);
 
             $data_search =$this->request->data;
             if($data_search['product_type'] != ''){
