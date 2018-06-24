@@ -7,8 +7,8 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="latest-product">
-                                      <p class="danhsach-bran">  TRANG CHỦ > Tin tức    </p>
-                                      <h2 class="section-title-bran"> {!!$data->title!!} </h2>
+                                      <p class="danhsach-bran">  TRANG CHỦ     </p>
+                                      <h2 class="section-title-bran"> Tin Tức </h2>
 
     <div style="height: 100px;"></div>
                                       <div class="row">
@@ -20,41 +20,28 @@
 
                                             <div class="col-sm-12">
                                                 <div class="product-inner">
-                                           <img src="{!!url('uploads/news/'.$data->images)!!}" alt="" height="200" width="100%">
+                                          
 
-                                     <h3 class="title-h3"><a href="{!!url('tin-tuc/'.$data->id.'-'.$data->slug)!!}" title="">{!!$data->title!!} </a></h3>
-                                      <p class="summary-content">
-                    {!!$data->full!!}
-                  </p>
+                                       @foreach($all as $row)
+<div class="row">
+  <div class="col-lg-4">
+    <a href="#" title=""><img src="{!!url('uploads/news/'.$row->images)!!}" alt="" width="95%" height="60px"> </a>
+  </div>
+  <div class="col-lg-8">
+    <h4><a href="{!!url('/tin-tuc/'.$row->id.'-'.$row->slug)!!}" title="{!!$row->title!!}">{!!$row->title!!}</a></h4>
+    <p> 
+      {!!$row->intro!!}
+    </p>
+    <p><strong>Lúc :</strong>{!!$row->created_at!!} Bởi : <strong> {!!$row->author!!}</strong></p>
+  </div>
+</div>
+<hr>
+@endforeach
 
                                     </div>
                                 </div>
                             </div>
-                  <div class="row">
-                    <?php 
-                    $data = DB::table('news')
-                    ->orderBy('created_at', 'desc')
-                    ->paginate(3); 
-                  ?>
-                  <h2 class="sidebar-title">Tin Tức liên quan</h2>
-                   @foreach($data as $row)
-                           <div class="col-md-4">
-                                         
-
-                                               <a href="{!!url('/tin-tuc/'.$row->id.'-'.$row->slug)!!}" title="{!!$row->title!!}"><img src="{!!url('uploads/news/'.$row->images)!!}" alt="{!!$row->title!!}" 
-                                                style="width: 100%;height: 250px"> </a>
-                   
-                    <div class="" style="padding: 10px">
-                      <h4><a href="{!!url('/tin-tuc/'.$row->id.'-'.$row->slug)!!}"" title="{!!$row->title!!}">{!!$row->title!!}</a></h4>
-                     
-                      <p><strong>Lúc :</strong> {!!$row->created_at!!} Bởi : <strong>{!!$row->author!!} </strong></p>
-                    </div>
-                                               
-
-                                        
-                                          </div>
-                                           @endforeach      
-                  </div>
+                  
                         </div>
                                   <div class="col-md-3">
                                          <div class="single-sidebar">
@@ -153,7 +140,5 @@
           </div>
       </div>
   </div>  
-
-
-
+           
 @endsection

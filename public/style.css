@@ -1487,6 +1487,7 @@ a.text_product {
 }
 .no-add-minus .quantity.buttons_added {
     margin-right: 0px;
+    float: left;
 }
 .quantity.buttons_added {
     position: relative;
@@ -1562,6 +1563,7 @@ a.text_product {
     font-size: 1.7rem;
     color: #222222;
     font-weight: bolder;
+        clear: both;
 }
 .single-shop-product .product-title {
     text-transform: none;
@@ -1869,4 +1871,15 @@ button#btn-minus {
 }
 .maucam{
   color: #f15e24;
+}
+.add-to-cart{
+    background: none repeat scroll 0 0 rgb(241, 94, 36);
+    color: #fff !important;
+    font-size: 1.2rem;
+    padding: 1.1rem 2.5rem;
+    float: left;
+}
+.product-f-image img {
+    width: 100%;
+    height: 250px;
 }

@@ -62,7 +62,7 @@
  		$url_nn ='video-huong-dan';
  		break;
  	case '35':
- 		$url_nn ='dia-chi';
+ 		$url_nn ='tin-tuc';
  		break;
  	default:
  		# code...

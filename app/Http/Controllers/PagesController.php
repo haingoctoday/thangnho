@@ -21,27 +21,28 @@ class PagesController extends Controller
     {
 
         // mobile
-        $mobile = DB::table('products')
-                ->join('category', 'products.cat_id', '=', 'category.id')
-                ->join('pro_details', 'pro_details.pro_id', '=', 'products.id')
-                ->where('category.parent_id','=','1')
-                ->select('products.*','pro_details.cpu','pro_details.ram','pro_details.screen','pro_details.vga','pro_details.storage','pro_details.exten_memmory','pro_details.cam1','pro_details.cam2','pro_details.sim','pro_details.connect','pro_details.pin','pro_details.os','pro_details.note')
-                ->paginate(9);
-        $lap = DB::table('products')
-                ->join('category', 'products.cat_id', '=', 'category.id')
-                ->join('pro_details', 'pro_details.pro_id', '=', 'products.id')
-                ->where('category.parent_id','=','2')
-                ->select('products.*','pro_details.cpu','pro_details.ram','pro_details.screen','pro_details.vga','pro_details.storage','pro_details.exten_memmory','pro_details.cam1','pro_details.cam2','pro_details.sim','pro_details.connect','pro_details.pin','pro_details.os','pro_details.note')
-                ->paginate(6);
+        // $mobile = DB::table('products')
+        //         ->join('category', 'products.cat_id', '=', 'category.id')
+        //         ->join('pro_details', 'pro_details.pro_id', '=', 'products.id')
+        //         ->where('category.parent_id','=','1')
+        //         ->select('products.*','pro_details.cpu','pro_details.ram','pro_details.screen','pro_details.vga','pro_details.storage','pro_details.exten_memmory','pro_details.cam1','pro_details.cam2','pro_details.sim','pro_details.connect','pro_details.pin','pro_details.os','pro_details.note')
+        //         ->paginate(9);
+        // $lap = DB::table('products')
+        //         ->join('category', 'products.cat_id', '=', 'category.id')
+        //         ->join('pro_details', 'pro_details.pro_id', '=', 'products.id')
+        //         ->where('category.parent_id','=','2')
+        //         ->select('products.*','pro_details.cpu','pro_details.ram','pro_details.screen','pro_details.vga','pro_details.storage','pro_details.exten_memmory','pro_details.cam1','pro_details.cam2','pro_details.sim','pro_details.connect','pro_details.pin','pro_details.os','pro_details.note')
+        //         ->paginate(6);
         $pc = DB::table('products')
                 ->join('category', 'products.cat_id', '=', 'category.id')
                 ->join('pro_details', 'pro_details.pro_id', '=', 'products.id')
-                ->where('category.parent_id','=','19')
+              //  ->where('category.parent_id','=','19')
                 ->select('products.*','pro_details.cpu','pro_details.ram','pro_details.screen','pro_details.vga','pro_details.storage','pro_details.exten_memmory','pro_details.cam1','pro_details.cam2','pro_details.sim','pro_details.connect','pro_details.pin','pro_details.os','pro_details.note')
-                ->paginate(4);
+                ->paginate(10);
+              //  dd($pc);
                 $data_menu = Category::all();
                  $data_banner = Banners::all();
-    	return view('home',['mobile'=>$mobile,'laptop'=>$lap,'pc'=>$pc,'data_menu'=>$data_menu,'banners'=>$data_banner]);
+    	return view('home',['pc'=>$pc,'data_menu'=>$data_menu,'banners'=>$data_banner]);
     }
     public function addcart($id)
     {
@@ -122,6 +123,7 @@ class PagesController extends Controller
     }
     public function getcate($cat)
     {
+         $data_menu = Category::all();
     	if ($cat == 'mobile') {
             // mobile
             $mobile = DB::table('products')
@@ -159,8 +161,8 @@ class PagesController extends Controller
             $top1 = $new->shift();
              $all =  DB::table('news')
                     ->orderBy('created_at', 'desc')
-                    ->paginate(5);
-            return view('category.news',['data'=>$new,'hot1'=>$top1,'all'=>$all]);
+                    ->paginate(10);
+            return view('tin-tuc',['data'=>$new,'hot1'=>$top1,'all'=>$all,'data_menu'=>$data_menu]);
         } 
         // else{
         //     return redirect()->route('index');
@@ -171,7 +173,7 @@ class PagesController extends Controller
          $data_menu = Category::all();
         if ($cat =='tin-tuc') {
             $new = News::where('id',$id)->first();
-            return view('detail.news',['data'=>$new,'slug'=>$slug]);
+            return view('detail.news',['data'=>$new,'slug'=>$slug,'data_menu'=>$data_menu]);
         } elseif ($cat =='mobile') {
             $mobile = Products::where('id',$id)->first();
             if (empty($mobile)) {

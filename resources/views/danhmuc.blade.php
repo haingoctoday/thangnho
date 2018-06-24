@@ -78,7 +78,8 @@
                         <div class="quantity buttons_added">
                             <input type="text" id="" class="input-text qty text" value="1" title="SL">
                         </div>
-                        <button type="submit" class="button alt fix-bt-s">Thêm vào giỏ</button>
+                        <!-- <button type="submit" class="button alt fix-bt-s">Thêm vào giỏ</button> -->
+                        <a href="{!!url('gio-hang/addcart/'.$v_pro->id)!!}" class="add-to-cart">Thêm vào giỏ</a>
                     </form> 
                                                                                 <div class="product-carousel-price price-new">
                                                                 <ins>899.00<span>&#8363;</span></ins> 
