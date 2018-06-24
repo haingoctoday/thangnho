@@ -219,5 +219,29 @@ class PagesController extends Controller
         return view ('danhmuc',['data_menu'=>$data_menu,'pro'=>$pro])
         ->with('slug','Chi tiết đơn hàng');
     }
+    public function getvideo()
+    {   
 
+//print_r("123123");
+       // $pro = Product::where('cat_id',$id)->paginate(12);
+      
+        $pro = array();
+         $data_menu = Category::all();
+        return view ('videolist',['data_menu'=>$data_menu,'pro'=>$pro])
+        ->with('slug','Chi tiết đơn hàng');
+    }
+    public function getvideodetail($id)
+    {   
+
+//print_r("123123");
+       // $pro = Product::where('cat_id',$id)->paginate(12);
+        $pro =  DB::table('products')
+                    ->where('cat_id',$id)
+                    ->orderBy('created_at', 'desc')
+                    ->paginate(1);
+
+         $data_menu = Category::all();
+        return view ('videodetail',['data_menu'=>$data_menu,'pro'=>$pro])
+        ->with('slug','Chi tiết đơn hàng');
+    }
 }
