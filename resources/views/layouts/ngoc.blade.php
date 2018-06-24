@@ -132,33 +132,60 @@
                                 <div class="">
                                     <div class="shopping-cart">
                                         <div class="shopping-cart-header">
-                                            <i class="fa fa-shopping-cart cart-icon"></i><span class="badge">3</span>
+                              <!--               <i class="fa fa-shopping-cart cart-icon"></i><span class="badge">3</span>
                                             <div class="shopping-cart-total">
                                                 <span class="lighter-text">Total:</span>
                                                 <span class="main-color-text">$2,229.97</span>
-                                            </div>
+                                            </div> -->
+                                            <span class="sty-bag">Sản phẩm bạn mới thêm</span>
                                             </div> <!--end shopping-cart-header -->
                                             <ul class="shopping-cart-items">
                                                 <li class="clearfix">
-                                                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/cart-item1.jpg" alt="item1" />
-                                                    <span class="item-name">Sony DSC-RX100M III</span>
-                                                    <span class="item-price">$849.99</span>
-                                                    <span class="item-quantity">Quantity: 01</span>
+                                                    <a href="" title="" class="product-list-image">
+                                                        <img src="//abby.vn/wp-content/uploads/2017/12/bat_tron_de_cao_su_24cm_nghieng.jpg" class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" style="width: 80px;height: 70px;margin-right: 10px;" alt="">    
+                                                    </a>
+                                                    <p class="product-title">
+                                                        <a href="" title="Bát trộn inox 24cm đế cao su - B0100">Bát trộn inox 24cm đế cao su - B0100</a></p>
+                                                    <div class="price sty-span-bag">
+                                                        <strong style="font-size: 1.4rem">
+                                                            <span>2</span> x
+                                                            <span>69,000<span>₫</span></span>   
+                                                        </strong>
+                                                    </div>
                                                 </li>
                                                 <li class="clearfix">
-                                                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/cart-item2.jpg" alt="item1" />
-                                                    <span class="item-name">KS Automatic Mechanic...</span>
-                                                    <span class="item-price">$1,249.99</span>
-                                                    <span class="item-quantity">Quantity: 01</span>
-                                                </li>
+                                                    <a href="" title="" class="product-list-image">
+                                                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/cart-item2.jpg" class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" style="width: 80px;height: 70px;margin-right: 10px;" alt="">    
+                                                    </a>
+                                                    <p class="product-title">
+                                                        <a href="" title="Bát trộn inox 24cm đế cao su - B0100">Bát trộn inox 24cm đế cao su - B0100</a></p>
+                                                    <div class="price sty-span-bag">
+                                                        <strong style="font-size: 1.4rem">
+                                                            <span>2</span> x
+                                                            <span>69,000<span>₫</span></span>   
+                                                        </strong>
+                                                    </div>
+                                                </li>     
                                                 <li class="clearfix">
-                                                    <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/cart-item3.jpg" alt="item1" />
-                                                    <span class="item-name">Kindle, 6" Glare-Free To...</span>
-                                                    <span class="item-price">$129.99</span>
-                                                    <span class="item-quantity">Quantity: 01</span>
-                                                </li>
+                                                    <a href="" title="" class="product-list-image">
+                                                        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/cart-item3.jpg" style="width: 80px;height: 70px;margin-right: 10px;" alt="">    
+                                                    </a>
+                                                    <p class="product-title">
+                                                        <a href="" title="Bát trộn inox 24cm đế cao su - B0100">Bát trộn inox 24cm đế cao su - B0100</a></p>
+                                                    <div class="price sty-span-bag">
+                                                        <strong style="font-size: 1.4rem">
+                                                            <span>2</span> x
+                                                            <span>69,000<span>₫</span></span>   
+                                                        </strong>
+                                                    </div>
+                                                </li>                                                                               
                                             </ul>
-                                            <a href="#" class="button">Checkout</a>
+                                            <div class="shopping-cart-total">
+                                                <span class="lighter-text">Tiền hàng</span>
+                                                <span class="main-color-text">2,000,000<span>₫</span></span>
+                                            </div>
+                                            <a href="#" class="button-cart">Điền địa chỉ</a>
+                                            <a href="#" class="button-cart-dh">Xem đơn hàng</a>
                                             </div> <!--end shopping-cart -->
                                             </div> <!--end container -->
                                         </div>
