@@ -7,15 +7,15 @@
                                     <div class="block-slider block-slider4">
                                         <ul class="" id="bxslider-home4">
                                             <li>
-                                                <img src="public/img/s1.jpg" alt="Slide">
+                                                <img src="img/s1.jpg" alt="Slide">
                                                 
                                             </li>
                                             <li>
-                                                <img src="public/img/s2.jpg" alt="Slide">
+                                                <img src="img/s2.jpg" alt="Slide">
                                                 
                                             </li>
                                             <li>
-                                                <img src="public/img/s3.jpg" alt="Slide">
+                                                <img src="img/s3.jpg" alt="Slide">
                                                 
                                             </li>
                                             
@@ -35,20 +35,20 @@
                                                   <div class="row">
                                                       <div class="col-md-4">
                                                          <div class="div-ca-c-on">
-                                                              <img src="public/img/c1.jpg" alt="">
+                                                              <img src="img/c1.jpg" alt="">
                                                               <div class="c-dic-on c1-dic-on"> GELATIN, BỘT THẠCH</div>
                                                          </div>
                                                       </div>
                                                         <div class="col-md-4">
                                                          <div class="div-ca-c-on">
-                                                              <img src="public/img/c2.jpg" alt="">
+                                                              <img src="img/c2.jpg" alt="">
                                                                <div class="c-dic-on c2-dic-on"> TRÀ SỮA</div>
                                                          </div>
                                                       </div>
                                                       <div class="col-md-4">
                                                            <div class="div-ca-c-on">
                                                              
-                                                              <img src="public/img/c3.jpg" alt="">
+                                                              <img src="img/c3.jpg" alt="">
                                                                <div class="c-dic-on c3-dic-on"> TOPPING & WHIPPING</div>
                                                          </div>
                                                       </div>
@@ -56,13 +56,13 @@
                                                   <div class="row" style="margin-top: 3%">
                                                       <div class="col-md-8">
                                                            <div class="div-ca-c-on">
-                                                               <img src="public/img/c4.jpg" alt="">
+                                                               <img src="img/c4.jpg" alt="">
                                                                 <div class="c-dic-on c4-dic-on"> PHÔ MAI (LẮC, MOZZARELLA, CREAM CHEESE)</div>
                                                            </div>
                                                       </div>
                                                         <div class="col-md-4">
                                                             <div class="div-ca-c-on">
-                                                                 <img src="public/img/c5.jpg" alt="">
+                                                                 <img src="img/c5.jpg" alt="">
                                                                   <div class="c-dic-on c5-dic-on"> CÂN ĐIỆN TỬ</div>
                                                             </div>
                                                       </div>
@@ -71,7 +71,7 @@
                                               </div>
                                                 <div class="col-md-3">
                                                       <div class="div-ca-c-on">
-                                                          <img src="public/img/c6.jpg" alt="">
+                                                          <img src="img/c6.jpg" alt="">
                                                            <div class="c-dic-on c6-dic-on"> ĐỒ ĐÁNH TRỨNG</div>
                                                       </div>
                                                 </div>

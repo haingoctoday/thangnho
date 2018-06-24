@@ -13,15 +13,15 @@
         <!-- <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet"> -->
         <!-- Bootstrap -->
         <!-- <link href="{!!url('public/front-end/front-end-style.css')!!}" rel="stylesheet"> -->
-        <link rel="stylesheet" href="{!!url('public/css/bootstrap.min.css')!!}">
+        <link rel="stylesheet" href="{!!url('css/bootstrap.min.css')!!}">
         
         <!-- Font Awesome -->
-        <link rel="stylesheet" href="{!!url('public/css/font-awesome.min.css')!!}">
+        <link rel="stylesheet" href="{!!url('css/font-awesome.min.css')!!}">
         
         <!-- Custom CSS -->
-        <link rel="stylesheet" href="{!!url('public/css/owl.carousel.css')!!}">
-        <link rel="stylesheet" href="{!!url('public/style.css')!!}">
-        <link rel="stylesheet" href="{!!url('public/css/responsive.css')!!}">
+        <link rel="stylesheet" href="{!!url('css/owl.carousel.css')!!}">
+        <link rel="stylesheet" href="{!!url('style.css')!!}">
+        <link rel="stylesheet" href="{!!url('css/responsive.css')!!}">
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -106,7 +106,7 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="logo">
-                                <a href="./"><img src="{!!url('public/img/logo-big-mobile.jpg')!!}"></a>
+                                <a href="./"><img src="{!!url('img/logo-big-mobile.jpg')!!}"></a>
                             </div>
                         </div>
                         <div class="col-sm-5">
@@ -123,7 +123,7 @@
                             <div class="col-sm-3">
                                 <div class="shopping-item" id="cart">
                                     
-                                    <img src="{!!url('public/img/bag.png')!!}">
+                                    <img src="{!!url('img/bag.png')!!}">
                                     <span class="product-count">5</span>
                                 </div>
                                 <div class="">
@@ -376,17 +376,17 @@
                                                             <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
                                                             
                                                             <!-- jQuery sticky menu -->
-                                                            <script src="{!!url('public/js/owl.carousel.min.js')!!}"></script>
-                                                            <script src="{!!url('public/js/jquery.sticky.js')!!}"></script>
+                                                            <script src="{!!url('js/owl.carousel.min.js')!!}"></script>
+                                                            <script src="{!!url('js/jquery.sticky.js')!!}"></script>
                                                             
                                                             <!-- jQuery easing -->
-                                                            <script src="{!!url('public/js/jquery.easing.1.3.min.js')!!}"></script>
+                                                            <script src="{!!url('js/jquery.easing.1.3.min.js')!!}"></script>
                                                             
                                                             <!-- Main Script -->
-                                                            <script src="{!!url('public/js/main.js')!!}"></script>
+                                                            <script src="{!!url('js/main.js')!!}"></script>
                                                             
                                                             <!-- Slider -->
-                                                            <script type="text/javascript" src="{!!url('public/js/bxslider.min.js')!!}"></script>
-                                                            <script type="text/javascript" src="{!!url('public/js/script.slider.js')!!}"></script>
+                                                            <script type="text/javascript" src="{!!url('js/bxslider.min.js')!!}"></script>
+                                                            <script type="text/javascript" src="{!!url('js/script.slider.js')!!}"></script>
                                                         </body>
                                                     </html>
