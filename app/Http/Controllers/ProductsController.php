@@ -151,8 +151,7 @@ class ProductsController extends Controller
         $c_id= $dt->cat_id;
         $loai= Category::where('id',$c_id)->first();
         $p_id = $loai->parent_id;
-
-    	if ($p_id == 1) {
+	if ($p_id == 3) {
             $cat= Category::where('parent_id', '1')->get();
             $pro = Products::where('id',$id)->first();
             return view('back-end.products.edit-mobile',['pro'=>$pro,'cat'=>$cat,'loai'=>'Điện thoại']);    

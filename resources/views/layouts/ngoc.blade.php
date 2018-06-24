@@ -16,7 +16,8 @@
         <link rel="stylesheet" href="{!!url('css/bootstrap.min.css')!!}">
         
         <!-- Font Awesome -->
-        <link rel="stylesheet" href="{!!url('css/font-awesome.min.css')!!}">
+        <link rel="stylesheet" href="{!!url('fontawesome/css/all.css')!!}">
+        <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous"> -->
         
         <!-- Custom CSS -->
         <link rel="stylesheet" href="{!!url('css/owl.carousel.css')!!}">
@@ -28,6 +29,7 @@
         <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
         <![endif]-->
+        <script src="https://code.jquery.com/jquery.min.js"></script>
     </head>
     <body>
         <div class="home-top-on">
@@ -47,8 +49,8 @@
                             <h2>GIỚI THIỆU VỀ ABBY</h2>
                             <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perferendis sunt id doloribus vero quam laborum quas alias dolores blanditiis iusto consequatur, modi aliquid eveniet eligendi iure eaque ipsam iste, pariatur omnis sint! Suscipit, debitis, quisquam. Laborum commodi veritatis magni at?</p>
                             <div class="footer-social">
-                                <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
-                                <a href="#" target="_blank"><i class="fa fa-twitter"></i></a>
+                                <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                                <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
                                 
                             </div>
                         </div>
@@ -88,7 +90,7 @@
                                     Tài khoản
                                 </li>
                                 <li class="dropdown dropdown-small end">
-                                    <a href="#" target="_blank"><i class="fa fa-facebook"></i></a>
+                                    <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
                                 </li>
                             </ul>
                         </div>
@@ -123,7 +125,8 @@
                             <div class="col-sm-3">
                                 <div class="shopping-item" id="cart">
                                     
-                                    <img src="{!!url('img/bag.png')!!}">
+                                    <!-- <img src="{!!url('img/bag.png')!!}"> -->
+                                    <i class="fas fa-shopping-bag fa-2x fa-fw maucam"></i>
                                     <span class="product-count">5</span>
                                 </div>
                                 <div class="">
@@ -370,7 +373,7 @@
                                                             </div> <!-- End footer bottom area -->
                                                             
                                                             <!-- Latest jQuery form server -->
-                                                            <script src="https://code.jquery.com/jquery.min.js"></script>
+                                                            
                                                             
                                                             <!-- Bootstrap JS form CDN -->
                                                             <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
@@ -388,5 +391,6 @@
                                                             <!-- Slider -->
                                                             <script type="text/javascript" src="{!!url('js/bxslider.min.js')!!}"></script>
                                                             <script type="text/javascript" src="{!!url('js/script.slider.js')!!}"></script>
+                                                            <script type="text/javascript" src="{!!url('js/countUp.js')!!}"></script>
                                                         </body>
                                                     </html>

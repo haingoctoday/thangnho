@@ -40,6 +40,20 @@ Route::group(['middleware' => 'admin'], function () {
        	Route::get('/home', function() {         
          return view('back-end.home');       	
        });
+
+               // -------------------- quan ly chuc nang----------------------
+        Route::group(['prefix' => 'banners'], function() {
+          
+           Route::get('add',['as'        =>'getaddbanner','uses' => 'BannersController@getadd']);
+           Route::post('add',['as'       =>'postaddbanner','uses' => 'BannersController@postadd']);
+
+           Route::get('/',['as'       =>'getbanners','uses' => 'BannersController@getlist']);
+           Route::get('del/{id}',['as'   =>'getdellcat','uses' => 'BannersController@getdel'])->where('id','[0-9]+');
+           
+           Route::get('edit/{id}',['as'  =>'geteditcat','uses' => 'BannersController@getedit'])->where('id','[0-9]+');
+           Route::post('edit/{id}',['as' =>'posteditcat','uses' => 'BannersController@postedit'])->where('id','[0-9]+');
+      });
+
        // -------------------- quan ly danh muc----------------------
        	Route::group(['prefix' => 'danhmuc'], function() {
            Route::get('add',['as'        =>'getaddcat','uses' => 'CategoryController@getadd']);
