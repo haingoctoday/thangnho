@@ -121,4 +121,22 @@
 		</div><!--/.row-->		
 	</div>	<!--/.main-->
 <!-- =====================================main content - noi dung chinh trong chu -->
+<script type="text/javascript">
+	
+	$( "#inputSltCate" ).change(function() {
+  var id =  $(this).val();
+  if(id == '34'){
+  	$( "#tieude" ).text('Tiêu đề video');
+  	$( "#nguontin" ).text('Link nhúng video');
+  	$( "#tomtat" ).text('Nguyên liệu');
+  	$( "#chitiet" ).text('Hướng dẫn chi tiết');
+  }
+  if(id == '35'){
+  	$( "#tieude" ).text('Tiêu đề bản tin');
+  	$( "#nguontin" ).text('Nguồn tin');
+  	$( "#tomtat" ).text('Tóm tắt ');
+  	$( "#chitiet" ).text('Bài viết chi tiết');
+  }
+});
+</script>
 @endsection

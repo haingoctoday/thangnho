@@ -13,16 +13,16 @@
         <!-- <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet"> -->
         <!-- Bootstrap -->
         <!-- <link href="{!!url('public/front-end/front-end-style.css')!!}" rel="stylesheet"> -->
-        <link rel="stylesheet" href="{!!url('css/bootstrap.min.css')!!}">
+        <link rel="stylesheet" href="{!!asset('css/bootstrap.min.css')!!}">
         
         <!-- Font Awesome -->
-        <link rel="stylesheet" href="{!!url('fontawesome/css/all.css')!!}">
-        <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous"> -->
+        <link rel="stylesheet" href="{!!asset('css/font-awesome.min.css')!!}">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" >
         
         <!-- Custom CSS -->
-        <link rel="stylesheet" href="{!!url('css/owl.carousel.css')!!}">
-        <link rel="stylesheet" href="{!!url('style.css')!!}">
-        <link rel="stylesheet" href="{!!url('css/responsive.css')!!}">
+        <link rel="stylesheet" href="{!!asset('css/owl.carousel.css')!!}">
+        <link rel="stylesheet" href="{!!asset('style.css')!!}">
+        <link rel="stylesheet" href="{!!asset('css/responsive.css')!!}">
         <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
         <!--[if lt IE 9]>
@@ -108,18 +108,22 @@
                     <div class="row">
                         <div class="col-sm-4">
                             <div class="logo">
-                                <a href="./"><img src="{!!url('img/logo-big-mobile.jpg')!!}"></a>
+                                <a href="{{ url('/') }}"><img src="{!!url('img/logo-big-mobile.jpg')!!}"></a>
                             </div>
                         </div>
                         <div class="col-sm-5">
+                             <form action="{!!url('tim-kiem')!!}" method="get">
                             <div class="input-group custom-search-form">
-                                <input type="text" class="form-control inpu-seary" placeholder="Bạn tìm gì ở đây ???">
+                               
+                                <input type="text" class="form-control inpu-seary" name="q" placeholder="Bạn tìm gì ở đây ???">
                                 <span class="input-group-btn">
-                                    <button class="btn btn-primary btn-seary" type="button">
-                                    <span class="glyphicon glyphicon-search"></span>
+                                    <button class="btn btn-primary btn-seary" type="submit">
+                                    <span class="fas fa-search "></span>
                                     </button>
                                 </span>
+                               
                                 </div><!-- /input-group -->
+                                 </form>
                             </div>
                             
                             <div class="col-sm-3">

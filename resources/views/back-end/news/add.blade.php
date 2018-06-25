@@ -45,7 +45,7 @@
 					      		</select>
 				      		</div>
 				      		<div class="form-group">
-				      			<label for="input-id">Tiêu đề bản tin</label>
+				      			<label for="input-id" id="tieude">Tiêu đề bản tin</label>
 				      			<input type="text" name="txtTitle" id="inputTxtTitle" class="form-control" value="{{ old('txtTitle') }}"  >
 				      		</div>
 				      		<div class="form-group">
@@ -70,7 +70,7 @@
 					      				</select>
 					      			</div>
 					      			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-					      				Nguồn tin : <input type="text" name="txtSource" id="inputtxtSource" value="{{ old('txtSource') }}" class="form-control">
+					      				<span id="nguontin">Nguồn tin</span> : <input type="text" name="txtSource" id="inputtxtSource" value="{{ old('txtSource') }}" class="form-control">
 					      			</div>
 					      		</div>				      			
 				      		</div>
@@ -78,7 +78,7 @@
 				      			<label for="input-id">Chi tiết bản tin</label>
 				      			<div class="row">					      			
 					      			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-					      				<label for="input-id">Tóm tắt </label>
+					      				<label for="input-id" id="tomtat">Tóm tắt </label>
 					      				<textarea name="txtIntro" id="inputTxttxtIntro" class="form-control" rows="2" required="required">{{ old('txtIntro') }}</textarea>
 					      				<script type="text/javascript">
 											var editor = CKEDITOR.replace('txtIntro',{
@@ -91,7 +91,7 @@
 										</script>
 					      			</div>
 					      			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-					      				<label for="input-id">Bài viết chi tiết</label>
+					      				<label for="input-id" id="chitiet">Bài viết chi tiết</label>
 					      				<textarea name="txtFull" id="inputtxtFull" class="form-control" rows="4" required="required">{{ old('txtFull') }}</textarea>
 					      				<script type="text/javascript">
 											var editor = CKEDITOR.replace('txtFull',{
@@ -114,4 +114,22 @@
 		</div><!--/.row-->		
 	</div>	<!--/.main-->
 <!-- =====================================main content - noi dung chinh trong chu -->
+<script type="text/javascript">
+	
+	$( "#inputSltCate" ).change(function() {
+  var id =  $(this).val();
+  if(id == '34'){
+  	$( "#tieude" ).text('Tiêu đề video');
+  	$( "#nguontin" ).text('Link nhúng video');
+  	$( "#tomtat" ).text('Nguyên liệu');
+  	$( "#chitiet" ).text('Hướng dẫn chi tiết');
+  }
+  if(id == '35'){
+  	$( "#tieude" ).text('Tiêu đề bản tin');
+  	$( "#nguontin" ).text('Nguồn tin');
+  	$( "#tomtat" ).text('Tóm tắt ');
+  	$( "#chitiet" ).text('Bài viết chi tiết');
+  }
+});
+</script>
 @endsection

@@ -7,20 +7,22 @@ Route::get('/user/edit', 'HomeController@edit');
 // admin route 
 Route::get('admin/login', ['as'  => 'getlogin', 'uses' =>'Admin\AuthController@showLoginForm']);
 Route::post('admin/login', ['as'  => 'postlogin', 'uses' =>'Admin\AuthController@login']);
-Route::get('admin/password/reset', ['as'  => 'getreser', 'uses' =>'Admin\AuthController@email']);
+//Route::get('admin/password/reset', ['as'  => 'getreser', 'uses' =>'Admin\AuthController@email']);
 
 Route::get('admin/logout', ['as'  => 'getlogin', 'uses' =>'Admin\AuthController@logout']);
 
 Route::get('/', ['as'  => 'index', 'uses' =>'PagesController@index']);
 Route::get('/video-huong-dan', ['as'  => 'getvideo', 'uses' =>'PagesController@getvideo']);
-Route::get('/video-huong-dan/detail/{id}', ['as'  => 'getvideodetail', 'uses' =>'PagesController@getvideodetail']);
+Route::get('/video-huong-dan/detail/{id}-{slug}', ['as'  => 'getvideodetail', 'uses' =>'PagesController@getvideodetail']);
 // cart - oder
-Route::get('gio-hang', ['as'  => 'getcart', 'uses' =>'PagesController@getcart']);
+//Route::get('gio-hang', ['as'  => 'getcart', 'uses' =>'PagesController@getcart']);
+Route::get('tim-kiem', ['as'  => 'gettimkiem', 'uses' =>'PagesController@gettimkiem']);
+//http://localhost:8000/danh-muc
 // them vao gio hang
-Route::get('gio-hang/addcart/{id}', ['as'  => 'getcartadd', 'uses' =>'PagesController@addcart']);
-Route::get('gio-hang/update/{id}/{qty}-{dk}', ['as'  => 'getupdatecart', 'uses' =>'PagesController@getupdatecart']);
-Route::get('gio-hang/delete/{id}', ['as'  => 'getdeletecart', 'uses' =>'PagesController@getdeletecart']);
-Route::get('gio-hang/xoa', ['as'  => 'getempty', 'uses' =>'PagesController@xoa']);
+// Route::get('gio-hang/addcart/{id}', ['as'  => 'getcartadd', 'uses' =>'PagesController@addcart']);
+// Route::get('gio-hang/update/{id}/{qty}-{dk}', ['as'  => 'getupdatecart', 'uses' =>'PagesController@getupdatecart']);
+// Route::get('gio-hang/delete/{id}', ['as'  => 'getdeletecart', 'uses' =>'PagesController@getdeletecart']);
+// Route::get('gio-hang/xoa', ['as'  => 'getempty', 'uses' =>'PagesController@xoa']);
 
 // tien hanh dat hang
 Route::get('dat-hang', ['as'  => 'getoder', 'uses' =>'PagesController@getoder']);

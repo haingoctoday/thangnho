@@ -8,8 +8,8 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <div class="latest-product">
-                                          <p class="danhsach-bran">  TRANG CHỦ   >    ĐỒ NẤU ĂN    >   NGUYÊN LIỆU MÓN Á   </p>
-                                               <h2 class="section-title-bran"> CHEESE (PHÔ MAI) </h2>
+                                          <p class="danhsach-bran">  TRANG CHỦ   >    Tìm kiếm  </p>
+                                               <h2 class="section-title-bran"> {!!$timkiem!!} </h2>
 
                                            
                                           <div class="row">
@@ -54,16 +54,24 @@
                                                       &nbsp
                                                     </div>
                                                         <div class="col-md-5">
-                                                         {!! $pro->render() !!}
+                                                         {!! $data->render() !!}
                                                     </div>
                                                                          
 
                                                       </div>
+                                                      <?php
+                                                        if(count($data) == 0){
+                                                      ?>
+                                                      <div class="row">
+
+                                                        Không có sản phẩm với từ khoá  <strong> {!!$timkiem!!}</strong>
+                                                      </div>
+                                                      <?php }?>
                                                   <div class="row">
                                                       
                                                       <?php 
                                                       //for ($m=0; $m < 40 ; $m++) { 
-                                                      	foreach ($pro as $key => $v_pro) {
+                                                      	foreach ($data as $key => $v_pro) {
                                                      // 	dd($v_pro);
                                                       ?>
                                                       <div class="col-md-3 col-sm-6">
@@ -96,7 +104,7 @@
                         <?php }?>
     
                                                   </div>
-                                                  {!! $pro->render() !!}
+                                                  {!! $data->render() !!}
                                               </div>
                                                
                                           </div>

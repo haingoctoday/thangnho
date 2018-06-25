@@ -1,54 +1,28 @@
 @extends('layouts.ngoc')
 @section('content')
-    <div class="maincontent-area">
+    <div class="maincontent-area">1
                         <div class="zigzag-bottom"></div>
+                          <p class="danhsach-bran">  TRANG CHỦ  > Video hướng dẫn  </p>
+                                               <h2 class="section-title-bran"> {!!$new->title!!}</h2>
                         <div class="container">
                             <div class="row" style="background-color: #302f31;padding: 20px 0">
                                 <div class="col-md-8" >
                                     <div class="frame-vd">
-                                        <iframe width="100%" height="422" src="https://www.youtube.com/embed/32sYGCOYJUM" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+                                        <iframe width="100%" height="422" src="{!!$new->source!!}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                                     </div>
                                     <div class="content-video">
-                                        <h3>VIDEO DẠY CÁCH LÀM BÁNH CAPUCCINO CHEESECAKE NGON MÊ MẨN</h3>
+                                        <h3>{!!$new->title!!} </h3>
                                         <div class="ingredients clearfix">
                                           <h4 style="color: #ffcb08">Nguyên liệu</h4>
-                                          <div class="text-white row">
-
-                                             <p class="col-md-6">A.  Phần Dark Sponge</p> 
-                                             <?php for ($i=0; $i < 6; $i++) { 
-    # code...
-                                                ?>
-
-                                                <div class="checkbox col-md-6">
-                                                  <label>
-                                                    <input type="checkbox" value="">
-                                                    <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
-                                                    40 ml sữa tươi
-                                                </label>
-                                            </div>
-                                            <?php  }?>
-                                        </div>
-                                        <div class="text-white row">
-                                            <p class="col-md-6">B.  Phần capuccino cheese</p> 
-                                            <?php for ($i=0; $i < 6; $i++) { 
-    # code...
-                                                ?>
-
-                                                <div class="checkbox col-md-6">
-                                                  <label>
-                                                    <input type="checkbox" value="">
-                                                    <span class="cr"><i class="cr-icon glyphicon glyphicon-ok"></i></span>
-                                                    40 ml sữa tươi
-                                                </label>
-                                            </div>
-                                            <?php  }?>   
+                                          <div style="padding: 10px;">
+                                        {!!$new->intro!!}
                                         </div>
                                     </div>
                                     <div class="huongdan-vd text-white">
                                        <h4 style="color: #ffcb08">Hướng Dẫn</h4>
-                                       <p>Sự hòa quyện tinh tế giữa vị béo của cream cheese cùng vị nồng nàn, đậm đà của cà phê capuchino trong công thức làm bánh capuchino cheesecake sẽ làm bạn phải mê mẩn.</p>
+                                       {!!$new->full!!}
                                    </div>
-
+     
                                </div>
                            </div>
                            <div class="col-md-4">
@@ -81,29 +55,31 @@
  <div class="row" style="background-color: #302f31;padding: 20px 0">
                <div class="col-md-9 huongdan-vd text-white">
                                        <h4 style="color: #ffcb08">Video liên quan</h4>
-                                      
+                                       <?php 
+                    $data = DB::table('news')
+                    ->where('cat_id',34)
+                    ->orderBy('created_at', 'desc')
+                    ->paginate(3); 
+                  ?>
                                       <div>
                                           <div class="video-carousel">
-                                            <?php
-                                            for ($k=0; $k < 10; $k++) { 
-                                             
-                                                ?>
+                                             @foreach($data as $row)
 
                                                 <div class="single-product video-product">
                                                     <div class="product-f-image">
-                                                        <img src="{!!url('img/111.jpg')!!}" style="width:370px;height:auto;">
+                                                        <img src="{!!url('uploads/news/'.$row->images)!!}" style="width:370px;height:auto;">
                                                         <div class="product-hover">
                                                            
                                                         </div>
                                                     </div>
                                                     
-                                                    <h2><a href="single-product.html" class="text_product">VIDEO DẠY CÁCH LÀM BÁNH PASSION CHEESE MOUSSE CAKE CỰC NGON</a></h2>
+                                                    <h2><a href="{!!url('/video-huong-dan/detail/'.$row->id.'-'.$row->slug)!!}" class="text_product">{!!$row->title!!}</a></h2>
                                                     
                                                   
                                                  
                                                   
                                              </div>
-                                             <?php }?>
+                                             @endforeach      
                                          </div>
                                       </div>
                                    </div>

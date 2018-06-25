@@ -21,7 +21,7 @@ class NewsController extends Controller
     }
     public function getadd()
     {    	
-		$cat= Category::where('id',35)->get();
+		$cat= Category::whereIn('id',[35,34])->get();
 
     	return view('back-end.news.add',['cat'=>$cat]);
     }
@@ -50,7 +50,7 @@ class NewsController extends Controller
       	->with(['flash_level'=>'result_msg','flash_massage'=>' Đã thêm thành công !']);    	
     }
     public function getedit($id)
-    {	$cat= Category::where('id',35)->get();
+    {	$cat= Category::whereIn('id',[35,34])->get();
     	$n = News::where('id',$id)->first();
     	return view('back-end.news.edit',['data'=>$n,'cat'=>$cat]);
     }

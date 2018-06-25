@@ -14,6 +14,7 @@ use App\Oders;
 use App\Oders_detail;
 use App\Banners;
 use DB,Cart,Datetime;
+use Illuminate\Support\Facades\Input;
 
 class PagesController extends Controller
 {
@@ -156,10 +157,12 @@ class PagesController extends Controller
         }
         elseif ($cat == 'tin-tuc') {
             $new =  DB::table('news')
+                    ->where('cat_id',35)
                     ->orderBy('created_at', 'desc')
                     ->paginate(3);
             $top1 = $new->shift();
              $all =  DB::table('news')
+             ->where('cat_id',35)
                     ->orderBy('created_at', 'desc')
                     ->paginate(10);
             return view('tin-tuc',['data'=>$new,'hot1'=>$top1,'all'=>$all,'data_menu'=>$data_menu]);
@@ -217,7 +220,7 @@ class PagesController extends Controller
         $pro =  DB::table('products')
                     ->where('cat_id',$id)
                     ->orderBy('created_at', 'desc')
-                    ->paginate(1);
+                    ->paginate(12);
 
          $data_menu = Category::all();
         return view ('danhmuc',['data_menu'=>$data_menu,'pro'=>$pro])
@@ -228,10 +231,13 @@ class PagesController extends Controller
 
 //print_r("123123");
        // $pro = Product::where('cat_id',$id)->paginate(12);
-      
+         $all =  DB::table('news')
+             ->where('cat_id',34)
+                    ->orderBy('created_at', 'desc')
+                    ->paginate(3);
         $pro = array();
          $data_menu = Category::all();
-        return view ('videolist',['data_menu'=>$data_menu,'pro'=>$pro])
+        return view ('videolist',['data_menu'=>$data_menu,'pro'=>$pro,'all'=>$all])
         ->with('slug','Chi tiết đơn hàng');
     }
     public function getvideodetail($id)
@@ -243,9 +249,30 @@ class PagesController extends Controller
                     ->where('cat_id',$id)
                     ->orderBy('created_at', 'desc')
                     ->paginate(1);
-
+        $new = News::where('id',$id)->first();             
          $data_menu = Category::all();
-        return view ('videodetail',['data_menu'=>$data_menu,'pro'=>$pro])
+        return view ('videodetail',['data_menu'=>$data_menu,'pro'=>$pro,'new'=>$new])
+        ->with('slug','Chi tiết đơn hàng');
+    }
+     public function gettimkiem()
+    {   
+ $term = Input::get('q', false);
+
+         $all =  DB::table('news')
+             ->where('cat_id',34)
+                    ->orderBy('created_at', 'desc')
+                    ->paginate(3);
+        $pro = array();
+        $mobile = DB::table('products')
+                ->join('category', 'products.cat_id', '=', 'category.id')
+               ->join('pro_details', 'pro_details.pro_id', '=', 'products.id')
+                ->where('products.name', 'LIKE', '%' . $term . '%')
+             ->select('products.*','pro_details.cpu','pro_details.ram','pro_details.screen','pro_details.vga','pro_details.storage','pro_details.exten_memmory','pro_details.cam1','pro_details.cam2','pro_details.sim','pro_details.connect','pro_details.pin','pro_details.os','pro_details.note')
+                ->paginate(12);
+           //     dd($mobile);
+       // $mobile = Products::where('name', 'LIKE', '%' . $term . '%');
+         $data_menu = Category::all();
+        return view ('timkiem',['data_menu'=>$data_menu,'pro'=>$pro,'all'=>$all,'data'=>$mobile,'timkiem'=>$term])
         ->with('slug','Chi tiết đơn hàng');
     }
 }

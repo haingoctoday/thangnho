@@ -1,5 +1,8 @@
 @extends('back-end.layouts.master')
 @section('content')
+<?php
+$loai = array('34'=>'Video','35'=>'Tin tức');
+?>
 <!-- main content - noi dung chinh trong chu -->
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">			
 		<div class="row">
@@ -39,7 +42,7 @@
 										<th>ID</th>										
 										<th>image</th>										
 										<th>Tiêu đề bản tin</th>										
-										<th>Tóm tắt</th>										
+										<th>Loại</th>										
 										<th>Trạng thái</th>										
 										<th>Action</th>
 									</tr>
@@ -50,7 +53,7 @@
 										<td>{!!$row->id!!}</td>
 										<td> <img src="{!!url('uploads/news/'.$row->images)!!}" alt="" width="40" height="40"> </td>
 										<td>{!!$row->title!!}</td>
-										<td><small>{!!$row->intro!!}</small></td>
+										<td><small>{!!$loai[$row->cat_id]!!}</small></td>
 										<td style="width: 90px;">
 											@if($row->status==1)
 											Hiển thị

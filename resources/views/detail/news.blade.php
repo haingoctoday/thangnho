@@ -33,6 +33,7 @@
                   <div class="row">
                     <?php 
                     $data = DB::table('news')
+                    ->where('cat_id',35)
                     ->orderBy('created_at', 'desc')
                     ->paginate(3); 
                   ?>
