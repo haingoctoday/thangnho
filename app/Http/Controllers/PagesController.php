@@ -275,4 +275,10 @@ class PagesController extends Controller
         return view ('timkiem',['data_menu'=>$data_menu,'pro'=>$pro,'all'=>$all,'data'=>$mobile,'timkiem'=>$term])
         ->with('slug','Chi tiết đơn hàng');
     }
+
+    public function getme()
+    {
+        $data = Category::all();
+        return View ('me.me',['data_menu'=>$data]);
+    }
 }

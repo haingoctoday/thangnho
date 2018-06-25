@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Ustora Demo</title>
+        <title> Demo</title>
         
         <!-- Google Fonts -->
         <!-- <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet' type='text/css'> -->
@@ -87,7 +87,7 @@
                         <div class="header-right">
                             <ul class="list-unstyled list-inline">
                                 <li class="dropdown dropdown-small midded">
-                                    Tài khoản
+                                    <a href="{{ url('/me') }}">Tài khoản</a>
                                 </li>
                                 <li class="dropdown dropdown-small end">
                                     <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>

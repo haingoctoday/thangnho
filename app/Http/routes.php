@@ -13,7 +13,13 @@ Route::get('admin/logout', ['as'  => 'getlogin', 'uses' =>'Admin\AuthController@
 
 Route::get('/', ['as'  => 'index', 'uses' =>'PagesController@index']);
 Route::get('/video-huong-dan', ['as'  => 'getvideo', 'uses' =>'PagesController@getvideo']);
+
 Route::get('/video-huong-dan/detail/{id}-{slug}', ['as'  => 'getvideodetail', 'uses' =>'PagesController@getvideodetail']);
+
+
+//me
+Route::get('/me', ['as'  => 'getme', 'uses' =>'PagesController@getme']);
+
 // cart - oder
 //Route::get('gio-hang', ['as'  => 'getcart', 'uses' =>'PagesController@getcart']);
 Route::get('tim-kiem', ['as'  => 'gettimkiem', 'uses' =>'PagesController@gettimkiem']);
@@ -32,6 +38,7 @@ Route::get('/{cat}', ['as'  => 'getcate', 'uses' =>'PagesController@getcate']);
 Route::get('/{cat}/{id}-{slug}', ['as'  => 'getdetail', 'uses' =>'PagesController@detail']);
 //ngoc
 Route::get('/danh-muc/{id}', ['as'  => 'getdanhmuc', 'uses' =>'PagesController@getdanhmuc']);
+
 
 Route::resource('payment', 'PayMentController');
 
