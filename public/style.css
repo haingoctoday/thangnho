@@ -1831,7 +1831,9 @@ button#btn-minus {
 .radio .cr .cr-icon {
     margin-left: 0.04em;
 }
-
+.login-sp .checkbox label input[type="checkbox"],.login-sp .radio label input[type="radio"] {
+    display: block;
+}
 .checkbox label input[type="checkbox"],
 .radio label input[type="radio"] {
     display: none;
@@ -1969,4 +1971,52 @@ a.button-cart:hover,a.button-cart-dh:hover{
   color: #fff;
   opacity: 0.8;
 >>>>>>> c5577008b4009d048ef942e8eee92f72a30aef33
+}
+.latest-product .login-sp{
+    border: 1px solid #ccc;
+    padding: 3rem;
+}
+.latest-product .text-head{
+  text-transform: uppercase;
+  font-size: 1.6rem;
+  font-weight: 600;
+  border-bottom: 1px solid #e6e6e6;
+    margin-bottom: 1.25em;
+    padding-bottom: 1.25em;
+}
+.latest-product .reg-sp{
+    padding: 3rem;
+}
+.latest-product .form-control{
+    height: 3.8rem;
+    line-height: 4rem;
+    padding: 0 1.07em;
+    display: block;
+    font-size: 1.5rem;
+    -webkit-box-shadow: none;
+    -webkit-appearance: none;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    outline: none;
+    border: 1px solid #fafafa;
+    background-color: #fafafa;
+    border-radius: 0;
+    color: #1e1e1e;
+}
+.latest-product .form-control:focus{
+      -webkit-box-shadow: none;
+    box-shadow: none;
+    outline: none;
+    border-color: #c7c7c7;
+}
+.latest-product .btn-sp{
+      background-color: #262626;
+    border-style: solid;
+    border-width: 1px;
+    border-color: #262626;
+    color: white;
+    margin-right: 10px;
+    height: auto;
+    font-size: 12px;
+    border-radius: 0;
 }

@@ -248,4 +248,10 @@ class PagesController extends Controller
         return view ('videodetail',['data_menu'=>$data_menu,'pro'=>$pro])
         ->with('slug','Chi tiết đơn hàng');
     }
+
+    public function getme()
+    {
+        $data = Category::all();
+        return View ('me.me',['data_menu'=>$data]);
+    }
 }
