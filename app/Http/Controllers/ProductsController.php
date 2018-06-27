@@ -35,12 +35,12 @@ class ProductsController extends Controller
         $p_name = Category::where('id',$p_id)->first();
 		$cat= Category::where('parent_id',$p_id)->get();
 		$pro = Products::all();	
-        if ($p_id >=19) {
-                return view('back-end.products.pc-add',['data'=>$pro,'cat'=>$cat,'loai'=>$p_name->name]);
-            }
-        else {
+      //  if ($p_id >=19) {
+      //          return view('back-end.products.pc-add',['data'=>$pro,'cat'=>$cat,'loai'=>$p_name->name]);
+     //       }
+     //   else {
             return view('back-end.products.add',['data'=>$pro,'cat'=>$cat,'loai'=>$p_name->name]);
-        }	
+     //   }	
 		
 		
     }
@@ -76,32 +76,32 @@ class ProductsController extends Controller
     	$detail->ram = $rq->txtRam;
     	$detail->screen = $rq->txtScreen;
     	$detail->vga = $rq->txtVga;
-    	$detail->storage = $rq->txtStorage;
-    	$detail->exten_memmory =$rq->txtExtend;
+    	// $detail->storage = $rq->txtStorage;
+    	// $detail->exten_memmory =$rq->txtExtend;
     	$detail->cam1 = $rq->txtCam1;
-    	$detail->cam2 = $rq->txtCam2;
-    	$detail->sim = $rq->txtSIM;
-    	$detail->connect = $rq->txtConnect;
-    	$detail->pin = $rq->txtPin;
-    	$detail->os = $rq->txtOs;
-        $detail->note = $rq->txtNote;
+    	// $detail->cam2 = $rq->txtCam2;
+    	// $detail->sim = $rq->txtSIM;
+    	// $detail->connect = $rq->txtConnect;
+    	// $detail->pin = $rq->txtPin;
+    	// $detail->os = $rq->txtOs;
+     //    $detail->note = $rq->txtNote;
     	$detail->pro_id = $pro_id;
 
-        if ($rq->txtCam1=='') {
-            $detail->cam1='không có';
-        }
-        if ($rq->txtCam2=='') {
-            $detail->cam2='không có';
-        }
-        if ($rq->exten_memmory =='') {
-            $detail->exten_memmory= $rq->txtCase;
-        }
-        if ($rq->pin =='') {
-            $detail->pin= 'Không có';
-        }
-         if ($rq->sim =='') {
-            $detail->sim= 'Không có';
-        }
+        // if ($rq->txtCam1=='') {
+        //     $detail->cam1='không có';
+        // }
+        // if ($rq->txtCam2=='') {
+        //     $detail->cam2='không có';
+        // }
+        // if ($rq->exten_memmory =='') {
+        //     $detail->exten_memmory= $rq->txtCase;
+        // }
+        // if ($rq->pin =='') {
+        //     $detail->pin= 'Không có';
+        // }
+        //  if ($rq->sim =='') {
+        //     $detail->sim= 'Không có';
+        // }
          if ($rq->note =='') {
             $detail->note= 'Không có';
         }
@@ -151,19 +151,12 @@ class ProductsController extends Controller
         $c_id= $dt->cat_id;
         $loai= Category::where('id',$c_id)->first();
         $p_id = $loai->parent_id;
-	if ($p_id == 3) {
-            $cat= Category::where('parent_id', '1')->get();
-            $pro = Products::where('id',$id)->first();
-            return view('back-end.products.edit-mobile',['pro'=>$pro,'cat'=>$cat,'loai'=>'Điện thoại']);    
-        } elseif ($p_id ==2) {
-            $cat= Category::where('parent_id', 2)->get();
-            $pro = Products::where('id',$id)->first();
-            return view('back-end.products.edit-mobile',['pro'=>$pro,'cat'=>$cat,'loai'=>'Laptop']);       
-        } elseif ($p_id ==19) {
-            $cat= Category::where('parent_id', 19)->get();
+  
+        $cat= Category::where('parent_id',$p_id)->get();
+          //  $cat= Category::where('parent_id', 19)->get();
             $pro = Products::where('id',$id)->first();
             return view('back-end.products.edit-mobile',['pro'=>$pro,'cat'=>$cat,'loai'=>$p_id]);     
-        }
+      
     }
     public function postedit($loai,$id,EditProductsRequest $rq)
     {

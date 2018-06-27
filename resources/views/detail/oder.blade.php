@@ -1,5 +1,6 @@
-@extends('layouts.new-master')
+@extends('layouts.ngoc')
 @section('content')
+12313
   <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
     <h3 class="panel-title">
       <span class="glyphicon glyphicon-home"><a href="#" title=""> Home</a></span> 

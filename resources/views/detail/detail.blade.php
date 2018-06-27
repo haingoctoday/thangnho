@@ -6,7 +6,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="latest-product">
-                                      <p class="danhsach-bran">  TRANG CHỦ   >    ĐỒ NẤU ĂN    >   NGUYÊN LIỆU MÓN Á   </p>
+                                      <p class="danhsach-bran"> {{ trans('messages.home') }}   </p>
                                       <h2 class="section-title-bran"> {!!$data->name!!} </h2>
 
     <div style="height: 100px;"></div>
@@ -14,7 +14,7 @@
                                        <div class="col-md-3">
                                          <div class="single-sidebar">
                                             
-                                               <h2 class="sidebar-title">SẢN PHẨM CÓ BÁN TẠI</h2>
+                                               <h2 class="sidebar-title">{{ trans('messages.productsell') }}</h2>
                                                <hr>
                                                <table width="100%">  
                                                <tr style="border-bottom: 1px solid #ccc">
@@ -34,7 +34,7 @@
                                            </div>
                                            <div class="single-sidebar">
 
-                                               <h2 class="sidebar-title">CHÍNH SÁCH SHIP HÀNG</h2>
+                                               <h2 class="sidebar-title">{{ trans('messages.shppinga') }}</h2>
                                                <hr>
                                                <li>
                                                    Ship COD 12 quận Hà Nội đồng giá 20.000đ. Xem chi tiết
@@ -55,7 +55,7 @@
                                            </div>
                                             <div class="single-sidebar">
 
-                                               <h2 class="sidebar-title">Bạn đã xem</h2>
+                                               <h2 class="sidebar-title">{{ trans('messages.uview') }}</h2>
                                                <hr style="margin-bottom: 0">
                                                <ul class="product_list_widget">
 <li>
@@ -110,12 +110,12 @@
                                             <div class="col-sm-8">
                                                 <div class="product-inner">
                                                     <div class="product-inner-price">
-                                                        <ins>700.00<span>&#8363;</span></ins> <del>100.00<span>&#8363;</span></del>
+                                                        <!-- <ins>700.00<span>&#8363;</span></ins> <del>100.00<span>&#8363;</span></del> -->
 
 
                                                         <p class="price-procu">{!!number_format($data->price)!!}₫</p>
                                                     </div>  
- <span class="qty-span">số lượng</span>  
+ <span class="qty-span">{{ trans('messages.num_ber') }}</span>  
                                                     <div class="row">
                                                       <div class="col-md-3">
                                                         <div class="input-group">
@@ -130,9 +130,9 @@
                                                 </div><!-- /.col-lg-6 -->
                                                 <div class="col-md-9">
                                                 	  @if($data->status ==1)
-								                        <a href="{!!url('gio-hang/addcart/'.$data->id)!!}" type="submit" class="single_add_to_cart_button">Thêm vào giỏ</a>
+								                        <a href="{!!url('gio-hang/addcart/'.$data->id)!!}" type="submit" class="single_add_to_cart_button">{{ trans('messages.addtocart') }}</a>
 								                      @else
-								                        <a href="" title="" class="btn btn-large btn-block btn-primary disabled" style="font-size: 20px;"> Hết hàng</a>
+								                        <a href="" title="" class="btn btn-large btn-block btn-primary disabled" style="font-size: 20px;"> {{ trans('messages.hethang') }}</a>
 								                      @endif
                                                  
                                               </div>
@@ -143,34 +143,42 @@
                                          
 
 
-                                          <div class="hotline"><a href="">HOTLINE ĐẶT HÀNG: 1900 779907</a></div>
-                                          <div class="purchase-note"><strong>Lưu ý:</strong> Hàng bảo quản lạnh, Abby chỉ ship xe khách các tỉnh phía Bắc.
+                                          <div class="hotline"><a href="">{{ trans('messages.hotdathang') }}: 1900 779907</a></div>
+                                          <div class="purchase-note"><strong>{{ trans('messages.note') }}:</strong> Hàng bảo quản lạnh, Abby chỉ ship xe khách các tỉnh phía Bắc.
                                           </div>
                                           <div class="product_meta">
-                                            <span class="sku_wrapper">Mã: <span class="sku">B2327</span></span>
-                                            <span class="posted_in">Danh mục: <a href="" rel="tag">Cheese (phô mai)</a></span>    
+                                            <span class="sku_wrapper">{{ trans('messages.code') }}: <span class="sku">B2327</span></span>
+                                            <span class="posted_in">{{ trans('messages.cate') }}: <a href="" rel="tag">Cheese (phô mai)</a></span>    
                                         </div>
-                                        <span class="attributes">Thông tin:</span>
+                                        <span class="attributes">{{ trans('messages.thongtin') }}:</span>
                                         <table class="shop_attributes">
                                             <tbody>
+                                              
                                                 <tr>
-                                                    <th>Bảo quản</th>
-                                                    <td><p>Ngăn mát tủ lạnh</p>
+                                                    <th>{{ trans('messages.detailbq') }}</th>
+                                                    <td>{!!$data->pro_details->cpu!!}
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th>Hết hạn</th>
-                                                    <td><p>12 tháng kể từ ngày sản xuất.  Sau khi mở, phô mai kem Anchor nên được sử dụng trong vòng 7 ngày.</p>
+                                                    <th>{{ trans('messages.detailtp') }}</th>
+                                                    <td>{!!$data->pro_details->ram!!}
+                                                    </td>
+                                                </tr>
+                                                
+                                             
+                                                <tr>
+                                                    <th>{{ trans('messages.detailng') }}</th>
+                                                    <td>{!!$data->pro_details->screen!!}
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                    <th>Thành phần</th>
-                                                    <td><p>Sữa bò, kem, muối, gum, men vi sinh</p>
+                                                    <th>{{ trans('messages.detailsd') }}</th>
+                                                    <td>{!!$data->pro_details->vga!!}
                                                     </td>
                                                 </tr>
-                                                <tr>
-                                                    <th>Nguồn gốc</th>
-                                                    <td><p>New Zealand</p>
+                                                 <tr>
+                                                    <th>{{ trans('messages.detailtl') }}</th>
+                                                    <td>{!!$data->pro_details->cam1!!}
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -181,8 +189,8 @@
                             </div>
                             <div role="tabpanel" style="padding-top: 20px;">
                                 <ul class="product-tab" role="tablist">
-                                    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Description</a></li>
-                                    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Reviews</a></li>
+                                    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">{{ trans('messages.mota') }}</a></li>
+                                    <li role="presentation" style="display: none;"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Đánh giá</a></li>
                                 </ul>
                                 <div class="tab-content">
                                     <div role="tabpanel" class="tab-pane fade in active" id="home">
@@ -227,7 +235,7 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="latest-product">
-                                        <h2 class="section-title">Nổi bật</h2>
+                                        <h2 class="section-title">{{ trans('messages.noibat') }}</h2>
                                          <?php 
 	          $mobile = DB::table('products')
 	                //->join('category', 'products.cat_id', '=', 'category.id')
@@ -281,16 +289,20 @@
                              </div>
                          </div>
                      </div> <!-- End main content area -->   
-
-     <div class="maincontent-area">
-        <div class="container"  style="border-top:1px solid #ccc ">
-            <div class="row" style="margin-top: 20px">
-                <div class="col-sm-6"><h2 class="section-title">NHẬN TIN KHUYẾN MÃI</h2></div>
-                <div class="col-sm-6">
-                  <input type="email" placeholder="Email của bạn" style="width: 70%">
-                  <input type="submit" value="Gửi">
-              </div>
-          </div>
-      </div>
-  </div>  
+<div class="maincontent-area">
+                            <div class="container"  style="border-top:1px solid #ccc ">
+                              <div class="row" style="margin-top: 20px">
+                                <div class="col-sm-6"><h2 class="section-title">{{ trans('messages.enterpro') }}</h2></div>
+                                <div class="col-sm-6">
+                                  <input type="email" placeholder="{{ trans('messages.enteremail') }}" style="width: 70%">
+                                  <input type="submit" value="{{ trans('messages.send') }}">
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+  <style type="text/css">
+    table.shop_attributes td {
+    padding: 10px;
+}
+  </style>
   @endsection

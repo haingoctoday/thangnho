@@ -15,25 +15,12 @@ use App\Oders_detail;
 use App\Banners;
 use DB,Cart,Datetime;
 use Illuminate\Support\Facades\Input;
-
+use App\Info;
+use App\User;
 class PagesController extends Controller
 {
     public function index()
     {
-
-        // mobile
-        // $mobile = DB::table('products')
-        //         ->join('category', 'products.cat_id', '=', 'category.id')
-        //         ->join('pro_details', 'pro_details.pro_id', '=', 'products.id')
-        //         ->where('category.parent_id','=','1')
-        //         ->select('products.*','pro_details.cpu','pro_details.ram','pro_details.screen','pro_details.vga','pro_details.storage','pro_details.exten_memmory','pro_details.cam1','pro_details.cam2','pro_details.sim','pro_details.connect','pro_details.pin','pro_details.os','pro_details.note')
-        //         ->paginate(9);
-        // $lap = DB::table('products')
-        //         ->join('category', 'products.cat_id', '=', 'category.id')
-        //         ->join('pro_details', 'pro_details.pro_id', '=', 'products.id')
-        //         ->where('category.parent_id','=','2')
-        //         ->select('products.*','pro_details.cpu','pro_details.ram','pro_details.screen','pro_details.vga','pro_details.storage','pro_details.exten_memmory','pro_details.cam1','pro_details.cam2','pro_details.sim','pro_details.connect','pro_details.pin','pro_details.os','pro_details.note')
-        //         ->paginate(6);
         $pc = DB::table('products')
                 ->join('category', 'products.cat_id', '=', 'category.id')
                 ->join('pro_details', 'pro_details.pro_id', '=', 'products.id')
@@ -77,17 +64,20 @@ class PagesController extends Controller
         return redirect()->route('index');   
     }
     public function getcart()
-    {   
-    	return view ('detail.card')
+    {   $data_menu = Category::all();
+        $all = [];
+    	return view ('detail.cardorder',['data_menu'=>$data_menu,'all'=>$all])
         ->with('slug','Chi tiết đơn hàng');
     }
     public function getoder()
     {
+         $data_menu = Category::all();
+         
         if (Auth::guest()) {
-            return redirect('login');
+            return View ('me.me',['data_menu'=>$data_menu]);
         } else {
 
-            return view ('detail.oder')
+            return view ('detail.orderorder',['data_menu'=>$data_menu])
             ->with('slug','Xác nhận');
         }        
     }
@@ -216,14 +206,21 @@ class PagesController extends Controller
     {   
 
 //print_r("123123");
-       // $pro = Product::where('cat_id',$id)->paginate(12);
-        $pro =  DB::table('products')
-                    ->where('cat_id',$id)
-                    ->orderBy('created_at', 'desc')
-                    ->paginate(12);
-
+       $pro_cat = Category::where('id',$id)->first();
+      // dd($pro_cat);
+        //$pro =  DB::table('products')
+       //             ->where('cat_id',$id)
+       //             ->orderBy('created_at', 'desc')
+       //             ->paginate(12);
+           $pro = DB::table('products')
+                ->join('category', 'products.cat_id', '=', 'category.id')
+               ->join('pro_details', 'pro_details.pro_id', '=', 'products.id')
+                ->where('products.cat_id', '=', $id )
+             ->select('products.*','pro_details.cpu','pro_details.ram','pro_details.screen','pro_details.vga','pro_details.storage','pro_details.exten_memmory','pro_details.cam1','pro_details.cam2','pro_details.sim','pro_details.connect','pro_details.pin','pro_details.os','pro_details.note','category.name_vi as namevi','category.name_en as nameen')
+                ->paginate(12);           
          $data_menu = Category::all();
-        return view ('danhmuc',['data_menu'=>$data_menu,'pro'=>$pro])
+      //   dd($pro);
+        return view ('danhmuc',['data_menu'=>$data_menu,'pro'=>$pro,'pro_cat'=>$pro_cat])
         ->with('slug','Chi tiết đơn hàng');
     }
     public function getvideo()
@@ -242,9 +239,6 @@ class PagesController extends Controller
     }
     public function getvideodetail($id)
     {   
-
-//print_r("123123");
-       // $pro = Product::where('cat_id',$id)->paginate(12);
         $pro =  DB::table('products')
                     ->where('cat_id',$id)
                     ->orderBy('created_at', 'desc')
@@ -278,7 +272,50 @@ class PagesController extends Controller
 
     public function getme()
     {
-        $data = Category::all();
-        return View ('me.me',['data_menu'=>$data]);
+        $data_menu = Category::all();
+         if (Auth::guest()) {
+          //  return redirect('login');
+            return View ('me.me',['data_menu'=>$data_menu]);
+        } else {
+
+
+$id = Auth::user()->id;
+          //data_order
+          $data_user = User::where('id',$id)->first();
+          
+           // $data_order = Oders::where('c_id',$id);
+             $data_order =  Oders::where('c_id',$id)
+                    ->orderBy('created_at', 'desc')
+                    ->paginate(3);
+           // dd($id);
+            return view ('me.melogin',['data_menu'=>$data_menu,'data_order'=>$data_order,'old'=>$data_user])
+            ->with('slug','Xác nhận');
+        }       
+
+        
+    }
+      public function postedituser(Request $rq)
+   {
+
+$id = Auth::user()->id;
+
+      $cat = User::find($id);
+
+
+      $cat->name = $rq->name;
+      $cat->email = $rq->email;
+      $cat->phone = $rq->phone;
+      $cat->address = $rq->address;
+      $cat->updated_at = new DateTime;
+      $cat->save();
+      return redirect()->route('getme')
+      ->with(['flash_level'=>'result_msg','flash_massage'=>'Đã cập nhật thông tin người dùng']);
+
+   }
+   public function changeLanguage($language)
+    {
+         \Session::put('website_language', $language);
+
+    return redirect()->back();
     }
 }

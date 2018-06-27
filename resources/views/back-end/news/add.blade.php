@@ -45,8 +45,12 @@
 					      		</select>
 				      		</div>
 				      		<div class="form-group">
-				      			<label for="input-id" id="tieude">Tiêu đề bản tin</label>
+				      			<label for="input-id" id="tieude">Tiêu đề bản tin VI</label>
 				      			<input type="text" name="txtTitle" id="inputTxtTitle" class="form-control" value="{{ old('txtTitle') }}"  >
+				      		</div>
+				      		<div class="form-group">
+				      			<label for="input-id" id="tieude">Tiêu đề bản tin EN</label>
+				      			<input type="text" name="txtTitle1" id="inputTxtTitle" class="form-control" value="{{ old('txtTitle1') }}"  >
 				      		</div>
 				      		<div class="form-group">
 				      			<div class="row">
@@ -74,11 +78,20 @@
 					      			</div>
 					      		</div>				      			
 				      		</div>
+				      		
 				      		<div class="form-group">
-				      			<label for="input-id">Chi tiết bản tin</label>
+                            <div role="tabpanel" style="padding-top: 20px;">
+                                <ul class="product-tab" role="tablist">
+                                    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Bài viết VI</a></li>
+                                    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Bài viết EN</a></li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div role="tabpanel" class="tab-pane fade in active" id="home">
+				      		<div class="form-group">
+				      			<label for="input-id">VI</label>
 				      			<div class="row">					      			
 					      			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-					      				<label for="input-id" id="tomtat">Tóm tắt </label>
+					      				<label for="input-id" id="tomtat">Tóm tắt VI</label>
 					      				<textarea name="txtIntro" id="inputTxttxtIntro" class="form-control" rows="2" required="required">{{ old('txtIntro') }}</textarea>
 					      				<script type="text/javascript">
 											var editor = CKEDITOR.replace('txtIntro',{
@@ -91,7 +104,7 @@
 										</script>
 					      			</div>
 					      			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-					      				<label for="input-id" id="chitiet">Bài viết chi tiết</label>
+					      				<label for="input-id" id="chitiet">Chi tiết bản tin VI</label>
 					      				<textarea name="txtFull" id="inputtxtFull" class="form-control" rows="4" required="required">{{ old('txtFull') }}</textarea>
 					      				<script type="text/javascript">
 											var editor = CKEDITOR.replace('txtFull',{
@@ -103,7 +116,44 @@
 											});
 										</script>
 					      			</div>
-					      		</div>				      			
+					      		</div>	
+				      		</div>	
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane fade" id="profile">
+				      		<div class="form-group">
+				      			<label for="input-id">EN</label>
+				      			<div class="row">					      			
+					      			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					      				<label for="input-id" id="tomtat">Tóm tắt EN</label>
+					      				<textarea name="txtIntro1" id="inputTxttxtIntro1" class="form-control" rows="2" required="required">{{ old('txtIntro1') }}</textarea>
+					      				<script type="text/javascript">
+											var editor = CKEDITOR.replace('txtIntro1',{
+												language:'vi',
+												filebrowserImageBrowseUrl : '../../plugin/ckfinder/ckfinder.html?Type=Images',
+												filebrowserFlashBrowseUrl : '../../plugin/ckfinder/ckfinder.html?Type=Flash',
+												filebrowserImageUploadUrl : '../../plugin/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+												filebrowserFlashUploadUrl : '../../plugin/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
+											});
+										</script>
+					      			</div>
+					      			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					      				<label for="input-id" id="chitiet">Chi tiết bản tin EN</label>
+					      				<textarea name="txtFull1" id="inputtxtFull1" class="form-control" rows="4" required="required">{{ old('txtFull1') }}</textarea>
+					      				<script type="text/javascript">
+											var editor = CKEDITOR.replace('txtFull1',{
+												language:'vi',
+												filebrowserImageBrowseUrl : '../../plugin/ckfinder/ckfinder.html?Type=Images',
+												filebrowserFlashBrowseUrl : '../../plugin/ckfinder/ckfinder.html?Type=Flash',
+												filebrowserImageUploadUrl : '../../plugin/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+												filebrowserFlashUploadUrl : '../../plugin/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
+											});
+										</script>
+					      			</div>
+					      		</div>	
+				      		</div>	
+                                    </div>
+                                </div>
+                            </div>
 				      		</div>		      				      		
 
 				      		<input type="submit" name="btnCateAdd" class="btn btn-primary" value="Thêm sản phẩm" class="button" />

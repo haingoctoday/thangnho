@@ -49,8 +49,12 @@
 					      		</select>
 				      		</div>
 				      		<div class="form-group">
-				      			<label for="input-id">Tiêu đề bản tin</label>
-				      			<input type="text" name="txtTitle" id="inputTxtTitle" class="form-control" value="{!! old('txtTitle',isset($data->title) ? $data->title : null) !!}"  >
+				      			<label for="input-id">Tiêu đề bản tin VI</label>
+				      			<input type="text" name="txtTitle" id="inputTxtTitle" class="form-control" value="{!! old('txtTitle',isset($data->title_vi) ? $data->title_vi : null) !!}"  >
+				      		</div>
+				      		<div class="form-group">
+				      			<label for="input-id">Tiêu đề bản tin EN</label>
+				      			<input type="text" name="txtTitle1" id="inputTxtTitle" class="form-control" value="{!! old('txtTitle1',isset($data->title_en) ? $data->title_en : null) !!}"  >
 				      		</div>
 				      		<div class="form-group">
 				      			<div class="row">
@@ -81,12 +85,21 @@
 					      			</div>
 					      		</div>				      			
 				      		</div>
+
 				      		<div class="form-group">
-				      			<label for="input-id">Chi tiết bản tin</label>
+                            <div role="tabpanel" style="padding-top: 20px;">
+                                <ul class="product-tab" role="tablist">
+                                    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Bài viết VI</a></li>
+                                    <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Bài viết EN</a></li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div role="tabpanel" class="tab-pane fade in active" id="home">
+				      		<div class="form-group">
+				      			<label for="input-id">VI</label>
 				      			<div class="row">					      			
 					      			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-					      				<label for="input-id">Tóm tắt </label>
-					      				<textarea name="txtIntro" id="inputTxttxtIntro" class="form-control" rows="2" required="required">{!! old('txtIntro',isset($data["intro"]) ? $data["intro"] : null) !!}</textarea>
+					      				<label for="input-id" id="tomtat">Tóm tắt VI</label>
+					      				<textarea name="txtIntro" id="inputTxttxtIntro" class="form-control" rows="2" required="required">{!! old('txtIntro',isset($data["intro_vi"]) ? $data["intro_vi"] : null) !!}</textarea>
 					      				<script type="text/javascript">
 											var editor = CKEDITOR.replace('txtIntro',{
 												language:'vi',
@@ -98,8 +111,8 @@
 										</script>
 					      			</div>
 					      			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-					      				<label for="input-id">Bài viết chi tiết</label>
-					      				<textarea name="txtFull" id="inputtxtFull" class="form-control" rows="4" required="required">{!! old('txtFull',isset($data["full"]) ? $data["full"] : null) !!}</textarea>
+					      				<label for="input-id" id="chitiet">Chi tiết bản tin VI</label>
+					      				<textarea name="txtFull" id="inputtxtFull" class="form-control" rows="4" required="required">{!! old('txtFull',isset($data["full_vi"]) ? $data["full_vi"] : null) !!}</textarea>
 					      				<script type="text/javascript">
 											var editor = CKEDITOR.replace('txtFull',{
 												language:'vi',
@@ -110,10 +123,49 @@
 											});
 										</script>
 					      			</div>
-					      		</div>				      			
-				      		</div>		      				      		
+					      		</div>	
+				      		</div>	
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane fade" id="profile">
+				      		<div class="form-group">
+				      			<label for="input-id">EN</label>
+				      			<div class="row">					      			
+					      			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					      				<label for="input-id" id="tomtat">Tóm tắt EN</label>
+					      				<textarea name="txtIntro1" id="inputTxttxtIntro1" class="form-control" rows="2" required="required">{!! old('txtIntro1',isset($data["intro_en"]) ? $data["intro_en"] : null) !!}</textarea>
+					      				<script type="text/javascript">
+											var editor = CKEDITOR.replace('txtIntro1',{
+												language:'vi',
+												filebrowserImageBrowseUrl : '../../plugin/ckfinder/ckfinder.html?Type=Images',
+												filebrowserFlashBrowseUrl : '../../plugin/ckfinder/ckfinder.html?Type=Flash',
+												filebrowserImageUploadUrl : '../../plugin/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+												filebrowserFlashUploadUrl : '../../plugin/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
+											});
+										</script>
+					      			</div>
+					      			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+					      				<label for="input-id" id="chitiet">Chi tiết bản tin EN</label>
+					      				<textarea name="txtFull1" id="inputtxtFull1" class="form-control" rows="4" required="required">{!! old('txtFull1',isset($data["full_en"]) ? $data["full_en"] : null) !!}</textarea>
+					      				<script type="text/javascript">
+											var editor = CKEDITOR.replace('txtFull1',{
+												language:'vi',
+												filebrowserImageBrowseUrl : '../../plugin/ckfinder/ckfinder.html?Type=Images',
+												filebrowserFlashBrowseUrl : '../../plugin/ckfinder/ckfinder.html?Type=Flash',
+												filebrowserImageUploadUrl : '../../plugin/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+												filebrowserFlashUploadUrl : '../../plugin/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash',
+											});
+										</script>
+					      			</div>
+					      		</div>	
+				      		</div>	
+                                    </div>
+                                </div>
+                            </div>
+				      		</div>	
 
-				      		<input type="submit" name="btnCateAdd" class="btn btn-primary" value="Thêm sản phẩm" class="button" />
+	      				      		
+
+				      		<input type="submit" name="btnCateAdd" class="btn btn-primary" value="Xác nhận" class="button" />
 				      	</form>			      	
 					</div>
 				</div>

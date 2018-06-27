@@ -7,6 +7,8 @@ use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
 use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
+use App\Category;
+
 
 class AuthController extends Controller
 {
@@ -37,9 +39,15 @@ class AuthController extends Controller
      */
     public function __construct()
     {
+      
         $this->middleware($this->guestMiddleware(), ['except' => 'logout']);
     }
 
+     public function getLogin()
+    {
+          $data_menu = Category::all();
+        return view('me.me',['data_menu'=>$data_menu]);
+    }
     /**
      * Get a validator for an incoming registration request.
      *

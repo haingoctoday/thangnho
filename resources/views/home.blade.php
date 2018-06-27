@@ -2,6 +2,10 @@
 @section('content')
 
 
+<!-- {{ trans('messages.welcome') }}
+@lang('messages.welcome')
+{{ Config::get('app.locale') }} -->
+
 <div class="slider-area">
   <!-- Slider -->
   <div class="block-slider block-slider4">
@@ -40,7 +44,7 @@
                                             <div class="container">
                                               <div class="row">
                                                 <div class="col-lg-12 text-center">
-                                                  <h2 class="section-heading">Shop nguyên liệu</h2>
+                                                  <h2 class="section-heading">{{ trans('messages.h1mm') }}</h2>
                                                   <p class="text-muted mb-0">Our templates are updated regularly so they don't break.Our templates are updated regularly so they don't break.Our templates are updated regularly so they don't break.Our templates are updated regularly so they don't break.</p>
                                                   <hr class="my-2">
                                                 </div>
@@ -51,28 +55,28 @@
                                                 <div class="col-lg-3 col-md-6 text-center">
                                                   <div class="service-box mt-5 mx-auto">
                                                     <i class="fa fa-4x fa-globe-asia text-primary mb-3 maucam"></i>
-                                                    <h3 class="mb-2">Chi Nhánh</h3>
+                                                    <h3 class="mb-2">{{ trans('messages.a1cn') }}</h3>
                                                     <div id="counter" style="font-size: 16pt;padding-top: 5px;"><?php echo number_format($chinhanh,0)?></div>
                                                   </div>
                                                 </div>
                                                 <div class="col-lg-3 col-md-6 text-center">
                                                   <div class="service-box mt-5 mx-auto">
                                                     <i class="fa fa-4x fa-shopping-cart text-primary mb-3 maucam"></i>
-                                                    <h3 class="mb-2">Sản Phẩm</h3>
+                                                    <h3 class="mb-2">{{ trans('messages.a1sp') }}</h3>
                                                     <div id="counter1" style="font-size: 16pt;padding-top: 5px;"><?php echo number_format($sanpham,0)?></div>
                                                   </div>
                                                 </div>
                                                 <div class="col-lg-3 col-md-6 text-center">
                                                   <div class="service-box mt-5 mx-auto">
                                                     <i class="fa fa-4x fa-user-circle text-primary mb-3 maucam"></i>
-                                                    <h3 class="mb-2">Khách Hàng</h3>
+                                                    <h3 class="mb-2">{{ trans('messages.a1kh') }}</h3>
                                                     <div id="counter2" style="font-size: 16pt;padding-top: 5px;"><?php echo number_format($khachhang,0)?></div>
                                                   </div>
                                                 </div>
                                                 <div class="col-lg-3 col-md-6 text-center">
                                                   <div class="service-box mt-5 mx-auto">
                                                     <i class="fa fa-4x fa-shopping-bag text-primary mb-3 maucam"></i>
-                                                    <h3 class="mb-2">Đơn Hàng</h3>
+                                                    <h3 class="mb-2">{{ trans('messages.a1dh') }}</h3>
                                                     <div id="counter3" style="font-size: 16pt;padding-top: 5px;"><?php echo number_format($donhang,0)?></div>
                                                   </div>
                                                 </div>
@@ -87,7 +91,7 @@
                                             <div class="row">
                                               <div class="col-md-12">
                                                 <div class="latest-product">
-                                                  <h2 class="section-title">ABBY – ĐỒ LÀM BÁNH, NẤU ĂN VÀ PHA CHẾ</h2>
+                                                  <h2 class="section-title">{{ trans('messages.h2mm') }}</h2>
                                                   <div class="row">
                                                     <div class="col-md-9">
                                                       <div class="row">
@@ -146,7 +150,7 @@
                                   <div class="row">
                                     <div class="col-md-12">
                                       <div class="latest-product">
-                                        <h2 class="section-title">KHO HÀNG GIÁ SỈ</h2>
+                                        <h2 class="section-title">{{ trans('messages.hometopsale') }}</h2>
                                         <div class="product-carousel">
                                           <?php
   //  for ($k=0; $k < 10; $k++) { 
@@ -167,7 +171,7 @@
                                               <h2><a href="single-product.html" class="text_product">{!!$v_pro->name!!}</a></h2>
 
                                               <div class="product-carousel-price">
-                                                Chỉ từ <ins> {!!number_format($v_pro->price)!!}</ins><span>₫</span>
+                                               {{ trans('messages.onyfrm') }} <ins> {!!number_format($v_pro->price)!!}</ins><span>₫</span>
                                                 <!-- <ins>$700.00</ins> <del>$100.00</del> -->
                                               </div>
                                               <table class="table-product" style="display: none">
@@ -183,7 +187,7 @@
                                                 </tr>
                                               </table>
                                               <div class="product-carousel-price">
-                                               Mã: B{!!$v_pro->id!!}
+                                               {{ trans('messages.code') }}: B{!!$v_pro->id!!}
                                              </div>
                                            </div>
                                          <?php }?>
@@ -199,7 +203,7 @@
                                 <div class="row">
                                   <div class="col-md-12">
                                     <div class="latest-product">
-                                      <h2 class="section-title">Nổi bật</h2>
+                                      <h2 class="section-title">{{ trans('messages.hometopseo') }}</h2>
                                       <div class="product-carousel">
                                         <?php
    // for ($k=0; $k < 10; $k++) {        
@@ -222,7 +226,7 @@
                                               <h2><a href="single-product.html" class="text_product">{!!$v_pro->name!!}</a></h2>
                                               
                                               <div class="product-carousel-price">
-                                                Chỉ từ <ins> {!!number_format($v_pro->price)!!}</ins><span>₫</span>
+                                                {{ trans('messages.onyfrm') }} <ins> {!!number_format($v_pro->price)!!}</ins><span>₫</span>
                                                 <!-- <ins>$700.00</ins> <del>$100.00</del> -->
                                               </div>
                                               <table class="table-product" style="display: none">
@@ -238,7 +242,7 @@
                                                 </tr>
                                               </table>
                                               <div class="product-carousel-price">
-                                               Mã: B{!!$v_pro->id!!}
+                                               {{ trans('messages.code') }}: B{!!$v_pro->id!!}
                                              </div>
                                            </div>
                                        <?php }?>
@@ -251,10 +255,10 @@
                            <div class="maincontent-area">
                             <div class="container"  style="border-top:1px solid #ccc ">
                               <div class="row" style="margin-top: 20px">
-                                <div class="col-sm-6"><h2 class="section-title">NHẬN TIN KHUYẾN MÃI</h2></div>
+                                <div class="col-sm-6"><h2 class="section-title">{{ trans('messages.enterpro') }}</h2></div>
                                 <div class="col-sm-6">
-                                  <input type="email" placeholder="Email của bạn" style="width: 70%">
-                                  <input type="submit" value="Gửi">
+                                  <input type="email" placeholder="{{ trans('messages.enteremail') }}" style="width: 70%">
+                                  <input type="submit" value="{{ trans('messages.send') }}">
                                 </div>
                               </div>
                             </div>
@@ -283,4 +287,9 @@
                           }
                         });
                       </script>
+                      <style type="text/css">
+                        .owl-controls {
+    display: none;
+}
+                      </style>
                       @endsection

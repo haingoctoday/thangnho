@@ -28,14 +28,17 @@ class NewsController extends Controller
     public function postadd(AddNewsRequest $rq)
     {
     	$n = new News();
-    	$n->title = $rq->txtTitle;
+    	$n->title_vi = $rq->txtTitle;
+        $n->title_en = $rq->txtTitle1;
     	$n->slug = str_slug($rq->txtTitle,'-');
     	$n->author = $rq->txtAuth;
     	$n->tag = $rq->txttag;
     	$n->status = $rq->slstatus;
     	$n->source = $rq->txtSource;
-    	$n->intro = $rq->txtIntro;
-    	$n->full = $rq->txtFull;
+        $n->intro_vi = $rq->txtIntro;
+        $n->intro_en = $rq->txtIntro1;
+        $n->full_vi = $rq->txtFull;
+        $n->full_en = $rq->txtFull1;
     	$n->cat_id = $rq->sltCate;
     	$n->user_id = Auth::guard('admin')->user()->id;
     	$n->created_at = new datetime;
@@ -57,14 +60,17 @@ class NewsController extends Controller
     public function postedit(EditNewsRequest $rq,$id)
     {
     	$n = News::find($id);
-    	$n->title = $rq->txtTitle;
+    	$n->title_vi = $rq->txtTitle;
+        $n->title_en = $rq->txtTitle1;
     	$n->slug = str_slug($rq->txtTitle,'-');
     	$n->author = $rq->txtAuth;
     	$n->tag = $rq->txttag;
     	$n->status = $rq->slstatus;
     	$n->source = $rq->txtSource;
-    	$n->intro = $rq->txtIntro;
-    	$n->full = $rq->txtFull;
+    	$n->intro_vi = $rq->txtIntro;
+        $n->intro_en = $rq->txtIntro1;
+        $n->full_vi = $rq->txtFull;
+    	$n->full_en = $rq->txtFull1;
     	$n->cat_id = $rq->sltCate;
     	$n->user_id = Auth::guard('admin')->user()->id;
     	$n->created_at = new datetime;

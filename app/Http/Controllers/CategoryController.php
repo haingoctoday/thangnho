@@ -24,7 +24,8 @@ class CategoryController extends Controller
    {
 		$cat = new Category();
       $cat->parent_id= $rq->sltCate;
-      $cat->name= $rq->txtCateName;
+      $cat->name_vi= $rq->txtCateName;
+      $cat->name_en= $rq->txtCateName1;
       $cat->slug = str_slug($rq->txtCateName,'-');
          $cat->created_at = new DateTime;
       $cat->save();
@@ -40,7 +41,8 @@ class CategoryController extends Controller
    public function postedit($id,AddCategoryRequest $request)
    {
       $cat = category::find($id);
-      $cat->name = $request->txtCateName;
+      $cat->name_vi= $request->txtCateName;
+      $cat->name_en= $request->txtCateName1;
       $cat->slug = str_slug($request->txtCateName,'-');
       $cat->parent_id = $request->sltCate;
       $cat->updated_at = new DateTime;

@@ -37,7 +37,7 @@
 								<thead>
 									<tr>										
 										<th>ID</th>	
-										<th>Tên ảnh</th>									
+										<!-- <th>Tên ảnh</th>									 -->
 										<th>Hình ảnh</th>										
 										<th>Action</th>
 									</tr>
@@ -46,11 +46,11 @@
 									@foreach($data as $row)
 										<tr>
 											<td>{!!$row->id!!}</td>
-											<td>{!!$row->name!!}</td>
+											<!-- <td>{!!$row->name!!}</td> -->
 											<td> <img src="{!!url('uploads/banner/'.$row->url_banner)!!}" width="100" height="80"></td>
 											<td>
-											    <a href="{!!url('admin/banners/edit/'.$row->id)!!}" title="Sửa"><span class="glyphicon glyphicon-edit">Sửa</span> </a>
-											    <a href="{!!url('admin/banners/del/'.$row->id)!!}"  title="Xóa" onclick="return xacnhan('Xóa danh mục này ?')"><span class="glyphicon glyphicon-remove">Xoá</span> </a>
+											    <a href="{!!url('admin/banners/edit/'.$row->id)!!}" title="Sửa"><span class="fas fa-edit">Sửa</span> </a>
+											    <a href="{!!url('admin/banners/del/'.$row->id)!!}"  title="Xóa" onclick="return xacnhan('Xóa danh mục này ?')"><span class="fas fa-trash-alt">Xoá</span> </a>
 											</td>
 										</tr>
 									@endforeach										

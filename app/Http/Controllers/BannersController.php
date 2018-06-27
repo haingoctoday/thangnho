@@ -26,7 +26,7 @@ class BannersController extends Controller
    	//die();
 		$cat = new Banners();
      // $cat->id= $rq->sltCate;
-      $cat->name= $rq->txtCateName;
+      // $cat->name= $rq->txtCateName;
        $cat->user_id = '1';
         $cat->created_at = new DateTime;
 
@@ -48,7 +48,7 @@ class BannersController extends Controller
    public function postedit($id,AddBannersRequest $rq)
    {
       $cat = Banners::find($id);
-      $cat->name= $rq->txtCateName;
+      // $cat->name= $rq->txtCateName;
        $cat->user_id = '1';
         $cat->created_at = new DateTime;
 

@@ -36,10 +36,10 @@
 						@endif
 						<form action="" method="POST" role="form" enctype="multipart/form-data">
 				      		{{ csrf_field() }}
-				      		<div class="form-group">
+<!-- 				      		<div class="form-group">
 				      			<label for="input-id">Tên ảnh</label>
 				      			<input type="text" name="txtCateName" id="inputTxtCateName" class="form-control" value="" required="required">
-				      		</div>
+				      		</div> -->
 				      		<div class="form-group">
 				      			<label for="input-id">Hình ảnh</label>
 					      		<input type="file" name="txtimg" id="inputtxtimg" value="{{ old('txtimg') }}" class="form-control">

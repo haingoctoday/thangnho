@@ -44,8 +44,12 @@
 					      		</select>
 				      		</div>
 				      		<div class="form-group">
-				      			<label for="input-id">Tên danh mục</label>
+				      			<label for="input-id">Tên danh mục VI</label>
 				      			<input type="text" name="txtCateName" id="inputTxtCateName" class="form-control" value="" required="required">
+				      		</div>
+				      		<div class="form-group">
+				      			<label for="input-id">Tên danh mục EN</label>
+				      			<input type="text" name="txtCateName1" id="inputTxtCateName" class="form-control" value="" required="required">
 				      		</div>
 				      		<input type="submit" name="btnCateAdd" class="btn btn-primary" value="Thêm danh mục" class="button" />
 				      	</form>			      	

@@ -44,8 +44,12 @@
 					      		</select>
 				      		</div>
 				      		<div class="form-group">
-				      			<label for="input-id">Tên danh mục</label>
-				      			<input type="text" name="txtCateName" id="inputTxtCateName" class="form-control" value="{!! old('txtCateName', isset($data['name']) ? $data['name'] : null)!!}" required="required">
+				      			<label for="input-id">Tên danh mục VI</label>
+				      			<input type="text" name="txtCateName" id="inputTxtCateName" class="form-control" value="{!! old('txtCateName', isset($data['name_vi']) ? $data['name_vi'] : null)!!}" required="required">
+				      		</div>
+				      		<div class="form-group">
+				      			<label for="input-id">Tên danh mục EN</label>
+				      			<input type="text" name="txtCateName1" id="inputTxtCateName" class="form-control" value="{!! old('txtCateName1', isset($data['name_en']) ? $data['name_en'] : null)!!}" required="required">
 				      		</div>
 				      		<input type="submit" name="btnCateAdd" class="btn btn-primary" value="Thêm danh mục" class="button" />
 				      	</form>					      	

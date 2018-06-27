@@ -1,8 +1,6 @@
 <?php
 
-Route::auth();
-Route::get('/user', 'HomeController@index');
-Route::get('/user/edit', 'HomeController@edit');
+ Route::auth();
 
 // admin route 
 Route::get('admin/login', ['as'  => 'getlogin', 'uses' =>'Admin\AuthController@showLoginForm']);
@@ -11,36 +9,49 @@ Route::post('admin/login', ['as'  => 'postlogin', 'uses' =>'Admin\AuthController
 
 Route::get('admin/logout', ['as'  => 'getlogin', 'uses' =>'Admin\AuthController@logout']);
 
-Route::get('/', ['as'  => 'index', 'uses' =>'PagesController@index']);
-Route::get('/video-huong-dan', ['as'  => 'getvideo', 'uses' =>'PagesController@getvideo']);
+//Route::get('/', ['as'  => 'index', 'uses' =>'PagesController@index']);
 
-Route::get('/video-huong-dan/detail/{id}-{slug}', ['as'  => 'getvideodetail', 'uses' =>'PagesController@getvideodetail']);
+Route::group(['middleware' => 'locale'], function() {
+   
+    Route::get('change-language/{language}', 'PagesController@changeLanguage')->name('user.change-language');
 
+    Route::get('/', ['as'  => 'index', 'uses' =>'PagesController@index']);
+
+    Route::get('/user', 'HomeController@index');
+    Route::get('/user/edit', 'HomeController@edit');
+    Route::get('login', ['as'  => 'getlogin', 'uses' =>'Auth\AuthController@getLogin']);
+    Route::get('/video-huong-dan', ['as'  => 'getvideo', 'uses' =>'PagesController@getvideo']);
+
+    Route::get('/video-huong-dan/detail/{id}-{slug}', ['as'  => 'getvideodetail', 'uses' =>'PagesController@getvideodetail']);
+    Route::get('/me', ['as'  => 'getme', 'uses' =>'PagesController@getme']);
+    Route::post('edituser', ['as'  => 'postedituser', 'uses' =>'PagesController@postedituser']);
+    // cart - oder
+    Route::get('gio-hang', ['as'  => 'getcart', 'uses' =>'PagesController@getcart']);
+    Route::get('tim-kiem', ['as'  => 'gettimkiem', 'uses' =>'PagesController@gettimkiem']);
+    //http://localhost:8000/danh-muc
+    // them vao gio hang
+    Route::get('gio-hang/addcart/{id}', ['as'  => 'getcartadd', 'uses' =>'PagesController@addcart']);
+    Route::get('gio-hang/update/{id}/{qty}-{dk}', ['as'  => 'getupdatecart', 'uses' =>'PagesController@getupdatecart']);
+    Route::get('gio-hang/delete/{id}', ['as'  => 'getdeletecart', 'uses' =>'PagesController@getdeletecart']);
+    Route::get('gio-hang/xoa', ['as'  => 'getempty', 'uses' =>'PagesController@xoa']);
+
+    // tien hanh dat hang
+    Route::get('dat-hang', ['as'  => 'getoder', 'uses' =>'PagesController@getoder']);
+    Route::post('dat-hang', ['as'  => 'postoder', 'uses' =>'PagesController@postoder']);
+    // category
+    Route::get('/{cat}', ['as'  => 'getcate', 'uses' =>'PagesController@getcate']);
+    Route::get('/{cat}/{id}-{slug}', ['as'  => 'getdetail', 'uses' =>'PagesController@detail']);
+    //ngoc
+    Route::get('/danh-muc/{id}', ['as'  => 'getdanhmuc', 'uses' =>'PagesController@getdanhmuc']);
+
+
+    Route::resource('payment', 'PayMentController');
+});
 
 //me
-Route::get('/me', ['as'  => 'getme', 'uses' =>'PagesController@getme']);
-
-// cart - oder
-//Route::get('gio-hang', ['as'  => 'getcart', 'uses' =>'PagesController@getcart']);
-Route::get('tim-kiem', ['as'  => 'gettimkiem', 'uses' =>'PagesController@gettimkiem']);
-//http://localhost:8000/danh-muc
-// them vao gio hang
-// Route::get('gio-hang/addcart/{id}', ['as'  => 'getcartadd', 'uses' =>'PagesController@addcart']);
-// Route::get('gio-hang/update/{id}/{qty}-{dk}', ['as'  => 'getupdatecart', 'uses' =>'PagesController@getupdatecart']);
-// Route::get('gio-hang/delete/{id}', ['as'  => 'getdeletecart', 'uses' =>'PagesController@getdeletecart']);
-// Route::get('gio-hang/xoa', ['as'  => 'getempty', 'uses' =>'PagesController@xoa']);
-
-// tien hanh dat hang
-Route::get('dat-hang', ['as'  => 'getoder', 'uses' =>'PagesController@getoder']);
-Route::post('dat-hang', ['as'  => 'postoder', 'uses' =>'PagesController@postoder']);
-// category
-Route::get('/{cat}', ['as'  => 'getcate', 'uses' =>'PagesController@getcate']);
-Route::get('/{cat}/{id}-{slug}', ['as'  => 'getdetail', 'uses' =>'PagesController@detail']);
-//ngoc
-Route::get('/danh-muc/{id}', ['as'  => 'getdanhmuc', 'uses' =>'PagesController@getdanhmuc']);
 
 
-Route::resource('payment', 'PayMentController');
+
 
 // --------------------------------cac cong viec trong admin (back-end)--------------------------------------- 
 Route::group(['middleware' => 'admin'], function () {
@@ -63,6 +74,30 @@ Route::group(['middleware' => 'admin'], function () {
            Route::post('edit/{id}',['as' =>'posteditcat','uses' => 'BannersController@postedit'])->where('id','[0-9]+');
       });
 
+               // -------------------- quan ly thong tin----------------------
+        Route::group(['prefix' => 'info'], function() {
+          
+           Route::get('add',['as'        =>'getaddinfo','uses' => 'InfoController@getadd']);
+           Route::post('add',['as'       =>'postaddinfo','uses' => 'InfoController@postadd']);
+
+           Route::get('/',['as'       =>'getinfo','uses' => 'InfoController@getlist']);
+           Route::get('del/{id}',['as'   =>'getdelinfo','uses' => 'InfoController@getdel'])->where('id','[0-9]+');
+           
+           Route::get('edit/{id}',['as'  =>'geteditinfo','uses' => 'InfoController@getedit'])->where('id','[0-9]+');
+           Route::post('edit/{id}',['as' =>'posteditinfo','uses' => 'InfoController@postedit'])->where('id','[0-9]+');
+      });
+                       // -------------------- quan ly he thong cua hang----------------------
+        Route::group(['prefix' => 'shopsys'], function() {
+          
+           Route::get('add',['as'        =>'getaddshopsys','uses' => 'ShopsystemController@getadd']);
+           Route::post('add',['as'       =>'postaddshopsys','uses' => 'ShopsystemController@postadd']);
+
+           Route::get('/',['as'       =>'getshopsys','uses' => 'ShopsystemController@getlist']);
+           Route::get('del/{id}',['as'   =>'getdelshopsys','uses' => 'ShopsystemController@getdel'])->where('id','[0-9]+');
+           
+           Route::get('edit/{id}',['as'  =>'geteditshopsys','uses' => 'ShopsystemController@getedit'])->where('id','[0-9]+');
+           Route::post('edit/{id}',['as' =>'posteditshopsys','uses' => 'ShopsystemController@postedit'])->where('id','[0-9]+');
+      });
        // -------------------- quan ly danh muc----------------------
        	Route::group(['prefix' => 'danhmuc'], function() {
            Route::get('add',['as'        =>'getaddcat','uses' => 'CategoryController@getadd']);
@@ -99,7 +134,7 @@ Route::group(['middleware' => 'admin'], function () {
         // -------------------- quan ly đơn đặt hàng--------------------
         Route::group(['prefix' => '/donhang'], function() {;
 
-           Route::get('',['as'       =>'getpro','uses' => 'OdersController@getlist']);
+           Route::get('/',['as'       =>'getpro','uses' => 'OdersController@getlist']);
            Route::get('/del/{id}',['as'   =>'getdeloder','uses' => 'OdersController@getdel'])->where('id','[0-9]+');
            
            Route::get('/detail/{id}',['as'  =>'getdetail','uses' => 'OdersController@getdetail'])->where('id','[0-9]+');
@@ -108,7 +143,7 @@ Route::group(['middleware' => 'admin'], function () {
         // -------------------- quan ly thong tin khach hang--------------------
         Route::group(['prefix' => '/khachhang'], function() {;
 
-           Route::get('',['as'       =>'getmem','uses' => 'UsersController@getlist']);
+           Route::get('/',['as'       =>'getmem','uses' => 'UsersController@getlist']);
            Route::get('/del/{id}',['as'   =>'getdelmem','uses' => 'UsersController@getdel'])->where('id','[0-9]+');
            
            Route::get('/edit/{id}',['as'  =>'geteditmem','uses' => 'UsersController@getedit'])->where('id','[0-9]+');
@@ -117,7 +152,7 @@ Route::group(['middleware' => 'admin'], function () {
        // -------------------- quan ly thong nhan vien--------------------
         Route::group(['prefix' => '/nhanvien'], function() {;
 
-           Route::get('',['as'       =>'getnv','uses' => 'Admin_usersController@getlist']);
+           Route::get('/',['as'       =>'getnv','uses' => 'Admin_usersController@getlist']);
            Route::get('/del/{id}',['as'   =>'getdelnv','uses' => 'Admin_usersController@getdel'])->where('id','[0-9]+');
            
            Route::get('/edit/{id}',['as'  =>'geteditnv','uses' => 'Admin_usersController@getedit'])->where('id','[0-9]+');

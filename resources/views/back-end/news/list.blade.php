@@ -52,7 +52,7 @@ $loai = array('34'=>'Video','35'=>'Tin tức');
 									<tr>
 										<td>{!!$row->id!!}</td>
 										<td> <img src="{!!url('uploads/news/'.$row->images)!!}" alt="" width="40" height="40"> </td>
-										<td>{!!$row->title!!}</td>
+										<td>{!!$row->title_vi!!}</td>
 										<td><small>{!!$loai[$row->cat_id]!!}</small></td>
 										<td style="width: 90px;">
 											@if($row->status==1)
@@ -62,8 +62,8 @@ $loai = array('34'=>'Video','35'=>'Tin tức');
 											@endif
 										</td>
 										<td style="width: 120px;">
-										    <a href="{!!url('admin/news/edit/'.$row->id)!!}" title="Sửa"><span class="glyphicon glyphicon-edit">edit</span> </a>
-										    <a href="{!!url('admin/news/del/'.$row->id)!!}"  title="Xóa" onclick="return xacnhan('Xóa danh mục này ?')"><span class="glyphicon glyphicon-remove">remove</span> </a>
+										    <a href="{!!url('admin/news/edit/'.$row->id)!!}" title="Sửa"><span class="fas fa-edit">edit</span> </a>
+										    <a href="{!!url('admin/news/del/'.$row->id)!!}"  title="Xóa" onclick="return xacnhan('Xóa danh mục này ?')"><span class="fas fa-trash-alt">remove</span> </a>
 										</td>
 									</tr>	
 								@endforeach								

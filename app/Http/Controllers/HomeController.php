@@ -8,7 +8,7 @@ use Auth;
 use App\User;
 use App\Oders;
 use DB;
-
+use Session;
 class HomeController extends Controller
 {
     /**
@@ -38,4 +38,5 @@ class HomeController extends Controller
         $data = User::where('id',$id)->first();
         return view('member.edit',['data'=>$data]);
    }
+   
 }

@@ -24,14 +24,13 @@ class AddBannersRequest extends Request
     public function rules()
     {
         return [
-            'txtCateName' => 'required|unique:category,name'
+            //
         ];
     }
     public function messages()
     {
         return [
-            'txtCateName.required' => ' Hãy nhập tên danh mục ',
-            'txtCateName.unique' => 'Tên danh mục này đã tồn tại '
+          //
             
         ];
     }

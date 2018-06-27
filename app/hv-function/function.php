@@ -3,7 +3,7 @@
 	{
 		foreach ($data as $val) {
 			$id = $val["id"];
-			$ten= $val["name"];
+			$ten= $val["name_vi"];
 			if ($val['parent_id'] == $parent_id) {
 				// print_r($select);  exit();
 				if ($select!=0 && $id == $select) {
@@ -19,19 +19,22 @@
 	{
 		foreach ($data as $val) {
 			$id = $val["id"];
-			$ten= $val["name"];
+			$ten= $val["name_vi"];
+			$ten1= $val["name_en"];
 			if ($val['parent_id'] == $parent_id) {
 				echo '<tr>';
 				if ($str =="") {
 						echo '<td ><strong>'.$id.'</strong></td>';
 						echo '<td ><strong style="color:blue;">'.$str.'- '.$ten.'</strong></td>';
+						echo '<td ><strong style="color:blue;">'.$str.'- '.$ten1.'</strong></td>';
 					} else {
 						echo '<td ><strong>'.$id.'</strong></td>';
 						echo '<td style="color:green;">'.$str.'--|'.$ten.'</td>';
+						echo '<td style="color:green;">'.$str.'--|'.$ten1.'</td>';
 					}	
 			echo '<td class="list_td aligncenter">
-		            <a href="../admin/danhmuc/edit/'.$id.'" title="Sửa"><span class="glyphicon glyphicon-edit"></span></a>&nbsp;&nbsp;&nbsp;
-		            <a href="../admin/danhmuc/del/'.$id.'" title="Xóa" onclick="return xacnhan(\'Xóa danh mục này ?\') "> <span class="glyphicon glyphicon-remove"></span> </a>
+		            <a href="../admin/danhmuc/edit/'.$id.'" title="Sửa"><span class="fas fa-edit"></span></a>&nbsp;&nbsp;&nbsp;
+		            <a href="../admin/danhmuc/del/'.$id.'" title="Xóa" onclick="return xacnhan(\'Xóa danh mục này ?\') "> <span class="fas fa-trash-alt"></span> </a>
 			      </td>    
 			    </tr>';
 			    listcate ($data,$id,$str." ---| ");
@@ -42,7 +45,7 @@
 	{
 		foreach ($data as $val) {
 			$id = $val["id"];
-			$ten= $val["name"];
+			$ten= $val["name_".Config::get('app.locale')];
 			$check = 0;
 			if ($val['parent_id'] == $parent_id) {
 
@@ -85,12 +88,12 @@
 						
                                        echo '<li class="col-sm-3">';              
                                              echo '<ul>';            
-                                                       echo ' <li class="dropdown-header">'.$val1['name'].'<?php echo $i?></li>';  
+                                                       echo ' <li class="dropdown-header">'.$val1['name_'.Config::get('app.locale')].'<?php echo $i?></li>';  
                                                       //echo      '<li><a href="#">'.$val1["name"].'</a></li>';
                                                             
                                   foreach ($data as $val2) {                        
                                              if($val1['id'] == $val2['parent_id']){
-                                             	 echo '<li><a  href="'.url('danh-muc/'.$val2['id']).'">'.$val2['name'].'</a></li>';
+                                             	 echo '<li><a  href="'.url('danh-muc/'.$val2['id']).'">'.$val2['name_'.Config::get('app.locale')].'</a></li>';
 							 
                                              }           
 

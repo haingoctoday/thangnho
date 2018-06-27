@@ -1,14 +1,24 @@
 @extends('layouts.ngoc')
 @section('content')
 
+<?php 
+                                              $name_ca = Config::get('app.locale');
+                                              if($name_ca == 'vi'){
+                                                $title =  $data->title_vi;
+                                                $full =  $data->full_vi;
+                                              }else{
+                                                 $title =   $data->title_en;
+                                                 $full =  $data->full_en;
+                                              }       ?>
+
  <div class="maincontent-area">
                         <div class="zigzag-bottom"></div>
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="latest-product">
-                                      <p class="danhsach-bran">  TRANG CHỦ > Tin tức    </p>
-                                      <h2 class="section-title-bran"> {!!$data->title!!} </h2>
+                                      <p class="danhsach-bran">  {{ trans('messages.home') }} > {{ trans('messages.tintuc') }}   </p>
+                                      <h2 class="section-title-bran"> {!!$title!!} </h2>
 
     <div style="height: 100px;"></div>
                                       <div class="row">
@@ -22,9 +32,9 @@
                                                 <div class="product-inner">
                                            <img src="{!!url('uploads/news/'.$data->images)!!}" alt="" height="200" width="100%">
 
-                                     <h3 class="title-h3"><a href="{!!url('tin-tuc/'.$data->id.'-'.$data->slug)!!}" title="">{!!$data->title!!} </a></h3>
+                                     <h3 class="title-h3"><a href="{!!url('tin-tuc/'.$data->id.'-'.$data->slug)!!}" title="">{!!$title!!} </a></h3>
                                       <p class="summary-content">
-                    {!!$data->full!!}
+                    {!!$full!!}
                   </p>
 
                                     </div>
@@ -37,18 +47,18 @@
                     ->orderBy('created_at', 'desc')
                     ->paginate(3); 
                   ?>
-                  <h2 class="sidebar-title">Tin Tức liên quan</h2>
+                  <h2 class="sidebar-title">{{ trans('messages.Relatednews') }}</h2>
                    @foreach($data as $row)
                            <div class="col-md-4">
                                          
 
-                                               <a href="{!!url('/tin-tuc/'.$row->id.'-'.$row->slug)!!}" title="{!!$row->title!!}"><img src="{!!url('uploads/news/'.$row->images)!!}" alt="{!!$row->title!!}" 
+                                               <a href="{!!url('/tin-tuc/'.$row->id.'-'.$row->slug)!!}" title="{!!$row->title_vi!!}"><img src="{!!url('uploads/news/'.$row->images)!!}" alt="{!!$row->title_vi!!}" 
                                                 style="width: 100%;height: 250px"> </a>
                    
                     <div class="" style="padding: 10px">
-                      <h4><a href="{!!url('/tin-tuc/'.$row->id.'-'.$row->slug)!!}"" title="{!!$row->title!!}">{!!$row->title!!}</a></h4>
+                      <h4><a href="{!!url('/tin-tuc/'.$row->id.'-'.$row->slug)!!}"" title="{!!$row->title_vi!!}">{!!$row->title_vi!!}</a></h4>
                      
-                      <p><strong>Lúc :</strong> {!!$row->created_at!!} Bởi : <strong>{!!$row->author!!} </strong></p>
+                      <p><strong>{{ trans('messages.luc') }} :</strong> {!!$row->created_at!!} {{ trans('messages.boi') }} : <strong>{!!$row->author!!} </strong></p>
                     </div>
                                                
 
@@ -57,10 +67,10 @@
                                            @endforeach      
                   </div>
                         </div>
-                                  <div class="col-md-3">
+                                     <div class="col-md-3">
                                          <div class="single-sidebar">
                                             
-                                               <h2 class="sidebar-title">SẢN PHẨM CÓ BÁN TẠI</h2>
+                                               <h2 class="sidebar-title">{{ trans('messages.productsell') }} </h2>
                                                <hr>
                                                <table width="100%">  
                                                <tr style="border-bottom: 1px solid #ccc">
@@ -80,7 +90,7 @@
                                            </div>
                                            <div class="single-sidebar">
 
-                                               <h2 class="sidebar-title">CHÍNH SÁCH SHIP HÀNG</h2>
+                                               <h2 class="sidebar-title">{{ trans('messages.shppinga') }}</h2>
                                                <hr>
                                                <li>
                                                    Ship COD 12 quận Hà Nội đồng giá 20.000đ. Xem chi tiết
@@ -101,7 +111,7 @@
                                            </div>
                                             <div class="single-sidebar">
 
-                                               <h2 class="sidebar-title">Bạn đã xem</h2>
+                                               <h2 class="sidebar-title">{{ trans('messages.uview') }}</h2>
                                                <hr style="margin-bottom: 0">
                                                <ul class="product_list_widget">
 <li>

@@ -87,46 +87,34 @@
 				      			<label for="input-id"> Chi tiết cấu hình sản phẩm</label>
 				      			<div class="row">
 					      			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
-					      				Cpu : <input type="text" name="txtCpu" id="inputtxtCpu" value="{{ old('txtCpu') }}" class="form-control" >
+					      				Bảo quản : <input type="text" name="txtCpu" id="inputtxtCpu" value="{{ old('txtCpu') }}" class="form-control" >
 					      			</div>
-					      			<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
-					      				RAM : <input type="text" name="txtRam" id="inputtxtRam" value="{{ old('txtRam') }}" class="form-control" >
-					      			</div>
-					      			<div class="col-xs-12 col-sm-3 col-md-2 col-lg-2">
-					      				Bộ nhớ trong (HDD) : <input type="text" name="txtStorage" id="inputtxtStorage" value="{{ old('txtStorage') }}" class="form-control" >
-					      			</div>
-					      			<div class="col-xs-12 col-sm-1 col-md-1 col-lg-1" style="padding-left: 0;">	
-					      				Thẻ nhớ	<input type="text" name="txtExtend" id="inputtxtExtend" value="{{ old('txtExtend') }}" class="form-control">
-					      			</div>
+									
+					      			
 					      		</div>
 					      		<div class="row">
-					      			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-					      				Màn hình : <input type="text" name="txtScreen" id="inputtxtscreen" value="{{ old('txtScreen') }}" class="form-control" >
+									<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+					      				Thành phần : <input type="text" name="txtRam" id="inputtxtRam" value="{{ old('txtRam') }}" class="form-control" >
 					      			</div>
-					      			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-					      				VGA : <input type="text" name="txtVga" id="inputtxtVga" value="{{ old('txtVga') }}" class="form-control">
-					      			</div>
-					      			<div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
-					      				Webcam - Cam sau <input type="text" name="txtCam1" id="inputtxtCam1" value="{{ old('txtCam1') }}" class="form-control" >
-					      			</div>
-					      			<div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
-					      				Cammera trước <input type="text" name="txtCam2" id="inputtxtCam2" value="{{ old('txtCam2') }}" class="form-control" >
-					      			</div>
-					      		</div>
+					      		</div>		
 					      		<div class="row">
-					      			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-					      				SIM hỗ trợ : <input type="text" name="txtSIM" id="inputtxtSIM" value="{{ old('txtSIM') }}" class="form-control" >
+									
+									<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+					      				Nguồn gốc : <input type="text" name="txtScreen" id="inputtxtscreen" value="{{ old('txtScreen') }}" class="form-control" >
 					      			</div>
-					      			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-					      				Kết nối : <input type="text" name="txtConnect" id="inputtxtConnect" value="{{ old('txtConnect') }}" class="form-control">
+					      		</div>			 
+					      		<div class="row">
+									<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+					      				Sử dụng : <input type="text" name="txtVga" id="inputtxtVga" value="{{ old('txtVga') }}" class="form-control" >
 					      			</div>
-					      			<div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
-					      				PIN : <input type="text" name="txtPin" id="inputtxtPin" value="{{ old('txtPin') }}" class="form-control" >
+					      			
+					      		</div>		
+					      		<div class="row">
+									<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
+					      				Trọng lượng : <input type="text" name="txtCam1" id="inputtxttxtCam1" value="{{ old('txtCam1') }}" class="form-control" >
 					      			</div>
-					      			<div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
-					      				Hệ điều hành : <input type="text" name="txtOs" id="inputtxtOs" value="{{ old('txtOs') }}" class="form-control" >
-					      			</div>
-					      		</div>				      			
+					      			
+					      		</div>			 	      			
 				      		</div>
 				      		<div class="form-group">
 				      			<label for="input-id">Đánh giá chi tiết sản phẩm</label>

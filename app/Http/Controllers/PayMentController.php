@@ -151,8 +151,10 @@ class PayMentController extends Controller
         // You can also specify additional details
         // such as shipping, tax.
         $amount = new Amount();
+       
+        $total_payment_c = str_replace(",","",Cart::subtotal())/21000;
         $amount->setCurrency("USD")
-            ->setTotal(Cart::subtotal()/21000);
+            ->setTotal($total_payment_c);
             // ->setDetails($details);
         // ### Transaction
         // A transaction defines the contract of a
