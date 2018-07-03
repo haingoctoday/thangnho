@@ -1,5 +1,9 @@
 @extends('back-end.layouts.master')
 @section('content')
+<?php
+$acb  = app('request')->input('q');
+print_r($acb);
+?>
 <!-- main content - noi dung chinh trong chu -->
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">			
 		<div class="row">
@@ -40,17 +44,25 @@
 					      		<select name="sltCate" id="inputSltCate" required class="form-control">
 					      			<option value="">--Chọn danh mục--</option>
 					      			@foreach($cat as $dt)
-					      				<option value="{!!$dt->id!!}" >{!!'--|--|'.$dt->name!!}</option> 	
+					      				<option value="{!!$dt->id!!}" <?php 
+					      				if($acb == $dt->id)
+					      				{
+					      					echo "selected";
+					      				}else{
+
+					      				}
+
+					      				 ?> >{!!'--|--|'.$dt->name_vi!!}</option> 	
 					      			@endforeach	
 					      		</select>
 				      		</div>
 				      		<div class="form-group">
 				      			<label for="input-id" id="tieude">Tiêu đề bản tin VI</label>
-				      			<input type="text" name="txtTitle" id="inputTxtTitle" class="form-control" value="{{ old('txtTitle') }}"  >
+				      			<input type="text" name="txtTitle" id="inputTxtTitle" class="form-control" value="{{ old('txtTitle') }}" required >
 				      		</div>
 				      		<div class="form-group">
 				      			<label for="input-id" id="tieude">Tiêu đề bản tin EN</label>
-				      			<input type="text" name="txtTitle1" id="inputTxtTitle" class="form-control" value="{{ old('txtTitle1') }}"  >
+				      			<input type="text" name="txtTitle1" id="inputTxtTitle" class="form-control" value="{{ old('txtTitle1') }}" required >
 				      		</div>
 				      		<div class="form-group">
 				      			<div class="row">
@@ -80,8 +92,8 @@
 				      		</div>
 				      		
 				      		<div class="form-group">
-                            <div role="tabpanel" style="padding-top: 20px;">
-                                <ul class="product-tab" role="tablist">
+                            <div role="tabpanel" style="padding-top: 20px;" id="exTab1">
+                                <ul class="nav nav-pills" role="tablist">
                                     <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Bài viết VI</a></li>
                                     <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Bài viết EN</a></li>
                                 </ul>
@@ -156,7 +168,7 @@
                             </div>
 				      		</div>		      				      		
 
-				      		<input type="submit" name="btnCateAdd" class="btn btn-primary" value="Thêm sản phẩm" class="button" />
+				      		<input type="submit" name="btnCateAdd" class="btn btn-primary" value="Thêm tin tức" class="button" />
 				      	</form>			      	
 					</div>
 				</div>
@@ -165,7 +177,22 @@
 	</div>	<!--/.main-->
 <!-- =====================================main content - noi dung chinh trong chu -->
 <script type="text/javascript">
-	
+	$( document ).ready(function() {
+       var id =  <?php echo ($acb != 0) ?  $acb : "1"?>;
+  if(id == '34'){
+  	$( "#tieude" ).text('Tiêu đề video');
+  	$( "#nguontin" ).text('Link nhúng video');
+  	$( "#tomtat" ).text('Nguyên liệu');
+  	$( "#chitiet" ).text('Hướng dẫn chi tiết');
+  }
+  if(id == '35'){
+  	$( "#tieude" ).text('Tiêu đề bản tin');
+  	$( "#nguontin" ).text('Nguồn tin');
+  	$( "#tomtat" ).text('Tóm tắt ');
+  	$( "#chitiet" ).text('Bài viết chi tiết');
+  }
+    });
+
 	$( "#inputSltCate" ).change(function() {
   var id =  $(this).val();
   if(id == '34'){

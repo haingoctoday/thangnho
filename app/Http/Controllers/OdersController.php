@@ -13,7 +13,11 @@ class OdersController extends Controller
 {
     public function getlist()
     {
-    	$data = Oders::paginate(10);
+    	$data = Oders::where('bb',1)->paginate(10);
+         // $data =  DB::table('oders')
+         //     ->where('bb',1)
+         //            ->orderBy('created_at', 'desc')
+         //            ->paginate(10);
     	return view('back-end.oders.list',['data'=>$data]);
     }
 
@@ -45,7 +49,8 @@ class OdersController extends Controller
     		->with(['flash_level'=>'result_msg','flash_massage'=>'Không thể hủy đơn hàng số: '.$id.' vì đã được xác nhận!']);
     	} else {
     		$oder = Oders::find($id);
-        	$oder->delete();
+        	$oder->bb = 2;
+            $oder->save();
         	return redirect('admin/donhang')
          	->with(['flash_level'=>'result_msg','flash_massage'=>'Đã hủy bỏ đơn hàng số:  '.$id.' !']);
      	}

@@ -16,8 +16,14 @@ use DateTime,File,Input,DB;
 
 class ProductsController extends Controller
 {
-	public function getlist($id)
+	public function getlist($id,Request $rq)
 	{
+       
+        if(isset($rq->name_p)){
+            $pro = Products::where('name','like', '%'. $rq->name_p .'%')->orwhereBetween('price', [$rq->price_t,$rq->price_f])->paginate(10);
+            $cat= Category::all();
+            return view('back-end.products.list',['data'=>$pro,'cat'=>$cat,'loai'=>$id]);  
+        }
         if ($id!='all') {
             $pro = Products::where('cat_id',$id)->paginate(10);
             $cat= Category::all();
@@ -31,15 +37,17 @@ class ProductsController extends Controller
     public function getadd($id)
     {
         $loai = Category::where('id',$id)->first();
-        $p_id = $loai->parent_id;
-        $p_name = Category::where('id',$p_id)->first();
-		$cat= Category::where('parent_id',$p_id)->get();
-		$pro = Products::all();	
+       // $p_id = $loai->parent_id;
+     //   $p_name = Category::where('id',$p_id)->first();
+		//$cat= Category::where('id',$id)->get();
+       // dd($cat);
+		//$pro = Products::all();	
+        $pro = [];
       //  if ($p_id >=19) {
       //          return view('back-end.products.pc-add',['data'=>$pro,'cat'=>$cat,'loai'=>$p_name->name]);
      //       }
      //   else {
-            return view('back-end.products.add',['data'=>$pro,'cat'=>$cat,'loai'=>$p_name->name]);
+            return view('back-end.products.add',['data'=>$pro,'loai'=>$loai]);
      //   }	
 		
 		
@@ -152,10 +160,10 @@ class ProductsController extends Controller
         $loai= Category::where('id',$c_id)->first();
         $p_id = $loai->parent_id;
   
-        $cat= Category::where('parent_id',$p_id)->get();
+       // $cat= Category::where('parent_id',$p_id)->get();
           //  $cat= Category::where('parent_id', 19)->get();
             $pro = Products::where('id',$id)->first();
-            return view('back-end.products.edit-mobile',['pro'=>$pro,'cat'=>$cat,'loai'=>$p_id]);     
+            return view('back-end.products.edit-mobile',['pro'=>$pro,'cat'=>$loai,'loai'=>$p_id]);     
       
     }
     public function postedit($loai,$id,EditProductsRequest $rq)

@@ -1,6 +1,6 @@
 @extends('back-end.layouts.master')
 @section('content')
-    <!-- main content - noi dung chinh trong chu -->
+
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">			
 		<div class="row">
 			<ol class="breadcrumb">
@@ -75,11 +75,24 @@
 				</div>
 			</div>		
 		</div><!--/.row-->
-		
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="panel panel-default">
-					<div class="panel-heading">Tổng quan trang cửa hàng</div>
+					<div class="panel-heading">Thao tác nhanh </div>
+					<div class="panel-body">
+						<a type="button" class="btn btn-primary" href="{!!url('admin/news/add?q=35')!!}">Thêm tin tức mới </a>
+						<a type="button" class="btn btn-success" href="{!!url('admin/news/add?q=34')!!}">Thêm bài hướng dẫn video</a>
+						<a type="button" class="btn btn-warning" href="{!!url('admin/sanpham/all')!!}" >Thêm sản phẩm</a>
+						<a type="button" class="btn btn-success" href="{!!url('admin/donhang')!!}">Quản lý Đơn hàng</a>
+						<a type="button" class="btn btn-primary" href="{!!url('admin/khachhang')!!}">Quản lý Email nhận quảng cáo</a>
+					</div>
+				</div>
+			</div>
+		</div><!--/.row-->
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="panel panel-default">
+					<div class="panel-heading">Tổng quan trang </div>
 					<div class="panel-body">
 						<div class="canvas-wrapper">
 							<canvas class="main-chart" id="line-chart" height="100" width="600"></canvas>
@@ -130,9 +143,9 @@
 								
 		<div class="row">
 			<div class="col-md-8">
-				<small>Coppyright 2016</small>
+				<small>Coppyright 2018</small>
 			</div><!--/.col-->
 		</div><!--/.row-->
 	</div>	<!--/.main-->
-<!-- =====================================main content - noi dung chinh trong chu -->
+
 @endsection

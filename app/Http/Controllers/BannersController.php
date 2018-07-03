@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Banners;
+use App\Nhanqc;
 use App\Http\Requests\AddBannersRequest;
 use DateTime;
 
@@ -80,4 +81,9 @@ class BannersController extends Controller
         	return redirect()->route('getbanners')
          	->with(['flash_level'=>'result_msg','flash_massage'=>'Đã hủy bỏ ảnh số:  '.$id.' !']);
     }
+       public function getnhanqc()
+   {
+    $data = Nhanqc::all();
+    return View ('back-end.nhanqc.list',['data'=>$data]);
+   }
 }

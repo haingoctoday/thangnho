@@ -11,7 +11,7 @@
 		
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header"><small>Thêm mới sản phẩm: {!!$loai!!}</small></h1>
+				<h1 class="page-header"><small>Thêm mới sản phẩm thuộc loại : {!!$loai->name_vi!!}</small></h1>
 			</div>
 		</div><!--/.row-->		
 		<div class="row">
@@ -38,10 +38,10 @@
 				      		<div class="form-group">
 					      		<label for="input-id">Chọn danh mục</label>
 					      		<select name="sltCate" id="inputSltCate" required class="form-control">
-					      			<option value="">--Chọn thương hiệu--</option>
-					      			@foreach($cat as $dt)
-					      				<option value="{!!$dt->id!!}" >{!!'--|--|'.$dt->name!!}</option> 	
-					      			@endforeach	
+					      			<option value="">--Chọn danh mục--</option>
+					      		
+					      				<option value="{!!$loai->id!!}" selected="" >{!!'--|--|'.$loai->name_vi!!}</option> 	
+					      		
 					      		</select>
 				      		</div>
 				      		<div class="form-group">
@@ -56,7 +56,7 @@
 				      			<label for="input-id">Gồm có : </label>
 				      			<input type="text" name="txtpacket" id="inputtxtpacket" value="{{ old('txtpacket') }}" class="form-control" >
 				      		</div>
-				      		<div class="form-group">
+				      		<div class="form-group" style="display: none">
 				      			<label for="input-id">Khuyễn mãi (tối đa 3 mục)</label>
 				      			<div class="row">
 					      			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
@@ -116,8 +116,8 @@
 					      			
 					      		</div>			 	      			
 				      		</div>
-				      		<div class="form-group">
-				      			<label for="input-id">Đánh giá chi tiết sản phẩm</label>
+				      		<div class="form-group" >
+				      			<label for="input-id">Hình ảnh sản phẩm (có thể có hoặc không)</label>
 				      			<div class="row">
 					      			@for( $i=1; $i<=12; $i++)
 					      			<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
@@ -127,10 +127,10 @@
 					      		</div>				      			
 				      		</div>
 				      		<div class="form-group">
-				      			<label for="input-id">Đánh giá chi tiết sản phẩm</label>
+				      			<label for="input-id">Thông tin sản phẩm</label>
 				      			<div class="row">					      			
 					      			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-					      				<label for="input-id">Tóm tắt đánh giá</label>
+					      				<label for="input-id">Tóm tắt</label>
 					      				<textarea name="txtre_Intro" id="inputTxtre_Intro" class="form-control" value="{{ old('txtre_Intro') }}" rows="2" required="required"></textarea>
 					      				<script type="text/javascript">
 											var editor = CKEDITOR.replace('txtre_Intro',{
@@ -143,7 +143,7 @@
 										</script>
 					      			</div>
 					      			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-					      				<label for="input-id">Bài đánh giá chi tiết</label>
+					      				<label for="input-id">Chi tiết</label>
 					      				<textarea name="txtReview" id="inputtxtReview" class="form-control" rows="4" value="{{ old('txtReview') }}" required="required"></textarea>
 					      				<script type="text/javascript">
 											var editor = CKEDITOR.replace('txtReview',{

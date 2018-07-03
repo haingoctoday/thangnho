@@ -24,7 +24,7 @@ class AddNewsRequest extends Request
     public function rules()
     {
        return [
-            'txtTitle' => 'required|unique:news,title',
+            'txtTitle' => 'required|unique:news,title_vi',
             'txtAuth' => 'required',
             'txtimg' => 'required'
         ];

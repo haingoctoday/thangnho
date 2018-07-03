@@ -28,11 +28,14 @@
 							        </ul>
 							    </div>
 							@endif
+							<div class="panel-heading">						 
+							Thông tin Khách hàng 
+						</div>
 							<div class="table-responsive">
 								<table class="table table-hover">
 									<thead>
 										<tr>
-											<th>ID</th>
+											
 											<th> Họ-tên khách hàng</th>
 											<th>Địa chỉ</th>
 											<th>Điện thoại</th>
@@ -42,7 +45,7 @@
 									</thead>
 									<tbody>
 										<tr>
-											<td>{!!$oder->id!!}</td>
+											
 											<td>{!!$oder->user->name!!}</td>
 											<td>{!!$oder->user->address!!}</td>
 											<td>{!!$oder->user->phone!!}</td>
@@ -52,6 +55,33 @@
 									</tbody>
 								</table>
 							</div>
+						<div class="panel-heading">						 
+							Thông tin Shipping đơn hàng
+						</div>
+								<div class="table-responsive">
+								<table class="table table-hover">
+									<thead>
+										<tr>
+											
+											<th>Thành phố </th>
+											<th>Địa chỉ shipping</th>
+											<th>Giá tiền shipping</th>
+											<th>Mô tả thêm</th>
+											<th>Tổng tiền</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											
+											<td>{!!$oder->tp_shipping!!}</td>
+											<td>{!!$oder->diachi_cuthe!!}</td>
+											<td>{!!$oder->phishipping!!}</td>
+											<td>{!!$oder->mota_them!!}</td>
+											<td>{!! number_format($oder->tongtien_shipping) !!} đ</td>
+										</tr>
+									</tbody>
+								</table>
+							</div>	
 						<div class="panel-heading">						 
 							Chi tiết sản phẩm trong đơn đặt hàng
 						</div>

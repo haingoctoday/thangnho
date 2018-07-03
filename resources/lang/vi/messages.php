@@ -84,7 +84,7 @@ return [
 
 
 'capnhat' => 'Cập nhật',
-
+'capnhatgiohang' => 'Cập nhật giỏ hàng',
 'luc' => 'Lúc',
 'boi' => 'Bởi',
 'tintuc'=>'Tin tức',

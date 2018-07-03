@@ -1,15 +1,14 @@
 @extends('layouts.ngoc')
 @section('content')
 
+
  <div class="maincontent-area">
                         <div class="zigzag-bottom"></div>
                         <div class="container">
                             <div class="row">
                                 <div class="col-md-12">
                                     <div class="latest-product">
-                                      <p class="danhsach-bran">  {{ trans('messages.home') }}    </p>
-                                      <h2 class="section-title-bran"> {{ trans('messages.tintuc') }} </h2>
-
+                                      <p class="danhsach-bran">  {{ trans('messages.home') }} > {{ trans('messages.tintuc') }}   </p>
     <div style="height: 100px;"></div>
                                       <div class="row">
                              
@@ -20,40 +19,54 @@
 
                                             <div class="col-sm-12">
                                                 <div class="product-inner">
-                                          
+                                           <img src="#" alt="" height="200" width="100%">
 
-                                       @foreach($all as $row)
-                                        <?php 
-                                              $name_ca = Config::get('app.locale');
-                                          //  dd($pro_cat);
-                                              if($name_ca == 'vi'){
-                                                $title =  $row->title_vi;
-                                                $intro =  $row->intro_vi;
-                                              }else{
-                                                 $title =   $row->title_en;
-                                                 $intro =  $row->intro_en;
-                                              }       ?>
-<div class="row">
-  <div class="col-lg-4">
-    <a href="#" title=""><img src="{!!url('uploads/news/'.$row->images)!!}" alt="" width="95%" height="60px"> </a>
-  </div>
-  <div class="col-lg-8">
-    <h4><a href="{!!url('/tin-tuc/'.$row->id.'-'.$row->slug)!!}" title="{!!$title!!}">{!!$title!!}</a></h4>
-    <p> 
-      {!!$intro!!}
-    </p>
-    <p><strong>{{ trans('messages.luc') }} :</strong>{!!$row->created_at!!} {{ trans('messages.boi') }} : <strong> {!!$row->author!!}</strong></p>
-  </div>
-</div>
-<hr>
-@endforeach
+                                     <h3 class="title-h3" style="padding-bottom: 7px;border-bottom: 1px solid #ccc;"><a href="#" title="">LIÊN HỆ</a></h3>
+                                      <p style="font-size: 1.6rem;font-weight: 600;">Thông tin liên hệ</p>
+                                      <p>Quý khách vui lòng điền thông tin theo mẫu form dưới đây để liên hệ với chúng tôi:</p>
+                                      <div class="row" style="padding-top: 15px;">
+                                         <form action="{!!url('/lien-he')!!}" method="Post" accept-charset="utf-8">
+                                           {{ csrf_field() }}
+                                        <div class="col-md-6">
+                                             
+                                                <div class="form-group">
+                                                  <label for="email">Họ và tên *</label>
+                                                  <input type="text" class="form-control" id="email" name="name">
+                                                </div>
+                                                  <div class="form-group">
+                                                  <label for="pwd">Địa chỉ *</label>
+                                                  <input type="text" class="form-control" id="pwd" name="diachi">
+                                                </div>
+                                                <div class="form-group">
+                                                  <label for="email">Email *</label>
+                                                  <input type="email" class="form-control" id="email" name="mail">
+                                                </div>
+                                                  <div class="form-group">
+                                                  <label for="pwd">Số điện thoại *</label>
+                                                  <input type="text" class="form-control" id="pwd" name="sdt">
+                                                </div>                                                
+                                        </div>
+                                        <div class="col-md-6">
+                                                 <div class="form-group">
+                                                  <label for="email">Tiêu đề *</label>
+                                                  <input type="text" class="form-control" id="email" name="tieude">
+                                                </div>
+                                                  <div class="form-group">
+                                                  <label for="rq">Yêu cầu *</label>
+                                                  <textarea class="form-control" id="rq" rows="3" style="height: auto;" name="noidung"></textarea>
+                                                </div> 
+                                                 <button type="submit" class="btn btn-sp nen-cam">Gửi đi</button>
+                                                 <button type="resert" class="btn btn-sp">Soạn lại</button>                                        
+                                        </div>
+                                      </form>
+                                      </div>
 
                                     </div>
                                 </div>
                             </div>
-                  
+
                         </div>
-                                  <div class="col-md-3">
+                                     <div class="col-md-3">
                                          <div class="single-sidebar">
                                             
                                                <h2 class="sidebar-title">{{ trans('messages.productsell') }} </h2>
@@ -139,19 +152,21 @@
      </div> <!-- End main content area -->               
 
 
-        <div class="maincontent-area">
-          <div class="container"  style="border-top:1px solid #ccc ">
+     <div class="maincontent-area">
+        <div class="container"  style="border-top:1px solid #ccc ">
             <div class="row" style="margin-top: 20px">
-              <div class="col-sm-6"><h2 class="section-title">{{ trans('messages.enterpro') }}</h2></div>
-              <div class="col-sm-6">
-                 <form  action="{!!url('/nhanqc')!!}" method="Post" accept-charset="utf-8">
+                <div class="col-sm-6"><h2 class="section-title">NHẬN TIN KHUYẾN MÃI</h2></div>
+                <div class="col-sm-6">
+                   <form  action="{!!url('/nhanqc')!!}" method="Post" accept-charset="utf-8">
   {{ csrf_field() }}
                 <input type="email" name="email"  placeholder="{{ trans('messages.enteremail') }}" style="width: 70%">
                 <input type="submit" value="{{ trans('messages.send') }}">
-              </form>
+                </form>
               </div>
-            </div>
           </div>
-        </div>
-           
+      </div>
+  </div>  
+
+
+
 @endsection

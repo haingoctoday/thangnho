@@ -36,29 +36,29 @@
 						@endif
 						<form action="" method="POST" role="form" enctype="multipart/form-data">
 				      		{{ csrf_field() }}
-				      		@foreach($data as $row)
+				      	
 				      		<div class="form-group">
 				      			<label for="input-id">Tên Cửa hàng</label>
-				      			<input type="text" name="txtName" id="inputTxtName" class="form-control" value="{!!$row->tencuahang!!}">
+				      			<input type="text" name="txtName" id="inputTxtName" class="form-control" value="{!!$pro->tencuahang!!}">
 				      		</div>
 				      		<div class="form-group">
 				      			<label for="input-id">Địa chỉ</label>
-				      			<input type="text" name="txtDc" id="inputTxtDc" class="form-control" value="{!!$row->diachi!!}">
+				      			<input type="text" name="txtDc" id="inputTxtDc" class="form-control" value="{!!$pro->diachi!!}">
 				      		</div>				      						      		
 				      		<div class="form-group">
 				      			<label for="input-id">Số điện thoại</label>
-								<input type="text" name="txtpromo" id="inputtxtpromo" value="{!!$row->sdt!!}" class="form-control" >
+								<input type="text" name="txtpromo" id="inputtxtpromo" value="{!!$pro->sdt!!}" class="form-control" >
 				      		</div>
 				      		<div class="form-group">
 				      			<label for="input-id">Bản đồ</label>
-				      			<input type="text" name="txtDes" id="inputTxtDes" class="form-control" value="{!!$row->map!!}">
+				      			<input type="text" name="txtDes" id="inputTxtDes" class="form-control" value="{!!$pro->map!!}">
 				      		</div>	
 				      		<div class="form-group">
 				      			<label for="input-id">Hình ảnh</label>
-					      		<input type="file" name="txtimg" id="inputtxtimg" value="{!!$row->diachi!!}" class="form-control">
+					      		<input type="file" name="txtimg" id="inputtxtimg" value="{!!$pro->diachi!!}" class="form-control">
 					      		Ảnh cũ: <img src="{!!url('uploads/cuahang/'.$pro->hinhanh)!!}" width="80" height="60" class="margin-bt">
 				      		</div>
-				      		@endforeach		
+				      	
 
 				      		<input type="submit" name="btnCateAdd" class="btn btn-primary" value="Xác Nhận" class="button" />
 				      	</form>			      	

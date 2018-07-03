@@ -80,7 +80,7 @@ return [
 'daxn' => 'Confirmed',
 
 'capnhat' => 'Update',
-
+'capnhatgiohang' => 'Update Cart',
 'luc' => 'At',
 'boi' => 'By',
 'tintuc' => 'News',

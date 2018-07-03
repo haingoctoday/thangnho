@@ -257,8 +257,11 @@
                               <div class="row" style="margin-top: 20px">
                                 <div class="col-sm-6"><h2 class="section-title">{{ trans('messages.enterpro') }}</h2></div>
                                 <div class="col-sm-6">
-                                  <input type="email" placeholder="{{ trans('messages.enteremail') }}" style="width: 70%">
+                                  <form  action="{!!url('/nhanqc')!!}" method="Post" accept-charset="utf-8">
+  {{ csrf_field() }}
+                                  <input type="email" name="email" placeholder="{{ trans('messages.enteremail') }}" style="width: 70%">
                                   <input type="submit" value="{{ trans('messages.send') }}">
+                                </form>
                                 </div>
                               </div>
                             </div>
@@ -274,13 +277,13 @@
                            if($(window).scrollTop() == 200 ){
 
                             if(number == 0){
-                              var c = new CountUp("counter",0,<?php echo $chinhanh?>,0, 5.5);
+                              var c = new CountUp("counter",0,<?php echo $chinhanh?>,0, 20);
                               c.start();
-                              var c1 = new CountUp("counter1",0,<?php echo $sanpham?>,0, 3.8);
+                              var c1 = new CountUp("counter1",0,<?php echo $sanpham?>,0, 20);
                               c1.start();
-                              var c2 = new CountUp("counter2",0,<?php echo $khachhang?>,0, 2.4);
+                              var c2 = new CountUp("counter2",0,<?php echo $khachhang?>,0, 20);
                               c2.start();
-                              var c3 = new CountUp("counter3",0,<?php echo $donhang?>,0, 2.1);
+                              var c3 = new CountUp("counter3",0,<?php echo $donhang?>,0, 20);
                               c3.start();
                             }
                             number++;

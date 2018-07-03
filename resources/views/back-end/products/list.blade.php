@@ -16,8 +16,8 @@
 							<div class="col-md-10"><div class="form-group">
 								<label for="inputLoai" class="col-sm-3 control-label"><strong> Chọn sản phẩm </strong></label>
 								<div class="col-md-6">
-									<select name="sltCate" id="inputLoai" class="form-control">
-						      			<option value="0">- CHỌN MỘT THƯƠNG HIỆU --</option>
+									<select name="sltCate" id="inputLoai" class="form-control" required="">
+						      			<option value="0">- Chọn danh mục --</option>
 						      			<?php MenuMulti($cat,0,$str='---| ',$loai); ?>   		
 						      		</select>
 									<script>
@@ -28,20 +28,35 @@
 									    };
 									</script>
 								</div>
-								<div class="col-md-3">
-									<input type="search" name="txttk" id="inputTxttk" class="form-control" value="" placeholder="Tìm sản phẩm..." required="required" title="">
-								</div>
+								
 							</div>
 								
 								
 							</div>
 							<div class="col-md-2">
-								@if ($loai !='all')
-									<a href="{!!url('admin/sanpham/'.$loai.'/add')!!}" title=""><button type="button" class="btn btn-primary pull-right">Thêm Mới Sản Phẩm</button></a>
-								@endif
+							
+									<a href="{!!url('admin/sanpham/'.$loai.'/add')!!}" title="" id="check_ib"><button type="button" class="btn btn-primary pull-right" >Thêm Mới Sản Phẩm</button></a>
+							
 							</div>
 						</div> 
-						
+					
+						<div class="row">
+						<form action="" method="POST" role="form" enctype="multipart/form-data">
+				      		{{ csrf_field() }}
+							<div class="col-md-4">
+									<input type="text" name="name_p" id="inputTxttk" class="form-control" value="" placeholder="Tên sản phẩm"  title="">
+							</div>
+							<div class="col-md-3">
+									<input type="text" name="price_t" id="inputTxttk" class="form-control" value="" placeholder="Giá từ"  title="">
+							</div>
+							<div class="col-md-3">
+									<input type="text" name="price_f" id="inputTxttk" class="form-control" value="" placeholder="Giá đến"  title="">
+							</div>
+							<div class="col-md-2">
+								<button type="submit" class="btn btn-success pull-left" >Tìm kiếm</button>
+							</div>
+						</form>		
+						</div>	
 					</div>
 					@if (count($errors) > 0)
 					    <div class="alert alert-danger">
@@ -80,8 +95,8 @@
 											<td> <img src="{!!url('uploads/products/'.$row->images)!!}" alt="iphone" width="50" height="40"></td>
 											<td>{!!$row->name!!}</td>
 											<td>{!!$row->intro!!}</td>
-											<td>{!!$row->category->name!!}</td>
-											<td>{!!$row->price!!} đ</td>
+											<td>{!!$row->category->name_vi!!}</td>
+											<td>{!!number_format($row->price)!!} đ</td>
 											<td>
 												@if($row->status ==1)
 													<span style="color:blue;">Còn hàng</span>
@@ -104,5 +119,17 @@
 			</div>
 		</div><!--/.row-->		
 	</div>	<!--/.main-->
-<!-- =====================================main content - noi dung chinh trong chu -->
+<script type="text/javascript">
+	
+	 $("#check_ib").click(function(e) {
+    	var iod = '<?php echo $loai?>';
+    	if(iod == '0'){
+    		$("#inputLoai").blur();
+    		$("#inputLoai").focus();
+    		alert("Chọn danh mục sản phẩm cần thêm !!");
+    		e.preventDefault();
+    	}
+
+    });
+</script>
 @endsection

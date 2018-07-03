@@ -61,9 +61,31 @@
                     </tr>
                   @endforeach                    
                     <tr>
+                       <?php
+                     $tongtien =  Cart::subtotal();
+                     $tienc = str_replace(",", "", $tongtien);
+                     $tongiten = floatval($tienc);
+                  
+                      ?>
                       <td colspan="2"><strong>{{ trans('messages.tongcong') }} :</strong> </td>
                       <td colspan="2" >{!!Cart::count()!!}</td>
-                      <td style="color:red;">{!!Cart::subtotal();!!} <span>&#8363;</span></td>                      
+                      <td style="color:red;">{!!number_format($tongiten)!!} <span>&#8363;</span></td>                      
+                    </tr>  
+                     <tr>
+                      <td colspan="2"> </td>
+                      <td colspan="2" >Phí ship</td>
+                      <td style="color:red;"><span class="p_giashipng">0 ₫</span></td>                      
+                    </tr>  
+                     <tr class="aloalaoa">
+                      <td colspan="2"> </td>
+                      <td colspan="2" >Phí nhà xe về tỉnh</td>
+                      <td style="color:red;"><span class="p_nodete">3123</span></td>                      
+                    </tr>  
+                    <tr>
+                      <td colspan="2"><strong>{{ trans('messages.tongcong') }} :</strong> </td>
+                      <td colspan="2" >{!!Cart::count()!!}</td>
+                     
+                      <td style="color:red;"><span class="tongtien_ipamc"> 0 ₫</span> </td>                      
                     </tr>                      
                   </tbody>
                 </table>                
@@ -78,14 +100,46 @@
                   <label for="">
                     - {{ trans('messages.cusname') }} : <strong>{{ Auth::user()->name }} </strong> &nbsp;<br>
                     - {{ trans('messages.phone') }}: <strong> {{ Auth::user()->phone }}</strong> &nbsp;<br>
-                    - {{ trans('messages.diahci') }}: <strong> {{ Auth::user()->address }}</strong><br>
+                 
+
+
                   </label>
-                </div>               
-                <div class="form-group">
-                  <label for="">{{ trans('messages.notes') }}</label>
-                  <textarea name="txtnote" id="inputtxtNote" class="form-control" rows="5" required="required"></textarea>
-                </div>              
-                <button type="submit" class="btn btn-primary pull-right"> {{ trans('messages.ordercod') }}</button> 
+                </div>     
+                    <div id="customer_details" class="col2-set">
+                                    <div class="col-1">
+                                        <div class="woocommerce-billing-fields">
+                                            <h3>Billing Details</h3>
+                                            <p id="billing_country_field" class="form-row form-row-wide address-field update_totals_on_change validate-required woocommerce-validated">
+                                                <label class="" for="billing_country">Tỉnh thành <abbr title="required" class="required">*</abbr>
+                                                </label>
+                                                <select class="country_to_state country_select" id="billing_country" name="tinhthanh" required>
+                                                    <option value=""> Chọn tỉnh thành phố</option>
+                                                    <option value="TPHCM">TP Hồ Chí Minh</option>
+                                                    <option value="HN">Tp Hà Nội</option>
+                                                    <option value="all">Các tỉnh thành phố khác</option>
+                                                </select>
+                                            </p>
+                                            <p id="billing_address_1_field" class="form-row form-row-wide address-field validate-required">
+                                                <label class="" for="billing_address_1">Địa chỉ <abbr title="required" class="required">*</abbr>
+                                                </label>
+                                                <input type="text" value="" placeholder="Street address" id="billing_address_1" name="diachi" class="input-text " required>
+                                            </p>
+
+                                           <p id="billing_address_1_field" class="form-row form-row-wide address-field validate-required">
+                                               <label for="">{{ trans('messages.notes') }} *</label>
+                                                </label>
+                                                <input type="text" value="" placeholder="Street address" id="inputtxtNote" name="txtnote" class="input-text " required>
+                                            </p>
+                                            <div class="clear"></div>
+                                            <input type="hidden" name="phishipping" id="phishipping" >
+                                            <input type="hidden" name="tp_shipping" id="tp_shipping">
+                                            <input type="hidden" name="gia_shipping" id="gia_shipping">
+                                            <input type="hidden" name="mota_them" id="mota_them">
+                                        </div>
+                                    </div>     
+                           </div>
+                           <button type="submit" class="btn btn-primary pull-right"> {{ trans('messages.ordercod') }}</button>  
+               
               </form>
               @else 
               <form action="{!!url('/payment')!!}" method="Post" accept-charset="utf-8">
@@ -111,84 +165,84 @@
                             </div>
                   
                         </div>
-                                <div class="col-md-3">
-                                         <div class="single-sidebar">
-                                            
-                                               <h2 class="sidebar-title">{{ trans('messages.productsell') }}</h2>
-                                               <hr>
-                                               <table width="100%">  
-                                               <tr style="border-bottom: 1px solid #ccc">
-                                                    <td width="50%">Cơ sở</td>
-                                                    <td  width="50%">Tình trạng</td>
-                                                </tr>
-                                                <?php for ($mk=0; $mk < 5; $mk++) { 
+                        <div class="col-md-3">
+                         <div class="single-sidebar">
+
+                           <h2 class="sidebar-title">{{ trans('messages.productsell') }}</h2>
+                           <hr>
+                           <table width="100%">  
+                             <tr style="border-bottom: 1px solid #ccc">
+                              <td width="50%">Cơ sở</td>
+                              <td  width="50%">Tình trạng</td>
+                            </tr>
+                            <?php for ($mk=0; $mk < 5; $mk++) { 
                                                     # code...
-                                                ?>
-                                                   <tr style="border-bottom: 1px solid #ccc">
-                                                    <td width="50%">Chùa Bộc</td>
-                                                    <td  width="50%">Hết hàng</td>
-                                                </tr>
-                                                <?php }?>
-                                               </table>
+                              ?>
+                              <tr style="border-bottom: 1px solid #ccc">
+                                <td width="50%">Chùa Bộc</td>
+                                <td  width="50%">Hết hàng</td>
+                              </tr>
+                              <?php }?>
+                            </table>
 
-                                           </div>
-                                           <div class="single-sidebar">
+                          </div>
+                          <div class="single-sidebar">
 
-                                               <h2 class="sidebar-title">{{ trans('messages.shppinga') }}</h2>
-                                               <hr>
-                                               <li>
-                                                   Ship COD 12 quận Hà Nội đồng giá 20.000đ. Xem chi tiết
-                                               </li>
-                                               <li>
-                                                   Hỗ trợ 50% - 100% phí ship toàn quốc Xem chi tiết
-                                               </li>
+                           <h2 class="sidebar-title">{{ trans('messages.shppinga') }}</h2>
+                           <hr>
+                           <li>
+                             Ship COD 12 quận Hà Nội đồng giá 20.000đ. Xem chi tiết
+                           </li>
+                           <li>
+                             Hỗ trợ 50% - 100% phí ship toàn quốc Xem chi tiết
+                           </li>
 
-                                           </div>
-                                           <div class="single-sidebar">
+                         </div>
+                         <div class="single-sidebar">
 
-                                               <h2 class="sidebar-title">INBOX FB ABBY</h2>
-                                               <hr>
-                                               <div>
-                                                   inbox
-                                               </div>
+                           <h2 class="sidebar-title">INBOX FB ABBY</h2>
+                           <hr>
+                           <div>
+                             inbox
+                           </div>
 
-                                           </div>
-                                            <div class="single-sidebar">
+                         </div>
+                         <div class="single-sidebar">
 
-                                               <h2 class="sidebar-title">{{ trans('messages.uview') }}</h2>
-                                               <hr style="margin-bottom: 0">
-                                               <ul class="product_list_widget">
-<li>
-    <a href="" title="" class="product-list-image">
-        <img src="//abby.vn/wp-content/uploads/2017/12/bat_tron_de_cao_su_24cm_nghieng.jpg" class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" style="width: 70px;height: 70px;margin-right: 10px;" alt="">    
-    </a>
-    <p class="product-title">
-        <a href="" title="Bát trộn inox 24cm đế cao su - B0100">Bát trộn inox 24cm đế cao su - B0100</a></p>
-    <div class="price">
-        <strong style="font-size: 1.5rem">
-        <del><span>79,000<span >₫</span></span></del> 
-        <span >69,000<span>₫</span></span>   
-        </strong>
-    </div>
-</li>
-<li>
-    <a href="" title="" class="product-list-image">
-        <img src="//abby.vn/wp-content/uploads/2017/12/bat_tron_de_cao_su_24cm_nghieng.jpg" class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" style="width: 70px;height: 70px;margin-right: 10px;" alt="">    
-    </a>
-    <p class="product-title">
-        <a href="" title="Bát trộn inox 24cm đế cao su - B0100">Bát trộn inox 24cm đế cao su - B0100</a></p>
-    <div class="price">
-        <strong style="font-size: 1.5rem">
-        <del><span>79,000<span >₫</span></span></del> 
-        <span >69,000<span>₫</span></span>   
-        </strong>
-    </div>
-</li>
-</ul>
+                           <h2 class="sidebar-title">{{ trans('messages.uview') }}</h2>
+                           <hr style="margin-bottom: 0">
+                           <ul class="product_list_widget">
+                            <li>
+                              <a href="" title="" class="product-list-image">
+                                <img src="//abby.vn/wp-content/uploads/2017/12/bat_tron_de_cao_su_24cm_nghieng.jpg" class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" style="width: 70px;height: 70px;margin-right: 10px;" alt="">    
+                              </a>
+                              <p class="product-title">
+                                <a href="" title="Bát trộn inox 24cm đế cao su - B0100">Bát trộn inox 24cm đế cao su - B0100</a></p>
+                                <div class="price">
+                                  <strong style="font-size: 1.5rem">
+                                    <del><span>79,000<span >₫</span></span></del> 
+                                    <span >69,000<span>₫</span></span>   
+                                  </strong>
+                                </div>
+                              </li>
+                              <li>
+                                <a href="" title="" class="product-list-image">
+                                  <img src="//abby.vn/wp-content/uploads/2017/12/bat_tron_de_cao_su_24cm_nghieng.jpg" class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" style="width: 70px;height: 70px;margin-right: 10px;" alt="">    
+                                </a>
+                                <p class="product-title">
+                                  <a href="" title="Bát trộn inox 24cm đế cao su - B0100">Bát trộn inox 24cm đế cao su - B0100</a></p>
+                                  <div class="price">
+                                    <strong style="font-size: 1.5rem">
+                                      <del><span>79,000<span >₫</span></span></del> 
+                                      <span >69,000<span>₫</span></span>   
+                                    </strong>
+                                  </div>
+                                </li>
+                              </ul>
 
-                                           </div>
-                                       </div>
-                    </div>
+                            </div>
+                          </div>
+                        </div>
 
 
                  </div>
@@ -207,5 +261,80 @@
                               </div>
                             </div>
                           </div>
+<style type="text/css">
+  .aloalaoa{
+    display: none;
+  }
+
+</style>
+<script type="text/javascript">
+  function number_format( number, decimals, dec_point, thousands_sep ) {                          
+    var n = number, c = isNaN(decimals = Math.abs(decimals)) ? 2 : decimals;
+    var d = dec_point == undefined ? "," : dec_point;
+    var t = thousands_sep == undefined ? "." : thousands_sep, s = n < 0 ? "-" : "";
+    var i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "", j = (j = i.length) > 3 ? j % 3 : 0;
+                              
+    return s + (j ? i.substr(0, j) + t : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + t) + (c ? d + Math.abs(n - i).toFixed(c).slice(2) : "");
+}
+$( "#billing_country" ).change(function() {
+  $data_tp = $(this).val();
+  $tongtien = <?php echo $tongiten?>;
+  if($tongtien > 1000000){
+   // phishipping,tp_shipping,gia_shipping
+    if($data_tp == 'all'){
+      $giatienship = 0;
+      $shipmota = 'khách tự trả';
+      $tongtien_ai = $tongtien + $giatienship;
+      $(".p_giashipng").text(number_format($giatienship, 0, '.', ',') + ' ₫');
+      $(".tongtien_ipamc").text(number_format($tongtien_ai, 0, '.', ',')+ ' ₫');
+      $(".aloalaoa").css('display','contents');
+      $(".p_nodete").text($shipmota);
+$("#phishipping").val($giatienship);
+$("#tp_shipping").val($data_tp);
+$("#gia_shipping").val($tongtien_ai);
+$("#mota_them").val($shipmota);
+    }else{
+      $giatienship = 0;
+      $shipmota = '';
+       $tongtien_ai = $tongtien + $giatienship;
+      $(".p_giashipng").text(number_format($giatienship, 0, '.', ',') + ' ₫');
+      $(".tongtien_ipamc").text(number_format($tongtien_ai, 0, '.', ',')+ ' ₫');
+       $(".aloalaoa").css('display','none');
+       $("#phishipping").val($giatienship);
+$("#tp_shipping").val($data_tp);
+$("#gia_shipping").val($tongtien_ai);
+$("#mota_them").val($shipmota);
+    }
+  }else{
+  
+     if($data_tp == 'all'){
+      $giatienship = 30000;
+      $shipmota = 'khách tự trả';
+       $tongtien_ai = $tongtien + $giatienship;
+      $(".p_giashipng").text(number_format($giatienship, 0, '.', ',') + ' ₫');
+      $(".tongtien_ipamc").text(number_format($tongtien_ai, 0, '.', ',')+ ' ₫');
+      $(".aloalaoa").css('display','contents');
+      $(".p_nodete").text($shipmota);
+      $("#phishipping").val($giatienship);
+$("#tp_shipping").val($data_tp);
+$("#gia_shipping").val($tongtien_ai);
+$("#mota_them").val($shipmota);
+    }else{
+      $giatienship = 30000;
+      $shipmota = '';
+       $tongtien_ai = $tongtien + $giatienship;
+       $(".p_giashipng").text(number_format($giatienship, 0, '.', ',') + ' ₫');
+      $(".tongtien_ipamc").text(number_format($tongtien_ai, 0, '.', ',')+ ' ₫');
+       $(".aloalaoa").css('display','none');
+       $("#phishipping").val($giatienship);
+$("#tp_shipping").val($data_tp);
+$("#gia_shipping").val($tongtien_ai);
+$("#mota_them").val($shipmota);
+    }
+  }
+});
+
+
+</script>
            
 @endsection

@@ -36,7 +36,7 @@
 						@endif
 						<form action="" method="POST" role="form" enctype="multipart/form-data">
 				      		{{ csrf_field() }}
-				      		@foreach($data as $row)
+				      	
 				      		<div class="form-group">
 				      			<label for="input-id">Tên Website</label>
 				      			<input type="text" name="txtName" id="inputTxtName" value="{!!$row->web_name!!}" class="form-control">
@@ -100,7 +100,7 @@
 				      			<label for="input-id">Description</label>
 				      			<input type="text" name="txtDes" id="inputTxtDes" class="form-control" value="{!!$row->decript!!}">
 				      		</div>	
-				      		@endforeach		
+				      		
 
 				      		<input type="submit" name="btnCateAdd" class="btn btn-primary" value="Xác Nhận" class="button" />
 				      	</form>			      	

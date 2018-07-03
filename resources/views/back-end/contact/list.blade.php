@@ -5,13 +5,13 @@
 		<div class="row">
 			<ol class="breadcrumb">
 				<li><a href="#"><svg class="glyph stroked home"><use xlink:href="#stroked-home"></use></svg></a></li>
-				<li class="active">Đơn đặt hàng</li>
+				<li class="active">Liên hệ</li>
 			</ol>
 		</div><!--/.row-->
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="panel-heading">
-					Danh sách đơn đặt hàng						
+					Danh sách liên hệ 				
 				</div>
 				<div class="panel panel-default">					
 					@if (count($errors) > 0)
@@ -39,8 +39,8 @@
 										<th>Địa chỉ</th>
 										<th>Điện thoại</th>
 										<th>Email</th>										
-										<th>Ngày đặt</th>
-										<th>Thành tiền</th>
+										<th>Ngày gửi</th>
+										
 										<th>Trạng thái</th>
 										<th>Action</th>
 									</tr>
@@ -49,12 +49,12 @@
 									@foreach($data as $row)
 										<tr>
 											<td>{!!$row->id!!}</td>
-											<td>{!!$row->user->name!!}</td>
-											<td>{!!$row->tp_shipping!!}</td>
-											<td>{!!$row->user->phone!!}</td>
-											<td>{!!$row->user->email!!}</td>											
+											<td>{!!$row->name!!}</td>
+											<td>{!!$row->diachi!!}</td>
+											<td>{!!$row->sdt!!}</td>
+											<td>{!!$row->mail!!}</td>											
 											<td>{!!$row->created_at!!}</td>
-											<td>{!!number_format($row->tongtien_shipping)!!} đ</td>
+											
 											<td>
 												@if($row->status ==0)
 													<span style="color:#d35400;">Chưa xác nhận</span>
@@ -63,8 +63,8 @@
 												@endif
 											</td>
 											<td>
-											    <a href="{!!url('admin/donhang/detail/'.$row->id)!!}" title="Chi tiết">Chi tiết  </a> &nbsp;
-											    <a href="{!!url('admin/donhang/del/'.$row->id)!!}"  title="Xóa" onclick="return xacnhan('Xóa danh mục này ?')"> Hủy bỏ</a>
+											    <a href="{!!url('admin/contact/detail/'.$row->id)!!}" title="Chi tiết">Chi tiết  </a> &nbsp;
+											    <a href="{!!url('admin/contact/del/'.$row->id)!!}"  title="Xóa" onclick="return xacnhan('Xóa danh liên hệ này ?')"> Hủy bỏ</a>
 											</td>
 										</tr>
 									@endforeach								

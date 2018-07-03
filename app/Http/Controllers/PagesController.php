@@ -13,10 +13,14 @@ use App\News;
 use App\Oders;
 use App\Oders_detail;
 use App\Banners;
+use App\Contact;
 use DB,Cart,Datetime;
 use Illuminate\Support\Facades\Input;
 use App\Info;
 use App\User;
+use Mail;
+use App\Nhanqc;
+
 class PagesController extends Controller
 {
     public function index()
@@ -39,19 +43,17 @@ class PagesController extends Controller
         return redirect()->route('getcart');
     }
 
-    public function getupdatecart($id,$qty,$dk)
+    public function getupdatecart(Request $qta)
     {
-      if ($dk=='up') {
-         $qt = $qty+1;
-         Cart::update($id, $qt);
-         return redirect()->route('getcart');
-      } elseif ($dk=='down') {
-         $qt = $qty-1;
-         Cart::update($id, $qt);
-         return redirect()->route('getcart');
-      } else {
-         return redirect()->route('getcart');
-      }
+
+
+      $id_list= $qta->id_n;
+      $qty_list = $qta->qty_n;
+       foreach ($id_list as $key => $value_item) {
+         Cart::update($value_item, $qty_list[$key]);
+       }
+        return redirect()->route('getcart');
+     
     }
     public function getdeletecart($id)
     {
@@ -83,6 +85,7 @@ class PagesController extends Controller
     }
     public function postoder(Request $rq)
     {
+      
         $oder = new Oders();
         $total =0;
         foreach (Cart::content() as $row) {
@@ -95,6 +98,13 @@ class PagesController extends Controller
         $oder->note = $rq->txtnote;
         $oder->status = 0;
         $oder->type = 'cod';
+
+        $oder->phishipping = $rq->phishipping;
+        $oder->tp_shipping = $rq->tp_shipping;
+        $oder->tongtien_shipping = $rq->gia_shipping;
+        $oder->diachi_cuthe = $rq->diachi;
+        $oder->mota_them = $rq->mota_them;
+
         $oder->created_at = new datetime;
         $oder->save();
         $o_id =$oder->id;
@@ -107,6 +117,12 @@ class PagesController extends Controller
            $detail->created_at = new datetime;
            $detail->save();
         }
+        $email_s = Auth::user()->email;
+        Mail::send('mailfb', array('data'=>$o_id), function($message) use ($email_s){
+        //  print_r($email_s);
+         $message->to($email_s, 'Shopper')->subject('Order !');
+      });
+
         Cart::destroy();   
         return redirect()->route('getcart')
         ->with(['flash_level'=>'result_msg','flash_massage'=>' Đơn hàng của bạn đã được gửi đi !']);    
@@ -125,15 +141,10 @@ class PagesController extends Controller
                 ->paginate(12);
     		return view('category.mobile',['data'=>$mobile]);
     	} 
-        elseif ($cat == 'laptop') {
-            // mobile
-            $lap = DB::table('products')
-                ->join('category', 'products.cat_id', '=', 'category.id')
-                ->join('pro_details', 'pro_details.pro_id', '=', 'products.id')
-                ->where('category.parent_id','=','2')
-                ->select('products.*','pro_details.cpu','pro_details.ram','pro_details.screen','pro_details.vga','pro_details.storage','pro_details.exten_memmory','pro_details.cam1','pro_details.cam2','pro_details.sim','pro_details.connect','pro_details.pin','pro_details.os','pro_details.note')
-                ->paginate(12);
-            return view('category.laptop',['data'=>$lap]);
+        elseif ($cat == 'gioi-thieu') {
+             $data_menu = Category::all();
+             $new = News::where('cat_id',2)->first();
+            return view('detail.news',['data'=>$new,'slug'=>'Giới thiệu','data_menu'=>$data_menu]);
         }
         elseif ($cat == 'pc') {
             // mobile
@@ -157,9 +168,9 @@ class PagesController extends Controller
                     ->paginate(10);
             return view('tin-tuc',['data'=>$new,'hot1'=>$top1,'all'=>$all,'data_menu'=>$data_menu]);
         } 
-        // else{
-        //     return redirect()->route('index');
-        // }
+       else{
+           return redirect()->route('index');
+        }
     }
     public function detail($cat,$id,$slug)
     {
@@ -199,7 +210,7 @@ class PagesController extends Controller
                 return view ('detail.pc',['data'=>$pc,'slug'=>$slug]);
             }
         } else {
-            return redirect()->route('index');
+           // return redirect()->route('index');
         }
     }
     public function getdanhmuc($id)
@@ -294,28 +305,65 @@ $id = Auth::user()->id;
 
         
     }
-      public function postedituser(Request $rq)
-   {
+    public function postedituser(Request $rq)
+     {
 
-$id = Auth::user()->id;
+        $id = Auth::user()->id;
 
-      $cat = User::find($id);
+        $cat = User::find($id);
 
 
-      $cat->name = $rq->name;
-      $cat->email = $rq->email;
-      $cat->phone = $rq->phone;
-      $cat->address = $rq->address;
-      $cat->updated_at = new DateTime;
-      $cat->save();
-      return redirect()->route('getme')
-      ->with(['flash_level'=>'result_msg','flash_massage'=>'Đã cập nhật thông tin người dùng']);
+        $cat->name = $rq->name;
+        $cat->email = $rq->email;
+        $cat->phone = $rq->phone;
+        $cat->address = $rq->address;
+        $cat->updated_at = new DateTime;
+        $cat->save();
+        return redirect()->route('getme')
+        ->with(['flash_level'=>'result_msg','flash_massage'=>'Đã cập nhật thông tin người dùng']);
 
-   }
+     }
    public function changeLanguage($language)
     {
          \Session::put('website_language', $language);
 
     return redirect()->back();
     }
+
+    public function getlienhe(Request $rq)
+    {   
+      $data_menu = Category::all();
+      return view('lienhe',['data_menu'=>$data_menu]);
+    }
+    public function postlienhe(Request $rq)
+     {
+        $cat = new Contact();
+        $cat->name = $rq->name;
+        $cat->diachi = $rq->diachi;
+        $cat->mail = $rq->mail;
+        $cat->sdt = $rq->sdt;
+        $cat->tieude = $rq->tieude;
+        $cat->noidung = $rq->noidung;
+        $cat->updated_at = new DateTime;
+        $cat->save();
+        return redirect()->route('getlienhe')
+        ->with(['flash_level'=>'result_msg','flash_massage'=>'Liên hệ của bạn đã được gửi đi']);
+
+     }
+         public function postqc(Request $rq)
+     {
+        $cat = new Nhanqc();
+        $cat->email = $rq->email;
+        if(isset($rq->subject)){
+                $cat->gioitinh = $rq->subject;
+        }
+    
+
+        $cat->updated_at = new DateTime;
+        $cat->save();
+        return redirect()->route('index')
+        ->with(['flash_level'=>'result_msg','flash_massage'=>'Chúng tôi sẽ gửi thông tin khuyến mãi cho bạn']);
+
+     }
+     
 }

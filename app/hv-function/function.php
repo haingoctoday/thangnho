@@ -67,6 +67,15 @@
  	case '35':
  		$url_nn ='tin-tuc';
  		break;
+ 	case '1':
+ 		$url_nn ='/';
+ 		break;	
+ 	case '2':
+ 		$url_nn ='gioi-thieu';
+ 		break;
+ 	case '37':
+ 		$url_nn ='lien-he';
+ 		break;				
  	default:
  		# code...
  		break;
@@ -75,7 +84,7 @@
 							//print_r($ten);
  						if($check == '1'){
  							  echo  '<a href="#" class="dropdown-toggle" data-toggle="dropdown">'.$ten.' <b class="caret"></b></a>';
-                       			 echo '<ul class="dropdown-menu dropdown-menu-large row">';
+                       			 echo '<ul class="dropdown-menu  dropdown-menu-large row">';
  						}else{
  							 echo  '<a href="'.url($url_nn).'" >'.$ten.'</a>';
  						}

@@ -18,8 +18,10 @@
 
 			<li><a href="{!!url('admin/khachhang')!!}"><i class="fas fa-users"></i>  Khách hàng</a></li>
 
-			<li><a href="{!!url('admin/nhanvien')!!}"><i class="fas fa-users-cog"></i> Nhân Viên</a></li>			
+			<li><a href="{!!url('admin/nhanvien')!!}"><i class="fas fa-users-cog"></i> Nhân Viên</a></li>	
+			<li><a href="{!!url('admin/contact')!!}"><i class="fas fa-file-signature"></i>  Liên hệ</a></li>		
 			<li><a href="{!!url('admin/info')!!}"><i class="fas fa-edit"></i>  Chỉnh sửa thông tin Website </a></li>
+			<li><a href="{!!url('admin/nhanqc')!!}"><i class="fas fa-edit"></i>  Nhận quảng cáo </a></li>
 
 			
 		</ul>

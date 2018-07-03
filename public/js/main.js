@@ -162,3 +162,9 @@ $(window).scroll(function () {
         $button.parent().find('.quantity').val(newVal);
         e.preventDefault();
     });
+
+    $('ul.nav li.dropdown').hover(function() {
+  $(this).find('.dropdown-menu').stop(true, true).delay(10).fadeIn(10);
+}, function() {
+  $(this).find('.dropdown-menu').stop(true, true).delay(10).fadeOut(500);
+});

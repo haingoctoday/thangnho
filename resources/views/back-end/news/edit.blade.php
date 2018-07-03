@@ -41,9 +41,9 @@
 					      			<option value="">--Chọn danh mục--</option>
 					      			@foreach($cat as $dt)
 					      				@if($dt->id == $data->cat_id)
-					      					<option value="{!!$dt->id!!}" selected >{!!'--|--|'.$dt->name!!}</option> 	
+					      					<option value="{!!$dt->id!!}" selected >{!!'--|--|'.$dt->name_vi!!}</option> 	
 					      				@else
-					      					<option value="{!!$dt->id!!} " >{!!'--|--|'.$dt->name!!}</option> 	
+					      					<option value="{!!$dt->id!!} " >{!!'--|--|'.$dt->name_vi!!}</option> 	
 					      				@endif
 					      			@endforeach	
 					      		</select>
@@ -87,8 +87,8 @@
 				      		</div>
 
 				      		<div class="form-group">
-                            <div role="tabpanel" style="padding-top: 20px;">
-                                <ul class="product-tab" role="tablist">
+                            <div role="tabpanel" style="padding-top: 20px;" id="exTab1">
+                                <ul class="nav nav-pills" role="tablist">
                                     <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Bài viết VI</a></li>
                                     <li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">Bài viết EN</a></li>
                                 </ul>

@@ -517,7 +517,10 @@ z-index: 999;}
   padding: 1px 10px;
 }
 
-.maincontent-area {padding-bottom: 50px; padding-top:50px;}
+.maincontent-area {
+  /*padding-bottom: 50px;*/
+ padding-top:50px;
+}
 
 .product-wid-title {
   /*font-family: raleway;*/
@@ -2017,7 +2020,7 @@ a.button-cart:hover,a.button-cart-dh:hover{
       background-color: #262626;
     border-style: solid;
     border-width: 1px;
-    border-color: #262626;
+    /*border-color: #262626;*/
     color: white;
     margin-right: 10px;
     height: auto;
@@ -2046,4 +2049,7 @@ a.button-cart:hover,a.button-cart-dh:hover{
   color: #8c8c8c;
     font-size: 1.4rem;
     margin-bottom: 10px;
+}
+.nen-cam{
+  background-color: #f15e24 !important;
 }

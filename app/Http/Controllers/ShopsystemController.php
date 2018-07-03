@@ -40,8 +40,8 @@ class ShopsystemController extends Controller
    }
    public function getedit($id)   {
       $pro = Shopsystem::where('id',$id)->first();
-      $data = Shopsystem::all();
-      return View ('back-end.shopsys.edit',['pro'=>$pro,'data'=>$data]);
+      //$data = Shopsystem::all();
+      return View ('back-end.shopsys.edit',['pro'=>$pro]);
    }
    public function postedit($id,AddshopsystemRequest $rq)
    {
@@ -67,7 +67,7 @@ class ShopsystemController extends Controller
    }
         public function getdel($id)
     {       
-            $pro = Shopsystem::where('id',$id)->first();
+            //$pro = Shopsystem::where('id',$id)->first();
             $pro = Shopsystem::find($id);
             $pro->delete();
             return redirect()->route('getshopsys')

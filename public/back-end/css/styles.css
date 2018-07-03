@@ -297,7 +297,7 @@ a.bg-danger:hover {
 	font-size: 18px;
 	font-weight: 300;
 	letter-spacing: 0.025em;
-	height: 66px;
+	/*height: 66px;*/
 	line-height: 45px;
 }
 
@@ -928,7 +928,14 @@ h1.page-header {
 	height: 65px;
 	overflow: scroll;
 }
-
+#exTab1 .tab-content {
+  color : white;
+  background-color: #428bca;
+  padding : 5px 15px;
+}
+#exTab1 ul > li > a {
+  border-radius: 0;
+}
 
 
 

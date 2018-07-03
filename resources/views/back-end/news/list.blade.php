@@ -1,7 +1,7 @@
 @extends('back-end.layouts.master')
 @section('content')
 <?php
-$loai = array('34'=>'Video','35'=>'Tin tức');
+$loai = array('34'=>'Video','35'=>'Tin tức','2'=>'Giới thiệu',);
 ?>
 <!-- main content - noi dung chinh trong chu -->
 	<div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">			
@@ -63,7 +63,9 @@ $loai = array('34'=>'Video','35'=>'Tin tức');
 										</td>
 										<td style="width: 120px;">
 										    <a href="{!!url('admin/news/edit/'.$row->id)!!}" title="Sửa"><span class="fas fa-edit">edit</span> </a>
+										    @if($row->cat_id != 2)
 										    <a href="{!!url('admin/news/del/'.$row->id)!!}"  title="Xóa" onclick="return xacnhan('Xóa danh mục này ?')"><span class="fas fa-trash-alt">remove</span> </a>
+										    @endif
 										</td>
 									</tr>	
 								@endforeach								

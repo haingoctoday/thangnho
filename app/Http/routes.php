@@ -28,12 +28,19 @@ Route::group(['middleware' => 'locale'], function() {
     // cart - oder
     Route::get('gio-hang', ['as'  => 'getcart', 'uses' =>'PagesController@getcart']);
     Route::get('tim-kiem', ['as'  => 'gettimkiem', 'uses' =>'PagesController@gettimkiem']);
+    Route::get('lien-he', ['as'  => 'getlienhe', 'uses' =>'PagesController@getlienhe']);
+    Route::post('lien-he', ['as'  => 'postlienhe', 'uses' =>'PagesController@postlienhe']);
     //http://localhost:8000/danh-muc
     // them vao gio hang
     Route::get('gio-hang/addcart/{id}', ['as'  => 'getcartadd', 'uses' =>'PagesController@addcart']);
-    Route::get('gio-hang/update/{id}/{qty}-{dk}', ['as'  => 'getupdatecart', 'uses' =>'PagesController@getupdatecart']);
+   // Route::get('gio-hang/update/{id}/{qty}-{dk}', ['as'  => 'getupdatecart', 'uses' =>'PagesController@getupdatecart']);
+    Route::post('gio-hang/update', ['as'  => 'postoderanc', 'uses' =>'PagesController@getupdatecart']);
+    
     Route::get('gio-hang/delete/{id}', ['as'  => 'getdeletecart', 'uses' =>'PagesController@getdeletecart']);
     Route::get('gio-hang/xoa', ['as'  => 'getempty', 'uses' =>'PagesController@xoa']);
+
+    Route::post('nhanqc', ['as'  => 'postqc', 'uses' =>'PagesController@postqc']);
+
 
     // tien hanh dat hang
     Route::get('dat-hang', ['as'  => 'getoder', 'uses' =>'PagesController@getoder']);
@@ -72,6 +79,10 @@ Route::group(['middleware' => 'admin'], function () {
            
            Route::get('edit/{id}',['as'  =>'geteditcat','uses' => 'BannersController@getedit'])->where('id','[0-9]+');
            Route::post('edit/{id}',['as' =>'posteditcat','uses' => 'BannersController@postedit'])->where('id','[0-9]+');
+      });
+          // -------------------- quan ly chuc nang nhan qc----------------------
+        Route::group(['prefix' => 'nhanqc'], function() {
+           Route::get('/',['as'       =>'getnhanqc','uses' => 'BannersController@getnhanqc']);
       });
 
                // -------------------- quan ly thong tin----------------------
@@ -115,6 +126,7 @@ Route::group(['middleware' => 'admin'], function () {
            Route::post('/{loai}/add',['as'       =>'postaddpro','uses' => 'ProductsController@postadd']);
 
            Route::get('/{loai}',['as'       =>'getpro','uses' => 'ProductsController@getlist']);
+           Route::post('/{loai}',['as'       =>'postpro','uses' => 'ProductsController@getlist']);
            Route::get('/del/{id}',['as'   =>'getdellpro','uses' => 'ProductsController@getdel'])->where('id','[0-9]+');
            
            Route::get('/{loai}/edit/{id}',['as'  =>'geteditpro','uses' => 'ProductsController@getedit'])->where('id','[0-9]+');
@@ -158,6 +170,15 @@ Route::group(['middleware' => 'admin'], function () {
            Route::get('/edit/{id}',['as'  =>'geteditnv','uses' => 'Admin_usersController@getedit'])->where('id','[0-9]+');
            Route::post('/edit/{id}',['as' =>'posteditnv','uses' => 'Admin_usersController@postedit'])->where('id','[0-9]+');
       });
+      // -------------------- quan ly danh muc----------------------
+        Route::group(['prefix' => 'contact'], function() {
+           Route::get('/',['as'       =>'getcontact','uses' => 'ContactsController@getlist']);
+           Route::get('del/{id}',['as'   =>'getdellcontact','uses' => 'ContactsController@getdel'])->where('id','[0-9]+');
+           
+           Route::get('detail/{id}',['as'  =>'geteditcontact','uses' => 'ContactsController@getedit'])->where('id','[0-9]+');
+           Route::post('detail/{id}',['as' =>'posteditcontact','uses' => 'ContactsController@postedit'])->where('id','[0-9]+');
+      });  
       // ---------------van de khac ----------------------
+
     });     
 });

@@ -158,8 +158,11 @@
             <div class="row" style="margin-top: 20px">
                 <div class="col-sm-6"><h2 class="section-title">NHẬN TIN KHUYẾN MÃI</h2></div>
                 <div class="col-sm-6">
-                  <input type="email" placeholder="Email của bạn" style="width: 70%">
+                  <form  action="{!!url('/nhanqc')!!}" method="Post" accept-charset="utf-8">
+  {{ csrf_field() }}
+                  <input type="email" name="email" placeholder="Email của bạn" style="width: 70%">
                   <input type="submit" value="Gửi">
+                </form>
               </div>
           </div>
       </div>

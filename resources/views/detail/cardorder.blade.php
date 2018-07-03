@@ -34,6 +34,9 @@
           @endif
             <div class="panel-body">
               <div class="table-responsive">
+
+ @if(Cart::count() !=0)
+              <form action="{!!url('gio-hang/update')!!}" method="post" accept-charset="utf-8">     
                 <table class="table table-hover">
                   <thead>
                     <tr>
@@ -48,33 +51,41 @@
                     </tr>
                   </thead>
                   <tbody>
-                  @foreach(Cart::content() as $row)
-                    <tr>
-                  
-                      <td><img src="{!!url('public/uploads/products/'.$row->options->img)!!}" alt="dell" width="80" height="50"></td>
-                      <td>{!!$row->name!!}</td>
-                      <td class="text-center">                        
-                          @if (($row->qty) >1)
-                          <a href="{!!url('gio-hang/update/'.$row->rowId.'/'.$row->qty.'-down')!!}"><span class="fas fa-minus-circle"></span></a> 
-                          @else
-                            <a href="#"><span class="fas fa-minus-circle"></span></a> 
-                          @endif
-                          <input type="text" class="qty text-center" value=" {!!$row->qty!!}" style="width:40px; font-weight:bold; font-size:15px; color:blue;" readonly="readonly"> 
-                        <a href="{!!url('gio-hang/update/'.$row->rowId.'/'.$row->qty.'-up')!!}"><span class="fas fa-plus-circle"></span></a>
-                      </td>
-                      
-                      <td>{!! number_format($row->price) !!} <span>&#8363;</span></td>
-                      <td>{!! number_format($row->qty * $row->price) !!} <span>&#8363;</span></td>
-                      <td><a href="{!!url('gio-hang/delete/'.$row->rowId)!!}" onclick="return xacnhan('Xóa sản phẩm này ?')" ><span class="fas fa-remove" ></span></a></td>
-                    </tr>
-                  @endforeach                    
+             
+                     {{ csrf_field() }}         
+                      @foreach(Cart::content() as $row)
+                        <tr>
+                          <input type="hidden" name="id_n[]" value="{!!$row->rowId!!}">
+                          <td><img src="{!!url('public/uploads/products/'.$row->options->img)!!}" alt="dell" width="80" height="50"></td>
+                          <td>{!!$row->name!!}</td>
+                          <td class="text-center">                        
+                            <!-- <span class="fas fa-minus-circle"></span> -->
+                            <input type="text" class="qty text-center" value="{!!$row->qty!!}" name="qty_n[]" style="width:70px; font-weight:bold; font-size:15px; color:blue;" > 
+                            <!-- <span class="fas fa-plus-circle"></span> -->
+                          </td>
+                          
+                          <td>{!! number_format($row->price) !!} <span>&#8363;</span></td>
+                          <td>{!! number_format($row->qty * $row->price) !!} <span>&#8363;</span></td>
+                          <td><a href="{!!url('gio-hang/delete/'.$row->rowId)!!}" onclick="return xacnhan('Xóa sản phẩm này ?')" ><span class="fas fa-remove" ></span></a></td>
+                        </tr>
+
+                      @endforeach
+                      <button type="submit" class="btn btn-danger pull-right">{{ trans('messages.capnhatgiohang') }}</button>   
+                   
+
                     <tr>
                       <td colspan="2"><strong>{{ trans('messages.tongcong') }} :</strong> </td>
                       <td colspan="2">{!!Cart::count()!!}</td>
                       <td  style="color:red;">{!!Cart::subtotal()!!} <span>&#8363;</span></td>                      
                     </tr>                    
                   </tbody>
-                </table>                
+                </table>      
+                </form>  
+     @else
+    <p> Không có sản phẩm nào trong giở hàng vui vòng chọn sản phẩm để thanh toán  </p>
+      <a href="{!!url('/')!!}" type="button" class="btn btn-large btn-primary pull-left">{{ trans('messages.tieptucmuahang') }}</a>
+    
+     @endif                     
               </div>
 
               <div class="col-xs-12 col-sm-12 col-md-12 no-paddng">
@@ -83,7 +94,7 @@
                   <div class="input-group">
                       <select name="paymethod" id="inputPaymethod" class="form-control" required="required">
                         <option value="cod">COD (thanh toán khi nhận hàng)</option>
-                        <option value="paypal">Paypal (Thanh toán qua Paypal)</option>                      
+                        <!-- <option value="paypal">Paypal (Thanh toán qua Paypal)</option>                       -->
                       </select>
                     </div>
                   <a class="btn btn-large btn-warning pull-right" href="{!!url('/me')!!}" >{{ trans('messages.tienhanhthanhtoan') }}</a>
@@ -92,8 +103,8 @@
                     <div class="input-group">
                     <label for="paymethod">{{ trans('messages.chonpthuc') }}</label>
                       <select name="paymethod" id="inputPaymethod" class="form-control" required="required">
-                        <option value="">Hãy chọn phương thức thanh toán</option> 
-                        <option value="paypal">Thanh toán trực tuyến ( Paypal )</option> 
+                        <!-- <option value="">Hãy chọn phương thức thanh toán</option>  -->
+                        <!-- <option value="paypal">Thanh toán trực tuyến ( Paypal )</option>  -->
                         <option value="cod"> Thanh toán khi nhận hàng ( COD )</option>
                       </select>
                     </div>

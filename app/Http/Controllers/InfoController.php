@@ -46,8 +46,8 @@ class InfoController extends Controller
    }
    public function getedit($id)   {
       $pro = Info::where('id',$id)->first();
-      $data = Info::all();
-      return View ('back-end.info.edit',['pro'=>$pro,'data'=>$data]);
+    
+      return View ('back-end.info.edit',['row'=>$pro]);
    }
    public function postedit($id,AddInfoRequest $rq)
    {
@@ -79,7 +79,8 @@ class InfoController extends Controller
    }
         public function getdel($id)
     {       
-            $pro = Info::where('id',$id)->first();
+      die();
+           // $pro = Info::where('id',$id)->first();
             $pro = Info::find($id);
             $pro->delete();
             return redirect()->route('getinfo')
