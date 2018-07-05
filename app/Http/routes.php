@@ -21,12 +21,15 @@ Route::group(['middleware' => 'locale'], function() {
     Route::get('/user/edit', 'HomeController@edit');
     Route::get('login', ['as'  => 'getlogin', 'uses' =>'Auth\AuthController@getLogin']);
     Route::get('/video-huong-dan', ['as'  => 'getvideo', 'uses' =>'PagesController@getvideo']);
-
+    Route::get('/muahangnhanh', ['as'  => 'getmuahangnhanh', 'uses' =>'PagesController@getmuahangnhanh']);
     Route::get('/video-huong-dan/detail/{id}-{slug}', ['as'  => 'getvideodetail', 'uses' =>'PagesController@getvideodetail']);
     Route::get('/me', ['as'  => 'getme', 'uses' =>'PagesController@getme']);
     Route::post('edituser', ['as'  => 'postedituser', 'uses' =>'PagesController@postedituser']);
     // cart - oder
     Route::get('gio-hang', ['as'  => 'getcart', 'uses' =>'PagesController@getcart']);
+    Route::get('susccer-order', ['as'  => 'getcartok', 'uses' =>'PagesController@getcartok']);
+
+
     Route::get('tim-kiem', ['as'  => 'gettimkiem', 'uses' =>'PagesController@gettimkiem']);
     Route::get('lien-he', ['as'  => 'getlienhe', 'uses' =>'PagesController@getlienhe']);
     Route::post('lien-he', ['as'  => 'postlienhe', 'uses' =>'PagesController@postlienhe']);
@@ -84,7 +87,30 @@ Route::group(['middleware' => 'admin'], function () {
         Route::group(['prefix' => 'nhanqc'], function() {
            Route::get('/',['as'       =>'getnhanqc','uses' => 'BannersController@getnhanqc']);
       });
+                       // -------------------- quan ly chinhsach----------------------
+        Route::group(['prefix' => 'chinhsach'], function() {
+          
+           Route::get('add',['as'        =>'getaddchinhsach','uses' => 'ChinhsachController@getaddchinhsach']);
+           Route::post('add',['as'       =>'postaddchinhsach','uses' => 'ChinhsachController@postaddchinhsach']);
 
+           Route::get('/',['as'       =>'getchinhsach','uses' => 'ChinhsachController@getchinhsach']);
+           Route::get('del/{id}',['as'   =>'getdelchinhsach','uses' => 'ChinhsachController@getdelchinhsach'])->where('id','[0-9]+');
+           
+           Route::get('edit/{id}',['as'  =>'geteditchinhsach','uses' => 'ChinhsachController@geteditchinhsach'])->where('id','[0-9]+');
+           Route::post('edit/{id}',['as' =>'posteditchinhsach','uses' => 'ChinhsachController@posteditchinhsach'])->where('id','[0-9]+');
+      });
+               // -------------------- quan ly popup----------------------
+        Route::group(['prefix' => 'popup'], function() {
+          
+           Route::get('add',['as'        =>'getaddpopup','uses' => 'InfoController@getaddpopup']);
+           Route::post('add',['as'       =>'postaddpopup','uses' => 'InfoController@postaddpopup']);
+
+           Route::get('/',['as'       =>'getpopup','uses' => 'InfoController@getpopup']);
+           Route::get('del/{id}',['as'   =>'getdelpopup','uses' => 'InfoController@getdelpopup'])->where('id','[0-9]+');
+           
+           Route::get('edit/{id}',['as'  =>'geteditpopup','uses' => 'InfoController@geteditpopup'])->where('id','[0-9]+');
+           Route::post('edit/{id}',['as' =>'posteditpopup','uses' => 'InfoController@posteditpopup'])->where('id','[0-9]+');
+      });
                // -------------------- quan ly thong tin----------------------
         Route::group(['prefix' => 'info'], function() {
           

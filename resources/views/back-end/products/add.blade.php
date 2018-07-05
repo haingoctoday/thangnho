@@ -49,6 +49,14 @@
 				      			<input type="text" name="txtname" id="inputTxtname" class="form-control" value="{{ old('txtname') }}"  >
 				      		</div>
 				      		<div class="form-group">
+				      		<label for="input-id">Trạng thái</label>
+					      				  <select name="slstatus" id="inputSlstatus" class="form-control" required="required">
+					      					<option value="1" selected>Hiển thị</option>
+					      					<option value="0">Hết hàng</option>
+					      				</select>
+					      	</div>
+					      			
+				      		<div class="form-group">
 				      			<label for="input-id">Điểm nổi bật</label>
 				      			<input type="text" name="txtintro" id="inputTxtintro" class="form-control" value="{{ old('txtintro') }}" required="required">
 				      		</div>
@@ -59,9 +67,7 @@
 				      		<div class="form-group" style="display: none">
 				      			<label for="input-id">Khuyễn mãi (tối đa 3 mục)</label>
 				      			<div class="row">
-					      			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-					      				khuyễn mại 1 : <input type="text" name="txtpromo1" id="inputtxtpromo1" value="{{ old('txtpromo1') }}" class="form-control" >
-					      			</div>
+					      		
 					      			<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
 					      				khuyễn mại 2 : <input type="text" name="txtpromo2" id="inputtxtpromo2" value="{{ old('txtpromo2') }}" class="form-control" >
 					      			</div>
@@ -77,6 +83,9 @@
 					      			</div>
 					      			<div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
 					      				Giá bán : <input type="number" name="txtprice" id="inputtxtprice" class="form-control" value="{{ old('txtprice') }}" required="required">
+					      			</div>
+					      			<div class="col-xs-12 col-sm-2 col-md-2 col-lg-2">
+					      				Giá bán khuyến mãi : <input type="number" name="txtpromo1" id="inputtxtprice" class="form-control" value="{{ old('txtpromo1') }}" >
 					      			</div>
 					      			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">
 					      				Tag : <input type="text" name="txttag" id="inputtag" value="{{ old('txttag') }}" class="form-control">

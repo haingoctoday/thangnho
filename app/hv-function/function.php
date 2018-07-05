@@ -75,7 +75,10 @@
  		break;
  	case '37':
  		$url_nn ='lien-he';
- 		break;				
+ 		break;
+ 	case '38':
+ 		$url_nn ='muahangnhanh';
+ 		break;							
  	default:
  		# code...
  		break;
@@ -97,7 +100,7 @@
 						
                                        echo '<li class="col-sm-3">';              
                                              echo '<ul>';            
-                                                       echo ' <li class="dropdown-header">'.$val1['name_'.Config::get('app.locale')].'<?php echo $i?></li>';  
+                                                       echo ' <li class="dropdown-header">'.$val1['name_'.Config::get('app.locale')].'<?php echo $i?></li><hr>';  
                                                       //echo      '<li><a href="#">'.$val1["name"].'</a></li>';
                                                             
                                   foreach ($data as $val2) {                        

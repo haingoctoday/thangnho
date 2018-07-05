@@ -5,6 +5,8 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use App\Info;
 use App\Shopsystem;
+use App\Popup;
+use App\Chinhsach;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -22,7 +24,9 @@ class AppServiceProvider extends ServiceProvider
         view()->composer('*', function ($view) {
             $data_cuahang = Shopsystem::all();
             $data_info = Info::where('id',2)->first();
-            $view->with(['s_info'=>$data_info,'data_cuahang'=>$data_cuahang]);
+            $data_popup = Popup::where('trangthai',1)->first();
+            $data_chinhsach = Chinhsach::all();
+            $view->with(['s_info'=>$data_info,'data_cuahang'=>$data_cuahang,'data_popup'=>$data_popup,'data_chinhsach'=>$data_chinhsach]);
 
         });
     }

@@ -2,7 +2,7 @@
 return [
     'welcome' => 'Chào mừng bạn đến với Website!',
     'hello' => 'Xin chào',
-    'account' => 'Tài khoản',
+    'account' => 'Đăng nhập hoặc tạo tài khoản',
     'btimkiem'=>'Bạn tìm gì ở đây ???',
     'h1mm'=>'Shop nguyên liệu',
     'spnew'=>'Sản phẩm bạn mới thêm',
@@ -104,6 +104,8 @@ return [
 'matkhau' => 'Mật khẩu',
 'rematkhau' => 'Nhập lại Mật khẩu',
 'ghimatkhau' => 'Ghi nhớ mật khẩu',
-'quenmatkhau' => 'Quên mật khẩu'
+'quenmatkhau' => 'Quên mật khẩu',
+'muahangnhanh' => 'Mua Hàng Nhanh',
+
 
 ];

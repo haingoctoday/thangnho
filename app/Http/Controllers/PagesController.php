@@ -18,6 +18,7 @@ use DB,Cart,Datetime;
 use Illuminate\Support\Facades\Input;
 use App\Info;
 use App\User;
+use App\Popup;
 use Mail;
 use App\Nhanqc;
 
@@ -25,22 +26,37 @@ class PagesController extends Controller
 {
     public function index()
     {
+      \Session::forget('oid');
         $pc = DB::table('products')
+                ->join('category', 'products.cat_id', '=', 'category.id')
+                ->join('pro_details', 'pro_details.pro_id', '=', 'products.id')
+                ->select('products.*','pro_details.cpu','pro_details.ram','pro_details.screen','pro_details.vga','pro_details.storage','pro_details.exten_memmory','pro_details.cam1','pro_details.cam2','pro_details.sim','pro_details.connect','pro_details.pin','pro_details.os','pro_details.note')
+                ->paginate(10);
+              //  dd($pc);
+        $pc_limit6 = DB::table('products')
                 ->join('category', 'products.cat_id', '=', 'category.id')
                 ->join('pro_details', 'pro_details.pro_id', '=', 'products.id')
               //  ->where('category.parent_id','=','19')
                 ->select('products.*','pro_details.cpu','pro_details.ram','pro_details.screen','pro_details.vga','pro_details.storage','pro_details.exten_memmory','pro_details.cam1','pro_details.cam2','pro_details.sim','pro_details.connect','pro_details.pin','pro_details.os','pro_details.note')
-                ->paginate(10);
-              //  dd($pc);
+                ->paginate(8);        
                 $data_menu = Category::all();
-                 $data_banner = Banners::all();
-    	return view('home',['pc'=>$pc,'data_menu'=>$data_menu,'banners'=>$data_banner]);
+                $data_banner = Banners::all();
+               // $popup = Popup::all();
+
+    	return view('home',['pc'=>$pc,'data_menu'=>$data_menu,'banners'=>$data_banner,'pc_limit6'=>$pc_limit6]);
     }
     public function addcart($id)
     {
         $pro = Products::where('id',$id)->first();
+
+        if($pro->promo1 != 0){
+          $pro->price = $pro->promo1;
+        }
         Cart::add(['id' => $pro->id, 'name' => $pro->name, 'qty' => 1, 'price' => $pro->price,'options' => ['img' => $pro->images]]);
-        return redirect()->route('getcart');
+
+        $num_cart = count(Cart::content());
+        return $num_cart;
+      //  return redirect()->route('getcart');
     }
 
     public function getupdatecart(Request $qta)
@@ -122,12 +138,32 @@ class PagesController extends Controller
         //  print_r($email_s);
          $message->to($email_s, 'Shopper')->subject('Order !');
       });
-
-        Cart::destroy();   
-        return redirect()->route('getcart')
-        ->with(['flash_level'=>'result_msg','flash_massage'=>' Đơn hàng của bạn đã được gửi đi !']);    
+ Cart::destroy();   
+       \Session::put('oid', $o_id);
+        return redirect()->route('getcartok')
+        ->with(['flash_level'=>'result_msg','flash_massage'=>' Đơn hàng của bạn đã được gửi đi !','idp'=>$o_id]);    
         
     }
+
+   public function getcartok()
+      {
+
+$abac = \Session::get('oid',[]);
+//print_r($abac);
+if(empty($abac)){
+   return redirect()->route('index');
+}
+$oder = Oders::where('id',$abac)->first();
+      $data = DB::table('oders_detail')
+            ->join('products', 'products.id', '=', 'oders_detail.pro_id')
+            ->groupBy('oders_detail.id')
+            ->where('o_id',$abac)
+            ->get();
+         $data_menu = Category::all();
+      return view('detail.thankorder',['data_menu'=>$data_menu,'data'=>$data,'oder'=>$oder]);
+
+      }
+
     public function getcate($cat)
     {
          $data_menu = Category::all();
@@ -297,7 +333,7 @@ $id = Auth::user()->id;
            // $data_order = Oders::where('c_id',$id);
              $data_order =  Oders::where('c_id',$id)
                     ->orderBy('created_at', 'desc')
-                    ->paginate(3);
+                    ->paginate(10);
            // dd($id);
             return view ('me.melogin',['data_menu'=>$data_menu,'data_order'=>$data_order,'old'=>$data_user])
             ->with('slug','Xác nhận');
@@ -365,5 +401,23 @@ $id = Auth::user()->id;
         ->with(['flash_level'=>'result_msg','flash_massage'=>'Chúng tôi sẽ gửi thông tin khuyến mãi cho bạn']);
 
      }
+
+      public function getmuahangnhanh()
+    {   
+      $data_menu = Category::all();
+       // $pc = DB::table('products')
+              //   ->join('category', 'products.cat_id', '=', 'category.id')
+              //   ->join('pro_details', 'pro_details.pro_id', '=', 'products.id')
+              // //  ->where('category.parent_id','=','19')
+              //   ->select('products.*','pro_details.cpu','pro_details.ram','pro_details.screen','pro_details.vga','pro_details.storage','pro_details.exten_memmory','pro_details.cam1','pro_details.cam2','pro_details.sim','pro_details.connect','pro_details.pin','pro_details.os','pro_details.note')
+              //   ->paginate(10);
+      $category = DB::table('products')
+                   ->join('category', 'products.cat_id', '=', 'category.id')
+                    ->select('cat_id','category.name_vi as namevi','category.name_en as nameen')
+                   ->groupBy('cat_id')
+                    ->get();       
+                    //dd($category);   
+      return view('muahangnhanh',['data_menu'=>$data_menu,'category'=>$category]);
+    }
      
 }

@@ -68,6 +68,7 @@ class ProductsController extends Controller
     	$pro->tag = $rq->txttag;
     	$pro->price = $rq->txtprice;
     	$pro->cat_id = $rq->sltCate;
+        $pro->hethang = $rq->slstatus;
     	$pro->user_id = Auth::guard('admin')->user()->id;
     	$pro->created_at = new datetime;
     	$pro->status = '1';
@@ -168,6 +169,7 @@ class ProductsController extends Controller
     }
     public function postedit($loai,$id,EditProductsRequest $rq)
     {
+     //   dd($rq);
     	$pro = Products::find($id);
 
         $pro->name = $rq->txtname;
@@ -182,6 +184,7 @@ class ProductsController extends Controller
         $pro->tag = $rq->txttag;
         $pro->price = $rq->txtprice;
         $pro->cat_id = $rq->sltCate;
+        $pro->hethang = $rq->slstatus;
         $pro->user_id = Auth::guard('admin')->user()->id;
         $pro->updated_at = new datetime;
         $pro->status = '1';

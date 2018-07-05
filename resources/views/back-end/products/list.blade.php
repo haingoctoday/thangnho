@@ -98,7 +98,7 @@
 											<td>{!!$row->category->name_vi!!}</td>
 											<td>{!!number_format($row->price)!!} đ</td>
 											<td>
-												@if($row->status ==1)
+												@if($row->hethang == 1)
 													<span style="color:blue;">Còn hàng</span>
 												@else
 													Tạm hết hàng

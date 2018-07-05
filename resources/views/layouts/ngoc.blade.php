@@ -8,7 +8,9 @@
         
         <!-- Google Fonts -->
         <!-- <link href='http://fonts.googleapis.com/css?family=Titillium+Web:400,200,300,700,600' rel='stylesheet' type='text/css'> -->
-        <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'>
+        <!-- <link href='http://fonts.googleapis.com/css?family=Roboto+Condensed:400,700,300' rel='stylesheet' type='text/css'> -->
+      <link href="https://fonts.googleapis.com/css?family=Quicksand:300,400,500,700&amp;subset=vietnamese" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <!-- <link href='http://fonts.googleapis.com/css?family=Raleway:400,100' rel='stylesheet' type='text/css'> -->
         <!-- <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet"> -->
         <!-- Bootstrap -->
@@ -56,7 +58,7 @@
                 <div class="row">
                     <div class="col-md-3 col-sm-6">
                         <div class="footer-menu">
-                            a
+                          <iframe width="100%" height="200" src="https://www.youtube.com/embed/AABTDYSllMY" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
                         </div>
                     </div>
                     <div class="col-md-6 col-sm-6">
@@ -65,7 +67,7 @@
                             <p>{!!$s_info->gioithieu!!}</p>
                             <div class="footer-social">
                                 <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                                <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                                <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
                             </div>
                         </div>
                     </div>
@@ -100,14 +102,22 @@
                     </ul>
                             <ul class="list-unstyled list-inline">
                               <div class="textwidget"><a href="{!! route('user.change-language', ['en']) !!}" style="float: left;">English</a>
-<a href="{!! route('user.change-language', ['vi']) !!}" style="float: left;margin-left: 10px">Vietnam</a></div>
+<a href="{!! route('user.change-language', ['vi']) !!}" style="float: left;margin-left: 10px">Tiếng Việt</a></div>
                                 <li class="dropdown dropdown-small midded">
                                      @if (Auth::guest())
                                      <a href="{{ url('/me') }}">{{ trans('messages.account') }} </a>
                                       @else
                                      
 <a href="{{ url('/me') }}">{{ trans('messages.hello') }} : {{ Auth::user()->name }}</a>
+ <div class="dropdown-content-mns">
+                                                <a href="{{ url('/me') }}">Bảng chính</a>
+                                                <a href="{{ url('/me') }}">Đơn hàng</a>
+                                                <a href="{{ url('/me') }}">Địa chỉ</a>
+                                                <a href="{{ url('/me') }}">Thông tin cá nhân</a>
+                                                <a href="{{ url('/logout') }}">Đăng xuất</a>
+                                              </div>
                                       @endif
+                                             
                                 </li>
                                 <li class="dropdown dropdown-small end">
                                     <a href="{!!$s_info->url_fb!!}" target="_blank"><i class="fab fa-facebook-f"></i></a>
@@ -122,7 +132,9 @@
             </div>
             </div> <!-- End header area -->
             
-            
+         
+
+<div id="snackbar">abc đã mua sản phẩm aaaaaaaaaa </div>
             <div class="site-branding-area">
                 <div class="container-fluid">
                     <div class="row">
@@ -135,7 +147,7 @@
                              <form action="{!!url('tim-kiem')!!}" method="get">
                             <div class="input-group custom-search-form">
                                
-                                <input type="text" class="form-control inpu-seary" name="q" placeholder="{{ trans('messages.btimkiem') }}">
+                                <input type="text" class="form-control inpu-seary bo-cong-vien" name="q" placeholder="{{ trans('messages.btimkiem') }}" autocomplete="off">
                                 <span class="input-group-btn">
                                     <button class="btn btn-primary btn-seary" type="submit">
                                     <span class="fas fa-search "></span>
@@ -146,50 +158,50 @@
                                  </form>
                             </div>
                             
-                            <div class="col-sm-3">
+                            <div class="col-sm-3" id="bunmm">
                                 <div class="shopping-item" id="cart">
-                                    
-                                    <!-- <img src="{!!url('img/bag.png')!!}"> -->
                                     <i class="fas fa-shopping-bag fa-2x fa-fw maucam"></i>
                                     <span class="product-count">{!!Cart::content()->count()!!}</span>
                                 </div>
-                                <div class="">
+                                @if(Cart::count() !=0)
+                                <div class="" id="cart_v">
                                     <div class="shopping-cart">
                                         <div class="shopping-cart-header">
-                              <!--               <i class="fa fa-shopping-cart cart-icon"></i><span class="badge">3</span>
-                                            <div class="shopping-cart-total">
-                                                <span class="lighter-text">Total:</span>
-                                                <span class="main-color-text">$2,229.97</span>
-                                            </div> -->
                                             <span class="sty-bag">{{ trans('messages.spnew') }}</span>
-                                            </div> <!--end shopping-cart-header -->
-                                            <ul class="shopping-cart-items">
+                                        </div> 
+                                        <ul class="shopping-cart-items">
+                                         @foreach(Cart::content() as $row)
+                                         <li class="clearfix">
+                                            <a href="" title="" class="product-list-image">
+                                                <img src="{!!url('public/uploads/products/'.$row->options->img)!!}" class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" style="width: 80px;height: 70px;margin-right: 10px;" alt="">    
+                                            </a>
+                                            <p class="product-title">
+                                                <a href="" title="{!!$row->name!!}">{!!$row->name!!}</a></p>
+                                                <div class="price sty-span-bag">
+                                                    <strong style="font-size: 1.4rem">
+                                                        <span>{!!$row->qty!!}</span> x
+                                                        <span>{!! number_format($row->price) !!}<span>₫</span></span>   
+                                                    </strong>
+                                                </div>
+                                            </li>
+                                            @endforeach    
 
-                                                   @foreach(Cart::content() as $row)
-                                                <li class="clearfix">
-                                                    <a href="" title="" class="product-list-image">
-                                                        <img src="{!!url('public/uploads/products/'.$row->options->img)!!}" class="attachment-shop_thumbnail size-shop_thumbnail wp-post-image" style="width: 80px;height: 70px;margin-right: 10px;" alt="">    
-                                                    </a>
-                                                    <p class="product-title">
-                                                        <a href="" title="{!!$row->name!!}">{!!$row->name!!}</a></p>
-                                                    <div class="price sty-span-bag">
-                                                        <strong style="font-size: 1.4rem">
-                                                            <span>{!!$row->qty!!}</span> x
-                                                            <span>{!! number_format($row->price) !!}<span>₫</span></span>   
-                                                        </strong>
-                                                    </div>
-                                                </li>
-                                                @endforeach    
-                                                                                                                        
-                                            </ul>
-                                            <div class="shopping-cart-total">
-                                                <span class="lighter-text">{{ trans('messages.sum') }}</span>
-                                                <span class="main-color-text">{!!Cart::subtotal()!!}<span>₫</span></span>
-                                            </div>
-                                            <!-- <a href="#" class="button-cart">Điền địa chỉ</a> -->
-                                            <a href="{!!url('/gio-hang/')!!}" class="button-cart-dh">{{ trans('messages.vieworder') }}</a>
-                                            </div> <!--end shopping-cart -->
-                                            </div> <!--end container -->
+                                        </ul>
+                                        <div class="shopping-cart-total">
+                                            <span class="lighter-text">{{ trans('messages.sum') }}</span>
+                                            <span class="main-color-text">{!!Cart::subtotal()!!}<span>₫</span></span>
+                                        </div>
+                                        <!-- <a href="#" class="button-cart">Điền địa chỉ</a> -->
+                                        <a href="{!!url('/gio-hang/')!!}" class="button-cart-dh">{{ trans('messages.vieworder') }}</a>
+                                    </div> <!--end shopping-cart -->
+                                </div> <!--end container -->
+                                @else
+                               <div class="" id="cart_v">
+                                    <div class="shopping-cart">
+                                        <p class="title_s_c">ĐƠN HÀNG CHƯA CÓ SẢN PHẨM NÀO</p>
+                                    </div>
+                                </div>
+                                @endif
                                         </div>
                                     </div>
                                 </div>
@@ -225,7 +237,7 @@
                                             
                                                     
                                            <div class="footer-top-area">
-                                            <div class="zigzag-bottom"></div>
+                                            <!-- <div class="zigzag-bottom"></div> -->
                                             <div class="container">
                                                 <div class="row row-ft">
                                                     <div class="col-md-3 col-sm-6">
@@ -347,7 +359,10 @@
                                                             <script type="text/javascript" src="{!!url('js/countUp.js')!!}"></script>
 
 <div class="footer">
-  <i class="fas fa-phone-volume"></i><a href="tel:{!!$s_info->sdt_hotline!!}">{!!$s_info->sdt_hotline!!}</a>
+  <i class="fas fa-phone-volume"></i><a href="tel:{!!$s_info->sdt_hotline!!}">Gọi đặt hàng !</a>
+</div>
+<div class="muahangnhang">
+    <a href="{!!url('muahangnhanh')!!}">Mua hàng nhanh</a>
 </div>
 <style type="text/css">
     .footer {
@@ -355,13 +370,19 @@
     left: 10px;
     bottom: 55px;
     width: 188px;
-    background-color: #f15e24;
+    background-color: #4ca355;
     color: #fff;
     text-align: center;
     font-size: 1.5em;
     padding: 6px;
     border-radius: 40px;
     z-index: 999;
+}
+.dropdown-menu{
+    border-radius: 10px !important;
+}
+hr{
+    margin : 0 !important;
 }
 .footer a{
     color: #fff
@@ -372,26 +393,38 @@
     margin: auto;
     background-color: red
 }
+.muahangnhang a {
+    position: fixed;
+    right: 10px;
+    top: 100px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 68px;
+    background-color: #3e8856;
+    font-weight: bold;
+    font-size: 1.5rem;
+    color: #fff;
+    z-index: 9;
+    border-radius: 6px;
+}
 </style>
 <button style="display: none;" type="button" class="btn btn-info btn-lg taone" data-toggle="modal" data-target="#myModal">Open Modal</button>
 
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
-    <!-- Modal content-->
+ 
     <div class="modal-content">
+
+
+@if($s_info->popup_type == 1)
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal">&times;</button>
-        <!-- <h4 class="modal-title"></h4> -->
+   
       </div>
       <div class="modal-body">
-         <img src="img/popup.jpg" style="width: 100%;position: relative;">
-       <!--  <p>Bạn bỏ quên</p>
-        <p>100.000 đ ?</p>
-        <p>To embed your selected fonts into a webpage, copy this code into the of your HTML document.</p>
-        <input type="text" name="cc">
-        <input type="button" name="zz">
-        <input type="button" name="zz"> -->
+         <img src="{!!url('public/uploads/popup/'.$data_popup->hinhanh)!!}" style="width: 100%;position: relative;">
+     
 <form style="
     position: absolute;
     margin: auto;
@@ -416,26 +449,32 @@
     height: 74px;
     margin-left: 68px;
     padding-top: 30px;
-
 ">
   <button type="submit" class="btn btn-primary" name="subject" value="Nam" style="
    
     width: 132px;
     background-color: #333;
-
 ">Nam</button>
   <button type="submit" class="btn btn-primary" name="subject" value="Nu" style="
    
     width: 132px;
     background-color: #bb5a28;
-
 ">Nữ</button>
 </div>
 </form>
       </div>
-    <!--   <div class="modal-footer">
-        <button type="button" class="btn btn-default" data-dismiss="modal"></button>
-      </div> -->
+
+@else
+     <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+      </div>
+      <div class="modal-body">
+      <iframe width="100%" height="422" src="{!!$data_popup->url_video!!}" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+      </div>
+
+@endif
+
+
     </div>
 
   </div>

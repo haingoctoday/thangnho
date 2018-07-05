@@ -69,23 +69,23 @@
                       ?>
                       <td colspan="2"><strong>{{ trans('messages.tongcong') }} :</strong> </td>
                       <td colspan="2" >{!!Cart::count()!!}</td>
-                      <td style="color:red;">{!!number_format($tongiten)!!} <span>&#8363;</span></td>                      
+                      <td style="color:#4ca355;">{!!number_format($tongiten)!!} <span>&#8363;</span></td>                      
                     </tr>  
                      <tr>
                       <td colspan="2"> </td>
                       <td colspan="2" >Phí ship</td>
-                      <td style="color:red;"><span class="p_giashipng">0 ₫</span></td>                      
+                      <td style="color:#4ca355;"><span class="p_giashipng">0 ₫</span></td>                      
                     </tr>  
                      <tr class="aloalaoa">
                       <td colspan="2"> </td>
                       <td colspan="2" >Phí nhà xe về tỉnh</td>
-                      <td style="color:red;"><span class="p_nodete">3123</span></td>                      
+                      <td style="color:#4ca355;"><span class="p_nodete">3123</span></td>                      
                     </tr>  
                     <tr>
                       <td colspan="2"><strong>{{ trans('messages.tongcong') }} :</strong> </td>
                       <td colspan="2" >{!!Cart::count()!!}</td>
                      
-                      <td style="color:red;"><span class="tongtien_ipamc"> 0 ₫</span> </td>                      
+                      <td style="color:#4ca355;"><span class="tongtien_ipamc"> 0 ₫</span> </td>                      
                     </tr>                      
                   </tbody>
                 </table>                
@@ -190,12 +190,14 @@
 
                            <h2 class="sidebar-title">{{ trans('messages.shppinga') }}</h2>
                            <hr>
-                           <li>
-                             Ship COD 12 quận Hà Nội đồng giá 20.000đ. Xem chi tiết
-                           </li>
-                           <li>
-                             Hỗ trợ 50% - 100% phí ship toàn quốc Xem chi tiết
-                           </li>
+                            <?php 
+                             foreach ($data_chinhsach as $key => $value) {
+                            
+                              ?>
+                             <li>
+                                <?php echo $value->name ?>. Xem chi tiết
+                             </li>
+                             <?php } ?>
 
                          </div>
                          <div class="single-sidebar">

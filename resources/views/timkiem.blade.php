@@ -87,10 +87,18 @@
                             <input type="text" id="" class="input-text qty text" value="1" title="SL">
                         </div>
                         <!-- <button type="submit" class="button alt fix-bt-s">Thêm vào giỏ</button> -->
-                        <a href="{!!url('gio-hang/addcart/'.$v_pro->id)!!}" class="add-to-cart">Thêm vào giỏ</a>
+                        <a data-id="{!!$v_pro->id!!}" href="#" class="add-to-cart">Thêm vào giỏ</a>
                     </form> 
                                                                                 <div class="product-carousel-price price-new">
-                                                                <ins>{!!number_format($v_pro->price)!!}<span>&#8363;</span></ins> 
+                                                              @if($v_pro->promo1 != 0) 
+
+<del>{!!number_format($v_pro->price)!!}<span>&#8363;</span></del>   <ins>{!!number_format($v_pro->promo1)!!}<span>&#8363;</span></ins> 
+                                            @else
+
+
+  {{ trans('messages.onyfrm') }} <ins> {!!number_format($v_pro->price)!!}</ins><span>₫</span>
+                                            @endif
+
                                                                 
                                                             </div>  
                                                             <span>Mã: B{!!$v_pro->id!!}</span>
@@ -112,5 +120,23 @@
                                     </div>
                                 </div>
                             </div>
-                            </div> <!-- End main content area -->               
+                            </div> <!-- End main content area -->           
+                            <script type="text/javascript">
+                              $( ".add-to-cart" ).click(function(e) {
+                            var abc = $(this).data( "id" );
+                          //  alert(abc);
+                          alert("Đã thêm sp vào giỏ hàng !");
+                            e.preventDefault();
+                            $.ajax({ 
+                                type: "GET",
+                                url: "/gio-hang/addcart/"+abc, 
+                                success: function(response){ 
+                                        console.log(response); 
+                                        $(".product-count").text(response);
+                                         $("#cart_v").load(window.location + " .shopping-cart");
+                                         // $(".shopping-item").load(window.location + " .shopping-cart");
+                                } 
+                            });
+                                });
+                            </script>    
 @endsection

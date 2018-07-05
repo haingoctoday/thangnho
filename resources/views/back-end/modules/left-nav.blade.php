@@ -21,7 +21,9 @@
 			<li><a href="{!!url('admin/nhanvien')!!}"><i class="fas fa-users-cog"></i> Nhân Viên</a></li>	
 			<li><a href="{!!url('admin/contact')!!}"><i class="fas fa-file-signature"></i>  Liên hệ</a></li>		
 			<li><a href="{!!url('admin/info')!!}"><i class="fas fa-edit"></i>  Chỉnh sửa thông tin Website </a></li>
-			<li><a href="{!!url('admin/nhanqc')!!}"><i class="fas fa-edit"></i>  Nhận quảng cáo </a></li>
+			<li><a href="{!!url('admin/nhanqc')!!}"><i class="fas fa-envelope-square"></i>  Quản lý email nhận quảng cáo </a></li>
+			<li><a href="{!!url('admin/popup')!!}"><i class="fas fa-images"></i>  Quản lý Popup </a></li>
+			<li><a href="{!!url('admin/chinhsach')!!}"><i class="fas fa-box"></i>  Quản lý chính sách cửa hàng </a></li>
 
 			
 		</ul>

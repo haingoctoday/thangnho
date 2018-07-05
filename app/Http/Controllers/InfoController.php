@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Info;
+use App\Popup;
 use App\Http\Requests\AddInfoRequest;
 use DateTime;
 
@@ -62,6 +63,9 @@ class InfoController extends Controller
         $pro->url_fb = $rq->txtfb;
         $pro->url_yt = $rq->txtyt;
         $pro->decript = $rq->txtDes;
+        $pro->popup_type = $rq->txtStt;
+          $pro->link_url_youtube = $rq->txtVideo;
+        
         $pro->created_at = new datetime;
         $file_path = public_path('uploads/info/').$pro->logo;
          if ($rq->hasFile('txtimg')) {
@@ -79,14 +83,74 @@ class InfoController extends Controller
    }
         public function getdel($id)
     {       
-      die();
+      // die();
            // $pro = Info::where('id',$id)->first();
             $pro = Info::find($id);
             $pro->delete();
             return redirect()->route('getinfo')
             ->with(['flash_level'=>'result_msg','flash_massage'=>'Đã hủy bỏ thông tin Website :  '.$id.' !']);
     }
-
-
-
+   public function getpopup()
+   {
+        $data = Popup::all();
+        return View ('back-end.popup.list',['data'=>$data]);
+   }
+   public function getaddpopup()
+   {    
+        $data = Popup::all();
+        return View ('back-end.popup.add',['data'=>$data]);
+   }
+    public function postaddpopup(Request $rq)
+   {   
+      //dd($rq);
+        $pro = new Popup();
+        $pro->url_video = $rq->txtUrl;
+        $pro->trangthai = $rq->txtStt;
+        $pro->created_at = new datetime;
+        if($rq->txtimg){
+          $f = $rq->file('txtimg')->getClientOriginalName();
+          $filename = time().'_'.$f;
+          $pro->hinhanh = $filename;       
+          $rq->file('txtimg')->move('uploads/popup/',$filename);
+        }
+        
+        $pro->save();       
+        return redirect()->route('getpopup')
+        ->with(['flash_level'=>'result_msg','flash_massage'=>' Đã thêm thành công !']);
+   }
+      public function geteditpopup($id)   {
+      $pro = Popup::where('id',$id)->first();
+      return View ('back-end.popup.edit',['row'=>$pro]);
+   }
+      public function posteditpopup($id,Request $rq)
+   {
+        $pro = Popup::find($id);
+        $pro->url_video = $rq->txtUrl;
+        $pro->trangthai = $rq->txtStt;
+        $pro->created_at = new datetime;
+        if($rq->txtimg){
+        $file_path = public_path('uploads/popup/').$pro->hinhanh;
+         if ($rq->hasFile('txtimg')) {
+            if (file_exists($file_path))
+                {
+                    unlink($file_path);
+                }
+        $f = $rq->file('txtimg')->getClientOriginalName();
+        $filename = time().'_'.$f;
+        $pro->hinhanh = $filename;       
+        $rq->file('txtimg')->move('uploads/popup/',$filename);}
+        }
+        $pro->save();       
+        return redirect()->route('getpopup')
+        ->with(['flash_level'=>'result_msg','flash_massage'=>' Đã sửa thành công !']);
+   }
+        public function getdelpopup($id)
+    {       
+      // die();
+           // $pro = Info::where('id',$id)->first();
+            $pro = Popup::find($id);
+            $pro->delete();
+            return redirect()->route('getpopup')
+            ->with(['flash_level'=>'result_msg','flash_massage'=>'Đã hủy bỏ thông tin Website :  '.$id.' !']);
+    }
 }

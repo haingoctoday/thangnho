@@ -27,12 +27,15 @@
                                                         
                                                          <h2 class="sidebar-title">{{ trans('messages.shppinga') }}</h2>
                                                          <hr>
+                                                         <?php 
+                                                         foreach ($data_chinhsach as $key => $value) {
+                                                        
+                                                          ?>
                                                          <li>
-                                                             Ship COD 12 quận Hà Nội đồng giá 20.000đ. Xem chi tiết
+                                                            <?php echo $value->name ?>. Xem chi tiết
                                                          </li>
-                                                         <li>
-                                                             Hỗ trợ 50% - 100% phí ship toàn quốc Xem chi tiết
-                                                         </li>
+                                                         <?php } ?>
+                                                       
 
                                                      </div>
                                                     <div class="single-sidebar">
@@ -79,8 +82,13 @@
                                                         <div class="single-shop-product text-center">
                                                         	 <a href="{!!url('detail/'.$v_pro->id.'-'.$v_pro->slug)!!}" title="Chi tiết">
                                                             <div class="product-upper">
-                                                                
+                                                                  @if($v_pro->promo1 != 0) 
+                                                  <div class="sale-wrapper">
+                                                      <div class="onsale">Sale</div>
+                                                  </div>
+                                       @endif
                                                                  <img class="img-responsive" src="{!!url('public/uploads/products/'.$v_pro->images)!!}" alt="{!!$v_pro->name!!}">
+                                                                
                                                             </div>
                                                         </a>
                     <form action="" class="no-add-minus" method="post" enctype="multipart/form-data">  
@@ -90,8 +98,17 @@
                         <!-- <button type="submit" class="button alt fix-bt-s">Thêm vào giỏ</button> -->
                         <a href="{!!url('gio-hang/addcart/'.$v_pro->id)!!}" class="add-to-cart">{{ trans('messages.addtocart') }}</a>
                     </form> 
+
                                                                                 <div class="product-carousel-price price-new">
-                                                                <ins>{!!number_format($v_pro->price)!!}<span>&#8363;</span></ins> 
+                                                              @if($v_pro->promo1 != 0) 
+
+<del>{!!number_format($v_pro->price)!!}<span>&#8363;</span></del>   <ins>{!!number_format($v_pro->promo1)!!}<span>&#8363;</span></ins> 
+                                            @else
+
+
+  {{ trans('messages.onyfrm') }} <ins> {!!number_format($v_pro->price)!!}</ins><span>₫</span>
+                                            @endif
+
                                                                 
                                                             </div>  
                                                             <span>{{ trans('messages.code') }}: B{!!$v_pro->id!!}</span>
@@ -99,7 +116,7 @@
                         <a href="{!!url('detail/'.$v_pro->id.'-'.$v_pro->slug)!!}">{!!$v_pro->name!!}</a>
                     </p>
 
-                      
+                                 
                                                         </div>
                                                     </div>
                         <?php }?>

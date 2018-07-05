@@ -10,6 +10,8 @@ jQuery(document).ready(function($){
         nav:true,
         margin:10,
         responsiveClass:true,
+        // autoplay:true,
+        dots: true,
         responsive:{
             0:{
                 items:1,
@@ -119,15 +121,30 @@ $("body").click
   }
 
 );
-(function(){
- 
-  $("#cart").click( function() {
+// (function(){
+ $("#bunmm").hover(function(){
+  $("#cart_v").show();
+},function(e){
+  // alert(e.pageX)
+  
+  //$("#cart_v").hide();
+  $("#cart_v").fadeOut( "slow");
+})
+//  
+//   $("#cart").mouseenter( function() {
+//     console.log("12312");
+//     $(".shopping-cart").css('display','block');
+//   });
+// })();
+//     $("#cart").hover(function(e) {
+//   $(".shopping-cart").stop(true, true).delay(10).fadeIn(10);
+// e.stopPropagation();
+// }, function() {
+//  $(".shopping-cart").stop(true, true).delay(10).fadeOut(500);
+// });
+ $("#cart").click( function() {
     $(".shopping-cart").fadeToggle( "fast");
   });
-  
-})();
-
-
 $(window).scroll(function () {
 
     var x = $(this).scrollTop();
@@ -168,3 +185,15 @@ $(window).scroll(function () {
 }, function() {
   $(this).find('.dropdown-menu').stop(true, true).delay(10).fadeOut(500);
 });
+function myFunction() {
+    var x = document.getElementById("snackbar");
+    x.className = "show";
+    setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+}
+// (function runForever(){
+//   // Do something here
+//   setTimeout(myFunction, 5000)
+// })()
+window.setInterval(function(){
+myFunction();
+}, 9000);

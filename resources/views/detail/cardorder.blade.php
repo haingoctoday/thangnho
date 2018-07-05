@@ -76,7 +76,7 @@
                     <tr>
                       <td colspan="2"><strong>{{ trans('messages.tongcong') }} :</strong> </td>
                       <td colspan="2">{!!Cart::count()!!}</td>
-                      <td  style="color:red;">{!!Cart::subtotal()!!} <span>&#8363;</span></td>                      
+                      <td  style="color:#4ca355;">{!!Cart::subtotal()!!} <span>&#8363;</span></td>                      
                     </tr>                    
                   </tbody>
                 </table>      
@@ -149,12 +149,14 @@
 
                                                <h2 class="sidebar-title">{{ trans('messages.shppinga') }}</h2>
                                                <hr>
+                                              <?php 
+                                               foreach ($data_chinhsach as $key => $value) {
+                                              
+                                                ?>
                                                <li>
-                                                   Ship COD 12 quận Hà Nội đồng giá 20.000đ. Xem chi tiết
+                                                  <?php echo $value->name ?>. Xem chi tiết
                                                </li>
-                                               <li>
-                                                   Hỗ trợ 50% - 100% phí ship toàn quốc Xem chi tiết
-                                               </li>
+                                               <?php } ?>
 
                                            </div>
                                            <div class="single-sidebar">

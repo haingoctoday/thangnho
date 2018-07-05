@@ -36,12 +36,14 @@
 
                <h2 class="sidebar-title">{{ trans('messages.shppinga') }}</h2>
                <hr>
-               <li>
-                 Ship COD 12 quận Hà Nội đồng giá 20.000đ. Xem chi tiết
-               </li>
-               <li>
-                 Hỗ trợ 50% - 100% phí ship toàn quốc Xem chi tiết
-               </li>
+               <?php 
+             foreach ($data_chinhsach as $key => $value) {
+            
+              ?>
+             <li>
+                <?php echo $value->name ?>. Xem chi tiết
+             </li>
+             <?php } ?>
 
              </div>
              <div class="single-sidebar">
@@ -130,7 +132,7 @@
                       </div><!-- /.col-lg-6 -->
                       <div class="col-md-9">
                        @if($data->status ==1)
-                       <a href="{!!url('gio-hang/addcart/'.$data->id)!!}" type="submit" class="single_add_to_cart_button">{{ trans('messages.addtocart') }}</a>
+                       <a href="#" type="submit" data-id="{!!$data->id!!}" class="single_add_to_cart_button ">{{ trans('messages.addtocart') }}</a>
                        @else
                        <a href="" title="" class="btn btn-large btn-block btn-primary disabled" style="font-size: 20px;"> {{ trans('messages.hethang') }}</a>
                        @endif
@@ -243,7 +245,7 @@
           ->where('products.cat_id','=',$data->cat_id)
           ->select('products.*','pro_details.cpu','pro_details.ram','pro_details.screen','pro_details.vga','pro_details.storage','pro_details.exten_memmory','pro_details.cam1','pro_details.cam2','pro_details.sim','pro_details.connect','pro_details.pin','pro_details.os','pro_details.note')
           ->orderBy('products.created_at', 'desc')
-          ->paginate(2); 
+          ->paginate(6); 
 	            //    print_r( $mobile );
 
           ?>
@@ -252,20 +254,33 @@
 
            <div class="single-product">
             <div class="product-f-image">
+                @if($row->promo1 != 0) 
+                                                  <div class="sale-wrapper">
+                                                      <div class="onsale">Sale</div>
+                                                  </div>
+                                       @endif
              <img class="img-responsive" src="{!!url('public/uploads/products/'.$row->images)!!}" alt="{!!$row->name!!}">
-             <div class="product-hover">
-              <a href="#" class="add-to-cart-link"><i class="fa fa-shopping-cart"></i> Add to cart</a>
-              <a href="single-product.html" class="view-details-link"><i class="fa fa-link"></i> See details</a>
-            </div>
+
+             <div class="product-hover1">
+                                                  <a data-id="{!!$row->id!!}" href="#" class="add-to-cart-link-1"><i class="fa fa-shopping-basket fa-2x" aria-hidden="true"></i></a>
+                                                  <a href="{!!url('detail/'.$row->id.'-'.$row->slug)!!}" class="view-details-link-1"><i class="fa fa-link fa-2x"></i></a>
+                                                </div>
           </div>
 
           <h2><a href="single-product.html" class="text_product">{!!$row->name!!}</a></h2>
 
           <div class="product-carousel-price">
-            Chỉ từ <ins> {!!number_format($row->price)!!}</ins><span>₫</span>
-            <!-- <ins>$700.00</ins> <del>$100.00</del> -->
+         @if($row->promo1 != 0) 
+
+<del>{!!number_format($row->price)!!}<span>&#8363;</span></del>   <ins>{!!number_format($row->promo1)!!}<span>&#8363;</span></ins> 
+                                            @else
+
+
+  {{ trans('messages.onyfrm') }} <ins> {!!number_format($row->price)!!}</ins><span>₫</span>
+                                            @endif
+
           </div>
-          <table class="table-product">
+          <table class="table-product" style="display: none">
             <tr>
               <td> 1-2</td>
               <td> 3-11</td>
@@ -309,4 +324,38 @@ table.shop_attributes td {
     </div>
   </div>
 </div>
+<script type="text/javascript">
+        $( ".single_add_to_cart_button" ).click(function(e) {
+                            var abc = $(this).data( "id" );
+                          //  alert(abc);
+                          alert("Đã thêm sp vào giỏ hàng !");
+                            e.preventDefault();
+                            $.ajax({ 
+                                type: "GET",
+                                url: "/gio-hang/addcart/"+abc, 
+                                success: function(response){ 
+                                        console.log(response); 
+                                        $(".product-count").text(response);
+                                         $("#cart_v").load(window.location + " .shopping-cart");
+                                         // $(".shopping-item").load(window.location + " .shopping-cart");
+                                } 
+                            });
+                                });
+         $( ".add-to-cart-link-1" ).click(function(e) {
+                            var abc = $(this).data( "id" );
+                          //  alert(abc);
+                          alert("Đã thêm sp vào giỏ hàng !");
+                            e.preventDefault();
+                            $.ajax({ 
+                                type: "GET",
+                                url: "/gio-hang/addcart/"+abc, 
+                                success: function(response){ 
+                                        console.log(response); 
+                                        $(".product-count").text(response);
+                                         $("#cart_v").load(window.location + " .shopping-cart");
+                                         // $(".shopping-item").load(window.location + " .shopping-cart");
+                                } 
+                            });
+                                });
+</script>
 @endsection

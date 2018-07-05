@@ -5,13 +5,13 @@
 		<div class="row">
 			<ol class="breadcrumb">
 				<li><a href="#"><svg class="glyph stroked home"><use xlink:href="#stroked-home"></use></svg></a></li>
-				<li class="active">Danh mục</li>
+				<li class="active">Thông tin website</li>
 			</ol>
 		</div><!--/.row-->
 		
 		<div class="row">
 			<div class="col-lg-12">
-				<h1 class="page-header"><small>Thêm mới danh mục</small></h1>
+				<h1 class="page-header"><small>Chỉnh sửa thông tin website</small></h1>
 			</div>
 		</div><!--/.row-->
 		
@@ -69,7 +69,7 @@
 				      		<div class="form-group">
 				      			<label for="input-id">Logo Web</label>
 					      		<input type="file" name="txtimg" id="inputtxtimg" value="{{ old('txtimg') }}" class="form-control">
-					      		Logo cũ: <img src="{!!url('uploads/info/'.$pro->logo)!!}" width="80" height="60" class="margin-bt">
+					      		Logo cũ: <img src="{!!url('uploads/info/'.$row->logo)!!}" width="80" height="60" class="margin-bt">
 				      		</div>
 				      		<div class="form-group">
 				      			<label for="input-id">Số điện thoại</label>
@@ -100,7 +100,24 @@
 				      			<label for="input-id">Description</label>
 				      			<input type="text" name="txtDes" id="inputTxtDes" class="form-control" value="{!!$row->decript!!}">
 				      		</div>	
-				      		
+				      			<div class="form-group">
+				      			<label for="input-id">Link Youtube giới thiệu</label>
+				      			<input type="text" name="txtVideo" id="inputTxtDes" class="form-control" value="{!!$row->link_url_youtube!!}">
+				      		</div>
+				      			<div class="form-group">
+				      			<label for="input-id">Lựa chọn kiểu popup</label>
+					      		<select name="txtStt" id="inputTxtStt" class="form-control" required="required">
+					      				<?php if($row->popup_type == 1) {?>
+					      					<option value="1" selected="">Popup Form</option>
+					      			
+					      					<option value="2">Popup Video</option>
+					      					<?php }else{ ?>
+					      					<option value="1" >Popup Form</option>
+					      			
+					      					<option value="2" selected="">Popup Video</option>
+					      					<?php } ?>
+					      				</select>
+				      		</div>
 
 				      		<input type="submit" name="btnCateAdd" class="btn btn-primary" value="Xác Nhận" class="button" />
 				      	</form>			      	

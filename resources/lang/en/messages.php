@@ -99,6 +99,8 @@ return [
 'rematkhau' => 'Re-Password',
 'ghimatkhau' => 'Remember Password',
 'quenmatkhau' => 'Forgot password',
+'muahangnhanh' => 'Buy Fast',
+
 
 
 ];
